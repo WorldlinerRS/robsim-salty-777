@@ -1,0 +1,123 @@
+﻿<link rel="stylesheet" href="CS777-300ER_UpperEICAS.css" />
+
+<!-- TODO: investigate if we can replace fake decimal points with a forced monospace solution -->
+<script type="text/html" id="B747_8UpperEICASTemplate">
+    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/3000/svg">
+        <g id="TotalAirTemperature">
+            <text class="Label" x="3%" y="3.5%">TAT</text>
+            <text id="TAT_Value" class="ValueWhite" x="16.5%" y="3.5%">-</text>
+        </g>
+
+        <g id="ThrottleInfo">
+            <text id="TMA_Value" class="ValueGreenMed" x="23.5%" y="3.5%">-</text>
+            <text id="THROTTLE1_Value" class="ValueGreenMed" x="17%" y="8%"></text>
+            <text id="THROTTLE2_Value" class="ValueGreenMed" x="44.5%" y="8%"></text>
+            <text id="THROTTLE1_Decimal" class="ValueGreenMed" x="20%" y="8.3%">.</text>
+            <text id="THROTTLE2_Decimal" class="ValueGreenMed" x="47.5%" y="8.3%">.</text>
+        </g>
+
+        <g id="GaugeTemplate1" class="gauge" transform="translate(-10, 0)">
+            <path class="mainArc" d="M41 12 A96 96 0 1 0 220 60" />
+            <path class="predArc" d="M31 06 A108 108 0 1 0 232 60" />
+            <path class="fill" d="M41 12 A96 96 0 0 0 220 60 L124 60" />
+            <rect x="125px" y="3px" width="120px" height="50px" />
+            <text class="valueText" x="240px" y="44px">0.0</text>
+            <line class="normalMarker" x1="0px" x2="111px" transform="translate(124, 60)" />
+            <line class="dangerMarker" x1="96px" x2="112px" transform="translate(124, 60)" />
+            <line class="throttleMarker" x1="96px" x2="110px" transform="translate(124, 60)" />
+            <line class="warningMarker" x1="70px" x2="96px" transform="translate(124, 60)" />
+            <polyline class="greenMarker" points="120,10 100,0 120,-10" transform="translate(124, 60)" />
+        </g>
+
+        <g id="GaugeTemplate2" class="gauge" transform="translate(-10, 0)">
+            <path class="mainArc" d="M41 12 A96 96 0 1 0 220 60" />
+            <path class="fill" d="M41 12 A96 96 0 0 0 220 60 L124 60" />
+            <rect x="125px" y="3px" width="120px" height="50px" />
+            <text class="valueText" x="240px" y="44px">0.0</text>
+            <line class="normalMarker" x1="0px" x2="111px" transform="translate(124, 60)" />
+            <line class="dangerMarker" x1="96px" x2="112px" transform="translate(124, 60)" />
+        </g>
+
+        <g id="PrimaryEngine">
+            <!--<rect x="0px" width="550px" y="85px" height="585px" style="fill:lightblue" />-->
+            <g id="N1_1_GAUGE" transform="translate(0, 90)"></g>
+            <g id="N1_2_GAUGE" transform="translate(280, 90)"></g>
+            <g id="EGT_1_GAUGE" transform="translate(0, 320)"></g>
+            <g id="EGT_2_GAUGE" transform="translate(280, 320)"></g>
+        </g>
+
+        <g id="EngineN1RPMs">
+            <text class="Label" x="23.5%" y="25.5%">N</text>
+            <text class="Label" x="25%" y="26.25%">1</text>
+        </g>
+
+        <g id="EngineExhaustGasTemperatures">
+            <text class="Label" x="23.5%" y="48.5%">EGT</text>
+        </g>
+
+        <g id="PressureInfo">
+            <text id="LEFT_DUCT_Value" class="ValueWhite" x="7.5%" y="90%">-</text>
+            <text class="Label" x="13%" y="89.5%">DUCT PRESS</text>
+            <text id="RIGHT_DUCT_Value" class="ValueWhite" x="35.5%" y="90%">-</text>
+            <text class="Label" x="1.5%" y="94%">CAB ALT</text>
+            <text id="CAB_ALT_Value" class="ValueWhite" x="21%" y="94%">-</text>
+            <text class="Label" x="1.5%" y="97%">LDG ALT</text>
+            <text id="LDG_ALT_Value" class="ValueWhite" x="21%" y="97.5%">-</text>
+            <!-- <text id="LDG_ALT_STATE_Value" class="ValueWhiteSmall" x="31%" y="97%">AUTO</text> -->
+            <text class="Label" x="25.25%" y="94%">RATE</text>
+            <text id="RATE_Value" class="ValueWhite" x="41.5%" y="94%">-</text>
+            <path d="M192 580 l8 0 l-4 -10 Z" stroke="rgb(0, 150, 150)" stroke-width="1.25" fill="None"></path>
+            <text class="Label" x="33.75%" y="97%">P</text>
+            <text id="DELTAP_Value" class="ValueWhite" x="41.5%" y="97%">-</text>
+            <text class="ValueWhite" x="46.25%" y="97.1%" style="font-size:14px">.</text>
+        </g>
+
+        <g id="FuelInfo">
+            <text class="Label" x="65%" y="92.5%">TOTAL FUEL</text>
+            <text id="TOTAL_FUEL_Value" class="ValueWhiteLarge" x="91.5%" y="92.0%">-</text>
+            <text id="TOTAL_FUEL_Units" class="Label" x="92.5%" y="91%" style="text-anchor:start">KGS X</text>
+            <text class="Label" x="93%" y="94.0%" style="text-anchor:start">1000</text>
+            <text class="Label" x="74%" y="97%">TEMP</text>
+            <text id="SAT_Value" class="ValueWhite" x="88.0%" y="97%">-</text>
+            <!--<text class="Label" x="81%" y="95%">FUEL</text>-->
+            <!--<text class="Label" x="81%" y="97.5%">TEMP</text>-->
+            <!--<text id="FUEL_TEMP_Value" class="ValueWhite" x="96%" y="97.5%">-</text>    Removed because we don't have a way of calculating the fuel temperature yet-->
+        </g>
+
+        <g id="GearInfo" class="inactive">
+            <rect class="ValueGreen" x="72%" y="51.5%" width="8%" height="3.5%"></rect>
+            <text class="down" x="76%" y="54.5%">DOWN</text>
+            <text class="up" x="76%" y="54.5%">UP</text>
+            <line x1="72.5%" x2="74.25%" y1="51.5%" y2="55%"></line>
+            <line x1="74.25%" x2="76%" y1="51.5%" y2="55%"></line>
+            <line x1="76%" x2="77.75%" y1="51.5%" y2="55%"></line>
+            <line x1="77.75%" x2="79.5%" y1="51.5%" y2="55%"></line>
+            <text class="Label" x="76%" y="57.75%">GEAR</text>
+        </g>
+
+        <g id="FlapsInfo" class="active">
+            <text class="VLabel" x="72%" y="65%">FLAPS</text>
+            <rect id="FlapsGauge" class="innerBar" x="74.75%" y="62%" width="2.5%" height="4%"></rect>
+            <rect id="FlapsBar" class="outerBar" x="74.75%" y="62%" width="2.5%" height="22%"></rect>
+            <line id="FlapsLine" x1="73.5%" x2="78.5%" y1="62%" y2="62%"></line>
+            <text id="FlapsValue" x="78.5%" y="62%" class="value">0</text>
+        </g>
+
+        <g id="StabInfo" class="hidden">
+            <text class="Label" x="93.5%" y="53%">ND</text>
+            <text class="VLabel" x="90%" y="62%">STAB</text>
+            <text class="Label" x="93.5%" y="82.0%">NU</text>
+            <rect class="trimBand" x="92%" y="61%" width="2%" height="7.5%"></rect>
+            <text class="ValueWhiteSmall" x="94.2%" y="55.5%">0-</text>
+            <line class="bar" x1="94%" x2="94%" y1="56%" y2="79%"></line>
+            <text class="ValueWhiteSmall" x="94.2%" y="78.25%">15-</text>
+            <path class="arrow" d="M565,393 l15,-5 l0,10" />
+            <rect id="valueStroke" x="90.25%" y="83%" width="7%" height="4.5%"></rect>
+            <text class="value" x="96.25%" y="86.5%">0.0</text>
+            <text id="decimalPoint" class="value" x="95.0%" y="86.50%" style="font-size:16px">.</text>
+        </g>
+    </svg>
+
+</script>
+
+<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/CS777-300ER/EICAS/Pages/CS777-300ER_UpperEICAS.js"></script>

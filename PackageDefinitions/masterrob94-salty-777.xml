@@ -1,0 +1,55 @@
+<AssetPackage Name="masterrob94-salty-777" Version="1.5.0">
+	<ItemSettings>
+		<ContentType>AIRCRAFT</ContentType>
+		<Title>Masterrob94 Salty 777</Title>
+		<Manufacturer>Boeing</Manufacturer>
+		<Creator>masterrob94</Creator>
+	</ItemSettings>
+	<Flags>
+		<VisibleInStore>false</VisibleInStore>
+		<CanBeReferenced>false</CanBeReferenced>
+	</Flags>
+	<AssetGroups>
+		<AssetGroup Name="Aircraft_Gauge">
+			<Type>Copy</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\html_ui\</AssetDir>
+			<OutputDir>html_ui\</OutputDir>
+		</AssetGroup>
+		<AssetGroup Name="CS_B767-400ER_CF6">
+			<Type>Copy</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B767-400ER_CF6\</AssetDir>
+			<OutputDir>SimObjects\Airplanes\CS_B767-400ER_CF6\</OutputDir>
+		</AssetGroup>
+		<AssetGroup Name="CS_B777-200ER_GE90B">
+			<Type>Copy</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B777-200ER_GE90B\</AssetDir>
+			<OutputDir>SimObjects\Airplanes\CS_B777-200ER_GE90B\</OutputDir>
+		</AssetGroup>
+		<AssetGroup Name="CS_B777-300ER_GE115B">
+			<Type>Copy</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B777-300ER_GE115B\</AssetDir>
+			<OutputDir>SimObjects\Airplanes\CS_B777-300ER_GE115B\</OutputDir>
+		</AssetGroup>
+		<AssetGroup Name="CS_B777F_GE110B1">
+			<Type>Copy</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B777F_GE110B1\</AssetDir>
+			<OutputDir>SimObjects\Airplanes\CS_B777F_GE110B1\</OutputDir>
+		</AssetGroup>
+	</AssetGroups>
+</AssetPackage>
+

@@ -1,0 +1,266 @@
+<link rel="stylesheet" href="./CS777-300ER_LowerEICAS_Fuel.css"/>
+
+<script type="text/html" id="B747_8LowerEICASFuelTemplate">
+    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <g id="Frame">
+            <g id="APU">
+                <rect x="7.5%" y="5%" width="10%" height="5%" stroke="#009696" stroke-width="3px"></rect>
+            </g>
+            <g id="Fuel">
+                <rect x="37.5%" y="10%" rx="5" ry="5" width="25%" height="9.5%" stroke="#009696" stroke-width="3px"/>
+            </g>
+            <g id="Tanks">
+                <rect x="0%" y="40%" rx="5" ry="5" width="25%" height="33.3%"/>
+                <rect x="75%" y="40%" rx="5" ry="5" width="25%" height="33.3%""/>
+                <rect x="33.3%" y="70%" rx="5" ry="5" width="33.3%" height="20%"/>
+            </g>
+            <g id="Engine1ToLeftCenter">
+                <line x1="175px" y1="30px" x2="175px" y2="420px" />
+            </g>
+        </g>
+        <g id="JettisonLines" >
+        </g>
+        <g id="ValveTemplate">
+            <circle r="14" />
+            <line x1="-4" x2="-4" y1="-14" y2="14" />
+            <line x1="4" x2="4" y1="-14" y2="14" />
+        </g>
+        <g id="Valves">
+            <g id="Valve1" transform="translate(175, 110) rotate(0)"></g>
+            <g id="Valve2" transform="translate(425, 110) rotate(0)"></g>
+        </g>
+<!--         <g id="Crossfeed">
+            <g id="CrossFeedFWD" transform="translate(300, 6510) rotate(90)">
+                <circle r="14" />
+                <line x1="-4" x2="-4" y1="-14" y2="14" />
+                <line x1="4" x2="4" y1="-14" y2="14" />
+            </g>
+            <use id="CrossFeedAFT" xlink:href="#Balance"transform="translate(0, 20)" />
+        </g> -->
+        <g id="SmallPumpTemplate">
+            <rect width="26px" height="26px"></rect>
+            <line x1="9px" x2="9px" y2="26px"></line>
+            <line x1="17px" x2="17px" y2="26px"></line>
+        </g>
+
+        <g id="LargePumpTemplate">
+            <rect width="30px" height="30px"></rect>
+            <line x1="11px" x2="11px" y2="30px"></line>
+            <line x1="19px" x2="19px" y2="30px"></line>
+        </g>
+
+        <g id="SmallPumpFlowLineTemplate">
+            <line x1="13px" x2="13px" y2="26px"></line>
+        </g>
+
+        <g id="LargePumpFlowLineTemplate">
+            <line x1="15px" x2="15px" y2="30px"></line>
+        </g>
+        <!-- <g id="Pumps">
+            <g id="MainPumps">
+                connects to Center tank
+                <g id="Pump1" transform="translate(273, 140)"></g>
+                <g id="Pump2" transform="translate(302, 140)"></g>
+
+                <g id="Pump3" transform="translate(62, 297)"></g>
+                <g id="Pump4" transform="translate(62, 330)"></g>
+                <g id="Pump5" transform="translate(201, 240)"></g>
+                <g id="Pump6" transform="translate(201, 273)"></g>
+                <g id="Pump9" transform="translate(373, 240)"></g>
+                <g id="Pump10" transform="translate(373, 273)"></g>
+                <g id="Pump13" transform="translate(512, 297)"></g>
+                <g id="Pump14" transform="translate(512, 330)"></g>
+            </g>
+
+            <g id="OvrdPumps">
+                both connect to Main_2 tank
+                <g id="Pump7" transform="translate(141, 237)">FuelLine50</g>
+                <g id="Pump8" transform="translate(141, 273)">FuelLine52</g>
+
+                 both connect to Main_3 tank
+                <g id="Pump11" transform="translate(429, 237)">FuelLine56</g>
+                <g id="Pump12" transform="translate(429, 273)">FuelLine58</g>
+            </g>
+
+            <g id="StabPumps">
+                <g id="Pump15" transform="translate(269, 462)">FuelLine62</g>
+                <g id="Pump16" transform="translate(304, 462)">FuelLine64</g>
+            </g>
+        </g> -->
+
+        <g id="FlowLines">
+            <g id="JettisonFlowLines">
+                <!-- left side -->
+                <line class="fuelline-jett" x1="286px" y1="166px" x2="286px" y2="180px" />
+                <line class="fuelline-jett" x1="288px" y1="180px" x2="250px" y2="180px" />
+                <line class="fuelline-jett" x1="252px" y1="180px" x2="252px" y2="500px" />
+                <line class="fuelline-jett" x1="252px" y1="314px" x2="154px" y2="314px" />
+                <!-- connects to pump 8-->
+                <line class="fuelline-jett" x1="156px" y1="314px" x2="156px" y2="303px" />
+
+                <line class="fuelline-jett" x1="253px" y1="499px" x2="92px" y2="535px" />
+
+                <!-- right side -->
+                <line class="fuelline-jett" x1="315px" y1="166px" x2="315px" y2="180px" />
+                <line class="fuelline-jett" x1="313px" y1="180px" x2="351px" y2="180px" />
+                <line class="fuelline-jett" x1="349px" y1="180px" x2="349px" y2="500px" />
+                <line class="fuelline-jett" x1="349px" y1="314px" x2="447px" y2="314px" />
+                <!-- connects to pump 12-->
+                <line class="fuelline-jett" x1="445px" y1="314px" x2="445px" y2="303px" />
+
+                <line class="fuelline-jett" x1="348px" y1="499px" x2="509px" y2="535px" />
+
+                <!-- connecting line -->
+                <line class="fuelline-jett" x1="252px" y1="434px" x2="349px" y2="434px" />
+                <line class="fuelline-jett" x1="301px" y1="434px" x2="301px" y2="455px" />
+                <line class="fuelline-jett" x1="302px" y1="434px" x2="302px" y2="455px" />
+            </g>
+
+            <g id="JettNozzles">
+                <g id="JettNozzleL" class="jett-noz">
+                    <path d="M90 536 L94 551 L86 551 Z" />
+                    <text x="88px" y="571px">JETT</text>
+                </g>
+
+                <g id="JettNozzleR" class="jett-noz">
+                    <path d="M511 536 L507 551 L515 551 Z" />
+                    <text x="509px" y="571px">JETT</text>
+                </g>
+            </g>
+
+            <g id="MainPumpFlowLines">
+                <g id="FlowLine1" transform="translate(273, 140)"></g>
+                <g id="FlowLine2" transform="translate(302, 140)"></g>
+                <g id="FlowLine5" transform="translate(62, 297)"></g>
+                <g id="FlowLine6" transform="translate(62, 330)"></g>
+                <g id="FlowLine14" transform="translate(201, 240)"></g>
+                <g id="FlowLine15" transform="translate(201, 273)"></g>
+                <g id="FlowLine30" transform="translate(373, 240)"></g>
+                <g id="FlowLine31" transform="translate(373, 273)"></g>
+                <g id="FlowLine41" transform="translate(512, 297)"></g>
+                <g id="FlowLine42" transform="translate(512, 330)"></g>
+            </g>
+
+            <g id="OvrdPumpFlowLines">
+                <g id="FlowLine50" transform="translate(141, 237)"></g>
+                <g id="FlowLine52" transform="translate(141, 273)"></g>
+                <g id="FlowLine55" transform="translate(429, 237)"></g>
+                <g id="FlowLine57" transform="translate(429, 273)"></g>
+            </g>
+
+            <g id="StabPumpFlowLines">
+                <g id="FlowLine60" transform="translate(269, 462)"></g>
+                <g id="FlowLine62" transform="translate(304, 462)"></g>
+            </g>
+
+            <g id="MainFlowLines">
+                <!--CenterToTop-->
+                <line id="FlowLine3" x1="286px" y1="106px" x2="286px" y2="140px"></line>
+                <line id="FlowLine4" x1="314px" y1="106px" x2="314px" y2="140px"></line>
+                <line id="FlowLine40" x1="287px" y1="108px" x2="313px" y2="108px"></line>
+
+                <!--TopLeft-->
+                <g id="FlowLine29">
+                    <line x1="154px" y1="108px" x2="288px" y2="108px"></line>
+                    <line x1="156px" y1="108px" x2="156px" y2="220px"></line>
+                </g>
+
+                <!--TopRight-->
+                <g id="FlowLine39">
+                    <line x1="312px" y1="108px" x2="446px" y2="108px"></line>
+                    <line x1="444px" y1="108px" x2="444px" y2="220px"></line>
+                </g>
+
+                <!--LeftValvesAndOvrd-->
+                <line id="FlowLine12" x1="74px" y1="253px" x2="106px" y2="240px"></line>
+                <line id="FlowLine13" x1="104px" y1="240px" x2="157px" y2="217px"></line>
+                <line id="FlowLine28" x1="155px" y1="218px" x2="187px" y2="204px"></line>
+                <line id="FlowLine27" x1="185px" y1="204px" x2="215px" y2="192px"></line>
+                <line id="FlowLine54" x1="156px" y1="215px" x2="156px" y2="237px"></line>
+
+                <!--RightValvesAndOvrd-->
+                <line id="FlowLine37" x1="415px" y1="204px" x2="385px" y2="192px"></line>
+                <line id="FlowLine38" x1="445px" y1="218px" x2="413px" y2="204px"></line>
+                <line id="FlowLine49" x1="496px" y1="240px" x2="443px" y2="217px"></line>
+                <line id="FlowLine48" x1="526px" y1="253px" x2="494px" y2="240px"></line>
+                <line id="FlowLine59" x1="444px" y1="215px" x2="444px" y2="237px"></line>
+
+                <!--Eng1ToTank1-->
+                <line id="FlowLine9" x1="75px" y1="251px" x2="75px" y2="297px"></line>
+                <line id="FlowLine10" x1="75px" y1="225px" x2="75px" y2="252px"></line>
+
+                <!--Eng2ToTank2-->
+                <line id="FlowLine45" x1="525px" y1="251px" x2="525px" y2="297px"></line>
+                <line id="FlowLine46" x1="525px" y1="225px" x2="525px" y2="252px"></line>
+            </g>
+        </g>
+        <g id="TransferOutlines">
+            <path id="TransferReserve1" d="M50 0 L0 50 L25 50 L25 200 L75 200 L75 50 L100 50 Z" transform="translate(67, 420) scale(0.15, 0.2)" />
+            <path id="TransferReserve4" d="M50 0 L0 50 L25 50 L25 200 L75 200 L75 50 L100 50 Z" transform="translate(517, 420) scale(0.15, 0.2)" />
+            <path id="TransferStab" d="M50 0 L0 50 L25 50 L25 1050 L75 1050 L75 50 L100 50 Z" transform="translate(294, 245) scale(0.15, 0.2)" />
+        </g>
+        <g id="TransferFlow">
+            <path id="FlowReserve1" d="M50 0 L0 50 L25 50 L25 275 L75 275 L75 50 L100 50 Z" transform="translate(69.5, 422) scale(0.10, 0.133)" />
+            <path id="FlowReserve4" d="M50 0 L0 50 L25 50 L25 275 L75 275 L75 50 L100 50 Z" transform="translate(519.5, 422) scale(0.10, 0.133)" />
+            <path id="FlowStab" d="M50 0 L0 50 L25 50 L25 1555 L75 1555 L75 50 L100 50 Z" transform="translate(296.5, 247) scale(0.10, 0.133)" />
+        </g>
+        <g id="Engines">
+            <g id="Engine1" transform="scale(1.5) translate(100, 10)" >
+                <path d="M2.12,7.82C3,5.07,3.76,3.05,4,2.35a2.25,2.25,0,0,1,.5-.8A2.2,2.2,0,0,1,5.39,1H28.31a2,2,0,0,1,1.05.44,2.13,2.13,0,0,1,.7,1.12l1.27,5.16L32,11.1c.08.45.18,1.1.26,1.88a41,41,0,0,1,.18,4.74c0,1.44,0,3.46-.15,5.88,0,1-.1,1.87-.21,3-.07.69-.21,2-.5,3.67A29.08,29.08,0,0,1,30,35.65a1.64,1.64,0,0,1-.6.81,1.57,1.57,0,0,1-.83.26H5.27a1.35,1.35,0,0,1-1-.75l-1.95-6A24,24,0,0,1,1.55,27a26.81,26.81,0,0,1-.44-3.41C1,21.93,1,20.71,1,18.27c0-1,.13-6.1.09-4.16.08-1,.22-2.16.41-3.35C1.7,9.72,1.9,8.73,2.12,7.82Z"/>
+                <path d="M25.35,40a16,16,0,0,0,.26-3.28H7.84l.43,3.46a10.85,10.85,0,0,0,.36,1.93,11.3,11.3,0,0,0,.68,1.82l.47.65a2.37,2.37,0,0,0,.54.58,3,3,0,0,0,1.56.52,80.85,80.85,0,0,0,10,.1,2.77,2.77,0,0,0,1.74-.57,2.09,2.09,0,0,0,.5-.68l.28-.78c.15-.48.28-1,.42-1.48A19.34,19.34,0,0,0,25.35,40Z"/>
+                <line class="cls-1" x1="2.07" y1="8" x2="31.39" y2="8"/>
+            </g>
+            <g id="Engine2" transform="scale(1.5) translate(266.66, 10)" >
+                <path d="M2.12,7.82C3,5.07,3.76,3.05,4,2.35a2.25,2.25,0,0,1,.5-.8A2.2,2.2,0,0,1,5.39,1H28.31a2,2,0,0,1,1.05.44,2.13,2.13,0,0,1,.7,1.12l1.27,5.16L32,11.1c.08.45.18,1.1.26,1.88a41,41,0,0,1,.18,4.74c0,1.44,0,3.46-.15,5.88,0,1-.1,1.87-.21,3-.07.69-.21,2-.5,3.67A29.08,29.08,0,0,1,30,35.65a1.64,1.64,0,0,1-.6.81,1.57,1.57,0,0,1-.83.26H5.27a1.35,1.35,0,0,1-1-.75l-1.95-6A24,24,0,0,1,1.55,27a26.81,26.81,0,0,1-.44-3.41C1,21.93,1,20.71,1,18.27c0-1,.13-6.1.09-4.16.08-1,.22-2.16.41-3.35C1.7,9.72,1.9,8.73,2.12,7.82Z"/>
+                <path d="M25.35,40a16,16,0,0,0,.26-3.28H7.84l.43,3.46a10.85,10.85,0,0,0,.36,1.93,11.3,11.3,0,0,0,.68,1.82l.47.65a2.37,2.37,0,0,0,.54.58,3,3,0,0,0,1.56.52,80.85,80.85,0,0,0,10,.1,2.77,2.77,0,0,0,1.74-.57,2.09,2.09,0,0,0,.5-.68l.28-.78c.15-.48.28-1,.42-1.48A19.34,19.34,0,0,0,25.35,40Z"/>
+                <line class="cls-1" x1="2.07" y1="8" x2="31.39" y2="8"/>
+            </g> 
+        </g>
+
+        <g id="Labels">
+            <text x="50%" y="95.0%">CENTER</text>
+            <text x="44%" y="73.5%">L</text>
+            <text x="56.125%" y="73.5%">R</text>
+            <text x="7.5%" y="37.5%">L MAIN</text>
+            <text x="6.25%" y="46.25%">FWD</text>
+            <text x="6.25%" y="67.5%">AFT</text>
+            <text x="92.5%" y="37.5%">R MAIN</text>
+            <text x="94.25%" y="46.25%">FWD</text>
+            <text x="94.25%" y="67.5%">AFT</text>
+            <text x="12.5%" y="8.25%">APU</text>
+            <text x="42.25%" y="14.25%">TOTAL</text>
+            <text id="TotalFuel" x="46%" y="17.5%">FUEL</text>
+            <text id="JettTime" x="75.5%" y="10.5%">JETTISON TIME</text>
+            <text x="50%" y="45%">FUEL BALANCED</text>
+            <text x="50%" y="60%">CROSSFEED</text>
+        </g>
+        <g id="Values">
+            <text id="TotalFuelUnits" x="57.7%" y="24.25%">KGS X 1000</text>
+            <text id="TotalFuelValue" x="57.5%" y="16.25%">0.0</text>
+            <text id="JettTimeValue" x="97%" y="10.5%">-</text>
+            
+            <rect id="CenterBox" x="44%" width="12.5%" y="81.5%" height="6.25%" />
+            <rect id="CenterLBox" x="40%" width="7.5%" y="74%" height="6.25%" />
+            <rect id="CenterRBox" x="52.5%" width="7.5%" y="74%" height="6.25%" />
+            <text id="CenterValue" x="53%" y="86.25%">0.0</text>
+            <rect id="MainLBox" x="11.25%" width="12.5%" y="52.5%" height="6.25%" />
+            <rect id="MainFWDBox" x="2.5%" width="7.5%" y="47.5%" height="6.25%" />
+            <rect id="MainAFTBox" x="2.5%" width="7.5%" y="57.5%" height="6.25%" />
+            <text id="MainLValue" x="20.75%" y="56.75%">0.0</text>
+            <rect id="MainRBox" x="76.25%" width="12.5%" y="52.5%" height="6.25%" />
+            <rect id="MainFWDBox" x="90.25%" width="7.5%" y="47.5%" height="6.25%" />
+            <rect id="MainAFTBox" x="90.25%" width="7.5%" y="57.5%" height="6.25%" />
+            <text id="MainRValue" x="85.0%" y="56.75%">0.0</text>
+            <rect id="StabBox" x="82.5%" width="12%" y="82.5%" height="5.5%" />
+            <text id="Stab" x="91.75%" y="91.5%">STAB</text>
+            <text id="StabValue" x="91.5%" y="86.25%">0.0</text>
+            <text id="Main1Value"></text>
+            <text id="Main2Value"></text>
+            <text id="Main3Value"></text>
+            <text id="Res1Value"></text>
+            <text id="Res4Value"></text>
+        </g>
+    </svg>
+</script>
+
+<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/CS777-300ER/EICAS/Pages/CS777-300ER_LowerEICAS_Fuel.js"></script>
