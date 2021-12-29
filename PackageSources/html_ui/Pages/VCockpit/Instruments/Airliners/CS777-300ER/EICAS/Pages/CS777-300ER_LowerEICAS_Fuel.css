@@ -1,7 +1,7 @@
 :root {
     --eicasWhite: white;
     --eicasBlack: black;
-    --eicasGrey: #808080;
+    --eicasGrey: #c8c8c8;
     --eicasBlue: #009696;
     --eicasGreen: green;
     --eicasOrange: #db7200;
@@ -59,12 +59,8 @@
       text-anchor: middle; }
     b747-8-lower-eicas-fuel #Frame {
       stroke: var(--eicasWhite);
-      stroke-width: 5px;
+      stroke-width: 1px;
       fill: var(--eicasBlack); }
-      b747-8-lower-eicas-fuel #Frame #Tanks rect{
-        fill: var(--eicasGrey);
-        stroke: var(--eicasBlue);
-        stroke-width: 5px; }
     b747-8-lower-eicas-fuel #Valves {
       fill: var(--eicasBlack);
       stroke-width: 2px; }
@@ -126,7 +122,7 @@
       b747-8-lower-eicas-fuel #Engines .fuelengine-active {
         stroke: var(--eicasWhite); }
       b747-8-lower-eicas-fuel #Engines .fuelengine-inactive {
-        stroke: var(--eicasBlue); }
+        stroke: var(--eicasOrange); }
     b747-8-lower-eicas-fuel #Labels text {
       fill: cyan; }
     b747-8-lower-eicas-fuel #Labels #TotalFuel {

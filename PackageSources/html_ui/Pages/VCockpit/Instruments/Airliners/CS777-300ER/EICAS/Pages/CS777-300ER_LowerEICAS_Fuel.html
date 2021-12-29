@@ -3,40 +3,118 @@
 <script type="text/html" id="B747_8LowerEICASFuelTemplate">
     <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
         <g id="Frame">
-            <g id="APU">
-                <rect x="7.5%" y="5%" width="10%" height="5%" stroke="#009696" stroke-width="3px"></rect>
+            <g id="CenterToTop">
+                <line x1="282px" y1="112px" x2="282px" y2="143px" />
+                <line x1="290px" y1="112px" x2="290px" y2="143px" />
+                <line x1="310px" y1="112px" x2="310px" y2="143px" />
+                <line x1="318px" y1="112px" x2="318px" y2="143px" />
+                <line x1="290px" y1="112px" x2="310px" y2="112px" />
+                <line x1="152px" y1="104px" x2="448px" y2="104px" />
             </g>
-            <g id="Fuel">
-                <rect x="37.5%" y="10%" rx="5" ry="5" width="25%" height="9.5%" stroke="#009696" stroke-width="3px"/>
+
+            <g id="TopLeft">
+                <line x1="152px" y1="104px" x2="152px" y2="215px" />
+                <line x1="160px" y1="112px" x2="160px" y2="212px" />
+                <line x1="160px" y1="112px" x2="282px" y2="112px" />
             </g>
-            <g id="Tanks">
-                <rect x="0%" y="40%" rx="5" ry="5" width="25%" height="33.3%"/>
-                <rect x="75%" y="40%" rx="5" ry="5" width="25%" height="33.3%""/>
-                <rect x="33.3%" y="70%" rx="5" ry="5" width="33.3%" height="20%"/>
+
+            <g id="TopRight">
+                <line x1="448px" y1="104px" x2="448px" y2="215px" />
+                <line x1="440px" y1="112px" x2="440px" y2="212px" />
+                <line x1="440px" y1="112px" x2="318px" y2="112px" />
             </g>
-            <g id="Engine1ToLeftCenter">
-                <line x1="175px" y1="30px" x2="175px" y2="420px" />
+
+            <g id="LeftValvesAndOvrd">
+                <line x1="79px" y1="247px" x2="152px" y2="215px" />
+                <line x1="79px" y1="255px" x2="152px" y2="223px" />
+                <line x1="152px" y1="223px" x2="152px" y2="240px" />
+                <line x1="160px" y1="220px" x2="160px" y2="240px" />
+            </g>
+
+            <g id="RightValvesAndOvrd">
+                <line x1="448px" y1="215px" x2="521px" y2="247px" />
+                <line x1="448px" y1="223px" x2="521px" y2="255px" />
+                <line x1="440px" y1="220px" x2="440px" y2="240px" />
+                <line x1="448px" y1="223px" x2="448px" y2="240px" />
+            </g>
+
+            <g id="Eng1ToTank1">
+                <line x1="71px" y1="222px" x2="71px" y2="300px" />
+                <line x1="79px" y1="255px" x2="79px" y2="300px" />
+                <line x1="79px" y1="222px" x2="79px" y2="247px" />
+            </g>
+
+            <g id="Eng2ToTank2">
+                <line x1="529px" y1="222px" x2="529px" y2="300px" />
+                <line x1="521px" y1="255px" x2="521px" y2="300px" />
+                <line x1="521px" y1="222px" x2="521px" y2="247px" />
+            </g>
+
+            <g id="JettisonLines" >
+                <!-- left side -->
+                <!-- connects to Pump1  -->
+                <line x1="282px" y1="166px" x2="282px" y2="176px" />
+                <line x1="290px" y1="166px" x2="290px" y2="184px" />
+
+                <line x1="282px" y1="176px" x2="248px" y2="176px" />
+                <line x1="290px" y1="184px" x2="256px" y2="184px" />
+
+                <line x1="248px" y1="176px" x2="248px" y2="310px" />
+                <line x1="248px" y1="318px" x2="248px" y2="496px" />
+                <line x1="256px" y1="184px" x2="256px" y2="430px" />
+                <line x1="256px" y1="438px" x2="256px" y2="503px" />
+
+                <line x1="248px" y1="310px" x2="160px" y2="310px" />
+                <line x1="248px" y1="318px" x2="152px" y2="318px" />
+
+                <!-- connects to Pump8  -->
+                <line x1="160px" y1="310px" x2="160px" y2="303px" />
+                <line x1="152px" y1="318px" x2="152px" y2="303px" />
+
+                <line x1="248px" y1="496px" x2="90px" y2="532px" />
+                <line x1="256px" y1="503px" x2="92px" y2="539px" />
+                <!-- jettisons out here  -->
+                <line x1="90px" y1="532px" x2="96px" y2="553px" />
+                <line x1="90px" y1="532px" x2="84px" y2="553px" />
+                <line x1="84px" y1="553px" x2="96px" y2="553px" />
+
+                <!-- right side -->
+                <!-- connects to Pump2  -->
+                <line x1="319px" y1="166px" x2="319px" y2="176px" />
+                <line x1="311px" y1="166px" x2="311px" y2="184px" />
+                
+                <line x1="319px" y1="176px" x2="353px" y2="176px" />
+                <line x1="311px" y1="184px" x2="345px" y2="184px" />
+                
+                <line x1="353px" y1="176px" x2="353px" y2="310px" />
+                <line x1="353px" y1="318px" x2="353px" y2="496px" />
+                <line x1="345px" y1="184px" x2="345px" y2="430px" />
+                <line x1="345px" y1="438px" x2="345px" y2="503px" />
+
+                <line x1="353px" y1="310px" x2="441px" y2="310px" />
+                <line x1="353px" y1="318px" x2="449px" y2="318px" />
+
+                <!-- connects to Pump12  -->
+                <line x1="441px" y1="310px" x2="441px" y2="303px" />
+                <line x1="449px" y1="318px" x2="449px" y2="303px" />
+
+                <line x1="353px" y1="496px" x2="511px" y2="532px" />
+                <line x1="345px" y1="503px" x2="509px" y2="539px" />
+
             </g>
         </g>
-        <g id="JettisonLines" >
-        </g>
+
         <g id="ValveTemplate">
             <circle r="14" />
             <line x1="-4" x2="-4" y1="-14" y2="14" />
             <line x1="4" x2="4" y1="-14" y2="14" />
         </g>
+
         <g id="Valves">
-            <g id="Valve1" transform="translate(175, 110) rotate(0)"></g>
-            <g id="Valve2" transform="translate(425, 110) rotate(0)"></g>
+            <g id="Valve1" transform="translate(105, 240) rotate(156)"></g>
+            <g id="Valve2" transform="translate(495, 240) rotate(24)"></g>
         </g>
-<!--         <g id="Crossfeed">
-            <g id="CrossFeedFWD" transform="translate(300, 6510) rotate(90)">
-                <circle r="14" />
-                <line x1="-4" x2="-4" y1="-14" y2="14" />
-                <line x1="4" x2="4" y1="-14" y2="14" />
-            </g>
-            <use id="CrossFeedAFT" xlink:href="#Balance"transform="translate(0, 20)" />
-        </g> -->
+
         <g id="SmallPumpTemplate">
             <rect width="26px" height="26px"></rect>
             <line x1="9px" x2="9px" y2="26px"></line>
@@ -56,9 +134,10 @@
         <g id="LargePumpFlowLineTemplate">
             <line x1="15px" x2="15px" y2="30px"></line>
         </g>
-        <!-- <g id="Pumps">
+
+        <g id="Pumps">
             <g id="MainPumps">
-                connects to Center tank
+                <!-- connects to Center tank -->
                 <g id="Pump1" transform="translate(273, 140)"></g>
                 <g id="Pump2" transform="translate(302, 140)"></g>
 
@@ -73,11 +152,11 @@
             </g>
 
             <g id="OvrdPumps">
-                both connect to Main_2 tank
+                <!-- both connect to Main_2 tank -->
                 <g id="Pump7" transform="translate(141, 237)">FuelLine50</g>
                 <g id="Pump8" transform="translate(141, 273)">FuelLine52</g>
 
-                 both connect to Main_3 tank
+                <!-- both connect to Main_3 tank -->
                 <g id="Pump11" transform="translate(429, 237)">FuelLine56</g>
                 <g id="Pump12" transform="translate(429, 273)">FuelLine58</g>
             </g>
@@ -86,7 +165,7 @@
                 <g id="Pump15" transform="translate(269, 462)">FuelLine62</g>
                 <g id="Pump16" transform="translate(304, 462)">FuelLine64</g>
             </g>
-        </g> -->
+        </g>
 
         <g id="FlowLines">
             <g id="JettisonFlowLines">
@@ -205,60 +284,64 @@
             <path id="FlowStab" d="M50 0 L0 50 L25 50 L25 1555 L75 1555 L75 50 L100 50 Z" transform="translate(296.5, 247) scale(0.10, 0.133)" />
         </g>
         <g id="Engines">
-            <g id="Engine1" transform="scale(1.5) translate(100, 10)" >
-                <path d="M2.12,7.82C3,5.07,3.76,3.05,4,2.35a2.25,2.25,0,0,1,.5-.8A2.2,2.2,0,0,1,5.39,1H28.31a2,2,0,0,1,1.05.44,2.13,2.13,0,0,1,.7,1.12l1.27,5.16L32,11.1c.08.45.18,1.1.26,1.88a41,41,0,0,1,.18,4.74c0,1.44,0,3.46-.15,5.88,0,1-.1,1.87-.21,3-.07.69-.21,2-.5,3.67A29.08,29.08,0,0,1,30,35.65a1.64,1.64,0,0,1-.6.81,1.57,1.57,0,0,1-.83.26H5.27a1.35,1.35,0,0,1-1-.75l-1.95-6A24,24,0,0,1,1.55,27a26.81,26.81,0,0,1-.44-3.41C1,21.93,1,20.71,1,18.27c0-1,.13-6.1.09-4.16.08-1,.22-2.16.41-3.35C1.7,9.72,1.9,8.73,2.12,7.82Z"/>
-                <path d="M25.35,40a16,16,0,0,0,.26-3.28H7.84l.43,3.46a10.85,10.85,0,0,0,.36,1.93,11.3,11.3,0,0,0,.68,1.82l.47.65a2.37,2.37,0,0,0,.54.58,3,3,0,0,0,1.56.52,80.85,80.85,0,0,0,10,.1,2.77,2.77,0,0,0,1.74-.57,2.09,2.09,0,0,0,.5-.68l.28-.78c.15-.48.28-1,.42-1.48A19.34,19.34,0,0,0,25.35,40Z"/>
-                <line class="cls-1" x1="2.07" y1="8" x2="31.39" y2="8"/>
-            </g>
-            <g id="Engine2" transform="scale(1.5) translate(266.66, 10)" >
-                <path d="M2.12,7.82C3,5.07,3.76,3.05,4,2.35a2.25,2.25,0,0,1,.5-.8A2.2,2.2,0,0,1,5.39,1H28.31a2,2,0,0,1,1.05.44,2.13,2.13,0,0,1,.7,1.12l1.27,5.16L32,11.1c.08.45.18,1.1.26,1.88a41,41,0,0,1,.18,4.74c0,1.44,0,3.46-.15,5.88,0,1-.1,1.87-.21,3-.07.69-.21,2-.5,3.67A29.08,29.08,0,0,1,30,35.65a1.64,1.64,0,0,1-.6.81,1.57,1.57,0,0,1-.83.26H5.27a1.35,1.35,0,0,1-1-.75l-1.95-6A24,24,0,0,1,1.55,27a26.81,26.81,0,0,1-.44-3.41C1,21.93,1,20.71,1,18.27c0-1,.13-6.1.09-4.16.08-1,.22-2.16.41-3.35C1.7,9.72,1.9,8.73,2.12,7.82Z"/>
-                <path d="M25.35,40a16,16,0,0,0,.26-3.28H7.84l.43,3.46a10.85,10.85,0,0,0,.36,1.93,11.3,11.3,0,0,0,.68,1.82l.47.65a2.37,2.37,0,0,0,.54.58,3,3,0,0,0,1.56.52,80.85,80.85,0,0,0,10,.1,2.77,2.77,0,0,0,1.74-.57,2.09,2.09,0,0,0,.5-.68l.28-.78c.15-.48.28-1,.42-1.48A19.34,19.34,0,0,0,25.35,40Z"/>
-                <line class="cls-1" x1="2.07" y1="8" x2="31.39" y2="8"/>
-            </g> 
+            <path id="Engine1" d="m-14 -21
+                              q-4 0 -5 16
+                              q1 2 6 2
+                              m-1 -18
+                              l28 0
+                              q4 0 5 16
+                              q-1 2 -6 2
+                              q0 18 -5 24
+                              l-16 0
+                              m-5 -24
+                              q0 18 5 24" transform="translate(75, 204)" />
+            <path id="Engine2" d="M0 0" transform="translate(525, 204)" />
         </g>
 
         <g id="Labels">
-            <text x="50%" y="95.0%">CENTER</text>
-            <text x="44%" y="73.5%">L</text>
-            <text x="56.125%" y="73.5%">R</text>
-            <text x="7.5%" y="37.5%">L MAIN</text>
-            <text x="6.25%" y="46.25%">FWD</text>
-            <text x="6.25%" y="67.5%">AFT</text>
-            <text x="92.5%" y="37.5%">R MAIN</text>
-            <text x="94.25%" y="46.25%">FWD</text>
-            <text x="94.25%" y="67.5%">AFT</text>
-            <text x="12.5%" y="8.25%">APU</text>
-            <text x="42.25%" y="14.25%">TOTAL</text>
-            <text id="TotalFuel" x="46%" y="17.5%">FUEL</text>
+            <text id="TotalFuel" x="48%" y="10.5%">TOTAL FUEL</text>
             <text id="JettTime" x="75.5%" y="10.5%">JETTISON TIME</text>
-            <text x="50%" y="45%">FUEL BALANCED</text>
-            <text x="50%" y="60%">CROSSFEED</text>
+
+            <text x="50%" y="33.5%">CENTER</text>
+            <text x="50%" y="87.5%">STAB</text>
+
+            <text x="12.5%" y="63%">MAIN 1</text>
+            <text x="31%" y="56%">MAIN 2</text>
+            <text x="69%" y="56%">MAIN 3</text>
+            <text x="87.5%" y="63%">MAIN 4</text>
+
+            <text x="12.5%" y="80%">RES 1</text>
+            <text x="87.5%" y="80%">RES 4</text>
+
+            <text x="12.5%" y="34%">1</text>
+            <text x="87.5%" y="34%">2</text>
         </g>
+
         <g id="Values">
-            <text id="TotalFuelUnits" x="57.7%" y="24.25%">KGS X 1000</text>
-            <text id="TotalFuelValue" x="57.5%" y="16.25%">0.0</text>
+            <text id="TotalFuelUnits" x="48%" y="13.5%">KGS X 1000</text>
+            <text id="TotalFuelValue" x="62%" y="10.5%">0.0</text>
+
             <text id="JettTimeValue" x="97%" y="10.5%">-</text>
-            
-            <rect id="CenterBox" x="44%" width="12.5%" y="81.5%" height="6.25%" />
-            <rect id="CenterLBox" x="40%" width="7.5%" y="74%" height="6.25%" />
-            <rect id="CenterRBox" x="52.5%" width="7.5%" y="74%" height="6.25%" />
-            <text id="CenterValue" x="53%" y="86.25%">0.0</text>
-            <rect id="MainLBox" x="11.25%" width="12.5%" y="52.5%" height="6.25%" />
-            <rect id="MainFWDBox" x="2.5%" width="7.5%" y="47.5%" height="6.25%" />
-            <rect id="MainAFTBox" x="2.5%" width="7.5%" y="57.5%" height="6.25%" />
-            <text id="MainLValue" x="20.75%" y="56.75%">0.0</text>
-            <rect id="MainRBox" x="76.25%" width="12.5%" y="52.5%" height="6.25%" />
-            <rect id="MainFWDBox" x="90.25%" width="7.5%" y="47.5%" height="6.25%" />
-            <rect id="MainAFTBox" x="90.25%" width="7.5%" y="57.5%" height="6.25%" />
-            <text id="MainRValue" x="85.0%" y="56.75%">0.0</text>
-            <rect id="StabBox" x="82.5%" width="12%" y="82.5%" height="5.5%" />
-            <text id="Stab" x="91.75%" y="91.5%">STAB</text>
-            <text id="StabValue" x="91.5%" y="86.25%">0.0</text>
-            <text id="Main1Value"></text>
-            <text id="Main2Value"></text>
-            <text id="Main3Value"></text>
-            <text id="Res1Value"></text>
-            <text id="Res4Value"></text>
+
+
+            <rect id="CenterBox" x="44%" width="12%" y="34%" height="5.5%" />
+            <text id="CenterValue" x="53%" y="38%">0.0</text>
+            <path id="StabBox" d="m-26 -27 l0 27 l54 0 l0 -27" transform="translate(300 555)" />
+            <text id="StabValue" x="54%" y="91%">0.0</text>
+
+            <rect id="Main1Box" x="7.5%" width="10%" y="63.5%" height="5.5%" />
+            <text id="Main1Value" x="16.5%" y="67.5%">0.0</text>
+            <rect id="Main2Box" x="24%" width="14%" y="56.5%" height="5.5%" />
+            <text id="Main2Value" x="35%" y="60.5%">0.0</text>
+            <rect id="Main3Box" x="62%" width="14%" y="56.5%" height="5.5%" />
+            <text id="Main3Value" x="73%" y="60.5%">0.0</text>
+            <rect id="Main4Box" x="82.5%" width="10%" y="63.5%" height="5.5%" />
+            <text id="Main4Value" x="91.5%" y="67.5%">0.0</text>
+
+            <path id="Res1Box" d="m-26 -27 l0 27 l54 0 l0 -27" transform="translate(75, 510)" />
+            <text id="Res1Value" x="16.5%" y="83.5%">0.0</text>
+            <path id="Res4Box" d="m-26 -27 l0 27 l54 0 l0 -27" transform="translate(525, 510)" />
+            <text id="Res4Value" x="91.5%" y="83.5%">0.0</text>
         </g>
     </svg>
 </script>

@@ -16,7 +16,7 @@ In order to get use of this mod or start a development environment you need to i
 
 [Placeholder]
 
-To install, simply copy the salty-747 and masterrob-94-salty-777 folder to your community folder. 
+To install, simply copy the salty-747 and masterrob94-salty-777 folder to your community folder. 
 
 * Microsoft Store - `C:\Users\<USERNAME>\AppData\Local\Packages\Microsoft.FlightSimulator_[]\LocalCache\Packages\Community`
 
@@ -28,6 +28,6 @@ To install, simply copy the salty-747 and masterrob-94-salty-777 folder to your 
 
 ## License
 
-The Salty Compatibility Mod for Captain Sim Boeing 777/767 is an modified version based on [Salty Simulations 747 Project](https://github.com/saltysimulations/salty-747). Therefore is this project also distributed under the GNU General Public License version 3. See [LICENSE](https://github.com/masterrob94/masterrob94-salty-777/blob/master/LICENSE).
+The Salty Compatibility Mod for Captain Sim Boeing 777/767 is a modified version based on [Salty Simulations 747 Project](https://github.com/saltysimulations/salty-747). Therefore is this project also distributed under the GNU General Public License version 3. See [LICENSE](https://github.com/masterrob94/masterrob94-salty-777/blob/master/LICENSE).
 
 Microsoft Flight Simulator © Microsoft Corporation. Salty Compatibility Mod for Captain Sim Boeing 777/767 was created under Microsoft's "Game Content Usage Rules" using assets from Microsoft Flight Simulator, and it is not endorsed by or affiliated with Microsoft.
