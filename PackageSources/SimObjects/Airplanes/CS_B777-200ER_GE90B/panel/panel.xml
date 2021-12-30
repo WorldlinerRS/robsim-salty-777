@@ -533,7 +533,7 @@
 		
 		<Annunciation>
 		  <Type>Advisory</Type>
-		  <Text>DOOR ENTRY 5R</Text>
+		  <Text>DOOR ENTRY 4R</Text>
 		  <Condition>
 			<Greater>
 			  <Simvar name="INTERACTIVE POINT OPEN:1" unit="percent"/>

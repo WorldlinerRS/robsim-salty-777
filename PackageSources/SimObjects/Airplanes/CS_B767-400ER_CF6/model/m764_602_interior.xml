@@ -42,7 +42,7 @@
     <MouseRect>
       <Cursor>Hand</Cursor>
       <MouseFlags>LeftSingle+RightSingle+LeftRelease+RightRelease+Wheel+Move</MouseFlags>
-      <TooltipText>Transponder Mode<!--%((L:P30_010_GL5))%{case}%{:0}STBY%{:1}ALT RPTG OFF%{:2}XPNDR%{:3}TA ONLY%{:4}TA/RA%{end}--></TooltipText>
+      <TooltipText>Transponder Mode        <!--%((L:P30_010_GL5))%{case}%{:0}STBY%{:1}ALT RPTG OFF%{:2}XPNDR%{:3}TA ONLY%{:4}TA/RA%{end}--></TooltipText>
       <CallbackCode>
         (L:P30_010_GL5) sp0 2630010 sp1 (M:Event) sp2 5 sp3
         l2 'WheelDown'   scmi 0 == if{ l0 flr -- sp2 } els{
@@ -1135,9 +1135,7 @@
 					<PHYSICAL_AUTOSPOILER>True</PHYSICAL_AUTOSPOILER>
 					<RETRACT_ARMED_FULL>True</RETRACT_ARMED_FULL>
 					<STEPS_NUMBER>3</STEPS_NUMBER>
-					<DRAG_SPEED>10</DRAG_SPEED>
-																   
-																											 
+					<DRAG_SPEED>10</DRAG_SPEED>																									 
 					<!-- The animation is not linear, there is some extra keyframes so we must re-interpolate -->
 					<OVERRIDE_ANIM_CODE>
 						(A:SPOILERS ARMED, Bool) if{ 0 } els{
@@ -1294,14 +1292,7 @@
         <TT_DESCRIPTION_INDEX>4</TT_DESCRIPTION_INDEX>
         <TOOLTIP_TITLE>@TT_Package.FUEL_SWITCH_VALVE_ENG_TITLE</TOOLTIP_TITLE>
         <IE_VALVE_ID>Flow_Ctrl_4</IE_VALVE_ID>
-      </UseTemplate>
-      
-      
-      
-      
-			
-
-      
+      </UseTemplate>  
       <Component ID="CDUs">
 				<DefaultTemplateParameters>
 					<ANIM_NEVER_FAILS>True</ANIM_NEVER_FAILS>
@@ -3475,6 +3466,21 @@
           <ANIM_NAME>autopilot_wheel_vert_speed</ANIM_NAME>
           <UP_DEC_DN_INC>True</UP_DEC_DN_INC>
         </UseTemplate>
+        <!-- SALTY 747 BUTTONS -->
+        <UseTemplate Name="ASOBO_BOEING_Push_Heading_Track_Template">
+          <NODE_ID>G04_006_SW2</NODE_ID>
+          <ANIM_NAME>autopilot_push_sel</ANIM_NAME>
+          <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
+          <NO_INDICATOR>True</NO_INDICATOR>
+          <TYPE>B747</TYPE>
+        </UseTemplate>
+        <UseTemplate Name="ASOBO_BOEING_Push_VS_FPA_Template">
+          <NODE_ID>G04_007_SW2</NODE_ID>
+          <ANIM_NAME>autopilot_push_sel</ANIM_NAME>
+          <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
+          <NO_INDICATOR>True</NO_INDICATOR>
+          <TYPE>B747</TYPE>
+        </UseTemplate>
 
         <!--777 INOP (whole Dummies)-->
         <Component ID="Dummies">
@@ -3626,6 +3632,21 @@
 						<ANIM_CODE>0</ANIM_CODE>
 					</UseTemplate>
 				</Component>
+        <Component ID="EICAS_Control_Panel">
+          <OverrideTemplateParameters>
+            <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:4</SIMVAR_POWER_SETTING>
+          </OverrideTemplateParameters>
+          <UseTemplate Name="ASOBO_GT_Knob_Dummy_Boeing">
+            <NODE_ID>knob_eicas_master_eiu_sel</NODE_ID>
+            <ANIM_NAME>eicas_master_knob_eiu_sel</ANIM_NAME>
+            <ANIM_CODE>33</ANIM_CODE>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Knob_Dummy_Boeing">
+            <NODE_ID>knob_eicas_master_fmc_master</NODE_ID>
+            <ANIM_NAME>eicas_master_knob_fmc_master</ANIM_NAME>
+            <ANIM_CODE>0</ANIM_CODE>
+          </UseTemplate>
+        </Component>
 			</Component>
 			<Component ID="IFSD">
 				<OverrideTemplateParameters>
@@ -3774,10 +3795,6 @@
         <PERCENT>100</PERCENT>
       </UseTemplate>
     </Component>
-    
-    
-    
-    
     <Component ID="LIGHTING_Emissive_Setup">
       <DefaultTemplateParameters>
         <EMISSIVE_CODE>1</EMISSIVE_CODE>
@@ -3810,18 +3827,17 @@
             <NODE_ID>eicas_push_lwr_ctr_ACTIVE</NODE_ID>
           </UseTemplate>
         </Component>
-      </Component>
-      
-      
-      
+      </Component> 
       <Component ID="Glareshield">
         <DefaultTemplateParameters>
           <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:2</SIMVAR_POWER_SETTING>
           <DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
           <FAILURE>(A:LIGHT PANEL ON:2, Bool)</FAILURE>
         </DefaultTemplateParameters>
-
-
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+          <NODE_ID>Light_startseq_1</NODE_ID>
+          <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
+        </UseTemplate>
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>G03</NODE_ID>
         </UseTemplate>
@@ -3834,8 +3850,6 @@
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>G06</NODE_ID>
         </UseTemplate>
-
-
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>Mesh066</NODE_ID>
         </UseTemplate>
@@ -3854,51 +3868,207 @@
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>Mesh071</NODE_ID>
         </UseTemplate>
-
+<!-- BEGIN SALTY 747 COMPONETNTS -->
+        <Component ID="AFDS">
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_rst_r_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_ctr_r_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_tfc_r_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_std_r_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_afds_rst_r</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_afds_ctr_r</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_afds_tfc_r</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_afds_std_r</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_rst_l_text</NODE_ID>
+            <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_ctr_l_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_tfc_l_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_std_l_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_afds_rst_l</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_afds_ctr_l1</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_afds_tfc_l1</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_afds_std_l1</NODE_ID>
+          </UseTemplate>
+        </Component>
+        <Component ID="AUTOPILOT">
+          <OverrideTemplateParameters>
+            <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
+          </OverrideTemplateParameters>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_autopilot_thr_SEQ1</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_autopilot_hdg_sel_decal</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_std_l_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_ctr_l_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_tfc_l_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_tfc_r_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_ctr_r_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_afds_std_r_text</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>Light_autopilot_panel_01</NODE_ID>
+            <FAILURE>(A:LIGHT GLARESHIELD ON:1, Bool)</FAILURE>
+            <SIMVAR_POWER_SETTING>LIGHT GLARESHIELD POWER SETTING:1</SIMVAR_POWER_SETTING>
+          </UseTemplate>
+        </Component>
+        <Component ID="FCU">
+          <OverrideTemplateParameters>
+            <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
+            <SCREEN_PREFIX>B747_8_</SCREEN_PREFIX>
+            <FAILURE>(A:CIRCUIT ON:13, Bool)</FAILURE>
+          </OverrideTemplateParameters>
+          <UseTemplate Name="ASOBO_GT_Screen_Template">
+            <NODE_ID>SCREEN_FCU_IAS</NODE_ID>
+            <POTENTIOMETER>27</POTENTIOMETER>
+            <SCREEN_ID>IAS</SCREEN_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Screen_Template">
+            <NODE_ID>SCREEN_FCU_ALT</NODE_ID>
+            <POTENTIOMETER>27</POTENTIOMETER>
+            <SCREEN_ID>ALT</SCREEN_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Screen_Template">
+            <NODE_ID>SCREEN_FCU_VSPEED</NODE_ID>
+            <POTENTIOMETER>27</POTENTIOMETER>
+            <SCREEN_ID>VSpeed</SCREEN_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Screen_Template">
+            <NODE_ID>SCREEN_FCU_HDG</NODE_ID>
+            <POTENTIOMETER>27</POTENTIOMETER>
+            <SCREEN_ID>HDG</SCREEN_ID>
+          </UseTemplate>
+        </Component>
+        <Component ID="SIDE_PANEL">
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>Light_startseq_5</NODE_ID>
+            <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:5</SIMVAR_POWER_SETTING>
+            <FAILURE>(A:LIGHT PANEL ON:5, Bool)</FAILURE>
+            <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>Light_startseq_2</NODE_ID>
+            <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:4</SIMVAR_POWER_SETTING>
+            <FAILURE>(A:LIGHT PANEL ON:4, Bool)</FAILURE>
+            <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_crt_pilot</NODE_ID>
+            <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:4</SIMVAR_POWER_SETTING>
+            <FAILURE>(A:LIGHT PANEL ON:4, Bool)</FAILURE>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_crt_copilot</NODE_ID>
+            <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:5</SIMVAR_POWER_SETTING>
+            <FAILURE>(A:LIGHT PANEL ON:5, Bool)</FAILURE>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_side_inbd_crt_l2</NODE_ID>
+            <DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>knob_side_inbd_crt_r2</NODE_ID>
+            <DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
+          </UseTemplate>
+        </Component>
 
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+          <NODE_ID>Compass_cylinder</NODE_ID>
+        </UseTemplate>
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+          <NODE_ID>knob_side_panel_01</NODE_ID>
+        </UseTemplate>
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+          <NODE_ID>knob_side_panel_02</NODE_ID>
+        </UseTemplate>
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+          <NODE_ID>knob_autopilot_hdg_bank_limit</NODE_ID>
+        </UseTemplate>
+        <UseTemplate Name="ASOBO_BOEING_Push_WXR_Template">
           <NODE_ID>btn_afds_wxr_l1</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_STA_Template">
           <NODE_ID>btn_afds_sta_l1</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_WPT_Template">
           <NODE_ID>btn_afds_wpt_l1</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_ARPT_Template">
           <NODE_ID>btn_afds_arpt_l1</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_DATA_Template">
           <NODE_ID>btn_afds_data_l1</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_POS_Template">
           <NODE_ID>btn_afds_pos_l1</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_TERR_Template">
           <NODE_ID>btn_afds_terr_l1</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_WXR_Template">
           <NODE_ID>btn_afds_wxr_r</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_STA_Template">
           <NODE_ID>btn_afds_sta_r</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_WPT_Template">
           <NODE_ID>btn_afds_wpt_r</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_ARPT_Template">
           <NODE_ID>btn_afds_arpt_r</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_DATA_Template">
           <NODE_ID>btn_afds_data_r</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_POS_Template">
           <NODE_ID>btn_afds_pos_r</NODE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+        <UseTemplate Name="ASOBO_BOEING_Push_TERR_Template">
           <NODE_ID>btn_afds_terr_r</NODE_ID>
         </UseTemplate>
-
+        <!-- END SALTY 747 COMPONETNTS -->
 
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>eicas_push_l_insd</NODE_ID>
@@ -3954,11 +4124,6 @@
           <NODE_ID>G04_021_SW2</NODE_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-          <NODE_ID>knob_autopilot_hdg_bank_limit</NODE_ID>
-        </UseTemplate>
-
-
-        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>knob_afds_rst_l</NODE_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
@@ -4006,17 +4171,12 @@
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>btn_afds_tfc_r</NODE_ID>
         </UseTemplate>
-
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>Light_autopilot_panel_01</NODE_ID>
           <FAILURE>(A:LIGHT GLARESHIELD ON:1, Bool)</FAILURE>
           <SIMVAR_POWER_SETTING>LIGHT GLARESHIELD POWER SETTING:1</SIMVAR_POWER_SETTING>
         </UseTemplate>
-
       </Component>
-
-
-
       <Component ID="Left_Panel">
         <DefaultTemplateParameters>
           <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:4</SIMVAR_POWER_SETTING>
@@ -4853,8 +5013,61 @@
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>P11_006_SW2</NODE_ID>
         </UseTemplate>
-    
 
+        <Component ID="FUEL">
+          <!--777 INOP-->
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>btn_fuel_flow_ctrl_4_text</NODE_ID>
+						<EMISSIVE_CODE>0</EMISSIVE_CODE>
+					</UseTemplate>
+          <!--777 INOP-->
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>btn_fuel_flow_ctrl_3_text</NODE_ID>
+						<EMISSIVE_CODE>0</EMISSIVE_CODE>
+					</UseTemplate>
+
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>btn_fuel_flow_ctrl_2_text</NODE_ID>
+						<EMISSIVE_CODE>0</EMISSIVE_CODE>
+					</UseTemplate>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>btn_fuel_flow_ctrl_1_text</NODE_ID>
+						<EMISSIVE_CODE>0</EMISSIVE_CODE>
+					</UseTemplate>
+				</Component>
+
+        <Component ID="Knobs">
+					<DefaultTemplateParameters>
+						<DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
+					</DefaultTemplateParameters>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>BOEING_AudioReceiver_Knob_vor_adf_receiver_selector_1</NODE_ID>
+					</UseTemplate>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>BOEING_AudioReceiver_Knob_filter_selector_1</NODE_ID>
+					</UseTemplate>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_1</NODE_ID>
+					</UseTemplate>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>BOEING_AudioReceiver_Knob_vor_adf_receiver_selector_2</NODE_ID>
+					</UseTemplate>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>BOEING_AudioReceiver_Knob_filter_selector_2</NODE_ID>
+					</UseTemplate>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_2</NODE_ID>
+					</UseTemplate>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>BOEING_AudioReceiver_Knob_vor_adf_receiver_selector_3</NODE_ID>
+					</UseTemplate>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>BOEING_AudioReceiver_Knob_filter_selector_3</NODE_ID>
+					</UseTemplate>
+					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+						<NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_3</NODE_ID>
+					</UseTemplate>
+				</Component>
 
         <Component ID="CDU1">
           <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
@@ -5544,18 +5757,13 @@
           </UseTemplate>
 
         </Component>
-
-
+        <CameraTitle>Instruments06</CameraTitle>
       </Component>
-
-
       <Component ID="Overhead">
         <DefaultTemplateParameters>
           <FAILURE>(A:LIGHT PANEL ON:1, Bool)</FAILURE>
           <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:1</SIMVAR_POWER_SETTING>
         </DefaultTemplateParameters>
-
-
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>knob_ovhd_electrics_apu_text</NODE_ID>
           <DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
@@ -5567,8 +5775,6 @@
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>knob_ovhd_air_cond_flt_deck_text</NODE_ID>
         </UseTemplate>
-
-
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>O01</NODE_ID>
         </UseTemplate>
@@ -5605,7 +5811,6 @@
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>O18</NODE_ID>
         </UseTemplate>
-
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>ckt_brk_base</NODE_ID>
         </UseTemplate>
@@ -5903,7 +6108,6 @@
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>Mesh065</NODE_ID>
         </UseTemplate>
-
         <Component ID="Standby_Compass">
           <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
             <NODE_ID>Compass_cylinder</NODE_ID>
@@ -5912,7 +6116,6 @@
             <NODE_ID>C02_001_STAT_NDL</NODE_ID>
           </UseTemplate>
         </Component>
-
       </Component>
       
       
@@ -6123,7 +6326,7 @@
 					<ANIM_NAME>Side_knob_panel_l2</ANIM_NAME>
           <TT_DESCRIPTION_ID>@TT_Package.LIGHTING_SWITCH_LIGHT_FLOODLIGHT_BRIGHTNESS_PILOT_ACTION</TT_DESCRIPTION_ID>
           <TOOLTIP_TITLE>@TT_Package.LIGHTING_SWITCH_LIGHT_FLOODLIGHT_BRIGHTNESS_PILOT_TITLE</TOOLTIP_TITLE>
-          <EMISSIVE_KNOB>False</EMISSIVE_KNOB>
+          <!-- <EMISSIVE_KNOB>False</EMISSIVE_KNOB> -->
 				</UseTemplate>
 				<UseTemplate Name="ASOBO_LIGHTING_Knob_Panel_Template">
 					<SIMVAR_INDEX>4</SIMVAR_INDEX>
@@ -6131,7 +6334,7 @@
 					<ANIM_NAME>Side_knob_panel_l</ANIM_NAME>
           <TT_DESCRIPTION_ID>@TT_Package.LIGHTING_SWITCH_LIGHT_INSTRU_BRIGHTNESS_PILOT_ACTION</TT_DESCRIPTION_ID>
           <TOOLTIP_TITLE>@TT_Package.LIGHTING_SWITCH_LIGHT_INSTRU_BRIGHTNESS_PILOT_TITLE</TOOLTIP_TITLE>
-          <EMISSIVE_KNOB>False</EMISSIVE_KNOB>
+          <!-- <EMISSIVE_KNOB>False</EMISSIVE_KNOB> -->
 				</UseTemplate>
 				<UseTemplate Name="ASOBO_LIGHTING_Knob_Cabin_Template">
 					<SIMVAR_INDEX>1</SIMVAR_INDEX>
@@ -6139,7 +6342,7 @@
 					<ANIM_NAME>Side_knob_map_l</ANIM_NAME>
           <TT_DESCRIPTION_ID>@TT_Package.LIGHTING_KNOB_MAP_ACTION</TT_DESCRIPTION_ID>
           <TOOLTIP_TITLE>@TT_Package.LIGHTING_KNOB_MAP_TITLE</TOOLTIP_TITLE>
-          <EMISSIVE_KNOB>False</EMISSIVE_KNOB>
+          <!-- <EMISSIVE_KNOB>False</EMISSIVE_KNOB> -->
 				</UseTemplate>
 				<!-- Right Map Floodlight -->
 				<UseTemplate Name="ASOBO_LIGHTING_Knob_Glareshield_Template">
@@ -6148,7 +6351,7 @@
 					<ANIM_NAME>Side_knob_panel_r2</ANIM_NAME>
           <TT_DESCRIPTION_ID>@TT_Package.LIGHTING_SWITCH_LIGHT_FLOODLIGHT_BRIGHTNESS_COPILOT_ACTION</TT_DESCRIPTION_ID>
           <TOOLTIP_TITLE>@TT_Package.LIGHTING_SWITCH_LIGHT_FLOODLIGHT_BRIGHTNESS_COPILOT_TITLE</TOOLTIP_TITLE>
-          <EMISSIVE_KNOB>False</EMISSIVE_KNOB>
+          <!-- <EMISSIVE_KNOB>False</EMISSIVE_KNOB> -->
 				</UseTemplate>
 				<UseTemplate Name="ASOBO_LIGHTING_Knob_Panel_Template">
 					<SIMVAR_INDEX>5</SIMVAR_INDEX>
@@ -6156,7 +6359,7 @@
 					<ANIM_NAME>Side_knob_panel_r</ANIM_NAME>
           <TT_DESCRIPTION_ID>@TT_Package.LIGHTING_SWITCH_LIGHT_INSTRU_BRIGHTNESS_COPILOT_ACTION</TT_DESCRIPTION_ID>
           <TOOLTIP_TITLE>@TT_Package.LIGHTING_SWITCH_LIGHT_INSTRU_BRIGHTNESS_COPILOT_TITLE</TOOLTIP_TITLE>
-          <EMISSIVE_KNOB>False</EMISSIVE_KNOB>
+          <!-- <EMISSIVE_KNOB>False</EMISSIVE_KNOB> -->
 				</UseTemplate>
 				<UseTemplate Name="ASOBO_LIGHTING_Knob_Cabin_Template">
 					<SIMVAR_INDEX>2</SIMVAR_INDEX>
@@ -6164,7 +6367,7 @@
 					<ANIM_NAME>Side_knob_map_r</ANIM_NAME>
           <TT_DESCRIPTION_ID>@TT_Package.LIGHTING_KNOB_MAP_ACTION</TT_DESCRIPTION_ID>
           <TOOLTIP_TITLE>@TT_Package.LIGHTING_KNOB_MAP_TITLE</TOOLTIP_TITLE>
-          <EMISSIVE_KNOB>False</EMISSIVE_KNOB>
+          <!-- <EMISSIVE_KNOB>False</EMISSIVE_KNOB> -->
 				</UseTemplate>
 				<!-- Dome Floodlight -->
 				<UseTemplate Name="ASOBO_LIGHTING_Knob_Cabin_Template">
@@ -6394,7 +6597,7 @@
 					<NODE_ID>ovhd_switch_rwy_L</NODE_ID>
 					<ID>1</ID>
 					<SIMVAR_INDEX>1</SIMVAR_INDEX>
-					<TT_DESCRIPTION_ID>@TT_Package.LIGHTING_SWITCH_LIGHT_RUNWAY_ACTION</TT_DESCRIPTION_ID><!-- RWY TURNOFF LEFT -->
+					<TT_DESCRIPTION_ID>@TT_Package.LIGHTING_SWITCH_LIGHT_RUNWAY_ACTION</TT_DESCRIPTION_ID>          <!-- RWY TURNOFF LEFT -->
 					<TT_DESCRIPTION_INDEX>(R:1:@TT_Package.GT_STATE_LEFT)</TT_DESCRIPTION_INDEX>
 					<TOOLTIP_TITLE>@TT_Package.LIGHTING_SWITCH_LIGHT_RUNWAY_TITLE</TOOLTIP_TITLE>	
 					<INVERT_SWITCH_ON_CONDITION>True</INVERT_SWITCH_ON_CONDITION>
@@ -6404,7 +6607,7 @@
 					<NODE_ID>ovhd_switch_turnoff_R</NODE_ID>
 					<ID>2</ID>
 					<SIMVAR_INDEX>2</SIMVAR_INDEX>
-					<TT_DESCRIPTION_ID>@TT_Package.LIGHTING_SWITCH_LIGHT_RUNWAY_ACTION</TT_DESCRIPTION_ID><!-- RWY TURNOFF RIGHT -->
+					<TT_DESCRIPTION_ID>@TT_Package.LIGHTING_SWITCH_LIGHT_RUNWAY_ACTION</TT_DESCRIPTION_ID>          <!-- RWY TURNOFF RIGHT -->
 					<TT_DESCRIPTION_INDEX>(R:1:@TT_Package.GT_STATE_RIGHT)</TT_DESCRIPTION_INDEX>
 					<TOOLTIP_TITLE>@TT_Package.LIGHTING_SWITCH_LIGHT_RUNWAY_TITLE</TOOLTIP_TITLE>	
 					<INVERT_SWITCH_ON_CONDITION>True</INVERT_SWITCH_ON_CONDITION>
