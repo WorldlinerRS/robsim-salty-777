@@ -42,7 +42,7 @@
     <MouseRect>
       <Cursor>Hand</Cursor>
       <MouseFlags>LeftSingle+RightSingle+LeftRelease+RightRelease+Wheel+Move</MouseFlags>
-      <TooltipText>Transponder Mode                <!--%((L:P30_010_GL5))%{case}%{:0}STBY%{:1}ALT RPTG OFF%{:2}XPNDR%{:3}TA ONLY%{:4}TA/RA%{end}--></TooltipText>
+      <TooltipText>Transponder Mode        <!--%((L:P30_010_GL5))%{case}%{:0}STBY%{:1}ALT RPTG OFF%{:2}XPNDR%{:3}TA ONLY%{:4}TA/RA%{end}--></TooltipText>
       <CallbackCode>
         (L:P30_010_GL5) sp0 2630010 sp1 (M:Event) sp2 5 sp3
         l2 'WheelDown'   scmi 0 == if{ l0 flr -- sp2 } els{
@@ -1345,13 +1345,6 @@
         <TOOLTIP_TITLE>@TT_Package.FUEL_SWITCH_VALVE_ENG_TITLE</TOOLTIP_TITLE>
         <IE_VALVE_ID>Flow_Ctrl_4</IE_VALVE_ID>
       </UseTemplate>
-
-
-
-
-
-
-
       <Component ID="CDUs">
         <DefaultTemplateParameters>
           <ANIM_NEVER_FAILS>True</ANIM_NEVER_FAILS>
@@ -3524,6 +3517,21 @@
           <NODE_ID>wheel_autopilot_vert_speed</NODE_ID>
           <ANIM_NAME>autopilot_wheel_vert_speed</ANIM_NAME>
           <UP_DEC_DN_INC>True</UP_DEC_DN_INC>
+        </UseTemplate>
+        <!-- SALTY 747 BUTTONS -->
+        <UseTemplate Name="ASOBO_BOEING_Push_Heading_Track_Template">
+          <NODE_ID>G04_006_SW2</NODE_ID>
+          <ANIM_NAME>G04_006_SW2</ANIM_NAME>
+          <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
+          <NO_INDICATOR>True</NO_INDICATOR>
+          <TYPE>B747</TYPE>
+        </UseTemplate>
+        <UseTemplate Name="ASOBO_BOEING_Push_VS_FPA_Template">
+          <NODE_ID>G04_007_SW2</NODE_ID>
+          <ANIM_NAME>G04_007_SW2</ANIM_NAME>
+          <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
+          <NO_INDICATOR>True</NO_INDICATOR>
+          <TYPE>B747</TYPE>
         </UseTemplate>
 
         <!--777 INOP (whole Dummies)-->
