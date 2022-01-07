@@ -54,7 +54,7 @@ var B747_8_LowerEICAS_FCTL;
             }
 
             var spoilersHandle = SimVar.GetSimVarValue("SPOILERS HANDLE POSITION", "percent over 100");
-            let spoilersHandleNormalized = spoilersHandle * 56;
+            let spoilersHandleNormalized = spoilersHandle * 52;
 
             //Left aileron
             var leftAilPCT = SimVar.GetSimVarValue("AILERON LEFT DEFLECTION PCT", "percent over 100");
@@ -67,22 +67,22 @@ var B747_8_LowerEICAS_FCTL;
             //Left inbd spoilers
             let leftSpoilersInbdNormalized = leftSpoilerPCT * 11.2;
             let leftFinalInbd = leftSpoilersInbdNormalized + spoilersHandleNormalized;
-            if (leftFinalInbd > 56) {
-                leftFinalInbd = 56;
+            if (leftFinalInbd > 52) {
+                leftFinalInbd = 52;
             }
-            this.leftSpoilersInbd_1.setAttribute("d", "M0 " + (56 + leftFinalInbd) + "L16 " + (56 + leftFinalInbd) + "L16 56L0 56L0 " + (56 + leftFinalInbd) + "Z");
-            this.leftSpoilersInbd_2.setAttribute("d", "M0 " + (56 + leftFinalInbd) + "L16 " + (56 + leftFinalInbd) + "L16 56L0 56L0 " + (56 + leftFinalInbd) + "Z");
+            this.leftSpoilersInbd_1.setAttribute("d", "M0 " + (52 + leftFinalInbd) + "L24 " + (52 + leftFinalInbd) + "L24 52L0 52L0 " + (52 + leftFinalInbd) + "Z");
+            this.leftSpoilersInbd_2.setAttribute("d", "M0 " + (52 + leftFinalInbd) + "L24 " + (52 + leftFinalInbd) + "L24 52L0 52L0 " + (52 + leftFinalInbd) + "Z");
 
             //Left outbd spoilers
             let leftSpoilersOutdbNormalized = leftSpoilerPCT * 44.8;
             let leftFinalOutdb = leftSpoilersOutdbNormalized + spoilersHandleNormalized;
-            if (leftFinalOutdb > 56) {
-                leftFinalOutdb = 56;
+            if (leftFinalOutdb > 52) {
+                leftFinalOutdb = 52;
             }
-            this.leftSpoilersOutbd_1.setAttribute("d", "M0 " + (56 + leftFinalOutdb) + "L16 " + (56 + leftFinalOutdb) + "L16 56L0 56L0 " + (56 + leftFinalOutdb) + "Z");
-            this.leftSpoilersOutbd_2.setAttribute("d", "M0 " + (56 + leftFinalOutdb) + "L16 " + (56 + leftFinalOutdb) + "L16 56L0 56L0 " + (56 + leftFinalOutdb) + "Z");
-            this.leftSpoilersOutbd_3.setAttribute("d", "M0 " + (56 + leftFinalOutdb) + "L16 " + (56 + leftFinalOutdb) + "L16 56L0 56L0 " + (56 + leftFinalOutdb) + "Z");
-            this.leftSpoilersOutbd_4.setAttribute("d", "M0 " + (56 + leftFinalOutdb) + "L16 " + (56 + leftFinalOutdb) + "L16 56L0 56L0 " + (56 + leftFinalOutdb) + "Z");
+            this.leftSpoilersOutbd_1.setAttribute("d", "M0 " + (52 + leftFinalOutdb) + "L24 " + (52 + leftFinalOutdb) + "L24 52L0 52L0 " + (52 + leftFinalOutdb) + "Z");
+            this.leftSpoilersOutbd_2.setAttribute("d", "M0 " + (52 + leftFinalOutdb) + "L24 " + (52 + leftFinalOutdb) + "L24 52L0 52L0 " + (52 + leftFinalOutdb) + "Z");
+            this.leftSpoilersOutbd_3.setAttribute("d", "M0 " + (52 + leftFinalOutdb) + "L24 " + (52 + leftFinalOutdb) + "L24 52L0 52L0 " + (52 + leftFinalOutdb) + "Z");
+            this.leftSpoilersOutbd_4.setAttribute("d", "M0 " + (52 + leftFinalOutdb) + "L24 " + (52 + leftFinalOutdb) + "L24 52L0 52L0 " + (52 + leftFinalOutdb) + "Z");
 
             var elevator = SimVar.GetSimVarValue("ELEVATOR DEFLECTION PCT", "percent over 100");
             let elevatorNormalized = elevator * 36;
@@ -96,7 +96,7 @@ var B747_8_LowerEICAS_FCTL;
             this.rightElev_2.setAttribute("transform", "translate(409 " + (461.75 + elevatorNormalized) + ")");
 
             var rudder = SimVar.GetSimVarValue("RUDDER DEFLECTION PCT", "percent over 100");
-            let rudderNormalized = rudder * 56;
+            let rudderNormalized = rudder * 52;
             this.rudder_1.setAttribute("transform", "translate(" + (296 + rudderNormalized) + " 490)");
             this.rudder_2.setAttribute("transform", "translate(" + (296.75 + rudderNormalized) + " 503.5)");
 
@@ -111,22 +111,22 @@ var B747_8_LowerEICAS_FCTL;
             //Right inbd spoilers
             let rightSpoilersInbdNormalized = rightSpoilerPCT * 11.2;
             let rightFinalInbd = rightSpoilersInbdNormalized + spoilersHandleNormalized;
-            if (rightFinalInbd > 56) {
-                rightFinalInbd = 56;
+            if (rightFinalInbd > 52) {
+                rightFinalInbd = 52;
             }
-            this.rightSpoilersInbd_1.setAttribute("d", "M0 " + (56 - rightFinalInbd) + "L16 " + (56 - rightFinalInbd) + "L16 56L0 56L0 " + (56 - rightFinalInbd) + "Z");
-            this.rightSpoilersInbd_2.setAttribute("d", "M0 " + (56 - rightFinalInbd) + "L16 " + (56 - rightFinalInbd) + "L16 56L0 56L0 " + (56 - rightFinalInbd) + "Z");
+            this.rightSpoilersInbd_1.setAttribute("d", "M0 " + (52 - rightFinalInbd) + "L24 " + (52 - rightFinalInbd) + "L24 52L0 52L0 " + (52 - rightFinalInbd) + "Z");
+            this.rightSpoilersInbd_2.setAttribute("d", "M0 " + (52 - rightFinalInbd) + "L24 " + (52 - rightFinalInbd) + "L24 52L0 52L0 " + (52 - rightFinalInbd) + "Z");
 
             //Right outdb spoilers
             let rightSpoilersOutdbNormalized = rightSpoilerPCT * 44.8;
             let rightFinalOutdb = rightSpoilersOutdbNormalized + spoilersHandleNormalized;
-            if (rightFinalOutdb > 56) {
-                rightFinalOutdb = 56;
+            if (rightFinalOutdb > 52) {
+                rightFinalOutdb = 52;
             }
-            this.rightpoilersOutbd_1.setAttribute("d", "M0 " + (56 - rightFinalOutdb) + "L16 " + (56 - rightFinalOutdb) + "L16 56L0 56L0 " + (56 - rightFinalOutdb) + "Z");
-            this.rightpoilersOutbd_2.setAttribute("d", "M0 " + (56 - rightFinalOutdb) + "L16 " + (56 - rightFinalOutdb) + "L16 56L0 56L0 " + (56 - rightFinalOutdb) + "Z");
-            this.rightpoilersOutbd_3.setAttribute("d", "M0 " + (56 - rightFinalOutdb) + "L16 " + (56 - rightFinalOutdb) + "L16 56L0 56L0 " + (56 - rightFinalOutdb) + "Z");
-            this.rightpoilersOutbd_4.setAttribute("d", "M0 " + (56 - rightFinalOutdb) + "L16 " + (56 - rightFinalOutdb) + "L16 56L0 56L0 " + (56 - rightFinalOutdb) + "Z");
+            this.rightpoilersOutbd_1.setAttribute("d", "M0 " + (52 - rightFinalOutdb) + "L24 " + (52 - rightFinalOutdb) + "L24 52L0 52L0 " + (52 - rightFinalOutdb) + "Z");
+            this.rightpoilersOutbd_2.setAttribute("d", "M0 " + (52 - rightFinalOutdb) + "L24 " + (52 - rightFinalOutdb) + "L24 52L0 52L0 " + (52 - rightFinalOutdb) + "Z");
+            this.rightpoilersOutbd_3.setAttribute("d", "M0 " + (52 - rightFinalOutdb) + "L24 " + (52 - rightFinalOutdb) + "L24 52L0 52L0 " + (52 - rightFinalOutdb) + "Z");
+            this.rightpoilersOutbd_4.setAttribute("d", "M0 " + (52 - rightFinalOutdb) + "L24 " + (52 - rightFinalOutdb) + "L24 52L0 52L0 " + (52 - rightFinalOutdb) + "Z");
 
             if (SimVar.GetSimVarValue("SIM ON GROUND", "bool")) {
                 this.querySelector("#trim").style.stroke = "lime";

@@ -32,7 +32,7 @@ b747-8-lower-eicas-drs {
   b747-8-lower-eicas-drs rect {
     fill: black; }
   b747-8-lower-eicas-drs #aircraft-shape {
-    fill: var(--eicasGrey);
+    fill: gray;
     stroke: var(--eicasBlue);
     stroke-width: 3px; }
   b747-8-lower-eicas-drs #lines-l, b747-8-lower-eicas-drs #lines-r {

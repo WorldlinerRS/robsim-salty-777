@@ -9,7 +9,8 @@
     --eicasMagenta: #D570FF;
 }
 :root text {
-    font-family: Roboto-Bold;
+    font-family: "BoeingEICAS";
+    font-weight: bolder;
 }
 
 b747-8-lower-eicas-fctl {
@@ -43,13 +44,27 @@ b747-8-lower-eicas-fctl #trim {
     stroke-width: 2px;
     text-anchor: end !important;
     letter-spacing: 2px;
+    stroke: var(--eicasWhite);
+}
+
+b747-8-lower-eicas-fctl #rudder {
+    stroke-width: 2px;
+    text-anchor: end !important;
+    letter-spacing: 2px;
+    stroke: var(--eicasWhite);
+}
+
+b747-8-lower-eicas-fctl #mode {
+    stroke-width: 2px;
+    letter-spacing: 2px;
     stroke: var(--eicasGreen);
 }
+
 b747-8-lower-eicas-fctl .Gauge {
     fill: var(--eicasWhite);
 }
 b747-8-lower-eicas-fctl .Spoilers {
-    fill: var(--eicasBlack);
+    fill: gray;
     stroke: var(--eicasWhite);
     stroke-width: 1px;
 }

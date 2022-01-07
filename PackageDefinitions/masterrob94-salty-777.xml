@@ -1,4 +1,4 @@
-<AssetPackage Name="masterrob94-salty-777" Version="1.5.0">
+<AssetPackage Name="masterrob94-salty-777" Version="1.8.0">
 	<ItemSettings>
 		<ContentType>AIRCRAFT</ContentType>
 		<Title>Masterrob94 Salty 777</Title>
@@ -49,6 +49,14 @@
 			</Flags>
 			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B777F_GE110B1\</AssetDir>
 			<OutputDir>SimObjects\Airplanes\CS_B777F_GE110B1\</OutputDir>
+		</AssetGroup>
+		<AssetGroup Name="ContentInfo">
+			<Type>ContentInfo</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageDefinitions\masterrob94-salty-777\ContentInfo\</AssetDir>
+			<OutputDir>ContentInfo\masterrob94-salty-777\</OutputDir>
 		</AssetGroup>
 	</AssetGroups>
 </AssetPackage>
