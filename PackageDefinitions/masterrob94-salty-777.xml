@@ -19,7 +19,7 @@
 			<OutputDir>html_ui\</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="CS_B767-400ER_CF6">
-			<Type>SimObject</Type>
+			<Type>Copy</Type>
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>
 			</Flags>
@@ -27,7 +27,7 @@
 			<OutputDir>SimObjects\Airplanes\CS_B767-400ER_CF6\</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="CS_B777-200ER_GE90B">
-			<Type>SimObject</Type>
+			<Type>Copy</Type>
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>
 			</Flags>
@@ -35,7 +35,7 @@
 			<OutputDir>SimObjects\Airplanes\CS_B777-200ER_GE90B\</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="CS_B777-300ER_GE115B">
-			<Type>SimObject</Type>
+			<Type>Copy</Type>
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>
 			</Flags>
@@ -43,12 +43,28 @@
 			<OutputDir>SimObjects\Airplanes\CS_B777-300ER_GE115B\</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="CS_B777F_GE110B1">
-			<Type>SimObject</Type>
+			<Type>Copy</Type>
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>
 			</Flags>
 			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B777F_GE110B1\</AssetDir>
 			<OutputDir>SimObjects\Airplanes\CS_B777F_GE110B1\</OutputDir>
+		</AssetGroup>
+		<AssetGroup Name="ContentInfo">
+			<Type>ContentInfo</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageDefinitions\masterrob94-salty-777\ContentInfo\</AssetDir>
+			<OutputDir>ContentInfo\masterrob94-salty-777\</OutputDir>
+		</AssetGroup>
+		<AssetGroup Name="Model_Behavior">
+			<Type>Copy</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\ModelBehaviorDefs\</AssetDir>
+			<OutputDir>ModelBehaviorDefs\</OutputDir>
 		</AssetGroup>
 	</AssetGroups>
 </AssetPackage>
