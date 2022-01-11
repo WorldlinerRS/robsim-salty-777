@@ -18,19 +18,12 @@ var B747_8_LowerEICAS_Fuel;
             this.unitTextSVG = this.querySelector("#TotalFuelUnits");
             this.allTextValueComponents.push(new Airliners.DynamicValueComponent(this.querySelector("#TotalFuelValue"), this.getTotalFuelInMegagrams.bind(this), 1));
             this.allTextValueComponents.push(new Airliners.DynamicValueComponent(this.querySelector("#CenterValue"), this.getMainTankFuelInMegagrams.bind(this, 1), 1));
-            this.allTextValueComponents.push(new Airliners.DynamicValueComponent(this.querySelector("#StabValue"), this.getMainTankFuelInMegagrams.bind(this, 8), 1));
             this.allTextValueComponents.push(new Airliners.DynamicValueComponent(this.querySelector("#Main1Value"), this.getMainTankFuelInMegagrams.bind(this, 2), 1));
             this.allTextValueComponents.push(new Airliners.DynamicValueComponent(this.querySelector("#Main2Value"), this.getMainTankFuelInMegagrams.bind(this, 3), 1));
-            this.allTextValueComponents.push(new Airliners.DynamicValueComponent(this.querySelector("#Main3Value"), this.getMainTankFuelInMegagrams.bind(this, 4), 1));
-            this.allTextValueComponents.push(new Airliners.DynamicValueComponent(this.querySelector("#Main4Value"), this.getMainTankFuelInMegagrams.bind(this, 5), 1));
-            this.allTextValueComponents.push(new Airliners.DynamicValueComponent(this.querySelector("#Res1Value"), this.getMainTankFuelInMegagrams.bind(this, 6), 1));
-            this.allTextValueComponents.push(new Airliners.DynamicValueComponent(this.querySelector("#Res4Value"), this.getMainTankFuelInMegagrams.bind(this, 7), 1));
             var engine1 = this.querySelector("#Engine1");
             if (engine1 != null) {
                 var enginePathD = engine1.getAttribute("d");
                 this.applyPathDString("#Engine2", enginePathD);
-                this.applyPathDString("#Engine3", enginePathD);
-                this.applyPathDString("#Engine4", enginePathD);
             }
             for (var engine = 1; engine <= 4; ++engine) {
                 this.allFuelComponents.push(new Boeing.FuelEngineState(this.querySelector("#Engine" + engine), engine));
@@ -38,8 +31,6 @@ var B747_8_LowerEICAS_Fuel;
             var smallPumpTemplate = this.querySelector("#SmallPumpTemplate");
             var largePumpTemplate = this.querySelector("#LargePumpTemplate");
             this.createPumps(this.querySelector("#MainPumps"), smallPumpTemplate);
-            this.createPumps(this.querySelector("#OvrdPumps"), largePumpTemplate);
-            this.createPumps(this.querySelector("#StabPumps"), largePumpTemplate);
             if (smallPumpTemplate != null) {
                 smallPumpTemplate.remove();
             }
@@ -68,8 +59,6 @@ var B747_8_LowerEICAS_Fuel;
             var smallPumpFlowLineTemplate = this.querySelector("#SmallPumpFlowLineTemplate");
             var largePumpFlowLineTemplate = this.querySelector("#LargePumpFlowLineTemplate");
             this.createFlowLines(this.querySelector("#MainPumpFlowLines"), smallPumpFlowLineTemplate);
-            this.createFlowLines(this.querySelector("#OvrdPumpFlowLines"), largePumpFlowLineTemplate);
-            this.createFlowLines(this.querySelector("#StabPumpFlowLines"), largePumpFlowLineTemplate);
             this.createFlowLines(this.querySelector("#MainFlowLines"));
             if (smallPumpFlowLineTemplate != null) {
                 smallPumpFlowLineTemplate.remove();
@@ -101,7 +90,7 @@ var B747_8_LowerEICAS_Fuel;
                         var id = parseInt(allPumps[i].id.replace("Pump", ""));
                         if ((id != NaN) && (id > 0)) {
                             if ((lineIndex != NaN) && (lineIndex > 0)) {
-                                this.allFuelComponents.push(new StabOvrdFuelPump(allPumps[i], id, lineIndex));
+                                //this.allFuelComponents.push(new StabOvrdFuelPump(allPumps[i], id, lineIndex));
                             }
                             else {
                                 this.allFuelComponents.push(new Boeing.FuelPump(allPumps[i], id));
@@ -206,79 +195,6 @@ var B747_8_LowerEICAS_Fuel;
         }
     }
     B747_8_LowerEICAS_Fuel.Display = Display;
-    class StabOvrdFuelPump extends Boeing.FuelBaseComponent {
-        constructor(_element, _pumpIndex, _lineIndex) {
-            super(_element, _pumpIndex);
-            this.isPumpSwitched = false;
-            this.isPumpActive = false;
-            this.lineIndex = 0;
-            this.isLineActive = false;
-            this.jettisonActive = false;
-            this.lineIndex = _lineIndex;
-            this.flowStabOutline = document.querySelector("#TransferStab");
-            this.flowStab = document.querySelector("#FlowStab");
-            this.flowRes1Outline = document.querySelector("#TransferReserve1");
-            this.flowRes1 = document.querySelector("#FlowReserve1");
-            this.flowRes4Outline = document.querySelector("#TransferReserve4"); 
-            this.flowRes4 = document.querySelector("#FlowReserve4");
-        }
-        init() {
-            this.refresh(false, false, false, true);
-        }
-        update(_deltaTime) {
-                        
-            this.refresh(SimVar.GetSimVarValue("FUELSYSTEM PUMP SWITCH:" + this.index, "Bool"), SimVar.GetSimVarValue("FUELSYSTEM PUMP ACTIVE:" + this.index, "Bool"), (SimVar.GetSimVarValue("FUELSYSTEM LINE FUEL FLOW:" + this.lineIndex, "number") > 0), (SimVar.GetSimVarValue("L:SALTY_FUEL_JETTISON_ACTIVE_L", "Enum") > 0 || SimVar.GetSimVarValue("L:SALTY_FUEL_JETTISON_ACTIVE_R", "Enum") > 0) );
-            this.updateTransferArrows();
-        }
-        refresh(_isPumpSwitched, _isPumpActive, _isLineActive, _jettisonActive, _force = false) {
-            if (_force || (this.isPumpSwitched != _isPumpSwitched) || (this.isPumpActive != _isPumpActive) || (this.isLineActive != _isLineActive) || (this.jettisonActive != _jettisonActive)) {
-                this.isPumpSwitched = _isPumpSwitched;
-                this.isPumpActive = _isPumpActive;
-                this.isLineActive = _isLineActive;
-                this.jettisonActive = _jettisonActive;
-                if (this.element != null) {
-                    var className = this.isPumpSwitched ? "switched" : "notswitched";
-                    if (this.isPumpActive) {
-                        className += this.isLineActive ? "-active-withflow" : "-active";
-                        
-                        if(this.jettisonActive) {
-                            className+= "-jett";
-                        }
-                            
-                    }
-                    else {
-                        className += "-inactive";
-                    }
-                    this.element.setAttribute("class", "fuelpump-" + className);
-                }
-            }
-        }
-        updateTransferArrows() {
-            if (SimVar.GetSimVarValue("FUELSYSTEM VALVE OPEN:18", "bool")) {
-                this.flowStabOutline.style.visibility = "visible";
-                this.flowStab.style.visibility = "visible";
-            } else {
-                this.flowStabOutline.style.visibility = "hidden";
-                this.flowStab.style.visibility = "hidden";
-            }
-            
-            if (SimVar.GetSimVarValue("FUELSYSTEM VALVE OPEN:10", "bool")) {
-                this.flowRes1Outline.style.visibility = "visible";
-                this.flowRes1.style.visibility = "visible";
-            } else {
-                this.flowRes1Outline.style.visibility = "hidden";
-                this.flowRes1.style.visibility = "hidden";
-            }
-            
-            if (SimVar.GetSimVarValue("FUELSYSTEM VALVE OPEN:12", "bool")) {
-                this.flowRes4Outline.style.visibility = "visible";
-                this.flowRes4.style.visibility = "visible";
-            } else {
-                this.flowRes4Outline.style.visibility = "hidden";
-                this.flowRes4.style.visibility = "hidden";
-            }
-        }
-    }
 })(B747_8_LowerEICAS_Fuel || (B747_8_LowerEICAS_Fuel = {}));
 customElements.define("b747-8-lower-eicas-fuel", B747_8_LowerEICAS_Fuel.Display);
 //# sourceMappingURL=B747_8_LowerEICAS_Fuel.js.map
