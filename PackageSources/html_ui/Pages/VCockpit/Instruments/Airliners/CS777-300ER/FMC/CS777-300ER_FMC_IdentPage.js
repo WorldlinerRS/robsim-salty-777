@@ -10,7 +10,7 @@ class FMCIdentPage {
         fmc.setTemplate([
             ["IDENT"],
             ["\xa0MODEL", "ENGINES"],
-            ["777-300ER", "GE90-115BL2"],
+            ["777-300ER", "GE90-115B1"],
             ["\xa0NAV DATA", "ACTIVE"],
             ["AIRAC", date.toString()],
             ["", ""],
