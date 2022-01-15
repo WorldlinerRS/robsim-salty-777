@@ -1,3 +1,4 @@
+
 [SimVars.0]
 PVelBodyAxis=0
 BVelBodyAxis=0
@@ -40,75 +41,40 @@ AvionicsSwitch=False
 
 [Engine Parameters.1.0]
 ThrottleLeverPct=0
-PropellerLeverPct=0.99951171875
-MixtureLeverPct=0.99951171875
+PropellerLeverPct=0
+MixtureLeverPct=0
 Pct Engine RPM=0
-MaxReachedEngineRPM=6479.5241826773144567
-LeftMagneto=True
-RightMagneto=True
-GeneratorSwitch=True
+MaxReachedEngineRPM=0
+LeftMagneto=False
+RightMagneto=False
+GeneratorSwitch=False
 CowlFlapPct=0
 FuelPumpSwitch=False
 FuelPumpSwitch_EX1=0
 CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
+EngineMasterSwitch=False
+GlowPlugTemperaturePct=0
 IgnitionSwitch=0
 Afterburner=0
 
 [Engine Parameters.2.0]
 ThrottleLeverPct=0
-PropellerLeverPct=0.99951171875
-MixtureLeverPct=0.99951171875
+PropellerLeverPct=0
+MixtureLeverPct=0
 Pct Engine RPM=0
-MaxReachedEngineRPM=6479.5241826773144567
-LeftMagneto=True
-RightMagneto=True
-GeneratorSwitch=True
+MaxReachedEngineRPM=0
+LeftMagneto=False
+RightMagneto=False
+GeneratorSwitch=False
 CowlFlapPct=0
 FuelPumpSwitch=False
 FuelPumpSwitch_EX1=0
 CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
+EngineMasterSwitch=False
+GlowPlugTemperaturePct=0
 IgnitionSwitch=0
 Afterburner=0
 
-[Engine Parameters.3.0]
-ThrottleLeverPct=0
-PropellerLeverPct=0.99951171875
-MixtureLeverPct=0.99951171875
-Pct Engine RPM=0
-MaxReachedEngineRPM=6479.5241826773144567
-LeftMagneto=True
-RightMagneto=True
-GeneratorSwitch=True
-CowlFlapPct=0
-FuelPumpSwitch=False
-FuelPumpSwitch_EX1=0
-CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
-IgnitionSwitch=0
-Afterburner=0
-
-[Engine Parameters.4.0]
-ThrottleLeverPct=0
-PropellerLeverPct=0.99951171875
-MixtureLeverPct=0.99951171875
-Pct Engine RPM=0
-MaxReachedEngineRPM=6479.5241826773144567
-LeftMagneto=True
-RightMagneto=True
-GeneratorSwitch=True
-CowlFlapPct=0
-FuelPumpSwitch=False
-FuelPumpSwitch_EX1=0
-CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
-IgnitionSwitch=0
-Afterburner=0
 
 [FuelSystem.0]
 Valve.1=True
@@ -193,6 +159,11 @@ circuit.111 = False,1.0
 [LocalVars.0]
 XMLVAR_SeatBelts=1
 B747_8_MFD_NAV_MODE=2
+SALTY_IRS_STATE=2
+747_IRS_KNOB_1=2
+747_IRS_KNOB_2=2
+747_IRS_KNOB_3=2
+SALTY_ISFD_INIT_DONE=0
 
 [Gauges.0]
 KollsmanSetting=29.921342849731445313
@@ -229,10 +200,10 @@ Nav1Lock=False
 HeadingLock=False
 HeadingValue=0
 AltitudeLock=False
-AltitudeValue=10000
+AltitudeValue=0
 AttitudeHold=False
 AirspeedHold=False
-AirspeedValue=200
+AirspeedValue=250
 MachHold=False
 MachValue=0
 VerticalSpeedHold=False

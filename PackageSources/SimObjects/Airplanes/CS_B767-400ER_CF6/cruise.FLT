@@ -1,3 +1,4 @@
+
 [SimVarForSpawningInTheAir.0]
 IAS=506
 FlapsDegree=0000.00
@@ -33,18 +34,18 @@ AudioAdf2Listen=False
 AvionicsSwitch=True
 
 [Engine Parameters.1.0]
-ThrottleLeverPct=1
-PropellerLeverPct=0.99993896484375
-MixtureLeverPct=0.99993896484375
-Pct Engine RPM=1.0440591587494822967
-MaxReachedEngineRPM=31683.045267548284755
+ThrottleLeverPct=0.8
+PropellerLeverPct=1
+MixtureLeverPct=1
+Pct Engine RPM=0.9
+MaxReachedEngineRPM=9300
 LeftMagneto=True
 RightMagneto=True
 GeneratorSwitch=True
 CowlFlapPct=0
 FuelPumpSwitch=True
 FuelPumpSwitch_EX1=-1
-CarbHeat/DeiceSwitch=False
+CarbHeat/DeiceSwitch=True
 EngineMasterSwitch=True
 GlowPlugTemperaturePct=1
 IgnitionSwitch=0
@@ -53,18 +54,18 @@ EGT_DegR=1300
 ITT_DegR=1600
 
 [Engine Parameters.2.0]
-ThrottleLeverPct=1
-PropellerLeverPct=0.99993896484375
-MixtureLeverPct=0.99993896484375
-Pct Engine RPM=1.0440591587494822967
-MaxReachedEngineRPM=31683.045267548284755
-LeftMagneto=False
-RightMagneto=False
+ThrottleLeverPct=0.8
+PropellerLeverPct=1
+MixtureLeverPct=1
+Pct Engine RPM=0.9
+MaxReachedEngineRPM=9300
+LeftMagneto=True
+RightMagneto=True
 GeneratorSwitch=True
 CowlFlapPct=0
 FuelPumpSwitch=True
 FuelPumpSwitch_EX1=-1
-CarbHeat/DeiceSwitch=False
+CarbHeat/DeiceSwitch=True
 EngineMasterSwitch=True
 GlowPlugTemperaturePct=1
 IgnitionSwitch=0
@@ -72,45 +73,6 @@ Afterburner=0
 EGT_DegR=1300
 ITT_DegR=1600
 
-[Engine Parameters.3.0]
-ThrottleLeverPct=1
-PropellerLeverPct=0.99993896484375
-MixtureLeverPct=0.99993896484375
-Pct Engine RPM=1.0440591587494822967
-MaxReachedEngineRPM=31683.045267548284755
-LeftMagneto=False
-RightMagneto=False
-GeneratorSwitch=True
-CowlFlapPct=0
-FuelPumpSwitch=True
-FuelPumpSwitch_EX1=-1
-CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
-IgnitionSwitch=0
-Afterburner=0
-EGT_DegR=1300
-ITT_DegR=1600
-
-[Engine Parameters.4.0]
-ThrottleLeverPct=1
-PropellerLeverPct=0.99993896484375
-MixtureLeverPct=0.99993896484375
-Pct Engine RPM=1.0440591587494822967
-MaxReachedEngineRPM=31683.045267548284755
-LeftMagneto=False
-RightMagneto=False
-GeneratorSwitch=True
-CowlFlapPct=0
-FuelPumpSwitch=True
-FuelPumpSwitch_EX1=-1
-CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
-IgnitionSwitch=0
-Afterburner=0
-EGT_DegR=1300
-ITT_DegR=1600
 
 [FuelSystem.0]
 Valve.1=True
@@ -201,7 +163,7 @@ KollsmanSetting=30.080865859985351563
 BleedAirSource=0
 
 [Switches.0]
-PitotHeat=False
+PitotHeat=True
 BeaconLights=True
 LandingLights=False
 LogoLights=True
@@ -210,17 +172,17 @@ PanelLights=True
 RecognitionLights=True
 StrobeLights=True
 TaxiLights=False
-WingLights=True
+WingLights=False
 CabinLights=True
-GlareshieldLights=False
+GlareshieldLights=True
 PedestalLights=False
-Potentiometer.25=0.5
-Potentiometer.26=0.5
-Potentiometer.27=0.5
-Potentiometer.28=0.5
-Potentiometer.29=0.5
-Potentiometer.30=0.5
-Potentiometer.50=0.5
+Potentiometer.25=1
+Potentiometer.26=1
+Potentiometer.27=1
+Potentiometer.28=1
+Potentiometer.29=1
+Potentiometer.30=1
+Potentiometer.50=1
 
 [AutoPilot.0]
 MasterSwitch=True
@@ -229,12 +191,12 @@ Nav1Lock=False
 HeadingLock=False
 HeadingValue=0
 AltitudeLock=False
-AltitudeValue=10000
+AltitudeValue=40000
 AttitudeHold=False
 AirspeedHold=False
-AirspeedValue=200
+AirspeedValue=555
 MachHold=False
-MachValue=0
+MachValue=0.84
 VerticalSpeedHold=True
 VerticalSpeedValue=0
 RPMHold=False
@@ -244,7 +206,7 @@ ApproachHold=False
 BackCourseHold=False
 YawDamper=False
 ToGa=False
-AutoThrottleArm=False
+AutoThrottleArm=True
 GPSdrivesNAV1=True
 IsUsedForLesson=False
 ForceDisplayUI=False
@@ -264,6 +226,7 @@ Rudder=050.00
 LeftBrake=000.00
 RightBrake=000.00
 ParkingBrake=000.00
+
 
 RudderTrimPct=0
 AileronTrimPct=0
