@@ -31,13 +31,13 @@ AvionicsSwitch=False
 
 [Engine Parameters.1.0]
 ThrottleLeverPct=0
-PropellerLeverPct=0.99951171875
-MixtureLeverPct=0.99951171875
+PropellerLeverPct=0
+MixtureLeverPct=0
 Pct Engine RPM=0
-MaxReachedEngineRPM=6479.5241826773144567
-LeftMagneto=True
-RightMagneto=True
-GeneratorSwitch=True
+MaxReachedEngineRPM=0
+LeftMagneto=False
+RightMagneto=False
+GeneratorSwitch=False
 CowlFlapPct=0
 FuelPumpSwitch=False
 FuelPumpSwitch_EX1=0
@@ -49,49 +49,13 @@ Afterburner=0
 
 [Engine Parameters.2.0]
 ThrottleLeverPct=0
-PropellerLeverPct=0.99951171875
-MixtureLeverPct=0.99951171875
+PropellerLeverPct=0
+MixtureLeverPct=0
 Pct Engine RPM=0
-MaxReachedEngineRPM=6479.5241826773144567
-LeftMagneto=True
-RightMagneto=True
-GeneratorSwitch=True
-CowlFlapPct=0
-FuelPumpSwitch=False
-FuelPumpSwitch_EX1=0
-CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
-IgnitionSwitch=0
-Afterburner=0
-
-[Engine Parameters.3.0]
-ThrottleLeverPct=0
-PropellerLeverPct=0.99951171875
-MixtureLeverPct=0.99951171875
-Pct Engine RPM=0
-MaxReachedEngineRPM=6479.5241826773144567
-LeftMagneto=True
-RightMagneto=True
-GeneratorSwitch=True
-CowlFlapPct=0
-FuelPumpSwitch=False
-FuelPumpSwitch_EX1=0
-CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
-IgnitionSwitch=0
-Afterburner=0
-
-[Engine Parameters.4.0]
-ThrottleLeverPct=0
-PropellerLeverPct=0.99951171875
-MixtureLeverPct=0.99951171875
-Pct Engine RPM=0
-MaxReachedEngineRPM=6479.5241826773144567
-LeftMagneto=True
-RightMagneto=True
-GeneratorSwitch=True
+MaxReachedEngineRPM=0
+LeftMagneto=False
+RightMagneto=False
+GeneratorSwitch=False
 CowlFlapPct=0
 FuelPumpSwitch=False
 FuelPumpSwitch_EX1=0
@@ -153,13 +117,13 @@ WingLights=False
 CabinLights=False
 GlareshieldLights=False
 PedestalLights=False
-Potentiometer.25=0.5
-Potentiometer.26=0.5
-Potentiometer.27=0.5
-Potentiometer.28=0.5
-Potentiometer.29=0.5
-Potentiometer.30=0.5
-Potentiometer.50=0.5
+Potentiometer.25=1
+Potentiometer.26=1
+Potentiometer.27=1
+Potentiometer.28=1
+Potentiometer.29=1
+Potentiometer.30=1
+Potentiometer.50=1
 
 [AutoPilot.0]
 MasterSwitch=False
