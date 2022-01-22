@@ -132,13 +132,11 @@ var Boeing;
                 }
                 var markerY = barTop + (barHeight * this.flapsAngleToPercentage(targetAngle));
                 var markerYStr = markerY.toString();
-                //if (isNaN(markerYStr)) markerYStr = 438;
                 if (this.marker != null) {
                     this.marker.setAttribute("y1", markerYStr);
                     this.marker.setAttribute("y2", markerYStr);
                 }
                 if (this.valueText != null) {
-                    console.log(this.valueText);
                     this.valueText.textContent = (targetAngle <= 0) ? "UP" : targetAngle.toFixed(0);
                     this.valueText.setAttribute("y", markerYStr - 2);
                 }

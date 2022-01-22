@@ -26,7 +26,7 @@ class Boeing_FMC extends FMCMainDisplay {
     Init() {
         super.Init();
         this.maxCruiseFL = 430;
-        this.cruiseFlightLevel = NaN;
+        this.cruiseFlightLevel = 100;
         this.onExec = () => {
             if (this.onExecPage) {
                 console.log("if this.onExecPage");
@@ -96,7 +96,7 @@ class Boeing_FMC extends FMCMainDisplay {
                 }
             }
         };
-        let flapAngles = [0, 1, 5, 15, 20, 25, 30];
+        let flapAngles = [0, 1, 5, 10, 15, 17, 18, 20, 25, 30];
         let flapIndex = Simplane.getFlapsHandleIndex(true);
         if (flapIndex >= 1) {
             this._takeOffFlap = flapAngles[flapIndex];
