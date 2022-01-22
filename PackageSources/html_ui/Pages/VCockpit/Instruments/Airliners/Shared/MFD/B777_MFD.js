@@ -157,8 +157,9 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 this._updateNDFiltersStatuses();
                 break;
             case "BTN_DATA":
-                //this.map.instrument.showConstraints = !this.map.instrument.showConstraints;
-                //this._updateNDFiltersStatuses();
+                // lines were commented
+                this.map.instrument.showConstraints = !this.map.instrument.showConstraints;
+                this._updateNDFiltersStatuses();
                 break;
             case "BTN_POS":
                 break;
@@ -222,7 +223,7 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 this.modeChangeTimer = 0.15;
             }
         } else if (!this.wxRadarOn && !this.terrainOn && this.map.instrument.showAirports) {
-            //this.map.instrument.bingMap.setVisible(true);
+            this.map.instrument.bingMap.setVisible(true);
         } else if (!this.wxRadarOn && !this.terrainOn) {
             this.map.instrument.bingMap.setVisible(false);
         }
@@ -361,7 +362,8 @@ class B747_8_MFD_Compass extends NavSystemElement {
 class B747_8_MFD_Map extends MapInstrumentElement {
     constructor() {
         super(...arguments);
-        this.zoomRanges = [0.25, 0.5, 1, 2, 5, 10, 20, 40, 80, 160, 320, 640];
+        //this.zoomRanges = [0.25, 0.5, 1, 2, 5, 10, 20, 40, 80, 160, 320, 640];
+        this.zoomRanges = [10, 20, 40, 80, 160, 320, 640];
     }
     init(root) {
         super.init(root);
