@@ -362,8 +362,8 @@ class B747_8_MFD_Compass extends NavSystemElement {
 class B747_8_MFD_Map extends MapInstrumentElement {
     constructor() {
         super(...arguments);
-        //this.zoomRanges = [0.25, 0.5, 1, 2, 5, 10, 20, 40, 80, 160, 320, 640];
-        this.zoomRanges = [10, 20, 40, 80, 160, 320, 640];
+        this.zoomRanges = [0.25, 0.5, 1, 2, 5, 10, 20, 40, 80, 160, 320, 640];
+        //this.zoomRanges = [10, 20, 40, 80, 160, 320, 640];
     }
     init(root) {
         super.init(root);
@@ -490,7 +490,7 @@ class B747_8_MFD_NDInfo extends NavSystemElement {
         this.zuluETA = document.querySelector("#WP_ZuluTime");
         this.zuluClock = document.querySelector("#ZuluClock_Time");
         this.waypointDistance = document.querySelector("#WP_Distance_Value");
-        this.ndInfo.aircraft = Aircraft.B747_8;
+        this.ndInfo.aircraft = Aircraft.B747_8; //Was B747_8
         this.ndInfo.gps = this.gps;
         this.allSymbols.push(this.ndInfo.querySelector("#ARPT"));
         this.allSymbols.push(this.ndInfo.querySelector("#WPT"));
