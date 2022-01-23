@@ -362,8 +362,8 @@ class B747_8_MFD_Compass extends NavSystemElement {
 class B747_8_MFD_Map extends MapInstrumentElement {
     constructor() {
         super(...arguments);
-        this.zoomRanges = [0.25, 0.5, 1, 2, 5, 10, 20, 40, 80, 160, 320, 640];
-        //this.zoomRanges = [10, 20, 40, 80, 160, 320, 640];
+        //this.zoomRanges = [0.25, 0.5, 1, 2, 5, 10, 20, 40, 80, 160, 320, 640];
+        this.zoomRanges = [10, 20, 40, 80, 160, 320, 640];
     }
     init(root) {
         super.init(root);
