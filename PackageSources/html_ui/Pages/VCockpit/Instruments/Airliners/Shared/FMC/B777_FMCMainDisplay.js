@@ -15,7 +15,7 @@ class FMCMainDisplay extends BaseAirliners {
         this.costIndex = NaN;
         this.lastUserInput = "";
         this.isDisplayingErrorMessage = false;
-        this.maxCruiseFL = 390;
+        this.maxCruiseFL = 430;
         this.routeIndex = 0;
         this.coRoute = "";
         this.routeIsSelected = false;
