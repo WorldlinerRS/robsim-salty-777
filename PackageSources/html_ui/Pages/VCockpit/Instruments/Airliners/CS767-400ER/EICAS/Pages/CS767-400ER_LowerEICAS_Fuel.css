@@ -78,9 +78,11 @@
       fill: var(--eicasBlack);
       stroke-width: 2px; }
       b747-8-lower-eicas-fuel #Pumps .fuelpump-notswitched-active {
-        stroke: var(--eicasOrange); }
+        stroke: var(--eicasOrange); 
+        stroke-width: 5px; }
       b747-8-lower-eicas-fuel #Pumps .fuelpump-switched-inactive {
-        stroke: var(--eicasOrange); }
+        stroke: var(--eicasOrange); 
+        stroke-width: 5px; }
       b747-8-lower-eicas-fuel #Pumps .fuelpump-notswitched-inactive {
         stroke: var(--eicasWhite); }
         b747-8-lower-eicas-fuel #Pumps .fuelpump-notswitched-inactive line {
