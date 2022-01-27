@@ -95,8 +95,8 @@ var Boeing;
             this.gauge = _gauge;
             this.cockpitSettings = SimVar.GetGameVarValue("", "GlassCockpitSettings");
             // Fix for flaps 15 not displaying
-            this.cockpitSettings.FlapsLevels.flapsAngle = [ 0, 1, 5, 15, 20, 25, 30, 0, 0, 0 ];
-            this.cockpitSettings.FlapsLevels.slatsAngle = [ 0, 1, 5, 15, 20, 25, 30, 0, 0, 0 ];
+            this.cockpitSettings.FlapsLevels.flapsAngle = [0, 1, 5, 10, 15, 17, 18, 20, 25, 30];
+            this.cockpitSettings.FlapsLevels.slatsAngle = [0, 1, 5, 10, 15, 17, 18, 20, 25, 30];
             // End of fix
             this.refreshValue(0, 0, 0, 0, true);
         }
