@@ -36,6 +36,10 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
         this.blueAirspeed = -1;
         this.redAirspeed = -1;
         this.selectedAirspeed = -1;
+        // Fix for flaps 15 not displaying
+        this.gps.cockpitSettings.FlapsLevels.flapsAngle = [ 0, 1, 5, 15, 20, 25, 30, 0, 0, 0 ];
+        this.gps.cockpitSettings.FlapsLevels.slatsAngle = [ 0, 1, 5, 15, 20, 25, 30, 0, 0, 0 ];
+        // End of fix
     }
     static get observedAttributes() {
         return ["hud"];
