@@ -1,6 +1,5 @@
-
 [SimVarForSpawningInTheAir.0]
-IAS=506
+IAS=320
 FlapsDegree=0000.00
 
 [Avionics.0]
@@ -73,7 +72,6 @@ Afterburner=0
 EGT_DegR=1300
 ITT_DegR=1600
 
-
 [FuelSystem.0]
 Valve.1=False
 Valve.2=True
@@ -126,14 +124,14 @@ Pump.21=True
 
 [Systems.0]
 BatterySwitch=True
-StructuralDeiceSwitch=False
-PropDeiceSwitch=False
+StructuralDeiceSwitch=True
+PropDeiceSwitch=True
 Autobrakes=1
 StandbyVacuum=False
 PropSync=False
 AutoFeatherSwitch=False
 FlightDirector=True
-PanelLights=False
+PanelLights=True
 LaunchBarSwitch=False
 LaunchBarState=0
 TailhookHandle=False
@@ -226,8 +224,6 @@ Rudder=050.00
 LeftBrake=000.00
 RightBrake=000.00
 ParkingBrake=000.00
-
-
 RudderTrimPct=0
 AileronTrimPct=0
 AileronTrimDisabled=False

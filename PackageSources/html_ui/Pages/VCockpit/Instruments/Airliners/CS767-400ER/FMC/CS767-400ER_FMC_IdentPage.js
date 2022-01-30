@@ -9,7 +9,7 @@ class FMCIdentPage {
         let date = fmc.getNavDataDateRange();
         fmc.setTemplate([
             ["IDENT"],
-            ["\xa0MODEL", "ENGINES"],
+            ["\xa0MODEL", "ENG RATING"],
             ["767-400ER", "CF6-80C2B7F"],
             ["\xa0NAV DATA", "ACTIVE"],
             ["AIRAC", date.toString()],

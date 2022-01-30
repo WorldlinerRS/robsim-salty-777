@@ -54,6 +54,7 @@ EngineMasterSwitch=True
 GlowPlugTemperaturePct=1
 Afterburner=0
 
+
 [Engine Parameters.2.0]
 ThrottleLeverPct=0
 PropellerLeverPct=1
@@ -130,7 +131,7 @@ StandbyVacuum=False
 PropSync=False
 AutoFeatherSwitch=False
 FlightDirector=True
-PanelLights=False
+PanelLights=True
 LaunchBarSwitch=False
 LaunchBarState=0
 TailhookHandle=False
@@ -160,7 +161,7 @@ KollsmanSetting=29.921342849731445313
 BleedAirSource=0
 
 [Switches.0]
-PitotHeat=False
+PitotHeat=True
 BeaconLights=True
 LandingLights=True
 LogoLights=True
@@ -169,11 +170,11 @@ PanelLights=True
 RecognitionLights=True
 StrobeLights=True
 TaxiLights=False
-WingLights=True
-CabinLights=False
-GlareshieldLights=False
+WingLights=False
+CabinLights=True
+GlareshieldLights=True
 GlareshieldLightsNight=True
-PedestalLights=False
+PedestalLights=True
 PedestalLightsNight=True
 Potentiometer.25=1
 Potentiometer.26=1

@@ -1,4 +1,4 @@
-<AssetPackage Name="masterrob94-salty-777" Version="2.1.6">
+<AssetPackage Name="masterrob94-salty-777" Version="2.1.8">
 	<ItemSettings>
 		<ContentType>AIRCRAFT</ContentType>
 		<Title>Masterrob94 Salty 777</Title>
@@ -42,14 +42,6 @@
 			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B777-200LR_GE110B1\</AssetDir>
 			<OutputDir>SimObjects\Airplanes\CS_B777-200LR_GE110B1\</OutputDir>
 		</AssetGroup>
-		<AssetGroup Name="CS_B777-200LR_GE115B">
-			<Type>Copy</Type>
-			<Flags>
-				<FSXCompatibility>false</FSXCompatibility>
-			</Flags>
-			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B777-200LR_GE115B\</AssetDir>
-			<OutputDir>SimObjects\Airplanes\CS_B777-200LR_GE115B\</OutputDir>
-		</AssetGroup>
 		<AssetGroup Name="CS_B777-300ER_GE115B">
 			<Type>Copy</Type>
 			<Flags>
@@ -65,14 +57,6 @@
 			</Flags>
 			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B777F_GE110B1\</AssetDir>
 			<OutputDir>SimObjects\Airplanes\CS_B777F_GE110B1\</OutputDir>
-		</AssetGroup>
-		<AssetGroup Name="CS_B777F_GE115B">
-			<Type>Copy</Type>
-			<Flags>
-				<FSXCompatibility>false</FSXCompatibility>
-			</Flags>
-			<AssetDir>PackageSources\SimObjects\Airplanes\CS_B777F_GE115B\</AssetDir>
-			<OutputDir>SimObjects\Airplanes\CS_B777F_GE115B\</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="ContentInfo">
 			<Type>ContentInfo</Type>
