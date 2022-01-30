@@ -751,10 +751,10 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             SimVar.SetSimVarValue("L:XMLVAR_AirSpeedIsInMach", "bool", 1);
         }
     }
-
+    /* Boeing 777 FCOM Data added */
     /* Calculates VREF for Flap 25 using Polynomial regression derived from FCOM data */
     updateVREF25() {
-        let coefficients = [
+        /* let coefficients = [
            -1.5467919598658073e+003,
             1.5106421359771541e-002,
            -5.6968579138009758e-008,
@@ -762,7 +762,17 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
            -1.2514991427515442e-019,
             7.2184630711155283e-026,
            -1.7036813116590257e-032
-         ];
+         ]; */
+         let coefficients = [
+            -2.68747850017208e-016,
+            3.43137254901973e-010,
+            1.71353629170901e-005,
+            9.01155830753366e+001,
+            1.36723483809020e-016,
+            2.01359856011457e-010,
+            9.66055048403044e-005,
+            1.50699166577054e+001
+         ]
          let vRef25 = 0;
          let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "pounds");
          let i;
@@ -772,10 +782,10 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
          }
          SimVar.SetSimVarValue("L:SALTY_VREF25", "knots", Math.round(vRef25));
     }
-
+    /* Boeing 777 FCOM Data added */
     /* Calculates VREF for Flap 30 using Polynomial regression derived from FCOM data */
     updateVREF30() {
-        let coefficients = [
+        /*let coefficients = [
            -1.0271030433117912e+003,
             1.0235086042112870e-002,
            -3.8432475698588999e-008,
@@ -783,7 +793,18 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
            -8.4569127892214961e-020,
             4.8771524333784454e-026,
            -1.1496146052268411e-032
-        ];
+           
+        ];*/
+        let coefficients = [
+            -4.65829606696474e-017,
+            1.91348469212241e-011,
+            1.64462217635592e-004,
+            6.26642586859305e+001,
+            9.37253635561610e-017,
+            1.38034265837256e-010,
+            6.62240736590026e-005,
+            1.03305838774371e+001
+        ]
         let vRef30 = 0;
         let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "pounds");
         let i;
