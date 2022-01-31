@@ -677,18 +677,13 @@ class SvgMap {
             let arcDeltaAltAbs = Math.abs(arcDeltaAlt);
             let verticalSpeed = SimVar.GetSimVarValue("VERTICAL SPEED", "feet per second");
             const mapRangeEnumToNM = {
-                0: 0.25,
-                1: 0.5,
-                2: 1,
-                3: 2,
-                4: 5,
-                5: 10,
-                6: 20,
-                7: 40,
-                8: 80,
-                9: 160,
-                10: 320,
-                11: 640
+                0: 10,
+                1: 20,
+                2: 40,
+                3: 80,
+                4: 160,
+                5: 320,
+                6: 640
             };
             mapRange = mapRangeEnumToNM[mapRange];      
             let distanceToLevelArc = Math.abs(((arcDeltaAltAbs / (verticalSpeed / speed)) * 0.000164579)); //Feet to Nautical Miles

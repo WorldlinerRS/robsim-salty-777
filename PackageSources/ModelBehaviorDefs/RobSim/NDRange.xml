@@ -1,0 +1,122 @@
+<ModelBehaviors>
+	<Template Name="RobSim_AIRLINER_Knob_ND_Range_Template">
+		<Parameters Type="Default">
+			<ID>1</ID>
+		</Parameters>
+		<Parameters Type="Default">
+			<WWISE_PREFIX>autopilot_knob</WWISE_PREFIX>
+			<WWISE_EVENT>autopilot_knob</WWISE_EVENT>
+			<NODE_ID>AIRLINER_Knob_Autopilot_ND_Range_#ID#</NODE_ID>
+			<ANIM_NAME>AIRLINER_Knob_Autopilot_ND_Range_#ID#</ANIM_NAME>
+			<PART_ID>AIRLINER_Knob_Autopilot_ND_Range</PART_ID>
+			<BUTTON_NODE_ID>AIRLINER_Knob_Autopilot_ND_Range_#ID#_Push</BUTTON_NODE_ID>
+			<BUTTON_ANIM_NAME>AIRLINER_Knob_Autopilot_ND_Range_#ID#_Push</BUTTON_ANIM_NAME>
+			<TOOLTIP_TITLE>@TT_Package.AIRLINER_KNOB_ND_RANGE_TITLE</TOOLTIP_TITLE>
+			<TT_DESCRIPTION_ID>@TT_Package.AIRLINER_KNOB_ND_RANGE_ACTION</TT_DESCRIPTION_ID>
+			<IE_NAME>ND_Range_#ID#</IE_NAME>
+			<Switch Param="TYPE">
+				<Case Value="AIRBUS">
+					<NM_STATE_0>10</NM_STATE_0>
+					<NM_STATE_1>20</NM_STATE_1>
+					<NM_STATE_2>40</NM_STATE_2>
+					<NM_STATE_3>80</NM_STATE_3>
+					<NM_STATE_4>160</NM_STATE_4>
+					<NM_STATE_5>320</NM_STATE_5>
+					<NUM_STATES>6</NUM_STATES>
+					<ND_VAR>A320_Neo_MFD_Range</ND_VAR>
+				</Case>
+				<Case Value="BOEING_747">
+					<NM_STATE_0>0.25</NM_STATE_0>
+					<NM_STATE_1>0.5</NM_STATE_1>
+					<NM_STATE_2>1</NM_STATE_2>
+					<NM_STATE_3>2</NM_STATE_3>
+					<NM_STATE_4>5</NM_STATE_4>
+					<NM_STATE_5>10</NM_STATE_5>
+					<NM_STATE_6>20</NM_STATE_6>
+					<NM_STATE_7>40</NM_STATE_7>
+					<NM_STATE_8>80</NM_STATE_8>
+					<NM_STATE_9>160</NM_STATE_9>
+					<NM_STATE_10>320</NM_STATE_10>
+					<NM_STATE_11>640</NM_STATE_11>
+					<NUM_STATES>12</NUM_STATES>
+					<ND_VAR>B747_8_MFD_Range</ND_VAR>
+					<TT_DESCRIPTION_ID_PUSH>@TT_Package.AIRLINER_KNOB_ND_TFC_ACTION</TT_DESCRIPTION_ID_PUSH>
+					<ON_PUSH_EVENT>(&gt;H:B747_8_MFD_KNOB_RANGE_TFC)</ON_PUSH_EVENT>
+					<PUSH_IE_NAME>ND_Range_TFC</PUSH_IE_NAME>
+				</Case>
+                <Case Value="BOEING_777">
+					<NM_STATE_0>10</NM_STATE_0>
+					<NM_STATE_1>20</NM_STATE_1>
+					<NM_STATE_2>40</NM_STATE_2>
+					<NM_STATE_3>80</NM_STATE_3>
+					<NM_STATE_4>160</NM_STATE_4>
+					<NM_STATE_5>320</NM_STATE_5>
+					<NM_STATE_6>640</NM_STATE_6>
+					<NUM_STATES>7</NUM_STATES>
+					<ND_VAR>B747_8_MFD_Range</ND_VAR>
+					<TT_DESCRIPTION_ID_PUSH>@TT_Package.AIRLINER_KNOB_ND_TFC_ACTION</TT_DESCRIPTION_ID_PUSH>
+					<ON_PUSH_EVENT>(&gt;H:B747_8_MFD_KNOB_RANGE_TFC)</ON_PUSH_EVENT>
+					<PUSH_IE_NAME>ND_Range_TFC</PUSH_IE_NAME>
+				</Case>
+				<Case Value="AS01B">
+					<TT_DESCRIPTION_ID_PUSH>@TT_Package.AIRLINER_KNOB_ND_CTR_ACTION</TT_DESCRIPTION_ID_PUSH>
+					<IE_CW_CODE>(&gt;H:AS01B_MFD_#ID#_Range_INC)</IE_CW_CODE>
+					<IE_CCW_CODE>(&gt;H:AS01B_MFD_#ID#_Range_DEC)</IE_CCW_CODE>
+					<ON_PUSH_EVENT>(&gt;H:AS01B_MFD_#ID#_AUTOPILOT_CTR)</ON_PUSH_EVENT>
+					<PUSH_IE_NAME>ND_Range_CTR</PUSH_IE_NAME>
+					<COUNT>36</COUNT>
+				</Case>
+			</Switch>
+		</Parameters>
+		<Component ID="#NODE_ID#_Group">
+			<Parameters Type="Override">
+				<Condition NotEmpty="NUM_STATES">
+					<MAX_POS Process="Int">#NUM_STATES# 1 -</MAX_POS>
+				</Condition>
+			</Parameters>
+			<UseTemplate Name="ASOBO_AIRLINER_Base_Template">
+				<INTERACTION_TYPE>Knob</INTERACTION_TYPE>
+				<Condition NotEmpty="NUM_STATES">
+					<True>
+						<KNOB_TYPE>X_STATES</KNOB_TYPE>
+						<Loop>
+							<Setup>
+								<Param>CUR_ID</Param>
+								<From>0</From>
+								<Inc>1</Inc>
+								<To>#MAX_POS#</To>
+							</Setup>
+							<Do>
+								<Parameters Type="Override">
+									<NM_STATE Process="Param">NM_STATE_#CUR_ID#</NM_STATE>
+								</Parameters>
+								<STR_STATE_#CUR_ID#>Set_#NM_STATE#_NM</STR_STATE_#CUR_ID#>
+								<TT_VALUE_#CUR_ID#>'#NM_STATE# NM'</TT_VALUE_#CUR_ID#>
+								<TT_VALUE_#CUR_ID#_IS_DYNAMIC>True</TT_VALUE_#CUR_ID#_IS_DYNAMIC>
+							</Do>
+						</Loop>
+						<SET_STATE_EXTERNAL>p0 (&gt;L:#ND_VAR#)</SET_STATE_EXTERNAL>
+						<LOCAL_VAR_TO_WATCH_0>#ND_VAR#</LOCAL_VAR_TO_WATCH_0>
+						<GET_STATE_EXTERNAL>(L:#ND_VAR#) sp0</GET_STATE_EXTERNAL>
+						<ENUM_VAL_TO_POS_EXTERNAL>l0</ENUM_VAL_TO_POS_EXTERNAL>
+					</True>
+					<False>
+						<IS_INFINITE>True</IS_INFINITE>
+						<SET_STATE_EXTERNAL>p0 0 &gt; if{ #IE_CW_CODE# } els{ #IE_CCW_CODE# }</SET_STATE_EXTERNAL>
+					</False>
+				</Condition>
+			</UseTemplate>
+			<Condition Valid="ON_PUSH_EVENT">
+				<UseTemplate Name="ASOBO_AIRLINER_Base_Template">
+					<INTERACTION_TYPE>Push</INTERACTION_TYPE>
+					<SET_STATE_EXTERNAL>if{ #ON_PUSH_EVENT# }</SET_STATE_EXTERNAL>
+					<IE_NAME>#PUSH_IE_NAME#</IE_NAME>
+					<TT_DESCRIPTION_ID>#TT_DESCRIPTION_ID_PUSH#</TT_DESCRIPTION_ID>
+					<NODE_ID>#BUTTON_NODE_ID#</NODE_ID>
+					<ANIM_NAME>#BUTTON_ANIM_NAME#</ANIM_NAME>
+					<NUM_STATES>2</NUM_STATES>
+				</UseTemplate>
+			</Condition>
+		</Component>
+	</Template>
+</ModelBehaviors>
