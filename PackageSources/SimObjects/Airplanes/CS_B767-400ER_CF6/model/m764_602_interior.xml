@@ -1014,6 +1014,7 @@
 		<Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
     <Include ModelBehaviorFile="Asobo\Exterior.xml"/>
     <Include ModelBehaviorFile="ASOBO\Inputs\Helpers.xml"/>
+    <Include ModelBehaviorFile="RobSim\index.xml"/>
 
 
     <Component ID="Wipers_Ext">
@@ -3085,7 +3086,7 @@
             <BUTTON_NODE_ID>btn_afds_ctr_l</BUTTON_NODE_ID>
             <BUTTON_ANIM_NAME>afds_push_ctr_l</BUTTON_ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_AIRLINER_Knob_ND_Range_Template">
+          <UseTemplate Name="RobSim_AIRLINER_Knob_ND_Range_Template">
             <TYPE>BOEING_777</TYPE>
             <NODE_ID>knob_afds_tfc_l1</NODE_ID>
             <ANIM_NAME>afds_knob_tfc_l</ANIM_NAME>
@@ -3179,7 +3180,7 @@
             <BUTTON_NODE_ID>btn_afds_ctr_r</BUTTON_NODE_ID>
             <BUTTON_ANIM_NAME>afds_push_ctr_r</BUTTON_ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_AIRLINER_Knob_ND_Range_Template">
+          <UseTemplate Name="RobSim_AIRLINER_Knob_ND_Range_Template">
             <TYPE>BOEING_777</TYPE>
             <ID>2</ID>
             <NODE_ID>knob_afds_tfc_r</NODE_ID>

@@ -57,14 +57,14 @@ class SaltyFueling {
         }
         
         /* Fuel target sim vars */
-        const mainLeftCurrentSimVar = SimVar.GetSimVarValue(`L:777_FUEL_TANK_LEFT_MAIN_QUANTITY_DESIRED`, "Gallons");
-        const mainRightCurrentSimVar = SimVar.GetSimVarValue(`L:777_FUEL_TANK_RIGHT_MAIN_QUANTITY_DESIRED`, "Gallons");
+        const mainLeftTargetSimVar = SimVar.GetSimVarValue(`L:777_FUEL_TANK_LEFT_MAIN_QUANTITY_DESIRED`, "Gallons");
+        const mainRightTargetSimVar = SimVar.GetSimVarValue(`L:777_FUEL_TANK_RIGHT_MAIN_QUANTITY_DESIRED`, "Gallons");
         const centerTargetSimVar = SimVar.GetSimVarValue(`L:777_FUEL_TANK_CENTER_QUANTITY_DESIRED`, "Gallons");
         let mainLeftCurrent = mainLeftCurrentSimVar;
         let mainRightCurrent = mainRightCurrentSimVar;
         let centerCurrent = centerCurrentSimVar;
-        let mainLeftTarget = mainLeftCurrentSimVar;
-        let mainRightTarget = mainRightCurrentSimVar;
+        let mainLeftTarget = mainLeftTargetSimVar;
+        let mainRightTarget = mainRightTargetSimVar;
         let centerTarget = centerTargetSimVar;
 
         if (refuelingRate == "INSTANT") {
