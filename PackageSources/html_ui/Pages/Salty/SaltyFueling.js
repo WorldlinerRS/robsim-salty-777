@@ -25,8 +25,7 @@ class SaltyFueling {
         const centerCurrentSimVar = SimVar.GetSimVarValue("FUEL TANK CENTER QUANTITY", "Gallons");
         const total = Math.round(
                 (mainLeftCurrentSimVar) + (mainRightCurrentSimVar) + (centerCurrentSimVar)
-            )
-        );
+            );
         const totalConverted = Math.round(total * fuelWeight * usingMetrics);
         SimVar.SetSimVarValue("L:777_FUEL_TOTAL_DESIRED", "Number", total);
         SimVar.SetSimVarValue("L:777_FUEL_DESIRED", "Number", totalConverted);
