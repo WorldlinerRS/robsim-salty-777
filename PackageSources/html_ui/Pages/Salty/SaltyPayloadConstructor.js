@@ -1,99 +1,79 @@
 class SaltyPayloadConstructor {
     constructor() {
         this.paxStations = {
-            businessUpper: {
-                name: 'BUS UPPER',
-                seats: 32,
-                weight: 3328,
-                pax: 0,
-                paxTarget: 0,
-                stationIndex: 0 + 1,
-                position: -35.400535,
-                seatsRange: [1, 32],
-                simVar: "PAYLOAD STATION WEIGHT:1"
-            },
             firstClass: {
                 name: 'FIRST CLASS',
                 seats: 8,
-                weight: 832,
+                weight: 1482,
+                pax: 0,
+                paxTarget: 0,
+                stationIndex: 0 + 1,
+                position: 50,
+                seatsRange: [1, 8],
+                simVar: "PAYLOAD STATION WEIGHT:3"
+            },
+            businessClass: {
+                name: 'BUS CLASS',
+                seats: 62,
+                weight: 11484,
                 pax: 0,
                 paxTarget: 0,
                 stationIndex: 1 + 1,
-                position: 0.04913,
-                seatsRange: [33, 40],
-                simVar: "PAYLOAD STATION WEIGHT:2"
-            },
-            businessMain: {
-                name: 'BUS MAIN',
-                seats: 48,
-                weight: 5400,
-                pax: 0,
-                paxTarget: 0,
-                stationIndex: 2 + 1,
-                position: -44.383345,
-                seatsRange: [41, 88],
-                simVar: "PAYLOAD STATION WEIGHT:3"
+                position: 15,
+                seatsRange: [9, 70],
+                simVar: "PAYLOAD STATION WEIGHT:4"
             },
             premiumEconomy: {
                 name: 'PREMIUM ECO',
-                seats: 32,
-                weight: 3328,
+                seats: 24,
+                weight: 4445,
                 pax: 0,
                 paxTarget: 0,
-                stationIndex: 3 + 1,
-                position: -100.362841,
-                seatsRange: [89, 120],
-                simVar: "PAYLOAD STATION WEIGHT:4"
+                stationIndex: 2 + 1,
+                position: -5,
+                seatsRange: [71, 94],
+                simVar: "PAYLOAD STATION WEIGHT:5"
             },
             fowardEconomy: {
                 name: 'FORWARD ECO',
-                seats: 36,
-                weight: 3744,
+                seats: 100,
+                weight: 13892,
                 pax: 0,
                 paxTarget: 0,
-                stationIndex: 4 + 1,
-                position: -81.274814,
-                seatsRange: [121, 156],
-                simVar: "PAYLOAD STATION WEIGHT:5"
+                stationIndex: 3 + 1,
+                position: -40,
+                seatsRange: [95, 194],
+                simVar: "PAYLOAD STATION WEIGHT:6"
             },
             rearEconomy: {
                 name: 'REAR ECO',
-                seats: 208,
-                weight: 21632,
+                seats: 126,
+                weight: 31673,
                 pax: 0,
                 paxTarget: 0,
-                stationIndex: 5 + 1,
-                position: -148.319361,
-                seatsRange: [157, 364],
-                simVar: "PAYLOAD STATION WEIGHT:6"
+                stationIndex: 4 + 1,
+                position: -90,
+                seatsRange: [194, 320],
+                simVar: "PAYLOAD STATION WEIGHT:7"
             },
         };
 
         this.cargoStations = {
             fwdBag: {
                 name: 'FORWARD_BAGGAGE',
-                weight: 22225,
+                weight: 6373,
                 load: 0,
-                stationIndex: 6 + 1,
-                position: -28.56284,
-                visible: true,
-                simVar: 'PAYLOAD STATION WEIGHT:7',
-            },
-            aftBag: {
-                name: 'REAR_BAGGAGE',
-                weight: 15875,
-                load: 0,
-                stationIndex: 7 + 1,
-                position: -138.077047,
+                stationIndex: 5 + 1,
+                position: 54,
                 visible: true,
                 simVar: 'PAYLOAD STATION WEIGHT:8',
             },
-            bulkBag: {
-                name: 'BULK_BAGGAGE',
-                weight: 5800,
+            aftBag: {
+                name: 'REAR_BAGGAGE',
+                weight: 6373,
                 load: 0,
-                stationIndex: 8 + 1,
-                position: -138.077047,
+                stationIndex: 6 + 1,
+                position: -60,
                 visible: true,
                 simVar: 'PAYLOAD STATION WEIGHT:9',
             }

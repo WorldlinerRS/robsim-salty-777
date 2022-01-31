@@ -3,10 +3,8 @@ function airplaneCanBoard() {
     const isOnGround = SimVar.GetSimVarValue("SIM ON GROUND", "Bool");
     const eng1Running = SimVar.GetSimVarValue("ENG COMBUSTION:1", "Bool");
     const eng2Running = SimVar.GetSimVarValue("ENG COMBUSTION:2", "Bool");
-    const eng3Running = SimVar.GetSimVarValue("ENG COMBUSTION:3", "Bool");
-    const eng4Running = SimVar.GetSimVarValue("ENG COMBUSTION:4", "Bool");
 
-    return !(gs > 0.1 || eng1Running || eng2Running || eng3Running || eng4Running || !isOnGround);
+    return !(gs > 0.1 || eng1Running || eng2Running || !isOnGround);
 }
 
 class SaltyBoarding {
@@ -51,9 +49,8 @@ class SaltyBoarding {
             paxRemaining -= pax;
         }
 
-        await fillStation(this.paxStations['businessUpper'], paxRemaining);
         await fillStation(this.paxStations['firstClass'], paxRemaining);
-        await fillStation(this.paxStations['businessMain'], paxRemaining);
+        await fillStation(this.paxStations['businessClass'], paxRemaining);
         await fillStation(this.paxStations['premiumEconomy'], paxRemaining);
         await fillStation(this.paxStations['fowardEconomy'], paxRemaining);
         await fillStation(this.paxStations['rearEconomy'], paxRemaining);
