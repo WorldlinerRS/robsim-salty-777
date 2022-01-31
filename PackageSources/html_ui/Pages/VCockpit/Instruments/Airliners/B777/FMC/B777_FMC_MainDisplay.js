@@ -192,10 +192,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.aircraftType = Aircraft.B747_8;
         this.maxCruiseFL = 430;
         this.saltyBase = new SaltyBase();
-        this.saltyBoarding = new SaltyBoarding();
-        this.saltyFueling = new SaltyFueling();
         this.saltyModules = new SaltyModules();
-        this.saltyStates = new SaltyStates();
         this.saltyBase.init();
         if (SaltyDataStore.get("OPTIONS_UNITS", "KG") == "KG") {
             this.units = true;
@@ -263,10 +260,6 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         super.onPowerOn();
         Coherent.call("GENERAL_ENG_THROTTLE_MANAGED_MODE_SET", ThrottleMode.HOLD);
     }
-    onFlightStart() {
-        super.onFlightStart();
-        this.saltyStates.onFlightStart();
-    }
     onUpdate(_deltaTime) {
         super.onUpdate(_deltaTime);
         if (this.refreshPageCallback && this._lastActiveWP != this.currFlightPlanManager.getActiveWaypointIndex() || this._wasApproachActive != this.currFlightPlanManager.isActiveApproach()) {
@@ -282,8 +275,6 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             this.timer = 0;
         }
         this.saltyBase.update(this.isElectricityAvailable());
-        this.saltyBoarding.update(_deltaTime);
-        this.saltyFueling.update(_deltaTime);
         this.saltyModules.update(_deltaTime);
         if (SaltyDataStore.get("OPTIONS_UNITS", "KG") == "KG") {
             this.units = true;
@@ -911,7 +902,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             let n1 = this.getTakeOffThrustN1(this.getThrustTakeOffTemp(), altitude) - this.getThrustTakeOffMode() * 10;
             return n1;
         } else {
-            return 85;
+            return 99;
         }
     }
     getThrustClimbLimit() {
@@ -1336,13 +1327,6 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         return this._lines[row][col];
     }
     setLine(content, row, col = -1) {
-        if (content instanceof FMC_Field) {
-            const field = content;
-            ((col === 0 || col === -1) ? this.onLeftInput : this.onRightInput)[row] = (value) => {
-                field.onSelect(value);
-            };
-            content = content.getValue();
-        }
         if (col >= this._lineElements[row].length) {
             return;
         }
