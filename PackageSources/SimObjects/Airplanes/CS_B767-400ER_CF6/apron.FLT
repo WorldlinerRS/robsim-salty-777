@@ -9,9 +9,9 @@ SimOnGround=True
 
 [Avionics.0]
 Comm1Active=118.300
-Comm1Standby=124.850
+Comm1Standby=122.800
 Comm2Active=124.850
-Comm2Standby=124.850
+Comm2Standby=122.800
 Comm3Active=124.850
 Comm3Standby=124.850
 Nav1Active=110.50
