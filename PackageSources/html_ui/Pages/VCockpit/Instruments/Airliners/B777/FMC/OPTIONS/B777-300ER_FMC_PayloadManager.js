@@ -1,233 +1,303 @@
-class B777_FMC_PayloadManagerPage {
+class B777_FMC_PayloadManager {
+
+    static ShowPage(fmc) {
+        fmc.clearDisplay();
+
+        fmc.refreshPageCallback = () => {
+            B777_FMC_PayloadManager.ShowPage(fmc);
+        };
+
+        let isPayloadManagerExecuted = undefined;
+        let requestedCenterOfGravity = null;
+        let requestedFuel = null;
+        let requestedPayload = null;
+        let remainingPayload = null;
+        let _internalPayloadValuesCache = [];
+
+        const tankCapacity = {
+                'CENTER': 27290,
+                'LEFT_MAIN': 10300,
+                'RIGHT_MAIN': 10300
+            };
+        const tankPriority = [['LEFT_MAIN', 'RIGHT_MAIN'], ['CENTER']];
     
-    constructor(fmc) {
-        this.fmc = fmc;
-        this.tankPriorityValues = [];
-        this.payloadValues = [];
-        this.init();
-    }
+        const tankVariables = {
+                'CENTER': 'FUEL TANK CENTER QUANTITY',
+                'LEFT_MAIN': 'FUEL TANK LEFT MAIN QUANTITY',
+                'RIGHT_MAIN': 'FUEL TANK RIGHT MAIN QUANTITY'
+            };
+    
+        const payloadIndex = {
+                'PILOT': 1,
+                'COPILOT': 2,
+                'CREW': 3,
+                'FIRST_CLASS': 4,
+                'BUSINESS_CLASS': 5,
+                'PREMIUM_ECONOMY': 6,
+                'FORWARD_ECONOMY': 7,
+                'REAR_ECONOMY': 8,
+                'FORWARD_BAGGAGE': 9,
+                'REAR_BAGGAGE': 10
+            };
+    
+        function  getMaxFuel() {
+            return 47890;
+        }
+        function getMinFuel() {
+            return 0;
+        }
+        function getMaxPayload() {
+            return 405001;
+        }
+        function getMinPayload() {
+            return 0;
+        }
+        function getMaxCenterOfGravity() {
+            return 100;
+        }
+        function getMinCenterOfGravity() {
+            return 0;
+        }
 
-    static get tankCapacity() {
-        return {
-            'CENTER': 27290,
-            'LEFT': 10300,
-            'RIGHT': 10300
-        };
-    }
-
-    static get tankPriority() {
-        return [['LEFT_MAIN', 'RIGHT_MAIN'], ['CENTER']];
-    }
-
-    static get tankVariables() {
-        return {
-            'CENTER': 'FUEL TANK CENTER QUANTITY',
-            'LEFT_MAIN': 'FUEL TANK LEFT MAIN QUANTITY',
-            'RIGHT_MAIN': 'FUEL TANK RIGHT MAIN QUANTITY'
-        };
-    }
-
-    static get payloadIndex() {
-        return {
-            'PILOT': 1,
-            'COPILOT': 2,
-            'CREW': 3,
-            'FIRST_CLASS': 4,
-            'BUSINESS_CLASS': 5,
-            'PREMIUM_ECONOMY': 6,
-            'FORWARD_ECONOMY': 7,
-            'REAR_ECONOMY': 8,
-            'FORWARD_BAGGAGE': 9,
-            'REAR_BAGGAGE': 10
-        };
-    }
-
-    static get getMaxFuel() {
-        return 47890;
-    }
-    static get getMinFuel() {
-        return 0;
-    }
-    static get getMaxPayload() {
-        return 405001;
-    }
-    static get getMinPayload() {
-        return 0;
-    }
-    static get getMaxCenterOfGravity() {
-        return 100;
-    }
-    static get getMinCenterOfGravity() {
-        return 0;
-    }
-
-    init() {
-        this.tankPriorityValues = [
-            {
-                'LEFT_MAIN': this.getTankValue(B777_FMC_PayloadManagerPage.tankVariables.LEFT_MAIN),
-                'RIGHT_MAIN': this.getTankValue(B777_FMC_PayloadManagerPage.tankVariables.RIGHT_MAIN)
-            },
-            { 'CENTER': this.getTankValue(B777_FMC_PayloadManagerPage.tankVariables.CENTER) }
-        ];
-        this._internalPayloadValuesCache = [];
-        this.payloadValues = this.getPayloadValues();
-        B777_FMC_PayloadManagerPage.centerOfGravity = this.getCenterOfGravity();
-    }
-
-    getPayloadValues() {
-        return [
-            {
-                'PILOT': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.PILOT),
-                'COPILOT': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.COPILOT),
-                'CREW': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.CREW),
-            },
-            {
-                'FIRST_CLASS': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.FIRST_CLASS),
-                'BUSINESS_CLASS': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.BUSINESS_CLASS),
-                'PREMIUM_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.PREMIUM_ECONOMY),
-                'FORWARD_BAGGAGE': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.FORWARD_BAGGAGE)
-            },
-            {
-                'FORWARD_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.FORWARD_ECONOMY),
-                'REAR_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.REAR_ECONOMY),
-                'REAR_BAGGAGE': this.getPayloadValue(B777_FMC_PayloadManagerPage.payloadIndex.REAR_BAGGAGE)
-            }
-        ];
-    }
-
-    getPayloadValue(index) {
-        return SimVar.GetSimVarValue('PAYLOAD STATION WEIGHT:' + index, 'Pounds');
-    }
-    getPayloadValueFromCache(index) {
-        return this._internalPayloadValuesCache[index];
-    }
-    async setPayloadValue(index, value) {
-        this._internalPayloadValuesCache[index] = value;
-        return SimVar.SetSimVarValue('PAYLOAD STATION WEIGHT:' + index, 'Pounds', value);
-    }
-    getTankValue(variable) {
-        return SimVar.GetSimVarValue(variable, 'Gallons');
-    }
-    getCenterOfGravity() {
-        return SimVar.GetSimVarValue('CG PERCENT', 'Percent');
-    }
-    getTotalPayload(useLbs = false) {
-        let payload = 0;
-        this.payloadValues.forEach((group) => {
-            Object.values(group).forEach((sectionValue) => {
-                payload = payload + Number(sectionValue);
+        function getPayloadValues() {
+            return [
+                {
+                    'PILOT': getPayloadValue(payloadIndex.PILOT),
+                    'COPILOT': getPayloadValue(payloadIndex.COPILOT),
+                    'CREW': getPayloadValue(payloadIndex.CREW),
+                },
+                {
+                    'FIRST_CLASS': getPayloadValue(payloadIndex.FIRST_CLASS),
+                    'BUSINESS_CLASS': getPayloadValue(payloadIndex.BUSINESS_CLASS),
+                    'PREMIUM_ECONOMY': getPayloadValue(payloadIndex.PREMIUM_ECONOMY),
+                    'FORWARD_BAGGAGE': getPayloadValue(payloadIndex.FORWARD_BAGGAGE)
+                },
+                {
+                    'FORWARD_ECONOMY': getPayloadValue(payloadIndex.FORWARD_ECONOMY),
+                    'REAR_ECONOMY': getPayloadValue(payloadIndex.REAR_ECONOMY),
+                    'REAR_BAGGAGE': getPayloadValue(payloadIndex.REAR_BAGGAGE)
+                }
+            ];
+        }
+        function getPayloadValue(index) {
+            return SimVar.GetSimVarValue('PAYLOAD STATION WEIGHT:' + index, 'Pounds');
+        }
+        function getPayloadValueFromCache(index) {
+            return _internalPayloadValuesCache[index];
+        }
+        async function setPayloadValue(index, value) {
+            _internalPayloadValuesCache[index] = value;
+            return SimVar.SetSimVarValue('PAYLOAD STATION WEIGHT:' + index, 'Pounds', value);
+        }
+        function getTankValue(variable) {
+            return SimVar.GetSimVarValue(variable, 'Gallons');
+        }
+        function getCenterOfGravity() {
+            return SimVar.GetSimVarValue('CG PERCENT', 'Percent');
+        }
+        function getTotalPayload(useLbs = false) {
+            let payload = 0;
+            payloadValues.forEach((group) => {
+                Object.values(group).forEach((sectionValue) => {
+                    payload = payload + Number(sectionValue);
+                });
             });
-        });
-        return (useLbs ? payload : payload * 0.45359237);
-    }
-    getTotalFuel(useLbs = false) {
-        let fuel = 0;
-        this.tankPriorityValues.forEach((group) => {
-            Object.values(group).forEach((sectionValue) => {
-                fuel = fuel + Number(sectionValue);
+            return (useLbs ? payload : payload * 0.45359237);
+        }
+        function getTotalFuel(useLbs = false) {
+            let fuel = 0;
+            tankPriorityValues.forEach((group) => {
+                Object.values(group).forEach((sectionValue) => {
+                    fuel = fuel + Number(sectionValue);
+                });
             });
-        });
-        return (useLbs ? fuel * SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'Pounds') : fuel);
-    }
-    async flushFuelAndPayload() {
-        return new Promise(resolve => {
-            this.flushFuel().then(() => {
-                return this.resetPayload();
-            }).then(() => {
-                return this.fmc.getCurrentWeight(true);
-            }).then(weight => {
-                return this.fmc.setZeroFuelWeight((298700 + B777_FMC_PayloadManagerPage.requestedPayload) / 1000, EmptyCallback.Void, true);
-            }).then(() => {
-                return this.resetPayload();
-            }).then(() => {
+            return (useLbs ? fuel * SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'Pounds') : fuel);
+        }
+        async function flushFuelAndPayload() {
+            return new Promise(resolve => {
+                flushFuel().then(() => {
+                    return resetPayload();
+                }).then(() => {
+                    return fmc.getCurrentWeight(true);
+                }).then(weight => {
+                    return fmc.setZeroFuelWeight((298700 + requestedPayload) / 1000, EmptyCallback.Void, true);
+                }).then(() => {
+                    return resetPayload();
+                }).then(() => {
+                    resolve();
+                });
+            });
+        }
+        async function flushFuel() {
+            return new Promise(resolve => {
+                let setTankFuel = async (variable, gallons) => {
+                    SimVar.SetSimVarValue(variable, 'Gallons', gallons);
+                };
+                tankPriority.forEach((tanks, index) => {
+                    tanks.forEach((tank) => {
+                        setTankFuel(tankVariables[tank], 0).then(() => {
+                            console.log(tankVariables[tank] + ' flushed');
+                        });
+                    });
+                });
+                fmc.trySetBlockFuel(0, true);
                 resolve();
             });
-        });
-    }
-    async flushFuel() {
-        return new Promise(resolve => {
+        }
+        function calculateTanks(fuel) {
+            tankPriorityValues[0].LEFT_MAIN = 0;
+            tankPriorityValues[1].CENTER = 0;
+            tankPriorityValues[0].RIGHT_MAIN = 0;
+            fuel = calculateMainTanks(fuel);
+            fuel = calculateCenterTank(fuel);
+            let fuelBlock = 0;
             let setTankFuel = async (variable, gallons) => {
+                fuelBlock += gallons;
                 SimVar.SetSimVarValue(variable, 'Gallons', gallons);
             };
-            B777_FMC_PayloadManagerPage.tankPriority.forEach((tanks, index) => {
+            tankPriority.forEach((tanks, index) => {
                 tanks.forEach((tank) => {
-                    setTankFuel(B777_FMC_PayloadManagerPage.tankVariables[tank], 0).then(() => {
-                        console.log(B777_FMC_PayloadManagerPage.tankVariables[tank] + ' flushed');
+                    setTankFuel(tankVariables[tank], tankPriorityValues[index][tank]).then(() => {
+                        console.log(tankVariables[tank] + ' set to ' + tankPriorityValues[index][tank]);
                     });
                 });
             });
-            this.fmc.trySetBlockFuel(0, true);
-            resolve();
-        });
-    }
-    calculateTanks(fuel) {
-        this.tankPriorityValues[0].LEFT_MAIN = 0;
-        this.tankPriorityValues[1].CENTER = 0;
-        this.tankPriorityValues[0].RIGHT_MAIN = 0;
-        fuel = this.calculateMainTanks(fuel);
-        fuel = this.calculateCenterTank(fuel);
-        let fuelBlock = 0;
-        let setTankFuel = async (variable, gallons) => {
-            fuelBlock += gallons;
-            SimVar.SetSimVarValue(variable, 'Gallons', gallons);
-        };
-        B777_FMC_PayloadManagerPage.tankPriority.forEach((tanks, index) => {
-            tanks.forEach((tank) => {
-                setTankFuel(B777_FMC_PayloadManagerPage.tankVariables[tank], this.tankPriorityValues[index][tank]).then(() => {
-                    console.log(B777_FMC_PayloadManagerPage.tankVariables[tank] + ' set to ' + this.tankPriorityValues[index][tank]);
-                });
-            });
-        });
-        this.fmc.trySetBlockFuel(fuelBlock * SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'Pounds') / 1000, true);
-    }
-    calculateMainTanks(fuel) {
-        let remainingFuel = 0;
-        let tanksCapacity = (B777_FMC_PayloadManagerPage.tankCapacity.LEFT_MAIN * 2);
-        if (fuel > tanksCapacity) {
-            remainingFuel = fuel - tanksCapacity;
-            fuel = tanksCapacity;
+            fmc.trySetBlockFuel(fuelBlock * SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'Pounds') / 1000, true);
         }
-        let reminder = fuel % 2;
-        let quotient = (fuel - reminder) / 2;
-        this.tankPriorityValues[0].LEFT_MAIN = quotient;
-        this.tankPriorityValues[0].RIGHT_MAIN = quotient;
-        if (reminder) {
-            this.tankPriorityValues[0].LEFT_MAIN++;
-            reminder--;
+        function calculateMainTanks(fuel) {
+            let remainingFuel = 0;
+            let tanksCapacity = (tankCapacity.LEFT_MAIN * 2);
+            if (fuel > tanksCapacity) {
+                remainingFuel = fuel - tanksCapacity;
+                fuel = tanksCapacity;
+            }
+            let reminder = fuel % 2;
+            let quotient = (fuel - reminder) / 2;
+            tankPriorityValues[0].LEFT_MAIN = quotient;
+            tankPriorityValues[0].RIGHT_MAIN = quotient;
+            if (reminder) {
+                tankPriorityValues[0].LEFT_MAIN++;
+                reminder--;
+            }
+            if (reminder) {
+                tankPriorityValues[0].RIGHT_MAIN++;
+                reminder--;
+            }
+            return remainingFuel;
         }
-        if (reminder) {
-            this.tankPriorityValues[0].RIGHT_MAIN++;
-            reminder--;
+        function calculateCenterTank(fuel) {
+            let remainingFuel = 0;
+            let tankCapacity = tankCapacity.CENTER;
+            if (fuel > tankCapacity) {
+                remainingFuel = fuel - tankCapacity;
+                fuel = tankCapacity;
+            }
+            tankPriorityValues[1].CENTER = fuel;
+            return remainingFuel;
         }
-        return remainingFuel;
-    }
-    calculateCenterTank(fuel) {
-        let remainingFuel = 0;
-        let tankCapacity = B777_FMC_PayloadManagerPage.tankCapacity.CENTER;
-        if (fuel > tankCapacity) {
-            remainingFuel = fuel - tankCapacity;
-            fuel = tankCapacity;
+        async function resetPayload() {
+            await setPayloadValue(1, 0);
+            await setPayloadValue(2, 0);
+            await setPayloadValue(3, 0);
+            await setPayloadValue(4, 0);
+            await setPayloadValue(5, 0);
+            await setPayloadValue(6, 0);
+            await setPayloadValue(7, 0);
+            await setPayloadValue(8, 0);
+            await setPayloadValue(9, 0);
+            await setPayloadValue(10, 0);
         }
-        this.tankPriorityValues[1].CENTER = fuel;
-        return remainingFuel;
-    }
+        async function calculatePayload(requestedPayload) {
+            await this.resetPayload();
+            remainingPayload = requestedPayload;
+            let amount = 0;
+            let requestedCenterOfGravity = (requestedCenterOfGravity ? requestedCenterOfGravity : getCenterOfGravity());
+            while (remainingPayload > 0) {
+                centerOfGravity = getCenterOfGravity();
+                if (remainingPayload > 30000) {
+                    amount = 1000;
+                }
+                else if (remainingPayload > 10000) {
+                    amount = 200;
+                }
+                else if (remainingPayload > 5000) {
+                    amount = 100;
+                }
+                else if (remainingPayload > 50) {
+                    amount = 50;
+                }
+                else {
+                    amount = remainingPayload;
+                }
+                if (centerOfGravity > requestedCenterOfGravity) {
+                    await increaseFrontPayload(amount, requestedCenterOfGravity);
+                    remainingPayload = remainingPayload - amount;
+                }
+                else {
+                    await increaseRearPayload(amount, requestedCenterOfGravity);
+                    remainingPayload = remainingPayload - amount;
+                }
+            }
+        }
+        async function increaseFrontPayload(amount, requestedCenterOfGravity) {
+            let keys = Object.keys(payloadValues[1]);
+            let randomFront;
+            let actualValue;
+            if (centerOfGravity > (requestedCenterOfGravity + 0.05)) {
+                actualValue = getPayloadValueFromCache(payloadIndex.BUSINESS_CLASS);
+                await setPayloadValue(payloadIndex.BUSINESS_CLASS, amount + actualValue);
+            }
+            else if (centerOfGravity > (requestedCenterOfGravity + 0.01)) {
+                randomFront = keys[Math.floor(Math.random() * keys.length)];
+                actualValue = getPayloadValueFromCache(payloadIndex[randomFront]);
+                await setPayloadValue(payloadIndex[randomFront], amount + actualValue);
+            }
+            else {
+                actualValue = getPayloadValueFromCache(payloadIndex.PREMIUM_ECONOMY);
+                await setPayloadValue(payloadIndex.PREMIUM_ECONOMY, amount + actualValue);
+            }
+        }
+        async function increaseRearPayload(amount, requestedCenterOfGravity) {
+            let keys = Object.keys(payloadValues[2]);
+            let randomRear;
+            let actualValue;
+            if (centerOfGravity < (requestedCenterOfGravity - 0.05)) {
+                actualValue = getPayloadValueFromCache(payloadIndex.REAR_BAGGAGE);
+                await setPayloadValue(payloadIndex.REAR_BAGGAGE, amount + actualValue);
+            }
+            else if (centerOfGravity < (requestedCenterOfGravity - 0.01)) {
+                randomRear = keys[Math.floor(Math.random() * keys.length)];
+                actualValue = getPayloadValueFromCache(payloadIndex[randomRear]);
+                await setPayloadValue(payloadIndex[randomRear], amount + actualValue);
+            }
+            else {
+                actualValue = this.getPayloadValueFromCache(payloadIndex.ECONOMY_CLASS);
+                await setPayloadValue(payloadIndex.ECONOMY_CLASS, amount + actualValue);
+            }
+        }
+        
+        const tankPriorityValues = [
+            {
+                'LEFT_MAIN': getTankValue(tankVariables.LEFT_MAIN),
+                'RIGHT_MAIN': getTankValue(tankVariables.RIGHT_MAIN)
+            },
+            { 'CENTER': getTankValue(tankVariables.CENTER) }
+        ];
+        _internalPayloadValuesCache = [];
+        let payloadValues = getPayloadValues();
+        let centerOfGravity = getCenterOfGravity();
 
-    static ShowPage1(fmc) {
-        fmc.clearDisplay();
-        this.payloadValues = this.getPayloadValues();
-        if (!B777_FMC_PayloadManagerPage.requestedPayload) {
-            B777_FMC_PayloadManagerPage.requestedPayload = this.getTotalPayload(true);
+        if (!requestedPayload) {
+            requestedPayload = getTotalPayload(true);
         }
-        if (!B777_FMC_PayloadManagerPage.requestedCenterOfGravity) {
-            B777_FMC_PayloadManagerPage.requestedCenterOfGravity = this.getCenterOfGravity();
+        if (!requestedCenterOfGravity) {
+            requestedCenterOfGravity = getCenterOfGravity();
         }
-        if (!B777_FMC_PayloadManagerPage.requestedFuel) {
-            B777_FMC_PayloadManagerPage.requestedFuel = this.getTotalFuel();
+        if (!requestedFuel) {
+            requestedFuel = getTotalFuel();
         }
-        if (B777_FMC_PayloadManagerPage.isPayloadManagerExecuted) {
-            this.fmc.pageUpdate = () => {
-                this.showPage();
-            };
+        if (isPayloadManagerExecuted) {
+            B777_FMC_PayloadManager.ShowPage(fmc);
         }
         let weightPerGallon;
         let units;
@@ -243,26 +313,26 @@ class B777_FMC_PayloadManagerPage {
             units = 'Kg';
             payloadModifier = 0.45359237;
         }
-        const totalFuel = this.getTotalFuel() * weightPerGallon;
-        const fobToRender = totalFuel.toFixed(2);
-        const fobReqToRender = (B777_FMC_PayloadManagerPage.requestedFuel ? (B777_FMC_PayloadManagerPage.requestedFuel * weightPerGallon).toFixed(2) : fobToRender);
-        const totalPayload = this.getTotalPayload(useImperial);
-        const payloadToRender = totalPayload.toFixed(0);
-        const payloadReqToRender = (B777_FMC_PayloadManagerPage.requestedPayload ? (B777_FMC_PayloadManagerPage.requestedPayload * payloadModifier).toFixed(0) : payloadToRender);
-        (B777_FMC_PayloadManagerPage.requestedFuel ? B777_FMC_PayloadManagerPage.requestedFuel.toFixed(2) : this.getTotalFuel().toFixed(2));
+        let totalFuel = getTotalFuel() * weightPerGallon;
+        let fobToRender = totalFuel.toFixed(2);
+        let fobReqToRender = (requestedFuel ? (requestedFuel * weightPerGallon).toFixed(2) : fobToRender);
+        let totalPayload = getTotalPayload(useImperial);
+        let payloadToRender = totalPayload.toFixed(0);
+        let payloadReqToRender = (requestedPayload ? (requestedPayload * payloadModifier).toFixed(0) : payloadToRender);
+        (requestedFuel ? requestedFuel.toFixed(2) : getTotalFuel().toFixed(2));
         
         fmc.setTemplate([
             ["PAYLOAD MANAGER"],
-            ["", ""],
+            ["INPUT", "OUTPUT"],
             ["", ""],
             ["CG", "CG"],
-            [(B777_FMC_PayloadManagerPage.requestedCenterOfGravity ? B777_FMC_PayloadManagerPage.requestedCenterOfGravity.toFixed(2) + '%' : B777_FMC_PayloadManagerPage.centerOfGravity.toFixed(2) + '%'), this.getCenterOfGravity().toFixed(2) + '%'],
+            [(requestedCenterOfGravity ? requestedCenterOfGravity.toFixed(2) + '%' : centerOfGravity.toFixed(2) + '%'), getCenterOfGravity().toFixed(2) + '%'],
             ["FOB (" + units + ")", "FOB (" + units + ")"],
             [fobReqToRender, fobToRender],
             ["PAYLOAD (" + units + ")", "PAYLOAD (" + units + ")"],
             [payloadReqToRender, payloadToRender],
             ["", ""],
-            [(B777_FMC_PayloadManagerPage.remainingPayload ? 'REMAINING PAYLOAD' : ''), (B777_FMC_PayloadManagerPage.remainingPayload ? B777_FMC_PayloadManagerPage.remainingPayload + ' lb' : '')],
+            [(remainingPayload ? 'REMAINING PAYLOAD' : ''), (remainingPayload ? remainingPayload + ' lb' : '')],
             ["\xa0RETURN TO", ""],
             ["<INDEX", "EXECUTE>"]
         ]);
@@ -271,18 +341,18 @@ class B777_FMC_PayloadManagerPage {
         fmc.onLeftInput[1] = () => {
             let value = fmc.inOut;
             if (isFinite(parseFloat(value))) {
-                if (parseFloat(value) > B777_FMC_PayloadManagerPage.getMinCenterOfGravity && parseFloat(value) < B777_FMC_PayloadManagerPage.getMaxCenterOfGravity) {
-                    B777_FMC_PayloadManagerPage.requestedCenterOfGravity = parseFloat(value);
+                if (parseFloat(value) > getMinCenterOfGravity() && parseFloat(value) < getMaxCenterOfGravity()) {
+                    fmc.requestedCenterOfGravity = parseFloat(value);
                     fmc.clearUserInput();
-                    B777_FMC_PayloadManagerPage.showPage(fmc);
+                    B777_FMC_PayloadManager.ShowPage(fmc);
                 }
                 else {
-                    this.fmc.showErrorMessage('OUT OF RANGE');
+                    fmc.showErrorMessage('OUT OF RANGE');
                     return false;
                 }
             }
             else {
-                this.fmc.showErrorMessage(this.fmc.defaultInputErrorMessage);
+                tfmc.showErrorMessage(fmc.defaultInputErrorMessage);
                 return false;
             }
         };
@@ -291,35 +361,37 @@ class B777_FMC_PayloadManagerPage {
         fmc.onLeftInput[2] = () => {
             let value = fmc.inOut;
             if (isFinite(parseFloat(value))) {
-            let useImperial = !SaltyDataStore.get("OPTIONS_UNITS", "KG");
-            let requestedInPounds;
-            let payloadModifier;
+                let useImperial = !SaltyDataStore.get("OPTIONS_UNITS", "KG");
+                let requestedInGallons;
+                let weightPerGallon;
                 if (useImperial) {
-                    payloadModifier = 1.0;
-                } else {
-                    payloadModifier = 2.20462262;
+                    weightPerGallon = SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'pounds');
                 }
-                requestedInPounds = parseFloat(value) * payloadModifier;
-                if (parseFloat(requestedInPounds) > B777_FMC_PayloadManagerPage.getMinPayload && parseFloat(requestedInPounds) < B777_FMC_PayloadManagerPage.getMaxPayload) {
-                    B777_FMC_PayloadManagerPage.requestedPayload = parseFloat(requestedInPounds);
-                    this.fmc.clearUserInput();
-                    B777_FMC_PayloadManagerPage.showPage(fmc);
-                } else {
-                    this.fmc.showErrorMessage('OUT OF RANGE');
+                else {
+                    weightPerGallon = SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'kilograms');
+                }
+                requestedInGallons = parseFloat(this.fmc.inOut) / weightPerGallon;
+                if (parseFloat(requestedInGallons) > B787_10_FMC_PayloadManagerPage.getMinFuel && parseFloat(requestedInGallons) < B787_10_FMC_PayloadManagerPage.getMaxFuel) {
+                    fmc.requestedFuel = parseFloat(requestedInGallons);
+                    fmc.clearUserInput();
+                    B777_FMC_PayloadManager.ShowPage(fmc);
+                }
+                else {
+                    fmc.showErrorMessage('OUT OF RANGE');
                     return false;
                 }
-            } else {
-            this.fmc.showErrorMessage(this.fmc.defaultInputErrorMessage);
-            return false;
             }
-            B777_FMC_PayloadManagerPage.showPage(fmc);
+            else {
+                fmc.showErrorMessage(fmc.defaultInputErrorMessage);
+                return false;
+            }
         };
        
         /* LSK4 */
         fmc.onLeftInput[3] = () => {
             let value = fmc.inOut;
             if (isFinite(parseFloat(value))) {
-                let useImperial = HeavyDivision.Configuration.useImperial();
+                let useImperial = !SaltyDataStore.get("OPTIONS_UNITS", "KG");
                 let requestedInPounds;
                 let payloadModifier;
                 if (useImperial) {
@@ -328,16 +400,16 @@ class B777_FMC_PayloadManagerPage {
                     payloadModifier = 2.20462262;
                 }
                 requestedInPounds = parseFloat(value) * payloadModifier;
-                if (parseFloat(requestedInPounds) > B777_FMC_PayloadManagerPage.getMinPayload && parseFloat(requestedInPounds) < B777_FMC_PayloadManagerPage.getMaxPayload) {
-                    B777_FMC_PayloadManagerPage.requestedPayload = parseFloat(requestedInPounds);
-                    this.fmc.clearUserInput();
-                    B777_FMC_PayloadManagerPage.showPage(fmc);
+                if (parseFloat(requestedInPounds) > getMinPayload() && parseFloat(requestedInPounds) < getMaxPayload()) {
+                    fmc.requestedPayload = parseFloat(requestedInPounds);
+                    fmc.clearUserInput();
+                    B777_FMC_PayloadManager.ShowPage(fmc);
                 } else {
-                    this.fmc.showErrorMessage('OUT OF RANGE');
+                    fmc.showErrorMessage('OUT OF RANGE');
                     return false;
                 }
             } else {
-                this.fmc.showErrorMessage(this.fmc.defaultInputErrorMessage);
+                fmc.showErrorMessage(fmc.defaultInputErrorMessage);
                 return false;
             }
        };
@@ -349,25 +421,25 @@ class B777_FMC_PayloadManagerPage {
         
         /* RSK6 */
         fmc.onRightInput[5] = () => {
-            B777_FMC_PayloadManagerPage.isPayloadManagerExecuted = true;
-            this.flushFuelAndPayload().then(() => {
-                if (B777_FMC_PayloadManagerPage.requestedFuel) {
-                this.calculateTanks(B777_FMC_PayloadManagerPage.requestedFuel);
+            isPayloadManagerExecuted = true;
+            flushFuelAndPayload().then(() => {
+                if (requestedFuel) {
+                 calculateTanks(requestedFuel);
                 } else {
-                    this.calculateTanks(this.getTotalFuel());
+                    calculateTanks(getTotalFuel());
                 }
-                if (B777_FMC_PayloadManagerPage.requestedPayload) {
-                    this.calculatePayload(B777_FMC_PayloadManagerPage.requestedPayload).then(() => {
-                    B777_FMC_PayloadManagerPage.isPayloadManagerExecuted = false;
+                if (requestedPayload) {
+                    calculatePayload(requestedPayload).then(() => {
+                    isPayloadManagerExecuted = false;
                     });
                 } else {
-                    this.calculatePayload(this.getTotalPayload(true)).then(() => {
-                    B777_FMC_PayloadManagerPage.isPayloadManagerExecuted = false;
+                    calculatePayload(getTotalPayload(true)).then(() => {
+                    isPayloadManagerExecuted = false;
                     });
                 }
-                B777_FMC_PayloadManagerPage.ShowPage(fmc);
+                B777_FMC_PayloadManager.ShowPage(fmc);
             })
         };
-    }
+    };
 };
       
