@@ -36,37 +36,37 @@ class FMCSaltyOptions {
         }
         /* LSK2 */
         fmc.onLeftInput[1] = () => {
-             FMCSaltyOptions_Metar.ShowPage(fmc);
+            FMCSaltyOptions_Metar.ShowPage(fmc);
         };
 
         /* RSK2 */
         fmc.onRightInput[1] = () => {
-              FMCSaltyOptions_Atis.ShowPage(fmc);
+            FMCSaltyOptions_Atis.ShowPage(fmc);
         };
 
         /* RSK3 */
         fmc.onLeftInput[2] = () => {
-              FMCSaltyOptions_Taf.ShowPage(fmc);
+            FMCSaltyOptions_Taf.ShowPage(fmc);
         };
         
         /* LSK4 */
         fmc.onLeftInput[3] = () => {
-              FMCSaltyOptions_Simbrief.ShowPage(fmc);
+            FMCSaltyOptions_Simbrief.ShowPage(fmc);
         }
 
         /* RSK4 */
         fmc.onRightInput[3] = () => {
-            B777_FMC_PayloadManager.ShowPage(fmc);
+            new B777_FMC_PayloadManager(fmc).showPage();
        }
         
         /* RSK5 */
         fmc.onRightInput[4] = () => {
-              FMCSaltyOptions_Misc.ShowPage(fmc);
+            FMCSaltyOptions_Misc.ShowPage(fmc);
         }
 
         /* LSK6 */
         fmc.onLeftInput[5] = () => {
-              FMC_Menu.ShowPage(fmc);
+            FMC_Menu.ShowPage(fmc);
         }
     }
 }
