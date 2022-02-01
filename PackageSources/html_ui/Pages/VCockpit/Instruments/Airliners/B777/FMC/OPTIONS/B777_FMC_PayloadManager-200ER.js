@@ -3,9 +3,9 @@ class B777_FMC_PayloadManager {
     // amount of fuel on 300ER
     static get tankCapacity() {
         return {
-            'CENTER': 27290,
-            'LEFT_MAIN': 10300,
-            'RIGHT_MAIN': 10300
+            'CENTER': 26100,
+            'LEFT_MAIN': 9560,
+            'RIGHT_MAIN': 9560
         };
     }
 
@@ -26,13 +26,12 @@ class B777_FMC_PayloadManager {
             'PILOT': 1,
             'COPILOT': 2,
             'CREW': 3,
-            'FIRST_CLASS': 4,
-            'BUSINESS_CLASS': 5,
-            'PREMIUM_ECONOMY': 6,
-            'FORWARD_ECONOMY': 7,
-            'REAR_ECONOMY': 8,
-            'FORWARD_BAGGAGE': 9,
-            'REAR_BAGGAGE': 10
+            'BUSINESS_CLASS': 4,
+            'PREMIUM_ECONOMY': 5,
+            'FORWARD_ECONOMY': 6,
+            'REAR_ECONOMY': 7,
+            'FORWARD_BAGGAGE': 8,
+            'REAR_BAGGAGE': 9
         };
     }
 
@@ -154,7 +153,6 @@ class B777_FMC_PayloadManager {
                 'CREW': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.CREW),
             },
             {
-                'FIRST_CLASS': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.FIRST_CLASS),
                 'BUSINESS_CLASS': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.BUSINESS_CLASS),
                 'PREMIUM_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.PREMIUM_ECONOMY),
                 'FORWARD_BAGGAGE': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.FORWARD_BAGGAGE)

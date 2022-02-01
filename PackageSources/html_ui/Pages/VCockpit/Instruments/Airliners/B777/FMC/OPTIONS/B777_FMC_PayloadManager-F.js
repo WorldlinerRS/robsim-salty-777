@@ -26,13 +26,10 @@ class B777_FMC_PayloadManager {
             'PILOT': 1,
             'COPILOT': 2,
             'CREW': 3,
-            'FIRST_CLASS': 4,
-            'BUSINESS_CLASS': 5,
-            'PREMIUM_ECONOMY': 6,
-            'FORWARD_ECONOMY': 7,
-            'REAR_ECONOMY': 8,
-            'FORWARD_BAGGAGE': 9,
-            'REAR_BAGGAGE': 10
+            'CARGO_FRONT_TOP': 4,
+            'CARGO_FRONT_BOTTOM': 5,
+            'CARGO_REAR_TOP': 6,
+            'CARGO_REAR_BOTTOM': 7
         };
     }
 
@@ -154,15 +151,12 @@ class B777_FMC_PayloadManager {
                 'CREW': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.CREW),
             },
             {
-                'FIRST_CLASS': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.FIRST_CLASS),
-                'BUSINESS_CLASS': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.BUSINESS_CLASS),
-                'PREMIUM_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.PREMIUM_ECONOMY),
-                'FORWARD_BAGGAGE': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.FORWARD_BAGGAGE)
+                'CARGO_FRONT_TOP': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.CARGO_FRONT_TOP),
+                'CARGO_FRONT_BOTTOM': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.CARGO_FRONT_BOTTOM),
             },
             {
-                'FORWARD_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.FORWARD_ECONOMY),
-                'REAR_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.REAR_ECONOMY),
-                'REAR_BAGGAGE': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.REAR_BAGGAGE)
+                'CARGO_REAR_TOP': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.CARGO_REAR_TOP),
+                'CARGO_REAR_BOTTOM': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.CARGO_REAR_BOTTOM)
             }
         ];
 	}
@@ -502,15 +496,15 @@ class B777_FMC_PayloadManager {
 		let randomFront;
 		let actualValue;
 		if (B777_FMC_PayloadManager.centerOfGravity > (requestedCenterOfGravity + 0.05)) {
-			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex.BUSINESS_CLASS);
-			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex.BUSINESS_CLASS, amount + actualValue);
+			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex.CARGO_FRONT_TOP);
+			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex.CARGO_FRONT_TOP, amount + actualValue);
 		} else if (B777_FMC_PayloadManager.centerOfGravity > (requestedCenterOfGravity + 0.01)) {
 			randomFront = keys[Math.floor(Math.random() * keys.length)];
 			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex[randomFront]);
 			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex[randomFront], amount + actualValue);
 		} else {
-			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex.PREMIUM_ECONOMY);
-			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex.PREMIUM_ECONOMY, amount + actualValue);
+			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex.CARGO_FRONT_BOTTOM);
+			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex.CARGO_FRONT_BOTTOM, amount + actualValue);
 		}
 	}
 
@@ -519,15 +513,15 @@ class B777_FMC_PayloadManager {
 		let randomRear;
 		let actualValue;
 		if (B777_FMC_PayloadManager.centerOfGravity < (requestedCenterOfGravity - 0.05)) {
-			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex.REAR_ECONOMY);
-			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex.REAR_ECONOMY, amount + actualValue);
+			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex.CARGO_REAR_TOP);
+			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex.CARGO_REAR_TOP, amount + actualValue);
 		} else if (B777_FMC_PayloadManager.centerOfGravity < (requestedCenterOfGravity - 0.01)) {
 			randomRear = keys[Math.floor(Math.random() * keys.length)];
 			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex[randomRear]);
 			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex[randomRear], amount + actualValue);
 		} else {
-			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex.FORWARD_ECONOMY);
-			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex.FORWARD_ECONOMY, amount + actualValue);
+			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex.CARGO_REAR_BOTTOM);
+			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex.CARGO_REAR_BOTTOM, amount + actualValue);
 		}
 	}
 }
