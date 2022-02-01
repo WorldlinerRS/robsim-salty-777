@@ -56,7 +56,7 @@ class FMCSaltyOptions {
 
         /* RSK4 */
         fmc.onRightInput[3] = () => {
-            B777_FMC_PayloadManagerPage.ShowPage(fmc);
+            B777_FMC_PayloadManager.ShowPage(fmc);
        }
         
         /* RSK5 */
