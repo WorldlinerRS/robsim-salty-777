@@ -175,7 +175,7 @@ class B777_FMC_PayloadManager {
 
 	async setPayloadValue(index, value) {
 		this._internalPayloadValuesCache[index] = value;
-        return SimVar.SetSimVarValue('PAYLOAD STATION WEIGHT:' + index, 'Pounds', value);
+        return await SimVar.SetSimVarValue(`PAYLOAD STATION WEIGHT:${index}`, 'Pounds', value);
 	}
 
 	getTankValue(variable) {
@@ -305,7 +305,7 @@ class B777_FMC_PayloadManager {
         const payloadReqToRender = (B777_FMC_PayloadManager.requestedPayload ? (B777_FMC_PayloadManager.requestedPayload * payloadModifier).toFixed(0) : payloadToRender);
         (B777_FMC_PayloadManager.requestedFuel ? B777_FMC_PayloadManager.requestedFuel.toFixed(2) : this.getTotalFuel().toFixed(2));
 		
-		let rows = [
+		var rows = [
             ["PAYLOAD MANAGER"],
             ["REQ INPUT", "REQ VALUES"],
             ["", ""],
@@ -427,6 +427,7 @@ class B777_FMC_PayloadManager {
         /* RSK6 */
         if (B777_FMC_PayloadManager.isPayloadManagerExecuted){
 			rows[12][1] = "RUNNING...";
+			this.showPage();
 		} else {
 			rows[12][1] = "EXECUTE>";
 			this.fmc.onRightInput[5] = () => {
@@ -463,7 +464,6 @@ class B777_FMC_PayloadManager {
 		await this.setPayloadValue(7, 0);
 		await this.setPayloadValue(8, 0);
 		await this.setPayloadValue(9, 0);
-		await this.setPayloadValue(10, 0);
 	}
 
     async calculatePayload(requestedPayload) {
@@ -492,6 +492,7 @@ class B777_FMC_PayloadManager {
 				await this.increaseRearPayload(amount, requestedCenterOfGravity);
 				B777_FMC_PayloadManager.remainingPayload = B777_FMC_PayloadManager.remainingPayload - amount;
 			}
+			this.showPage();
 		}
 	}
 

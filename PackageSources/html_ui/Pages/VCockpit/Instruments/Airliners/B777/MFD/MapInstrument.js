@@ -94,7 +94,7 @@ class MapInstrument extends ISvgMapRootElement {
         this.cursorX = 50;
         this.cursorY = 50;
         this.bIsCursorDisplayed = false;
-        this.weatherRanges = [5, 10, 25, 50, 100, 200, 300, 600];
+        this.weatherRanges = [10, 20, 40, 80, 160, 320, 640];
         this.weatherHideGPS = false;
         this.isBushTrip = false;
 
@@ -1727,7 +1727,7 @@ class MapInstrument extends ISvgMapRootElement {
 }
 
 MapInstrument.OVERDRAW_FACTOR_DEFAULT = Math.sqrt(2);
-MapInstrument.ZOOM_RANGES_DEFAULT = [5, 10, 25, 50, 100, 200, 300, 600];
+MapInstrument.ZOOM_RANGES_DEFAULT = [10, 20, 40, 80, 160, 320, 640];
 
 MapInstrument.RANGE_DISPLAY_SHOW_DEFAULT = true;
 
