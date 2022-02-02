@@ -495,6 +495,9 @@ class B777_FMC_PayloadManager {
 				await this.increaseRearPayload(amount, requestedCenterOfGravity);
 				B777_FMC_PayloadManager.remainingPayload = B777_FMC_PayloadManager.remainingPayload - amount;
 			}
+			// for(var i = 0; i < B777_FMC_PayloadManager.payloadIndex.length; i++) {
+			// 	console.log(this.getPayloadValue(i+1));
+			// }
 			this.showPage();
 		}
 	}
@@ -523,7 +526,6 @@ class B777_FMC_PayloadManager {
 		if (B777_FMC_PayloadManager.centerOfGravity < (requestedCenterOfGravity - 0.05)) {
 			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex.REAR_ECONOMY);
 			await this.setPayloadValue(B777_FMC_PayloadManager.payloadIndex.REAR_ECONOMY, amount + actualValue);
-			console.log(this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.REAR_ECONOMY));
 		} else if (B777_FMC_PayloadManager.centerOfGravity < (requestedCenterOfGravity - 0.01)) {
 			randomRear = keys[Math.floor(Math.random() * keys.length)];
 			actualValue = this.getPayloadValueFromCache(B777_FMC_PayloadManager.payloadIndex[randomRear]);

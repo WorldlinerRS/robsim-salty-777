@@ -3,35 +3,35 @@ class B777_FMC_PayloadManager {
     // amount of fuel on 300ER
     static get tankCapacity() {
         return {
-            'CENTER': 26100,
-            'LEFT_MAIN': 9560,
-            'RIGHT_MAIN': 9560
+            "CENTER": 26100,
+            "LEFT_MAIN": 9560,
+            "RIGHT_MAIN": 9560
         };
     }
 
     static get tankPriority() {
-        return [['LEFT_MAIN', 'RIGHT_MAIN'], ['CENTER']];
+        return [["LEFT_MAIN", "RIGHT_MAIN"], ["CENTER"]];
     }
 
     static get tankVariables() {
         return {
-            'CENTER': 'FUEL TANK CENTER QUANTITY',
-            'LEFT_MAIN': 'FUEL TANK LEFT MAIN QUANTITY',
-            'RIGHT_MAIN': 'FUEL TANK RIGHT MAIN QUANTITY'
+            "CENTER": "FUEL TANK CENTER QUANTITY",
+            "LEFT_MAIN": "FUEL TANK LEFT MAIN QUANTITY",
+            "RIGHT_MAIN": "FUEL TANK RIGHT MAIN QUANTITY"
         };
     }
 
     static get payloadIndex() {
         return {
-            'PILOT': 1,
-            'COPILOT': 2,
-            'CREW': 3,
-            'BUSINESS_CLASS': 4,
-            'PREMIUM_ECONOMY': 5,
-            'FORWARD_ECONOMY': 6,
-            'REAR_ECONOMY': 7,
-            'FORWARD_BAGGAGE': 8,
-            'REAR_BAGGAGE': 9
+            "PILOT": 1,
+            "COPILOT": 2,
+            "CREW": 3,
+            "BUSINESS_CLASS": 4,
+            "PREMIUM_ECONOMY": 5,
+            "FORWARD_ECONOMY": 6,
+            "REAR_ECONOMY": 7,
+            "FORWARD_BAGGAGE": 8,
+            "REAR_BAGGAGE": 9
         };
     }
 
@@ -134,10 +134,10 @@ class B777_FMC_PayloadManager {
     init() {
         this.tankPriorityValues = [
             {
-                'LEFT_MAIN': this.getTankValue(B777_FMC_PayloadManager.tankVariables.LEFT_MAIN),
-                'RIGHT_MAIN': this.getTankValue(B777_FMC_PayloadManager.tankVariables.RIGHT_MAIN)
+                "LEFT_MAIN": this.getTankValue(B777_FMC_PayloadManager.tankVariables.LEFT_MAIN),
+                "RIGHT_MAIN": this.getTankValue(B777_FMC_PayloadManager.tankVariables.RIGHT_MAIN)
             },
-            { 'CENTER': this.getTankValue(B777_FMC_PayloadManager.tankVariables.CENTER) }
+            { "CENTER": this.getTankValue(B777_FMC_PayloadManager.tankVariables.CENTER) }
         ];
 		this._internalPayloadValuesCache = [];
         this.payloadValues = this.getPayloadValues();
@@ -148,25 +148,25 @@ class B777_FMC_PayloadManager {
     getPayloadValues() {
 		return [
             {
-                'PILOT': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.PILOT),
-                'COPILOT': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.COPILOT),
-                'CREW': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.CREW),
+                "PILOT": this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.PILOT),
+                "COPILOT": this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.COPILOT),
+                "CREW": this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.CREW),
             },
             {
-                'BUSINESS_CLASS': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.BUSINESS_CLASS),
-                'PREMIUM_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.PREMIUM_ECONOMY),
-                'FORWARD_BAGGAGE': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.FORWARD_BAGGAGE)
+                "BUSINESS_CLASS": this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.BUSINESS_CLASS),
+                "PREMIUM_ECONOMY": this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.PREMIUM_ECONOMY),
+                "FORWARD_BAGGAGE": this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.FORWARD_BAGGAGE)
             },
             {
-                'FORWARD_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.FORWARD_ECONOMY),
-                'REAR_ECONOMY': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.REAR_ECONOMY),
-                'REAR_BAGGAGE': this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.REAR_BAGGAGE)
+                "FORWARD_ECONOMY": this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.FORWARD_ECONOMY),
+                "REAR_ECONOMY": this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.REAR_ECONOMY),
+                "REAR_BAGGAGE": this.getPayloadValue(B777_FMC_PayloadManager.payloadIndex.REAR_BAGGAGE)
             }
         ];
 	}
 
     getPayloadValue(index) {
-		return SimVar.GetSimVarValue('PAYLOAD STATION WEIGHT:' + index, 'Pounds');
+		return SimVar.GetSimVarValue("PAYLOAD STATION WEIGHT:" + index, "Pounds");
 	}
 
 	getPayloadValueFromCache(index) {
@@ -175,15 +175,15 @@ class B777_FMC_PayloadManager {
 
 	async setPayloadValue(index, value) {
 		this._internalPayloadValuesCache[index] = value;
-        return await SimVar.SetSimVarValue(`PAYLOAD STATION WEIGHT:${index}`, 'Pounds', value);
+        return await SimVar.SetSimVarValue(`PAYLOAD STATION WEIGHT:${index}`, "Pounds", value);
 	}
 
 	getTankValue(variable) {
-		return SimVar.GetSimVarValue(variable, 'Gallons');
+		return SimVar.GetSimVarValue(variable, "Gallons");
 	}
 
 	getCenterOfGravity() {
-		return SimVar.GetSimVarValue('CG PERCENT', 'Percent');
+		return SimVar.GetSimVarValue("CG PERCENT", "Percent");
 	}
 
 	getTotalPayload(useLbs = false) {
@@ -203,7 +203,7 @@ class B777_FMC_PayloadManager {
 				fuel = fuel + sectionValue;
 			});
 		});
-		return (useLbs ? fuel * SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'Pounds') : fuel);
+		return (useLbs ? fuel * SimVar.GetSimVarValue("FUEL WEIGHT PER GALLON", "Pounds") : fuel);
 	}
 
     calculateTanks(fuel) {
@@ -215,7 +215,7 @@ class B777_FMC_PayloadManager {
 
         B777_FMC_PayloadManager.tankPriority.forEach((tanks, index) => {
 			tanks.forEach((tank) => {
-				SimVar.SetSimVarValue(B777_FMC_PayloadManager.tankVariables[tank], 'Gallons', this.tankPriorityValues[index][tank]);
+				SimVar.SetSimVarValue(B777_FMC_PayloadManager.tankVariables[tank], "Gallons", this.tankPriorityValues[index][tank]);
 			});
 		});
     }
@@ -288,13 +288,13 @@ class B777_FMC_PayloadManager {
                 useImperial = false;
         }
         if (useImperial) {
-            weightPerGallon = SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'pounds');
-            units = 'Lbs';
+            weightPerGallon = SimVar.GetSimVarValue("FUEL WEIGHT PER GALLON", "pounds");
+            units = "Lbs";
             payloadModifier = 1.0;
         }
         else {
-            weightPerGallon = SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'kilograms');
-            units = 'Kg';
+            weightPerGallon = SimVar.GetSimVarValue("FUEL WEIGHT PER GALLON", "kilograms");
+            units = "Kg";
             payloadModifier = 0.45359237;
         }
         const totalFuel = this.getTotalFuel() * weightPerGallon;
@@ -310,13 +310,13 @@ class B777_FMC_PayloadManager {
             ["REQ INPUT", "REQ VALUES"],
             ["", ""],
             ["CG", "CG"],
-            [(B777_FMC_PayloadManager.requestedCenterOfGravity ? B777_FMC_PayloadManager.requestedCenterOfGravity.toFixed(2) + '%' : B777_FMC_PayloadManager.centerOfGravity.toFixed(2) + '%'), this.getCenterOfGravity().toFixed(2) + '%'],
+            [(B777_FMC_PayloadManager.requestedCenterOfGravity ? B777_FMC_PayloadManager.requestedCenterOfGravity.toFixed(2) + "%" : B777_FMC_PayloadManager.centerOfGravity.toFixed(2) + "%"), this.getCenterOfGravity().toFixed(2) + "%"],
             ["FOB (" + units + ")", "FOB (" + units + ")"],
             [fobReqToRender, fobToRender],
             ["PAYLOAD (" + units + ")", "PAYLOAD (" + units + ")"],
             [payloadReqToRender, payloadToRender],
-            ["", ""],
-            [(B777_FMC_PayloadManager.remainingPayload ? 'REMAINING PAYLOAD' : ''), (B777_FMC_PayloadManager.remainingPayload ? B777_FMC_PayloadManager.remainingPayload + ' lb' : '')],
+			[(B777_FMC_PayloadManager.remainingPayload ? "REMAINING PAYLOAD" : ""), ""],
+            [(B777_FMC_PayloadManager.remainingPayload ? B777_FMC_PayloadManager.remainingPayload + " lb" : "") , ""],
             ["\xa0RETURN TO", ""],
             ["<INDEX", "EXECUTE>"]
         ];
@@ -330,7 +330,7 @@ class B777_FMC_PayloadManager {
                     this.showPage();
                 }
                 else {
-                    this.fmc.showErrorMessage('OUT OF RANGE');
+                    this.fmc.showErrorMessage("OUT OF RANGE");
                     return false;
                 }
             }
@@ -358,10 +358,10 @@ class B777_FMC_PayloadManager {
 				let requestedInGallons;
                 let weightPerGallon;
                 if (useImperial) {
-                    weightPerGallon = SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'pounds');
+                    weightPerGallon = SimVar.GetSimVarValue("FUEL WEIGHT PER GALLON", "pounds");
                 }
                 else {
-                    weightPerGallon = SimVar.GetSimVarValue('FUEL WEIGHT PER GALLON', 'kilograms');
+                    weightPerGallon = SimVar.GetSimVarValue("FUEL WEIGHT PER GALLON", "kilograms");
                 }
 				requestedInGallons = parseFloat(this.fmc.inOut) / weightPerGallon;
 				if (parseFloat(requestedInGallons) > B777_FMC_PayloadManager.getMinFuel && parseFloat(requestedInGallons) < B777_FMC_PayloadManager.getMaxFuel) {
@@ -370,7 +370,7 @@ class B777_FMC_PayloadManager {
 					this.showPage();
 				}
 				else {
-					this.fmc.showErrorMessage('OUT OF RANGE');
+					this.fmc.showErrorMessage("OUT OF RANGE");
 					return false;
 				}
 			}
@@ -410,7 +410,7 @@ class B777_FMC_PayloadManager {
                 	this.showPage();
             	}
             	else {
-                	this.fmc.showErrorMessage('OUT OF RANGE');
+                	this.fmc.showErrorMessage("OUT OF RANGE");
                 	return false;
                 }
             }
