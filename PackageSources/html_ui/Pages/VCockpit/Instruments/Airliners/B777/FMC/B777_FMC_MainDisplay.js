@@ -444,7 +444,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             console.log(runway);
             if (runway) {
                 let f = (runway.length - 2250) / (3250 - 2250);
-                return Utils.Clamp(f, 0, 1);
+                runwayCoef = Utils.Clamp(f, 0, 1);
             }
         }
         let dWeightCoeff = (this.getWeight(true) - 350) / (560 - 350);
