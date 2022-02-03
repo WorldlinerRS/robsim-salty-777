@@ -470,7 +470,7 @@ class B777_FMC_PayloadManager {
 		await this.resetPayload();
 		B777_FMC_PayloadManager.remainingPayload = requestedPayload;
 		let amount = 0;
-		let requestedCenterOfGravity = (B777_FMC_PayloadManager.requestedCenterOfGravity ? B777_FMC_PayloadManager.requestedCenterOfGravity : this.getCenterOfGravity());
+		let requestedCenterOfGravity = (B777_FMC_PayloadManager.requestedCenterOfGravity ? B777_FMC_PayloadManager.requestedCenterOfGravity : 21.0);
 		while (B777_FMC_PayloadManager.remainingPayload > 0) {
 			B777_FMC_PayloadManager.centerOfGravity = this.getCenterOfGravity();
 			if (B777_FMC_PayloadManager.remainingPayload > 30000) {
