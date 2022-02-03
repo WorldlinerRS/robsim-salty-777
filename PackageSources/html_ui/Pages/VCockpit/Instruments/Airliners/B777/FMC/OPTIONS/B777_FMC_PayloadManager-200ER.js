@@ -324,7 +324,7 @@ class B777_FMC_PayloadManager {
         /* LSK2 */
         this.fmc.onLeftInput[1] = () => {
             if (isFinite(parseFloat(this.fmc.inOut))) {
-                if (parseFloat(value) > B777_FMC_PayloadManager.getMinCenterOfGravity() && parseFloat(value) < B777_FMC_PayloadManager.getMaxCenterOfGravity()) {
+                if (parseFloat(this.fmc.inOut) > B777_FMC_PayloadManager.getMinCenterOfGravity() && parseFloat(this.fmc.inOut) < B777_FMC_PayloadManager.getMaxCenterOfGravity()) {
                     B777_FMC_PayloadManager.requestedCenterOfGravity = parseFloat(this.fmc.inOut);
                     this.fmc.clearUserInput();
                     this.showPage();
