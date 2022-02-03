@@ -47,8 +47,8 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             [86.7,  88.9,  89.4,  89.9 , 90.4,  90.9,  91.4,  92.0,  92.7,  93.1, 93.3]
         ];
         this._takeOffN1TempRow = [60, 50, 45, 40, 35, 30, 25, 20, 15, 5, 0, -10, -20, -30, -40, -50];
-        this._thrustTakeOffMode = 0;
-        this._thrustCLBMode = 0;
+        this._thrustTakeOffMode = 1;
+        this._thrustCLBMode = 1;
         this._thrustTakeOffTemp = 20;
         this._lastUpdateAPTime = NaN;
         this.refreshFlightPlanCooldown = 0;
@@ -381,7 +381,6 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             }
         }
     }
-    
     _getIndexFromTemp(temp) {
         if (temp < -10)
             return 0;
@@ -646,7 +645,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             if (machMode && !isSpeedIntervention) {
                 this.managedMachOff();
             }
-            return speed = Math.min(speed, 240);
+            return speed = 240;
         }
         else if (desMode == 2) {
             speed = SimVar.GetSimVarValue("L:SALTY_DES_SPEED", "knots");
@@ -930,7 +929,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     getThrustClimbLimit() {
         let altitude = Simplane.getAltitude();
         let temperature = SimVar.GetSimVarValue("AMBIENT TEMPERATURE", "celsius");
-        let n1 = this.getClimbThrustN1(temperature, altitude);
+        let n1 = this.getClimbThrustN1(temperature, altitude) - this.getThrustCLBMode() * 8.6;;
         return n1;
     }
     updateAutopilot() {
@@ -1065,12 +1064,30 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                 if (this.getIsVNAVActive()) {
                     let speed = this.getClbManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);
+                    let altitude = Simplane.getAltitudeAboveGround();
+                    let n1 = 100;
+                    if (altitude < this.thrustReductionAltitude) {
+                        n1 = this.getThrustTakeOffLimit() / 100;
+                    }
+                    else {
+                        n1 = this.getThrustClimbLimit() / 100;
+                    }
+                    SimVar.SetSimVarValue("AUTOPILOT THROTTLE MAX THRUST", "number", n1);
                 }
             }
             else if (this.currentFlightPhase === FlightPhase.FLIGHT_PHASE_CRUISE) {
                 if (this.getIsVNAVActive()) {
                     let speed = this.getCrzManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);
+                    let altitude = Simplane.getAltitudeAboveGround();
+                    let n1 = 100;
+                    if (altitude < this.thrustReductionAltitude) {
+                        n1 = this.getThrustTakeOffLimit() / 100;
+                    }
+                    else {
+                        n1 = this.getThrustClimbLimit() / 100;
+                    }
+                    SimVar.SetSimVarValue("AUTOPILOT THROTTLE MAX THRUST", "number", n1);
                 }
             }
             else if (this.currentFlightPhase === FlightPhase.FLIGHT_PHASE_DESCENT) {
