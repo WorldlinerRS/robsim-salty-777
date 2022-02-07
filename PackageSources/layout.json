@@ -438,7 +438,7 @@
     {
       "path": "SimObjects/Airplanes/CS_B777-200ER_GE90B/flight_model.cfg",
       "size": 48887,
-      "date": 132887263104244240
+      "date": 132887387717709490
     },
     {
       "path": "SimObjects/Airplanes/CS_B777-200ER_GE90B/gameplay.cfg",
@@ -533,7 +533,7 @@
     {
       "path": "SimObjects/Airplanes/CS_B777-200LR_GE110B1/flight_model.cfg",
       "size": 48870,
-      "date": 132887263104299260
+      "date": 132887387936416980
     },
     {
       "path": "SimObjects/Airplanes/CS_B777-200LR_GE110B1/gameplay.cfg",
@@ -638,7 +638,7 @@
     {
       "path": "SimObjects/Airplanes/CS_B777-300ER_GE115B/flight_model.cfg",
       "size": 49012,
-      "date": 132887263104384260
+      "date": 132887388087335630
     },
     {
       "path": "SimObjects/Airplanes/CS_B777-300ER_GE115B/gameplay.cfg",
@@ -733,7 +733,7 @@
     {
       "path": "SimObjects/Airplanes/CS_B777F_GE110B1/flight_model.cfg",
       "size": 48606,
-      "date": 132887263104464260
+      "date": 132887388263823360
     },
     {
       "path": "SimObjects/Airplanes/CS_B777F_GE110B1/gameplay.cfg",
@@ -797,8 +797,8 @@
     },
     {
       "path": "html_ui/Pages/RobSim/WT/Autopilot/B777RSNavModeSelector.js",
-      "size": 72747,
-      "date": 132887302551454240
+      "size": 72724,
+      "date": 132887374648141920
     },
     {
       "path": "html_ui/Pages/RobSim/WT/Autopilot/HoldsDirector.js",
@@ -807,13 +807,13 @@
     },
     {
       "path": "html_ui/Pages/RobSim/WT/Autopilot/LNavDirector.js",
-      "size": 28234,
-      "date": 132887162327037650
+      "size": 31390,
+      "date": 132887378063765660
     },
     {
       "path": "html_ui/Pages/RobSim/WT/Autopilot/LocDirector.js",
-      "size": 4645,
-      "date": 132873252676044720
+      "size": 4644,
+      "date": 132887379250107620
     },
     {
       "path": "html_ui/Pages/RobSim/WT/Autopilot/NavToNavTransfer.js",
@@ -822,13 +822,13 @@
     },
     {
       "path": "html_ui/Pages/RobSim/WT/Autopilot/WT_BaseVnav.js",
-      "size": 47208,
-      "date": 132873252676054720
+      "size": 50060,
+      "date": 132887381739482200
     },
     {
       "path": "html_ui/Pages/RobSim/WT/Autopilot/WT_VnavAutopilot.js",
-      "size": 69833,
-      "date": 132873252676059710
+      "size": 69650,
+      "date": 132887386939394860
     },
     {
       "path": "html_ui/Pages/RobSim/WT/CJ4_FMC_PilotWaypoint.js",
@@ -1157,8 +1157,8 @@
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS767-400ER/FMC/CS767-400ER_FMC.html",
-      "size": 13862,
-      "date": 132887305141639260
+      "size": 13863,
+      "date": 132887370367329250
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS767-400ER/FMC/CS767-400ER_FMC_IdentPage.js",
@@ -1212,8 +1212,8 @@
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS777-200ER/FMC/CS777-200ER_FMC.html",
-      "size": 13862,
-      "date": 132887304058674240
+      "size": 13863,
+      "date": 132887370468714110
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS777-200ER/FMC/CS777-200ER_FMC_IdentPage.js",
@@ -1227,8 +1227,8 @@
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS777-200LR/FMC/CS777-200LR_FMC.html",
-      "size": 13862,
-      "date": 132887304421049230
+      "size": 13863,
+      "date": 132887370556363580
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS777-200LR/FMC/CS777-200LR_FMC_IdentPage.js",
@@ -1282,8 +1282,8 @@
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS777-300ER/FMC/CS777-300ER_FMC.html",
-      "size": 13862,
-      "date": 132887304848694240
+      "size": 13863,
+      "date": 132887370645488540
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS777-300ER/FMC/CS777-300ER_FMC_IdentPage.js",
@@ -1337,8 +1337,8 @@
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS777F/FMC/CS777F_FMC.html",
-      "size": 13843,
-      "date": 132887305141639260
+      "size": 13844,
+      "date": 132887370749603920
     },
     {
       "path": "html_ui/Pages/VCockpit/Instruments/Airliners/CS777F/FMC/CS777F_FMC_IdentPage.js",
