@@ -1,0 +1,21 @@
+{
+  "dependencies": [
+    {
+      "name": "fs-base-aircraft-common",
+      "package_version": "0.1.127"
+    }
+  ],
+  "content_type": "AIRCRAFT",
+  "title": "Masterrob94 Salty 777",
+  "manufacturer": "Boeing",
+  "creator": "masterrob94",
+  "package_version": "2.1.9",
+  "minimum_game_version": "1.22.2",
+  "release_notes": {
+    "neutral": {
+      "LastUpdate": "",
+      "OlderHistory": ""
+    }
+  },
+  "total_package_size": "00000000000137855371"
+}
