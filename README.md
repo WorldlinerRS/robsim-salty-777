@@ -14,7 +14,7 @@ In order to get use of this mod or start a development environment you need to i
 
 ### Latest Build
 
-[Click to download the latest masterrob94-salty-777 development build](https://github.com/RobSimulation/robsim-salty-777/releases/download/master/masterrob94-salty-777.zip)
+[Click to download the latest masterrob94-salty-777 development build](https://github.com/RobSimulation/robsim-salty-777/releases/download/dev/masterrob94-salty-777.zip)
 
 To install, simply copy the salty-747 and masterrob94-salty-777 folder to your community folder. 
 
