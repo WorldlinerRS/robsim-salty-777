@@ -11,7 +11,7 @@ class LocDirector {
     this.state = LocDirectorState.NONE;
 
     /** The current radio index. */
-    this.radioIndex = 1;
+    this.radioIndex = 3;
 
     /** The current nav mode selector. */
     this.navModeSelector = navModeSelector;
@@ -28,7 +28,7 @@ class LocDirector {
    */
   update() {
     const navSource = SimVar.GetSimVarValue('L:WT_CJ4_LNAV_MODE', 'number');
-    this.radioIndex = navSource === 2 ? 2 : 1;
+    this.radioIndex = 3;
 
     const radioState = this.getRadioState();
     switch (this.state) {
@@ -66,7 +66,8 @@ class LocDirector {
         this.state = LocDirectorState.ACTIVE;
         this.navModeSelector.queueEvent(NavModeEvent.LOC_ACTIVE);
       }
-    } else {
+    }
+    else {
       this.state = LocDirectorState.NONE;
     }
   }
@@ -98,7 +99,8 @@ class LocDirector {
       this.previousTime = now;
 
       LNavDirector.setCourse(setCourse, LNavDirector.getAircraftState());
-    } else {
+    }
+    else {
       this.state = LocDirectorState.NONE;
     }
   }
@@ -121,9 +123,7 @@ class LocDirector {
   }
 }
 
-class LocDirectorState {
-}
-
+class LocDirectorState { }
 LocDirectorState.NONE = 'NONE';
 LocDirectorState.ARMED = 'ARMED';
 LocDirectorState.ACTIVE = 'ACTIVE';
