@@ -66,19 +66,22 @@ fs.writeFileSync(path.join(robsim, 'manifest.json'), JSON.stringify({
     package_version: require('../package.json').version,
     total_package_size: totalPackageSize.toString().padStart(20, '0'),
 }, null, 2));
+
 // delete directory recursively if it exists
-fs.rmdir(robsim_dest, { recursive: true }, (err) => {
-    if (err) {
-        throw err;
+fs.rm(robsim_dest, { recursive: true }, (err) => {
+    if (err && err.errno != -4058) {
+        //throw err;
+        console.error(err);
     }
 
     console.log(`${robsim_dest} is deleted!`);
-});
-// To copy a folder or file  
-fse.copy(robsim, robsim_dest, function (err) {
-    if (err){
-        console.log('An error occurred while copying the folder.')
-        return console.error(err)
-    }
-    console.log('Copy completed!')
+
+    // To copy a folder or file  
+    fse.copy(robsim, robsim_dest, function (err) {
+        if (err){
+            console.log('An error occurred while copying the folder.')
+            return console.error(err)
+        }
+        console.log('Copy completed!')
+    });
 });
