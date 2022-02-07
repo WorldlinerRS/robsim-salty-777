@@ -23,13 +23,13 @@
     this.currentDestinationRunwayIndex = undefined;
 
     /** The current active lateral nav mode. */
-    this.currentLateralActiveState = LateralNavModeState.ROLL;
+    this.currentLateralActiveState = LateralNavModeState.TO;
 
     /** The current armed lateral nav mode. */
     this.currentLateralArmedState = LateralNavModeState.NONE;
 
     /** The current active vertical nav mode. */
-    this.currentVerticalActiveState = VerticalNavModeState.PTCH;
+    this.currentVerticalActiveState = VerticalNavModeState.TO;
 
     /** The current armed altitude mode. */
     this.currentArmedAltitudeState = VerticalNavModeState.NONE;
@@ -39,6 +39,9 @@
 
     /** The current armed approach mode. */
     this.currentArmedApproachVerticalState = VerticalNavModeState.NONE;
+
+    /** The current autothrottle mode. */
+    this.currentAutoThrottleStatus = AutoThrottleModeState.NONE;
 
     /** Whether or not VNAV is on. */
     this.isVNAVOn = false;
@@ -82,6 +85,9 @@
     /** The pressure/locked altitude value for WT Vertical AP. */
     this.pressureAltitudeTarget = undefined;
 
+        /** Flag for Early VNAV Descent */
+        this.isEarlyDescent = false;
+
     /**
      * The queue of state change events to process.
      * @type {string[]}
@@ -93,7 +99,7 @@
       altLocked: new ValueStateTracker(() => SimVar.GetSimVarValue("L:WT_CJ4_ALT_HOLD", "number") == 1, () => NavModeEvent.ALT_LOCK_CHANGED),
       simAltLocked: new ValueStateTracker(() => SimVar.GetSimVarValue("AUTOPILOT ALTITUDE LOCK", "Boolean"), () => NavModeEvent.SIM_ALT_LOCK_CHANGED),
       altSlot: new ValueStateTracker(() => SimVar.GetSimVarValue("AUTOPILOT ALTITUDE SLOT INDEX", "number"), () => NavModeEvent.ALT_SLOT_CHANGED),
-      selectedAlt1: new ValueStateTracker(() => SimVar.GetSimVarValue("AUTOPILOT ALTITUDE LOCK VAR:1", "feet"), () => NavModeEvent.SELECTED_ALT1_CHANGED),
+      selectedAlt1: new ValueStateTracker(() => SimVar.GetSimVarValue("AUTOPILOT ALTITUDE LOCK VAR:3", "feet"), () => NavModeEvent.SELECTED_ALT1_CHANGED),
       selectedAlt2: new ValueStateTracker(() => SimVar.GetSimVarValue("AUTOPILOT ALTITUDE LOCK VAR:2", "feet"), () => NavModeEvent.SELECTED_ALT2_CHANGED),
       navmode: new ValueStateTracker(() => SimVar.GetSimVarValue("L:WT_CJ4_LNAV_MODE", "number"), () => NavModeEvent.NAV_MODE_CHANGED),
       hdg_lock: new ValueStateTracker(() => SimVar.GetSimVarValue("AUTOPILOT HEADING LOCK", "Boolean"), () => NavModeEvent.HDG_LOCK_CHANGED),
@@ -1365,7 +1371,7 @@
         this.currentLateralArmedState = LateralNavModeState.LNAV;
       }
     } else {
-      SimVar.SetSimVarValue("K:HEADING_SLOT_INDEX_SET", "number", 2);
+      SimVar.SetSimVarValue("K:HEADING_SLOT_INDEX_SET", "number", 1);
       if (this.lNavModeState === LNavModeState.NAV1) {
         SimVar.SetSimVarValue('K:AP_NAV_SELECT_SET', 'number', 1);
       } else {
