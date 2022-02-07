@@ -40,7 +40,7 @@ jobs:
       - name: Build ZIP files
         run: |
           mkdir ./${{ env.BUILD_DIR_NAME }}
-          zip -r ./${{ env.BUILD_DIR_NAME }}/${{ env.MASTER_ZIP_NAME }} ./PackageSources/
+          zip -r ./${{ env.BUILD_DIR_NAME }}/${{ env.MASTER_ZIP_NAME }} ./Packages/masterrob94-salty-777
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1

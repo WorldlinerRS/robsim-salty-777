@@ -23,6 +23,7 @@ SOFTWARE.
 'use strict';
 
 const fs = require('fs');
+const fse = require('fs-extra');
 const path = require('path');
 
 function* readdir(d) {
@@ -41,6 +42,7 @@ function* readdir(d) {
 
 const MS_FILETIME_EPOCH = 116444736000000000n;
 const robsim = path.resolve(__dirname, '..', 'PackageSources');
+const robsim_dest = path.resolve(__dirname, '..', 'Packages', 'masterrob94-salty-777');
 
 const contentEntries = [];
 let totalPackageSize = 0;
@@ -64,3 +66,12 @@ fs.writeFileSync(path.join(robsim, 'manifest.json'), JSON.stringify({
     package_version: require('../package.json').version,
     total_package_size: totalPackageSize.toString().padStart(20, '0'),
 }, null, 2));
+                              
+// To copy a folder or file  
+fse.copy(robsim, robsim_dest, function (err) {
+    if (err){
+        console.log('An error occurred while copying the folder.')
+        return console.error(err)
+    }
+    console.log('Copy completed!')
+});

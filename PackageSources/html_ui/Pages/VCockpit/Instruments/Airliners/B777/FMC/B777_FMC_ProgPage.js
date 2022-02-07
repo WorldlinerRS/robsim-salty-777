@@ -146,6 +146,25 @@ class B747_8_FMC_ProgPage {
         else {
             crzSpeedCell = Simplane.getAutoPilotAirspeedHoldValue().toFixed(0);
         }
+        
+        let toTODCell = '';
+        let todDistanceCell = '';
+        let todETACell = '';
+        const showTOD = SimVar.GetSimVarValue('L:AIRLINER_FMS_SHOW_TOP_DSCNT', 'number');
+        if (showTOD === 1) {
+            const distanceToTOD = SimVar.GetSimVarValue('L:WT_CJ4_TOD_REMAINING', 'number');
+            if (distanceToTOD) {
+                todDistanceCell = distanceToTOD.toFixed(0) + '[size=small]NM[/size]';
+                let eta = undefined;
+                eta = (B747_8_FMC_ProgPage.computeEtaToWaypoint(distanceToTOD, speed) + currentTime) % 86400;
+                if (isFinite(eta)) {
+                    let etaHours = Math.floor(eta / 3600);
+                    let etaMinutes = Math.floor((eta - etaHours * 3600) / 60);
+                    todETACell = etaHours.toFixed(0).padStart(2, '0') + etaMinutes.toFixed(0).padStart(2, '0') + '[size=small]Z[/size]';
+                }
+                toTODCell = todETACell + '/' + todDistanceCell;
+            }
+        }
         fmc.setTemplate([
             [progressTitle],
             ["\xa0TO", "FUEL", "DTG\xa0\xa0ETA"],
@@ -156,11 +175,19 @@ class B747_8_FMC_ProgPage {
             [destinationCell, destinationFuelCell, destinationDistanceCell],
             ["\xa0SEL SPD"],
             [crzSpeedCell],
-            [],
-            [""],
+            ["\xa0TO TOD"],
+            [toTODCell],
             ["__FMCSEPARATOR"],
             ["<POS REPORT", "POS REF>"]
         ]);
+    }
+    static computeEtaToWaypoint(distance, groundSpeed) {
+        if (groundSpeed < 50) {
+            groundSpeed = 50;
+        }
+        if (groundSpeed > 0.1) {
+            return distance / groundSpeed * 3600;
+        }
     }
 }
 B747_8_FMC_ProgPage._timer = 0;
