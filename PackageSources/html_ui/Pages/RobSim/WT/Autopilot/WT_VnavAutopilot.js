@@ -287,6 +287,11 @@ class WT_VerticalAutopilot {
      * Update data if needed.
      */
     update() {
+        if (this._navModeSelector.altIntervention) {
+			this._navModeSelector.altIntervention = false;
+			this._constraintStatus = ConstraintStatus.OBSERVING_CLIMB;
+			this.setConstraintAltitude(true);
+		}
         this._vnavState = this.checkVnavState();
         this._glidepathStatus = this.checkGlidepathStatus();
         this._glideslopeStatus = this.checkGlideslopeStatus();
@@ -442,17 +447,17 @@ class WT_VerticalAutopilot {
         this.fmsTextValues();
         this.wtAltituteManager();
 
-        /*if (this._vnavPathStatus !== VnavPathStatus.PATH_ACTIVE && this.distanceToTod > 0.1 && this.vnavState !== VnavState.NONE) {
-            const todAlertDistance = AutopilotMath.calculateDescentDistance(this.path.fpa, 250) + (0.017 * this.groundSpeed);
-            if (todAlertDistance > this.distanceToTod) {
-                MessageService.getInstance().post(FMS_MESSAGE_ID.TOD, () => {
-                    return this._vnavPathStatus === VnavPathStatus.PATH_ACTIVE || (todAlertDistance < this.distanceToTod - 0.2) || this.distanceToTod < 0.1;
-                }, () => {
-                    const todBlinkDistance = AutopilotMath.calculateDescentDistance(this.path.fpa, 250) + (0.0014 * this.groundSpeed);
-                    return todBlinkDistance > this.distanceToTod;
-                });
-            }
-        }*/
+        if (this._vnavPathStatus !== VnavPathStatus.PATH_ACTIVE && this.distanceToTod > 0.1 && this.vnavState !== VnavState.NONE) {
+			const todAlertDistance = AutopilotMath.calculateDescentDistance(this.path.fpa, 250) + (0.017 * this.groundSpeed);
+			if (todAlertDistance > this.distanceToTod) {
+				MessageService.getInstance().post(FMS_MESSAGE_ID.TOD, () => {
+					return this._vnavPathStatus === VnavPathStatus.PATH_ACTIVE || (todAlertDistance < this.distanceToTod - 0.2) || this.distanceToTod < 0.1;
+				}, () => {
+					const todBlinkDistance = AutopilotMath.calculateDescentDistance(this.path.fpa, 250) + (0.0014 * this.groundSpeed);
+					return todBlinkDistance > this.distanceToTod;
+				});
+			}
+		}
     }
 
     setArmedApproachVerticalState() {
@@ -500,30 +505,28 @@ class WT_VerticalAutopilot {
                     break;
                 }
                 if (this.path.fpa !== undefined && this.path.fpa == 0 && this.nextPath.fpa !== undefined && this.nextPath.fpa != 0) {
-                    return true;
-                    /*if (this.nextPath.deviation <= 1000 && this.selectedAltitude < this.indicatedAltitude - 100) {
-                        return true;
-                    }*/
+                    if (this.nextPath.deviation <= 1000 && this.selectedAltitude < this.indicatedAltitude - 100) {
+						return true;
+					}
                 }
                 if (this.firstPossibleDescentIndex && this._vnav.flightplan.activeWaypointIndex >= this.firstPossibleDescentIndex) {
                     const distance = this._vnav.getDistanceToTarget();
                     const altitudeDifference = this.indicatedAltitude - this._vnav.getTargetAltitude();
                     const requiredFpa = AutopilotMath.calculateFPA(altitudeDifference, distance);
                     const reqVs = AutopilotMath.calculateVerticaSpeed(requiredFpa, this.groundSpeed);
-                    return true;
-                    /*if (this.path.deviation <= 1000 && altitudeDifference > 100 && this.distanceToTod < 20
-                        && this.selectedAltitude < this.indicatedAltitude - 100 && (this.selectedAltitude < this.lockedAltitude - 100 || this.lockedAltitude === undefined)) {
-                        return true;
-                    } else if (this.path.deviation > 1000 && this.selectedAltitude < this.indicatedAltitude - 100) {
-                        if (this.verticalSpeed < reqVs) {
-                            return true;
-                        } else {
-                            if (this._navModeSelector.currentArmedVnavState !== VerticalNavModeState.NOPATH) {
-                                this.setArmedVnavVerticalState(VerticalNavModeState.NOPATH);
-                            }
-                        }
-                    }*/
-                }
+                    if (this.path.deviation <= 1000 && altitudeDifference > 100 && this.distanceToTod < 20
+						&& this.selectedAltitude < this.indicatedAltitude - 100 && (this.selectedAltitude < this.lockedAltitude - 100 || this.lockedAltitude === undefined)) {
+						return true;
+					} else if (this.path.deviation > 1000 && this.selectedAltitude < this.indicatedAltitude - 100) {
+						if (this.verticalSpeed < reqVs) {
+							return true;
+						} else {
+							if (this._navModeSelector.currentArmedVnavState !== VerticalNavModeState.NOPATH) {
+								this.setArmedVnavVerticalState(VerticalNavModeState.NOPATH);
+							}
+						}
+					}
+				}
         }
         return false;
     }
@@ -531,12 +534,12 @@ class WT_VerticalAutopilot {
     canPathActivate(alreadyActive = false) {
         if (!alreadyActive) {
             //const gsBasedDeviation = -1 * (((this.groundSpeed && this.groundSpeed > 100 ? this.groundSpeed : 200) * (4 / 11)) + (750/11));
-            if (this.path.fpa != 0 && this.path.deviation < 350 && this.path.deviation > -350) {
+            if (this.path.fpa != 0 && this.path.deviation < 1000 && this.path.deviation > -1000) {
                 return true;
             }
             return false;
         } else {
-            if (this.path.fpa != 0 && this.path.deviation < 350 && this.path.deviation > -350) {
+            if (this.path.fpa != 0 && this.path.deviation < 1000 && this.path.deviation > -1000) {
                 return true;
             }
             return false;
@@ -935,7 +938,7 @@ class WT_VerticalAutopilot {
         switch (this._constraintStatus) {
             case ConstraintStatus.NONE:
                 if (this.constraint.index !== undefined && this.constraint.index >= this._vnav.flightplan.activeWaypointIndex) {
-                    this.setConstraintAltitude();
+                    this.setConstraintAltitude(true);
                 }
                 break;
             case ConstraintStatus.OBSERVING_CLIMB:
@@ -1079,7 +1082,7 @@ class WT_VerticalAutopilot {
         if (isGlidepathActive || isPathActive) {
             if (this._pathInterceptStatus === PathInterceptStatus.LEVELED) {
                 newSnowflakeStatus = false;
-            } else if (this.path.deviation) {
+            } else if (this.path.deviation && Math.abs(this.path.deviation) < 1000) {
                 newSnowflakeStatus = true;
             } else {
                 newSnowflakeStatus = false;
@@ -1273,7 +1276,7 @@ class WT_VerticalAutopilot {
             else {
                 setVerticalSpeed = 0;
             }
-            setVerticalSpeed = 100 * Math.ceil(setVerticalSpeed / 100);
+            setVerticalSpeed = 100 * Math.ceil(setVerticalSpeed / 100) * 10;
             this.vsSlot2Value = setVerticalSpeed;
             if (Math.abs(deltaAlt) < 20) {
                 this._altInterceptValues = false;
@@ -1611,7 +1614,7 @@ ConstraintStatus.PASSED = 'PASSED';
 
 class AltitudeCaptureStatus { }
 AltitudeCaptureStatus.CAPTURING_CLIMB = 'CAPTURING_CLIMB';
-AltitudeCaptureStatus.CAPTURING_DESCENT = 'OCAPTURING_DESCENT';
+AltitudeCaptureStatus.CAPTURING_DESCENT = 'CAPTURING_DESCENT';
 AltitudeCaptureStatus.CAPTURED = 'CAPTURED';
 AltitudeCaptureStatus.LEVEL = 'LEVEL';
 AltitudeCaptureStatus.WATCHING = 'WATCHING';

@@ -204,7 +204,7 @@
       const currentAltitude = SimVar.GetSimVarValue("INDICATED ALTITUDE", "feet");
       const targetAltitude = SimVar.GetSimVarValue("AUTOPILOT ALTITUDE LOCK VAR:3", "feet");
 
-      if (Math.abs(currentAltitude - targetAltitude) < 50) {
+      if (Math.abs(currentAltitude - targetAltitude) < 200) {
         this.queueEvent(NavModeEvent.ALT_CAPTURED);
       }
     }
@@ -668,7 +668,7 @@
    * @param {number} vsslot is the slot to engage VS with.
    * @param {number} vs is the starting VS value to set.
    */
-  engageVerticalSpeed(vsslot = 1, vs = Math.round(Simplane.getVerticalSpeed() / 100) * 100, annunciate = true) {
+  engageVerticalSpeed(vsslot = 1, vs = Simplane.getVerticalSpeed(), annunciate = true) {
     if (annunciate) {
       SimVar.SetSimVarValue("L:WT_CJ4_VS_ON", "number", 1);
     } else {
@@ -1481,7 +1481,7 @@
   handleVnavRequestSlot1(force = false) {
     this.currentAltitudeTracking = AltitudeState.SELECTED;
     if (force) {
-      console.log("forcing alt slot 2");
+      console.log("forcing alt slot 1");
       this.setSimAltSlot(1);
     }
   }
