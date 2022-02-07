@@ -42,37 +42,23 @@ jobs:
         run: |
           mkdir ./${{ env.BUILD_DIR_NAME }}
           zip -r ./${{ env.BUILD_DIR_NAME }}/${{ env.MASTER_ZIP_NAME }} ./PackageSources/
-      - name: Get and delete master pre-release zip asset
-        run: |
-          echo 'checking for first release asset...'
-          assets=$( \
-            curl --location --request GET \
-              --url https://api.github.com/repos/${{ github.repository }}/releases/dev/assets
-          )
-          if [ $(echo $assets | jq '.[0].size') -eq '0' ]; then
-            echo 'no asset to delete'
-          else
-            assetId=$(echo $assets | jq '.[0].id')
-            echo 'deleting asset '$assetId
-            curl --request DELETE \
-              --url https://api.github.com/repos/${{ github.repository }}/releases/assets/$assetId \
-              --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
-          fi
-      - name: Upload release binary
-        uses: actions/upload-release-asset@v1.0.2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/dev/assets{?name,label}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: ./${{ env.BUILD_DIR_NAME }}/${{ env.MASTER_ZIP_NAME }}
           asset_name: ${{ env.MASTER_ZIP_NAME }}
           asset_content_type: application/zip
-      - name: Update master pre-release body
-        run: |
-          curl --request PATCH \
-            --url 'https://api.github.com/repos/${{ github.repository }}/releases/dev' \
-            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            --header 'Content-Type: application/json' \
-            --data-raw '{
-              "body": "This pre-release has its ${{ env.MASTER_ZIP_NAME }} asset updated on every commit to the master branch\nLast updated on ${{ env.BUILT_DATE_TIME }} from commit ${{ github.sha }}\nThis link will always point to the latest master build: https://github.com/${{ github.repository }}/releases/download/${{ env.MASTER_PRE_RELEASE_TAG }}/${{ env.MASTER_ZIP_NAME }}"
-            }'
