@@ -41,14 +41,12 @@ jobs:
         run: |
           mkdir ./${{ env.BUILD_DIR_NAME }}
           zip -r ./${{ env.BUILD_DIR_NAME }}/${{ env.MASTER_ZIP_NAME }} ./PackageSources/
-      - name: Delete old release assets
-        uses: mknejp/delete-release-assets@v1
+      - uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
-          token: ${{ github.token }}
-          tag: dev # This may also be of the form 'refs/tags/staging'
-          assets: |
-            *.tar.gz
-            *.zip
+          delete_release: true # default: false
+          tag_name: dev # tag name to delete
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
