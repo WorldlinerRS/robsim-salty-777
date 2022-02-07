@@ -26,6 +26,33 @@ To install, simply copy the salty-747 and masterrob94-salty-777 folder to your c
 
 * If you customized install location when installing MSFS (regardless of version) - `<Install Folder>\Community`
 
+
+## Development
+### Requirements
+* IDE of your choice (e.g. VSCode)
+* NodeJS LTS (e.g. version 16)
+
+This project can also be opened using MSFS Dev Mode
+### Setup your environment
+Open terminal on your working directory:
+
+`npm install`
+
+### Edit code
+Source code is located in `./PackageSources`
+
+### Build without MSFS Package Tool (quick and easy)
+`npm run build`
+
+The generated project will be located in `./Packages`
+
+### Build with MSFS Package Tool (less efficient)
+You have 2 choices :
+
+* Build via MSFS Dev Mode (Build All)
+* Build via provided shortcut. Drag `masterrob94-salty-777.xml` to `fspackagetool.exe` Shortcut (MSFS SDK must be installed on default location)
+
+The generated project will be located in `./Packages`
 ## License
 
 The Salty Compatibility Mod for Captain Sim Boeing 777/767 is a modified version based on [Salty Simulations 747 Project](https://github.com/saltysimulations/salty-747). Therefore is this project also distributed under the GNU General Public License version 3. See [LICENSE](https://github.com/masterrob94/masterrob94-salty-777/blob/master/LICENSE).
