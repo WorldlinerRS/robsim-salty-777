@@ -47,6 +47,45 @@ class LNavDirector {
     this.previousDeviation = 0;
   }
 
+  calculateRateOfTurn(maxBank) {
+		const trueSpeed = Simplane.getTrueSpeed();
+		const magic = 1091;
+		const correction = 0.4;
+		const rateOfTurn = (magic * Math.tan(maxBank)) / trueSpeed;
+
+		return [rateOfTurn];
+	}
+
+	getfixedMaxBank(maxBank) {
+		const bank = Math.round(maxBank * Avionics.Utils.RAD2DEG);
+		switch (bank) {
+			case 30:
+				//return 32;
+				return 33;
+			case 25:
+				//return 26.6;
+				return 28;
+			case 20:
+				return 23;
+			//return 21.6;
+			case 15:
+				//return 16.1;
+				return 18;
+			case 10:
+				//return 11;
+				return 13;
+		}
+	}
+
+	resolveBankKnobPosition() {
+		const maxBank = SimVar.GetSimVarValue('AUTOPILOT MAX BANK', 'Radians');
+		this.options.maxBankAngle = this.getfixedMaxBank(maxBank);
+
+		this.options.degreesRollout = this.options.maxBankAngle / 2;
+
+		const rateOfTurn = this.calculateRateOfTurn(this.options.maxBankAngle * Avionics.Utils.DEG2RAD);
+		this.options.bankRate = rateOfTurn[0];
+  }
   /**
    * Updates the LNavDirector.
    */
@@ -57,6 +96,16 @@ class LNavDirector {
     }
 
     if (this.activeFlightPlan) {
+      this.resolveBankKnobPosition();
+
+			/**
+			 * Only for DEBUG purpose
+			 */
+			if (this.sequencingMode === FlightPlanSequencing.AUTO) {
+				SimVar.SetSimVarValue('L:WT_CJ4_SEQUENCING', 'number', 1);
+			} else {
+				SimVar.SetSimVarValue('L:WT_CJ4_SEQUENCING', 'number', 0);
+			}
       const previousWaypoint = this.activeFlightPlan.getWaypoint(this.activeFlightPlan.activeWaypointIndex - 1);
       const activeWaypoint = this.activeFlightPlan.getWaypoint(this.activeFlightPlan.activeWaypointIndex);
 
@@ -100,12 +149,11 @@ class LNavDirector {
     if (AutopilotMath.isAbeam(dtk, planeState.position, activeWaypoint.infos.coordinates)) {
       this.sequenceToNextWaypoint(planeState, activeWaypoint);
       return;
-    }
-    else {
+    } else {
       const planeToActiveBearing = planeLatLon.initialBearingTo(activeLatLon);
       const nextStartTrack = nextWaypoint ? activeLatLon.initialBearingTo(nextLatLon) : planeToActiveBearing;
 
-      const anticipationDistance = this.getAnticipationDistance(planeState, Avionics.Utils.diffAngle(planeToActiveBearing, nextStartTrack));
+      const anticipationDistance = this.getAnticipationDistance(planeState, Avionics.Utils.diffAngle(planeToActiveBearing, nextStartTrack)) * 0.9;
       if (!nextWaypoint || !nextWaypoint.isFlyover) {
         this.alertIfClose(planeState, distanceToActive, anticipationDistance);
 
@@ -145,8 +193,7 @@ class LNavDirector {
     const angleDiffToTarget = Avionics.Utils.diffAngle(planeState.trueHeading, dtk);
     if (Math.abs(angleDiffToTarget) < this.options.degreesRollout || this.navModeSelector.currentLateralActiveState !== LateralNavModeState.LNAV) {
       this.state = LNavState.TRACKING;
-    }
-    else {
+    } else {
       const turnDirection = Math.sign(angleDiffToTarget);
       const targetHeading = AutopilotMath.normalizeHeading(planeState.trueHeading + (turnDirection * 90));
 
@@ -221,15 +268,19 @@ class LNavDirector {
    */
   getAnticipationDistance(planeState, turnAngle) {
     const headwind = AutopilotMath.windComponents(planeState.trueHeading, planeState.windDirection, planeState.windSpeed).headwind;
-    const turnRadius = AutopilotMath.turnRadius(planeState.trueAirspeed - headwind, planeState.maxBankAngle);
+    const turnRadius = AutopilotMath.turnRadius(planeState.trueAirspeed - headwind, this.options.maxBankAngle);
+    const bankDiff = (Math.sign(turnAngle) * this.options.maxBankAngle) - planeState.bankAngle;
+		const enterBankDistance = (Math.abs(bankDiff) / this.options.bankRate) * ((planeState.trueAirspeed - headwind) / 3600);
+		const turnAnticipationAngle = Math.min(this.options.maxTurnAnticipationAngle, Math.abs(turnAngle)) * Avionics.Utils.DEG2RAD;
+		return Math.min((turnRadius * Math.abs(Math.tan(turnAnticipationAngle / 2))) + enterBankDistance, this.options.maxTurnAnticipationDistance(planeState));
+	}
 
-    const bankDiff = (Math.sign(turnAngle) * planeState.maxBankAngle) - planeState.bankAngle;
-    const enterBankDistance = 0.5 * (Math.abs(bankDiff) / this.options.bankRate) * ((planeState.trueAirspeed - headwind) / 3600);
-
-    const turnAnticipationAngle = Math.min(this.options.maxTurnAnticipationAngle, Math.abs(turnAngle)) * Avionics.Utils.DEG2RAD;
-    const value = turnRadius * Math.abs(Math.tan(turnAnticipationAngle / 2)) + enterBankDistance;
-    return value;
-  }
+	static turnRadiusTest(airspeedTrue, bankAngle) {
+		// Normal turn radius formula
+		// R =v^2/(11.23*tan(0.01745*b))
+		return (Math.pow(airspeedTrue, 2) / (11.26 * Math.tan(bankAngle * Avionics.Utils.DEG2RAD)))
+			/ 6076.1093456638;
+	}
 
   /**
    * Handles when the flight plan version changes.
@@ -272,14 +323,11 @@ class LNavDirector {
         this.sequencingMode = FlightPlanSequencing.INHIBIT;
         LNavDirector.setCourse(SimVar.GetSimVarValue('PLANE HEADING DEGREES TRUE', 'Radians') * Avionics.Utils.RAD2DEG, planeState);
         SimVar.SetSimVarValue('L:WT_CJ4_WPT_ALERT', 'number', 0);
-      }
-      else if (nextWaypoint && nextWaypoint.isRunway) {
+      } else if (nextWaypoint && nextWaypoint.isRunway) {
         this.sequencingMode = FlightPlanSequencing.INHIBIT;
-
         this.state = LNavState.TURN_COMPLETING;
         this.fpm.setActiveWaypointIndex(this.activeFlightPlan.activeWaypointIndex + 1);
-      }
-      else {
+      } else {
         this.state = LNavState.TURN_COMPLETING;
         this.fpm.setActiveWaypointIndex(this.activeFlightPlan.activeWaypointIndex + 1);
       }
@@ -312,14 +360,6 @@ class LNavDirector {
   }
 
   /**
-   * Posts the correct nav sensitivity to the displays.
-   * @param {number} navSensitivity The current nav sensitivity.
-   */
-  postDisplayedNavSensitivity(navSensitivity) {
-
-  }
-
-  /**
    * Attempts to activate LNAV automatically if LNAV or APPR LNV1 is armed.
    * @param {LatLongAlt} legStart The coordinates of the start of the leg.
    * @param {LatLongAlt} legEnd The coordinates of the end of the leg.
@@ -332,7 +372,7 @@ class LNavDirector {
     if ((armedState === LateralNavModeState.LNAV || (armedState === LateralNavModeState.APPR && this.navModeSelector.approachMode === WT_ApproachType.RNAV))
       && !planeState.onGround && agl > 50) {
       const xtk = AutopilotMath.crossTrack(legStart, legEnd, planeState.position);
-      let activationXtk = 2.5;
+      let activationXtk = 1.9;
 
       switch (navSensitivity) {
         case NavSensitivity.TERMINAL:
@@ -370,10 +410,9 @@ class LNavDirector {
     SimVar.SetSimVarValue("L:WT_CJ4_XTK", "number", xtk);
     SimVar.SetSimVarValue("L:WT_CJ4_DTK", "number", correctedDtk);
 
-    const interceptAngle = AutopilotMath.interceptAngle(xtk, navSensitivity);
+    const interceptAngle = AutopilotMath.interceptAngle(xtk, navSensitivity, 20);
     const bearingToWaypoint = Avionics.Utils.computeGreatCircleHeading(planeState.position, legEnd);
     const deltaAngle = Math.abs(Avionics.Utils.diffAngle(dtk, bearingToWaypoint));
-
     const interceptRate = Math.sign(this.previousDeviation) === 1
       ? Math.max(this.previousDeviation - xtk, 0)
       : -1 * Math.min(this.previousDeviation - xtk, 0);
@@ -382,7 +421,6 @@ class LNavDirector {
     const interceptRateScalar = Math.abs(xtk) < (fullDeflection / 2)
       ? 1 - Math.min(interceptRate / (fullDeflection / 10), 1)
       : 1;
-
     const headingToSet = deltaAngle < Math.abs(interceptAngle) ? AutopilotMath.normalizeHeading(dtk + (interceptAngle * interceptRateScalar)) : bearingToWaypoint;
     this.previousDeviation = xtk;
 
@@ -485,8 +523,7 @@ class LNavDirector {
     if (((fafDistance <= 3 || (currentWaypoint && currentWaypoint.isRunway))) && segment.type === SegmentType.Approach) {
       if (this.navModeSelector.currentLateralActiveState === LateralNavModeState.APPR && this.navModeSelector.approachMode === WT_ApproachType.RNAV) {
         return NavSensitivity.APPROACHLPV;
-      }
-      else {
+      } else {
         return NavSensitivity.APPROACH;
       }
     }
@@ -494,8 +531,7 @@ class LNavDirector {
     if (destinationDistance <= 31) {
       if (this.navModeSelector.approachMode === WT_ApproachType.RNAV) {
         return NavSensitivity.TERMINALLPV;
-      }
-      else {
+      } else {
         return NavSensitivity.TERMINAL;
       }
     }
@@ -572,10 +608,10 @@ class LNavDirectorOptions {
     this.minimumTrackingDistance = 1;
 
     /** The maximum bank angle of the aircraft. */
-    this.maxBankAngle = 25;
+    this.maxBankAngle = 30;
 
     /** The rate of bank in degrees per second. */
-    this.bankRate = 2.5;
+    this.bankRate = 3;
 
     /** The maximum turn angle in degrees to calculate turn anticipation to. */
     this.maxTurnAnticipationAngle = 110;
@@ -584,7 +620,7 @@ class LNavDirectorOptions {
     this.maxTurnAnticipationDistance = (planeState) => planeState.trueAirspeed < 350 ? 7 : 10;
 
     /** The number of degrees left in the turn that turn completion will stop and rollout/tracking will begin. */
-    this.degreesRollout = 15;
+    this.degreesRollout = 20;
   }
 }
 
@@ -661,17 +697,22 @@ class AircraftState {
   }
 }
 
-class FlightPlanSequencing { }
+class FlightPlanSequencing { 
+}
+
 FlightPlanSequencing.AUTO = 'AUTO';
 FlightPlanSequencing.INHIBIT = 'INHIBIT';
 
-class LNavState { }
+class LNavState {
+}
+
 LNavState.TRACKING = 'TRACKING';
 LNavState.TURN_COMPLETING = 'TURN_COMPLETING';
 LNavState.IN_DISCONTINUITY = 'IN_DISCONTINUITY';
 
 /** The sensitivity of the navigation solution. */
-class NavSensitivity { }
+class NavSensitivity {
+}
 /** Vertical and lateral sensitivity is at normal +/- 2.0NM enroute levels. */
 NavSensitivity.NORMAL = 0;
 /** Vertical and lateral sensitivity is at +/- 1.0NM terminal levels. */
