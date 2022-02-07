@@ -47,7 +47,7 @@ jobs:
           echo 'checking for first release asset...'
           assets=$( \
             curl --location --request GET \
-              --url https://api.github.com/repos/${{ github.repository }}/releases/${{ env.MASTER_PRE_RELEASE_ID }}/assets
+              --url https://api.github.com/repos/${{ github.repository }}/releases/dev/assets
           )
           if [ $(echo $assets | jq '.[0].size') -eq '0' ]; then
             echo 'no asset to delete'
@@ -63,7 +63,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.MASTER_PRE_RELEASE_ID }}/assets{?name,label}
+          upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/dev/assets{?name,label}
           asset_path: ./${{ env.BUILD_DIR_NAME }}/${{ env.MASTER_ZIP_NAME }}
           asset_name: ${{ env.MASTER_ZIP_NAME }}
           asset_content_type: application/zip
