@@ -932,7 +932,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                 SimVar.SetSimVarValue("AUTOPILOT THROTTLE MAX THRUST", "number", n1);
             }
             if (!this._navModeSelector) {
-                this._navModeSelector = new B77RSNavModeSelector(this.flightPlanManager);
+                this._navModeSelector = new CJ4NavModeSelector(this.flightPlanManager);
             }
             
             //RUN VNAV ALWAYS
