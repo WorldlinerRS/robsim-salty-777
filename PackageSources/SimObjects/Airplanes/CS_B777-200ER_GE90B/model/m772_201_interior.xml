@@ -3544,7 +3544,7 @@
 				eicas_master_switch_hdg_ref
 				eicas_knob_master_fmc_master
 				-->
-        <UseTemplate Name="ASOBO_EICAS_PAGE_SELECTION_Template_Boeing">
+        <UseTemplate Name="RobSim_EICAS_PAGE_SELECTION_Template_Boeing">
           <PANEL_NAME>B747_8_EICAS_2</PANEL_NAME>
         </UseTemplate>
       </Component>
