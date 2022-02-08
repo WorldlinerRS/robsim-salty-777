@@ -152,7 +152,7 @@ class B747_8_FMC_ProgPage {
         let todDistanceCell = "";
         let todDist = SimVar.GetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number");
         if (todDist > 0) {
-            let distanceToTOD = todDist;
+            let distanceToTOD = destinationDistance - todDist;
             if (isFinite(distanceToTOD)) {
                 for (let i = 0; i < 3 - Math.log10(distanceToTOD); i++) {
                     todDistanceCell += "&nbsp";
