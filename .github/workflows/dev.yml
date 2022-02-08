@@ -54,6 +54,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          tag_name: ${{ env.MASTER_PRE_RELEASE_TAG }}
           release_name: ${{ env.MASTER_PRE_RELEASE_TAG }}
           draft: false
           prerelease: false
