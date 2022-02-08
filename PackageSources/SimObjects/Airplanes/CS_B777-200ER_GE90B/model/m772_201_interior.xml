@@ -6811,17 +6811,17 @@
         <NODE_ID>push_aural_reset</NODE_ID>
       </UseTemplate>
       <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>btn_cursor_control_sel_pilot</NODE_ID>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>knob_cursor_control_pilot</NODE_ID>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>btn_cursor_control_sel_copilot</NODE_ID>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>knob_cursor_control_copilot</NODE_ID>
-      </UseTemplate>
+				<NODE_ID>btn_cursor_control_sel_pilot</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+				<NODE_ID>knob_cursor_control_pilot</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+				<NODE_ID>btn_cursor_control_sel_copilot</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+				<NODE_ID>knob_cursor_control_copilot</NODE_ID>
+			</UseTemplate>
       <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
         <NODE_ID>cover_stab_trim_1</NODE_ID>
       </UseTemplate>
