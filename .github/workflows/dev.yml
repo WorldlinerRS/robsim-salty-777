@@ -44,8 +44,7 @@ jobs:
           zip -r ../${{ env.BUILD_DIR_NAME }}/${{ env.MASTER_ZIP_NAME }} ./masterrob94-salty-777
       - uses: dev-drprasad/delete-tag-and-release@v0.2.0
         with:
-          delete_release: true # default: false
-          tag_name: dev # tag name to delete
+          delete_release: true # default: falsetag name to delete
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
@@ -54,7 +53,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.MASTER_PRE_RELEASE_TAG }}
           release_name: ${{ env.MASTER_PRE_RELEASE_TAG }}
           draft: false
           prerelease: false
