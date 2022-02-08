@@ -39,8 +39,9 @@ class B747_8_FMC_ProgPage {
                     waypointActiveDistanceCell += "&nbsp&nbsp&nbsp&nbsp&nbsp";
                 }
                 let fuelLeft = fmc.computeFuelLeft(waypointActiveDistance, speed, currentFuel, currentFuelFlow);
+                let units = fmc.useLbs;
                 if (isFinite(fuelLeft)) {
-                    if (SimVar.GetSimVarValue("L:SALTY_UNIT_IS_METRIC", "bool")) {
+                    if (!units) {
                         waypointActiveFuelCell = (fuelLeft / 2.204).toFixed(1);
                     }
                     else {
@@ -125,8 +126,9 @@ class B747_8_FMC_ProgPage {
                         destinationDistanceCell += "&nbsp&nbsp&nbsp&nbsp&nbsp";
                     }
                     let fuelLeft = fmc.computeFuelLeft(destinationDistance, speed, currentFuel, currentFuelFlow);
+                    let units = fmc.useLbs;
                     if (isFinite(fuelLeft)) {
-                        if (SimVar.GetSimVarValue("L:SALTY_UNIT_IS_METRIC", "bool")) {
+                        if (!units) {
                             destinationFuelCell = (fuelLeft / 2.204).toFixed(1);
                         }
                         else {
@@ -147,12 +149,11 @@ class B747_8_FMC_ProgPage {
             crzSpeedCell = Simplane.getAutoPilotAirspeedHoldValue().toFixed(0);
         }
         
-        let toTODCell = '';
         let todDistanceCell = '';
         let todETACell = '';
-        const showTOD = SimVar.GetSimVarValue('L:AIRLINER_FMS_SHOW_TOP_DSCNT', 'number');
-        if (showTOD === 1) {
-            const distanceToTOD = SimVar.GetSimVarValue('L:WT_CJ4_TOD_REMAINING', 'number');
+        const todDist = SimVar.GetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number");
+        if (todDist > 0) {
+            const distanceToTOD = todDist;
             if (distanceToTOD) {
                 todDistanceCell = distanceToTOD.toFixed(0) + '[size=small]NM[/size]';
                 let eta = undefined;
@@ -162,7 +163,6 @@ class B747_8_FMC_ProgPage {
                     let etaMinutes = Math.floor((eta - etaHours * 3600) / 60);
                     todETACell = etaHours.toFixed(0).padStart(2, '0') + etaMinutes.toFixed(0).padStart(2, '0') + '[size=small]Z[/size]';
                 }
-                toTODCell = todETACell + '/' + todDistanceCell;
             }
         }
         fmc.setTemplate([
@@ -175,8 +175,8 @@ class B747_8_FMC_ProgPage {
             [destinationCell, destinationFuelCell, destinationDistanceCell],
             ["\xa0SEL SPD"],
             [crzSpeedCell],
-            ["\xa0TO TOD"],
-            [toTODCell],
+            ["\xa0TOD", "", "\xa0\xa0\xa0\xa0\xa0ETA"],
+            ["", todETACell, todDistanceCell],
             ["__FMCSEPARATOR"],
             ["<POS REPORT", "POS REF>"]
         ]);
