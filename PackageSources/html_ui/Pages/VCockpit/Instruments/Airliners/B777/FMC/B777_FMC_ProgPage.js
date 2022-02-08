@@ -39,8 +39,9 @@ class B747_8_FMC_ProgPage {
                     waypointActiveDistanceCell += "&nbsp&nbsp&nbsp&nbsp&nbsp";
                 }
                 let fuelLeft = fmc.computeFuelLeft(waypointActiveDistance, speed, currentFuel, currentFuelFlow);
+                let units = fmc.useLbs;
                 if (isFinite(fuelLeft)) {
-                    if (SimVar.GetSimVarValue("L:SALTY_UNIT_IS_METRIC", "bool")) {
+                    if (!units) {
                         waypointActiveFuelCell = (fuelLeft / 2.204).toFixed(1);
                     }
                     else {
@@ -125,8 +126,9 @@ class B747_8_FMC_ProgPage {
                         destinationDistanceCell += "&nbsp&nbsp&nbsp&nbsp&nbsp";
                     }
                     let fuelLeft = fmc.computeFuelLeft(destinationDistance, speed, currentFuel, currentFuelFlow);
+                    let units = fmc.useLbs;
                     if (isFinite(fuelLeft)) {
-                        if (SimVar.GetSimVarValue("L:SALTY_UNIT_IS_METRIC", "bool")) {
+                        if (!units) {
                             destinationFuelCell = (fuelLeft / 2.204).toFixed(1);
                         }
                         else {
@@ -147,22 +149,24 @@ class B747_8_FMC_ProgPage {
             crzSpeedCell = Simplane.getAutoPilotAirspeedHoldValue().toFixed(0);
         }
         
-        let toTODCell = '';
         let todDistanceCell = '';
-        let todETACell = '';
-        const showTOD = SimVar.GetSimVarValue('L:AIRLINER_FMS_SHOW_TOP_DSCNT', 'number');
-        if (showTOD === 1) {
-            const distanceToTOD = SimVar.GetSimVarValue('L:WT_CJ4_TOD_REMAINING', 'number');
-            if (distanceToTOD) {
-                todDistanceCell = distanceToTOD.toFixed(0) + '[size=small]NM[/size]';
+        let todDist = SimVar.GetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number");
+        if (todDist > 0) {
+            let distanceToTOD = todDist;
+            if (isFinite(distanceToTOD)) {
+                for (let i = 0; i < 3 - Math.log10(distanceToTOD); i++) {
+                    todDistanceCell += "&nbsp";
+                }
+                todDistanceCell = distanceToTOD.toFixed(0) + " ";
                 let eta = undefined;
                 eta = (B747_8_FMC_ProgPage.computeEtaToWaypoint(distanceToTOD, speed) + currentTime) % 86400;
                 if (isFinite(eta)) {
                     let etaHours = Math.floor(eta / 3600);
                     let etaMinutes = Math.floor((eta - etaHours * 3600) / 60);
-                    todETACell = etaHours.toFixed(0).padStart(2, '0') + etaMinutes.toFixed(0).padStart(2, '0') + '[size=small]Z[/size]';
+                    todDistanceCell += etaHours.toFixed(0).padStart(2, '0') + etaMinutes.toFixed(0).padStart(2, '0') + "z";
+                } else {
+                    todDistanceCell += "&nbsp&nbsp&nbsp&nbsp&nbsp";
                 }
-                toTODCell = todETACell + '/' + todDistanceCell;
             }
         }
         fmc.setTemplate([
@@ -175,11 +179,11 @@ class B747_8_FMC_ProgPage {
             [destinationCell, destinationFuelCell, destinationDistanceCell],
             ["\xa0SEL SPD"],
             [crzSpeedCell],
-            ["\xa0TO TOD"],
-            [toTODCell],
+            ["\xa0TOD", "", "\xa0\xa0\xa0\xa0\xa0ETA"],
+            ["", "", ""],
             ["__FMCSEPARATOR"],
             ["<POS REPORT", "POS REF>"]
-        ]);
+        ]); //todDistanceCell
     }
     static computeEtaToWaypoint(distance, groundSpeed) {
         if (groundSpeed < 50) {

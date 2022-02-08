@@ -1097,7 +1097,7 @@
 			<DefaultTemplateParameters>
 				<SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:3</SIMVAR_POWER_SETTING>
 			</DefaultTemplateParameters>
-		
+
 			<UseTemplate Name="ASOBO_HANDLING_Lever_Flaps_Template">
 				<NODE_ID>lever_flaps</NODE_ID>
 				<ANIM_NAME>flaps_lever</ANIM_NAME>
@@ -3532,7 +3532,7 @@
 				eicas_master_switch_hdg_ref
 				eicas_knob_master_fmc_master
 				-->
-        <UseTemplate Name="ASOBO_EICAS_PAGE_SELECTION_Template_Boeing">
+        <UseTemplate Name="RobSim_EICAS_PAGE_SELECTION_Template_Boeing">
           <PANEL_NAME>B747_8_EICAS_2</PANEL_NAME>
         </UseTemplate>
       </Component>
