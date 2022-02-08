@@ -72,46 +72,6 @@ Afterburner=0
 EGT_DegR=1300
 ITT_DegR=1600
 
-[Engine Parameters.3.0]
-ThrottleLeverPct=1
-PropellerLeverPct=0.99993896484375
-MixtureLeverPct=0.99993896484375
-Pct Engine RPM=1.0440591587494822967
-MaxReachedEngineRPM=31683.045267548284755
-LeftMagneto=False
-RightMagneto=False
-GeneratorSwitch=True
-CowlFlapPct=0
-FuelPumpSwitch=True
-FuelPumpSwitch_EX1=-1
-CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
-IgnitionSwitch=0
-Afterburner=0
-EGT_DegR=1300
-ITT_DegR=1600
-
-[Engine Parameters.4.0]
-ThrottleLeverPct=1
-PropellerLeverPct=0.99993896484375
-MixtureLeverPct=0.99993896484375
-Pct Engine RPM=1.0440591587494822967
-MaxReachedEngineRPM=31683.045267548284755
-LeftMagneto=False
-RightMagneto=False
-GeneratorSwitch=True
-CowlFlapPct=0
-FuelPumpSwitch=True
-FuelPumpSwitch_EX1=-1
-CarbHeat/DeiceSwitch=False
-EngineMasterSwitch=True
-GlowPlugTemperaturePct=1
-IgnitionSwitch=0
-Afterburner=0
-EGT_DegR=1300
-ITT_DegR=1600
-
 [FuelSystem.0]
 Valve.1=False
 Valve.2=True
