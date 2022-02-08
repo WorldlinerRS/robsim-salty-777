@@ -149,7 +149,7 @@ class B747_8_FMC_ProgPage {
             crzSpeedCell = Simplane.getAutoPilotAirspeedHoldValue().toFixed(0);
         }
         
-        let todDistanceCell = '';
+        let todDistanceCell = "";
         let todDist = SimVar.GetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number");
         if (todDist > 0) {
             let distanceToTOD = todDist;
@@ -180,10 +180,10 @@ class B747_8_FMC_ProgPage {
             ["\xa0SEL SPD"],
             [crzSpeedCell],
             ["\xa0TOD", "", "\xa0\xa0\xa0\xa0\xa0ETA"],
-            ["", "", ""],
+            ["", "", todDistanceCell],
             ["__FMCSEPARATOR"],
             ["<POS REPORT", "POS REF>"]
-        ]); //todDistanceCell
+        ]);
     }
     static computeEtaToWaypoint(distance, groundSpeed) {
         if (groundSpeed < 50) {
