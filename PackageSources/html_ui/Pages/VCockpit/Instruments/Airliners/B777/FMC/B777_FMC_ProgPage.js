@@ -150,18 +150,22 @@ class B747_8_FMC_ProgPage {
         }
         
         let todDistanceCell = '';
-        let todETACell = '';
-        const todDist = SimVar.GetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number");
+        let todDist = SimVar.GetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number");
         if (todDist > 0) {
-            const distanceToTOD = todDist;
-            if (distanceToTOD) {
-                todDistanceCell = distanceToTOD.toFixed(0) + '[size=small]NM[/size]';
+            let distanceToTOD = todDist;
+            if (isFinite(distanceToTOD)) {
+                for (let i = 0; i < 3 - Math.log10(distanceToTOD); i++) {
+                    todDistanceCell += "&nbsp";
+                }
+                todDistanceCell = distanceToTOD.toFixed(0) + " ";
                 let eta = undefined;
                 eta = (B747_8_FMC_ProgPage.computeEtaToWaypoint(distanceToTOD, speed) + currentTime) % 86400;
                 if (isFinite(eta)) {
                     let etaHours = Math.floor(eta / 3600);
                     let etaMinutes = Math.floor((eta - etaHours * 3600) / 60);
-                    todETACell = etaHours.toFixed(0).padStart(2, '0') + etaMinutes.toFixed(0).padStart(2, '0') + '[size=small]Z[/size]';
+                    todDistanceCell += etaHours.toFixed(0).padStart(2, '0') + etaMinutes.toFixed(0).padStart(2, '0') + "z";
+                } else {
+                    todDistanceCell += "&nbsp&nbsp&nbsp&nbsp&nbsp";
                 }
             }
         }
@@ -176,10 +180,10 @@ class B747_8_FMC_ProgPage {
             ["\xa0SEL SPD"],
             [crzSpeedCell],
             ["\xa0TOD", "", "\xa0\xa0\xa0\xa0\xa0ETA"],
-            ["", todETACell, todDistanceCell],
+            ["", "", ""],
             ["__FMCSEPARATOR"],
             ["<POS REPORT", "POS REF>"]
-        ]);
+        ]); //todDistanceCell
     }
     static computeEtaToWaypoint(distance, groundSpeed) {
         if (groundSpeed < 50) {
