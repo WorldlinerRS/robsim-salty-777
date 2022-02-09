@@ -179,7 +179,7 @@ class B747_8_FMC_ProgPage {
             [destinationCell, destinationFuelCell, destinationDistanceCell],
             ["\xa0SEL SPD"],
             [crzSpeedCell],
-            ["\xa0TOD", "", "\xa0\xa0\xa0\xa0\xa0ETA"],
+            ["\xa0TO TOD", "", "\xa0\xa0\xa0\xa0\xa0ETA"],
             ["", "", todDistanceCell],
             ["__FMCSEPARATOR"],
             ["<POS REPORT", "POS REF>"]
