@@ -30,17 +30,8 @@
 @font-face {
   font-family: "BoeingCDU";
   src: url("/Fonts/BoeingCDU.ttf") format("truetype");
-  font-weight: normal;
   font-style: normal; }
 
-/*
-@font-face {
-    font-family: "Not Courier Sans";
-    src: url("/Fonts/NotCourierSans.otf") format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-*/
 span:empty:before {
   content: " "; }
 
@@ -50,7 +41,7 @@ fmc-b747-8-main-display {
   height: 100%;
   background-color: #0e0d08;
   color: white;
-  font-family: "BoeingCDU";;
+  font-family: "BoeingCDU";
   font-size: 6.46vw;
   color: white; }
 
@@ -72,6 +63,9 @@ fmc-b747-8-main-display {
 .inop {
   color: #666666; }
 
+  .magenta {
+    color: #FF00FF; }
+    
 fmc-b747-8-main-display::before {
   content: " ";
   display: block;
