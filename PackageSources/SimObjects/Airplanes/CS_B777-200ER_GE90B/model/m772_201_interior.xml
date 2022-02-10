@@ -5775,6 +5775,13 @@
           <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:1</SIMVAR_POWER_SETTING>
         </DefaultTemplateParameters>
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+          <NODE_ID>O01_002_BUT</NODE_ID>
+          <UseTemplate Name="RobSim_B777_ADIRU_Switch_Template">
+          <ANIM_NAME>ovhd_push_hyd_pump_switch_01</ANIM_NAME>
+          <ID>1</ID>
+          </UseTemplate>
+        </UseTemplate>
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>knob_ovhd_electrics_apu_text</NODE_ID>
           <DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
         </UseTemplate>

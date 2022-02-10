@@ -1,0 +1,32 @@
+<ModelBehaviors>
+	<Template Name="RobSim_B777_ADIRU_Switch_Template">
+		<DefaultTemplateParameters>
+        	<IS_AIRLINER>True</IS_AIRLINER>
+        </DefaultTemplateParameters>
+		<Parameters Type="Default">
+			<ID>1</ID>
+		</Parameters>
+		<UseTemplate Name="RobSim_B777_ADIRU_Switch_SubTemplate"></UseTemplate>
+	</Template>
+	<Template Name="RobSim_B777_ADIRU_Switch_SubTemplate">
+		<DefaultTemplateParameters>
+			<NODE_ID>O01_002_BUT</NODE_ID>
+			<ANIM_NAME>O01_002_BUT</ANIM_NAME>
+			<PART_ID>O01_002_BUT</PART_ID>
+			<IS_AIRLINER>True</IS_AIRLINER>
+		</DefaultTemplateParameters>
+		<Condition Valid="IS_AIRLINER">
+			<True>
+				<UseTemplate Name="ASOBO_GT_Push_Button_Airliner">
+					<Switch Param="AIRLINER_TYPE">
+						<Default>
+							<LEFT_SINGLE_CODE>B777_ADIRU_SWITCH_1 (&gt;L:B777_ADIRU_SWITCH_TOGGLE)</LEFT_SINGLE_CODE>
+							<SEQ1_EMISSIVE_CODE>(L:B777_ADIRU_SWITCH_1, Bool)</SEQ1_EMISSIVE_CODE>
+							<NO_SEQ2/>
+						</Default>
+					</Switch>
+				</UseTemplate>
+			</True>
+		</Condition>
+	</Template>
+</ModelBehaviors>
