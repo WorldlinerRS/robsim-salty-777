@@ -1,4 +1,5 @@
-<Template Name="RobSim_EICAS_PAGE_BUTTON_Template_Boeing">
+<ModelBehaviors>	
+	<Template Name="RobSim_EICAS_PAGE_BUTTON_Template_Boeing">
 		<Parameters Type="Default">
 			<NODE_ID>eicas_push_#BASE_NAME#</NODE_ID>
 			<ANIM_NAME>eicas_push_#BASE_NAME#</ANIM_NAME>
@@ -100,3 +101,4 @@
 			</Do>
 		</Loop>
 	</Template>
+</ModelBehaviors>

@@ -334,6 +334,7 @@
 
     const bankDiff = (Math.sign(turnAngle) * this.options.maxBankAngle) - planeState.bankAngle;
     const enterBankDistance = (Math.abs(bankDiff) / this.options.bankRate) * ((planeState.trueAirspeed - headwind) / 3600);
+
     const turnAnticipationAngle = Math.min(this.options.maxTurnAnticipationAngle, Math.abs(turnAngle)) * Avionics.Utils.DEG2RAD;
     return Math.min((turnRadius * Math.abs(Math.tan(turnAnticipationAngle / 2))) + enterBankDistance, this.options.maxTurnAnticipationDistance(planeState));
   }
@@ -502,6 +503,7 @@
     const interceptAngle = AutopilotMath.interceptAngle(xtk, navSensitivity, 20);
     const bearingToWaypoint = Avionics.Utils.computeGreatCircleHeading(planeState.position, legEnd);
     const deltaAngle = Math.abs(Avionics.Utils.diffAngle(dtk, bearingToWaypoint));
+
     const interceptRate = Math.sign(this.previousDeviation) === 1
       ? Math.max(this.previousDeviation - xtk, 0)
       : -1 * Math.min(this.previousDeviation - xtk, 0);
@@ -510,6 +512,7 @@
     const interceptRateScalar = Math.abs(xtk) < (fullDeflection / 2)
       ? 1 - Math.min(interceptRate / (fullDeflection / 10), 1)
       : 1;
+      
     const headingToSet = deltaAngle < Math.abs(interceptAngle) ? AutopilotMath.normalizeHeading(dtk + (interceptAngle * interceptRateScalar)) : bearingToWaypoint;
     this.previousDeviation = xtk;
 
