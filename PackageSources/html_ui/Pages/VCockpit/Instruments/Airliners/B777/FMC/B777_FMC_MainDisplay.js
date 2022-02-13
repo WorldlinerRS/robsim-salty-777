@@ -47,8 +47,8 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             [86.7,  88.9,  89.4,  89.9 , 90.4,  90.9,  91.4,  92.0,  92.7,  93.1, 93.3]
         ];
         this._takeOffN1TempRow = [60, 50, 45, 40, 35, 30, 25, 20, 15, 5, 0, -10, -20, -30, -40, -50];
-        this._thrustTakeOffMode = 1;
-        this._thrustCLBMode = 1;
+        this._thrustTakeOffMode = 0;
+        this._thrustCLBMode = 0;
         this._thrustTakeOffTemp = 20;
         this._lastUpdateAPTime = NaN;
         this.refreshFlightPlanCooldown = 0;
@@ -727,9 +727,9 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     }
     getManagedApproachSpeed() {
         if (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots")) {
-            return SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots") + 5;
+            return (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots") * 1.15) + 5;
         }
-        return SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 5;
+        return (SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") * 1.15) + 5;
     }
 
     /* Turns off VNAV Mach speed mode */
@@ -779,7 +779,6 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
            -8.4569127892214961e-020,
             4.8771524333784454e-026,
            -1.1496146052268411e-032
-           
         ];
         let vRef30 = 0;
         let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "pounds");
@@ -932,7 +931,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                 SimVar.SetSimVarValue("AUTOPILOT THROTTLE MAX THRUST", "number", n1);
             }
             if (!this._navModeSelector) {
-                this._navModeSelector = new CJ4NavModeSelector(this.flightPlanManager);
+                this._navModeSelector = new B777RSNavModeSelector(this.flightPlanManager);
             }
             
             //RUN VNAV ALWAYS

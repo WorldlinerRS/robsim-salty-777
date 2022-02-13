@@ -300,6 +300,7 @@ class B747_8_MFD_MainPage extends NavSystemPage {
         this.info.showSymbol(B747_8_ND_Symbol.WPT, this.map.instrument.showIntersections);
         this.info.showSymbol(B747_8_ND_Symbol.ARPT, this.map.instrument.showAirports);
         this.info.showSymbol(B747_8_ND_Symbol.TFC, this.map.instrument.showTraffic);
+        this.info.showSymbol(B747_8_ND_Symbol.DATA, this.map.instrument.showConstraints);
     }
     updateDeviationScale() {
         if (SimVar.GetSimVarValue("L:AIRLINER_FLIGHT_PHASE", "number") === 5 || SimVar.GetSimVarValue("L:AIRLINER_FLIGHT_PHASE", "number") === 6) {
@@ -471,6 +472,7 @@ var B747_8_ND_Symbol;
     B747_8_ND_Symbol[B747_8_ND_Symbol["WXR"] = 4] = "WXR";
     B747_8_ND_Symbol[B747_8_ND_Symbol["WXRINFO"] = 5] = "WXRINFO";
     B747_8_ND_Symbol[B747_8_ND_Symbol["TFC"] = 6] = "TFC";
+    B747_8_ND_Symbol[B747_8_ND_Symbol["DATA"] = 7] = "DATA";
 })(B747_8_ND_Symbol || (B747_8_ND_Symbol = {}));
 class B747_8_MFD_NDInfo extends NavSystemElement {
     constructor() {
@@ -499,6 +501,7 @@ class B747_8_MFD_NDInfo extends NavSystemElement {
         this.allSymbols.push(this.ndInfo.querySelector("#WXR"));
         this.allSymbols.push(this.ndInfo.querySelector("#WXRInfo"));
         this.allSymbols.push(this.ndInfo.querySelector("#TFC"));
+        this.allSymbols.push(this.ndInfo.querySelector("#DATA"));
         this.greenArc = document.querySelector("#greenArc");
     }
     onEnter() {

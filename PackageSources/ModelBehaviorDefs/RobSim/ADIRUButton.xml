@@ -1,0 +1,51 @@
+<ModelBehaviors>
+	<Template Name="RobSim_B777_ADIRU_Switch_Template">
+		<Parameters Type="Default">
+			<ID>1</ID>
+		</Parameters>
+		<UseTemplate Name="RobSim_B777_ADIRU_Switch_SubTemplate"></UseTemplate>
+	</Template>
+	<Template Name="RobSim_B777_ADIRU_Switch_SubTemplate">
+		<Parameters Type="Default">
+			<NODE_ID>O01_002_BUT</NODE_ID>
+			<ANIM_NAME>ovhd_push_electrics_battery</ANIM_NAME>
+          	<SEQ1_NODE_ID>push_ovhd_electrics_battery_seq1</SEQ1_NODE_ID>
+          	<SEQ2_NODE_ID>push_ovhd_electrics_battery_seq2</SEQ2_NODE_ID>
+			<ID>1</ID>
+			<TOOLTIP_BATTERY_TITLE>ADIRU</TOOLTIP_BATTERY_TITLE>
+			<INTERACTION_TYPE>Switch</INTERACTION_TYPE>
+			<Switch Param="INTERACTION_TYPE">
+				<Case Value="Switch">
+					<Condition Check="TYPE">
+						<SWITCH_TYPE>#TYPE#</SWITCH_TYPE>
+					</Condition>
+				</Case>
+			</Switch>
+			<Switch Param="INTERACTION_TYPE">
+				<Case Value="Switch">
+					<WWISE_EVENT_1>battery_switch_on</WWISE_EVENT_1>
+					<WWISE_EVENT_2>battery_switch_off</WWISE_EVENT_2>
+					<Switch Param="SWITCH_TYPE">
+						<Default>
+							<TYPE>ON_OFF</TYPE>
+							<IS_AIRLINER>False</IS_AIRLINER>
+						</Default>
+					</Switch>
+				</Case>
+			</Switch>
+		</Parameters>
+		<Parameters Type="Default">
+			<Switch Param="TYPE">
+				<Case Value="ON_OFF">
+					<STATE_ON>1</STATE_ON>
+					<STATE_OFF>0</STATE_OFF>
+				</Case>
+			</Switch>
+		</Parameters>
+		<UseTemplate Name="ASOBO_GT_Push_Button_Airliner">
+			<LEFT_SINGLE_CODE>(&gt;B:B777_ADIRU_SWITCH_#ID#_Toggle)</LEFT_SINGLE_CODE>
+			<NORMALIZED_TIME_1>0.1</NORMALIZED_TIME_1>
+			<NORMALIZED_TIME_2>0.5</NORMALIZED_TIME_2>
+		</UseTemplate>
+	</Template>
+</ModelBehaviors>

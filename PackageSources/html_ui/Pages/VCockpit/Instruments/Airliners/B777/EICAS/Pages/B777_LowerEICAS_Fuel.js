@@ -26,7 +26,7 @@ var B747_8_LowerEICAS_Fuel;
                 var enginePathD = engine1.getAttribute("d");
                 this.applyPathDString("#Engine2", enginePathD);
             }
-            for (var engine = 1; engine <= 4; ++engine) {
+            for (var engine = 1; engine <= 2; ++engine) {
                 this.allFuelComponents.push(new Boeing.FuelEngineState(this.querySelector("#Engine" + engine), engine));
             }
             var smallPumpTemplate = this.querySelector("#SmallPumpTemplate");

@@ -1,0 +1,31 @@
+{
+  "name": "masterrob94-salty-777",
+  "version": "2.1.9",
+  "description": "Captain Sim B777/767 compatibility mod",
+  "edition": "development",
+  "main": "",
+  "scripts": {
+    "lint": "eslint --cache **/*.{js,mjs,jsx,ts,tsx}",
+    "lint-fix": "npm run lint -- --fix",
+    "test": "jest",
+    "prettier": "prettier --write **/*.json **/*.yml src/instruments/**/*.css",
+    "build": "node scripts/build.js"
+  },
+  "lint-staged": {
+    "*.{js,mjs,jsx}": "eslint --cache --fix",
+    "*.{json,yml,css,scss}": "prettier --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobSimulation/robsim-salty-777.git"
+  },
+  "author": "Robin Breitfeld",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/RobSimulation/robsim-salty-777/issues"
+  },
+  "homepage": "https://github.com/RobSimulation/robsim-salty-777#readme",
+  "dependencies": {
+    "fs-extra": "^10.0.0"
+  }
+}

@@ -1,2 +1,5 @@
 **/Packages/
 **/_PackageInt/
+**/node_modules/
+PackageSources/layout.json
+PackageSources/manifest.json

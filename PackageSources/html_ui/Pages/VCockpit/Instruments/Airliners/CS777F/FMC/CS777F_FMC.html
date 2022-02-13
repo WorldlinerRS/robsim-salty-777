@@ -1,4 +1,4 @@
-﻿<link rel="stylesheet" href="CS777F_FMC.css" />
+<link rel="stylesheet" href="CS777F_FMC.css" />
 <script type="text/html" id="B747_8_FMC">
     <div id="Mainframe">
         <div id="Electricity" state="off">
@@ -7,20 +7,20 @@
 </script>
 
 <script type="text/html" import-script="/JS/SimPlane.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/WT_SimPlaneMod.js"></script> <!-- WT -->
+<script type="text/html" import-script="/Pages/RobSim/WT/WT_SimPlaneMod.js"></script> <!-- WT -->
 <script type="text/html" import-script="/JS/dataStorage.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/DataStore.js"></script> <!-- WT -->
-<script type="text/html" import-script="/Pages/Salty/WT/WTUtils.js"></script> <!-- WT -->
-<script type="text/html" import-script="/Pages/Salty/WT/WT_ConvertUnit.js"></script> <!-- WT -->
-<script type="text/html" import-script="/Pages/Salty/WT/WT_GCMath.js"></script> <!-- WT -->
+<script type="text/html" import-script="/Pages/RobSim/WT/DataStore.js"></script> <!-- WT -->
+<script type="text/html" import-script="/Pages/RobSim/WT/WTUtils.js"></script> <!-- WT -->
+<script type="text/html" import-script="/Pages/RobSim/WT/WT_ConvertUnit.js"></script> <!-- WT -->
+<script type="text/html" import-script="/Pages/RobSim/WT/WT_GCMath.js"></script> <!-- WT -->
 
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Shared/Utils/RadioNav.js"></script>
 
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Shared/FlightElements/Runway.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/Waypoint.js"></script> <!-- WT -->
+<script type="text/html" import-script="/Pages/RobSim/WT/Waypoint.js"></script> <!-- WT -->
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Shared/FlightElements/Approach.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Shared/FlightElements/FlightPlan.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/WaypointLoader.js"></script> <!-- WT -->
+<script type="text/html" import-script="/Pages/RobSim/WT/WaypointLoader.js"></script> <!-- WT -->
 <script type="text/html" import-script="/Pages/Salty/fpm/LzUtf8.js"></script> <!-- WT -->
 <script type="text/html" import-script="/Pages/Salty/fpm/wtsdk.js"></script> <!-- WT -->
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Shared/FlightElements/GeoCalc.js"></script>
@@ -34,7 +34,7 @@
 <script type="text/html" import-script="/Pages/Salty/SaltyBase.js"></script>
 <script type="text/html" import-script="/Pages/Salty/SaltyDataStore.js"></script>
 <script type="text/html" import-script="/Pages/Salty/SaltyConnection.js"></script>
-<script type="text/html" import-script="/Pages/Salty/SaltyIRS.js"></script>
+<script type="text/html" import-script="/Pages/RobSim/SaltyIRS.js"></script>
 <script type="text/html" import-script="/Pages/Salty/SaltyJettison.js"></script>
 <script type="text/html" import-script="/Pages/Salty/SaltyPilots.js"></script>
 
@@ -46,14 +46,14 @@
 
 
 <!-- WT -->
-<script type="text/html" import-script="/Pages/Salty/WT/Autopilot/NavToNavTransfer.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/Autopilot/SaltyNavModeSelector.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/Autopilot/WT_BaseVnav.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/Autopilot/AutopilotMath.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/Autopilot/HoldsDirector.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/Autopilot/LocDirector.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/Autopilot/LNavDirector.js"></script>
-<script type="text/html" import-script="/Pages/Salty/WT/Autopilot/WT_VnavAutopilot.js"></script>
+<script type="text/html" import-script="/Pages/RobSim/WT/Autopilot/NavToNavTransfer.js"></script>
+<script type="text/html" import-script="/Pages/RobSim/WT/Autopilot/B777RSNavModeSelector.js"></script>
+<script type="text/html" import-script="/Pages/RobSim/WT/Autopilot/WT_BaseVnav.js"></script>
+<script type="text/html" import-script="/Pages/RobSim/WT/Autopilot/AutopilotMath.js"></script>
+<script type="text/html" import-script="/Pages/RobSim/WT/Autopilot/HoldsDirector.js"></script>
+<script type="text/html" import-script="/Pages/RobSim/WT/Autopilot/LocDirector.js"></script>
+<script type="text/html" import-script="/Pages/RobSim/WT/Autopilot/LNavDirector.js"></script>
+<script type="text/html" import-script="/Pages/RobSim/WT/Autopilot/WT_VnavAutopilot.js"></script>
 
 <!-- FMC -->
 <!-- FMC B777 Profile -->
@@ -70,8 +70,8 @@
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B777/FMC/B777_FMC_PerfInitPage.js"></script>
 <!-- FMC 777 Profile-->
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B777/FMC/B777_FMC_ThrustLimPage.js"></script>
-<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_TakeOffPage.js"></script>
-<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_ApproachPage.js"></script>
+<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B777/FMC/B777_FMC_TakeOffPage.js"></script>
+<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B777/FMC/B777_FMC_ApproachPage.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_NavDataPage.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_MaintPage.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_RoutePage.js"></script>
@@ -83,7 +83,7 @@
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_ArrivalsPage.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_DeparturesPage.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_LegsPage.js"></script>
-<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_ProgPage.js"></script>
+<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B777/FMC/B777_FMC_ProgPage.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/B747_8_FMC_HoldPage.js"></script>
 <script type="text/html" import-script="/Pages/Salty/WT/CJ4_FMC_PilotWaypoint.js"></script> <!-- WT -->
 
@@ -95,7 +95,7 @@
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/OPTIONS/B747_8_FMC_Metar.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/OPTIONS/B747_8_FMC_Atis.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/OPTIONS/B747_8_FMC_Taf.js"></script>
-<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/OPTIONS/B747_8_FMC_IrsStatus.js"></script>
+<script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B777/FMC/OPTIONS/B777_FMC_IrsStatus.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/OPTIONS/B747_8_FMC_Units.js"></script>
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B747_8/FMC/OPTIONS/B747_8_FMC_Misc.js"></script>
 
