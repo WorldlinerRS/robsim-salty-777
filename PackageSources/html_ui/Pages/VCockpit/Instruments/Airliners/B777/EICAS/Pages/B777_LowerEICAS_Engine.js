@@ -32,7 +32,6 @@ var B747_8_LowerEICAS_Engine;
             definition.barHeight = 88;
             var parent = this.querySelector("#OilPGauges");
             definition.getValueLeft = this.allEngineInfos[0].getOilPValue.bind(this.allEngineInfos[0]);
-            this.createGaugeDual(parent, definition);
             definition.getValueRight = this.allEngineInfos[1].getOilPValue.bind(this.allEngineInfos[1]);
             this.createGaugeDual(parent, definition);
         }
@@ -43,7 +42,6 @@ var B747_8_LowerEICAS_Engine;
             definition.barHeight = 88;
             var parent = this.querySelector("#OilTGauges");
             definition.getValueLeft = this.allEngineInfos[0].getOilTValue.bind(this.allEngineInfos[0]);
-            this.createGaugeDual(parent, definition);
             definition.getValueRight = this.allEngineInfos[1].getOilTValue.bind(this.allEngineInfos[1]);
             this.createGaugeDual(parent, definition);
         }
@@ -52,7 +50,6 @@ var B747_8_LowerEICAS_Engine;
             definition.barHeight = 0;
             var parent = this.querySelector("#OilQGauges");
             definition.getValueLeft = this.allEngineInfos[0].getOilQValue.bind(this.allEngineInfos[0]);
-            this.createGaugeDual(parent, definition);
             definition.getValueRight = this.allEngineInfos[1].getOilQValue.bind(this.allEngineInfos[1]);
             this.createGaugeDual(parent, definition);
         }
@@ -65,7 +62,6 @@ var B747_8_LowerEICAS_Engine;
             definition.barHeight = 88;
             var parent = this.querySelector("#VIBGauges");
             definition.getValueLeft = this.allEngineInfos[0].getVIBValue.bind(this.allEngineInfos[0]);
-            this.createGaugeDual(parent, definition);
             definition.getValueRight = this.allEngineInfos[1].getVIBValue.bind(this.allEngineInfos[1]);
             this.createGaugeDual(parent, definition);
         }
