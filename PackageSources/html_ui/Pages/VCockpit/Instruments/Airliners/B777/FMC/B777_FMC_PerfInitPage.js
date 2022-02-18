@@ -74,7 +74,7 @@ class FMCPerfInitPage {
             };
 
             let minFuelTempCell = SaltyDataStore.get("PERF_MIN_FUEL_TEMP", -37);
-            let crzCg = "11.00%";
+            let crzCg = "20.50%";
             let stepSize =  SaltyDataStore.get("PERF_STEP_SIZE", "RVSM");
             let stepSizeCell;
             if (fmc.simbrief.perfUplinkReady) {
@@ -107,8 +107,10 @@ class FMCPerfInitPage {
                     [zeroFuelWeightCell, `${minFuelTempCell}°C`],
                     ["\xa0RESERVES", "CRZ CG"],
                     [reservesCell, `${crzCg}`],
-                    [`\xa0${store.dataLink}`, `${store.stepSizeLabel}`, `${store.perfUplinkHeader}`],
-                    [`${store.requestData}`, `${stepSizeCell}`],
+                    //[`\xa0${store.dataLink}`, `${store.stepSizeLabel}`, `${store.perfUplinkHeader}`],
+                    ["", `${store.stepSizeLabel}`, `${store.perfUplinkHeader}`],
+                    //[`${store.requestData}`, `${stepSizeCell}`],
+                    ["", `${stepSizeCell}`],
                     ["__FMCSEPARATOR"],
                     ["\<INDEX", "THRUST LIM>"]
                 ]);

@@ -82,19 +82,23 @@ class B777_FMC_PayloadManager {
 	}
 
 	static get zeroFuelCenterOfGravity() {
-		return this._zeroFuelCenterOfGravity;
+		return this.fmc.zeroFuelWeightMassCenter;
 	}
 
 	static set zeroFuelCenterOfGravity(value) {
-		this._zeroFuelCenterOfGravity = value;
+		this.fmc.updateTakeOffTrim();
+		this.fmc.zeroFuelWeightMassCenter = value;
 	}
 
 	static get zeroFuelWeight() {
-		return this._zeroFuelWeight;
+		return this.fmc.zeroFuelWeight;
 	}
 
 	static set zeroFuelWeight(value) {
-		this._zeroFuelWeight = value;
+		Coherent.call("ZFW_VALUE_SET", value * 1000);
+		this.fmc.updateFuelVars();
+		this.fmc.updateTakeOffTrim();
+		this.fmc.zeroFuelWeight = value;
 	}
 
 	static get getMaxFuel(){
@@ -171,7 +175,7 @@ class B777_FMC_PayloadManager {
 
 	async setPayloadValue(index, value) {
 		this._internalPayloadValuesCache[index] = value;
-        return await SimVar.SetSimVarValue(`PAYLOAD STATION WEIGHT:${index}`, "Pounds", value);
+        return SimVar.SetSimVarValue("PAYLOAD STATION WEIGHT:"+ index, "Pounds", value);
 	}
 
 	getTankValue(variable) {

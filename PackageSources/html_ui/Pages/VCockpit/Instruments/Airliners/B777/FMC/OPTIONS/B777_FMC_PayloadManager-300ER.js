@@ -85,19 +85,23 @@ class B777_FMC_PayloadManager {
 	}
 
 	static get zeroFuelCenterOfGravity() {
-		return this._zeroFuelCenterOfGravity;
+		return this.fmc.zeroFuelWeightMassCenter;
 	}
 
 	static set zeroFuelCenterOfGravity(value) {
-		this._zeroFuelCenterOfGravity = value;
+		this.fmc.updateTakeOffTrim();
+		this.fmc.zeroFuelWeightMassCenter = value;
 	}
 
 	static get zeroFuelWeight() {
-		return this._zeroFuelWeight;
+		return this.fmc.zeroFuelWeight;
 	}
 
 	static set zeroFuelWeight(value) {
-		this._zeroFuelWeight = value;
+		Coherent.call("ZFW_VALUE_SET", value * 1000);
+		this.fmc.updateFuelVars();
+		this.fmc.updateTakeOffTrim();
+		this.fmc.zeroFuelWeight = value;
 	}
 
 	static get getMaxFuel(){
@@ -274,6 +278,7 @@ class B777_FMC_PayloadManager {
 			};
 		}
 
+		this.fmc.blockFuel = this.getTotalFuel();
 		let weightPerGallon;
         let units = "Kg";
         let payloadModifier;
@@ -495,9 +500,6 @@ class B777_FMC_PayloadManager {
 				await this.increaseRearPayload(amount, requestedCenterOfGravity);
 				B777_FMC_PayloadManager.remainingPayload = B777_FMC_PayloadManager.remainingPayload - amount;
 			}
-			// for(var i = 0; i < B777_FMC_PayloadManager.payloadIndex.length; i++) {
-			// 	console.log(this.getPayloadValue(i+1));
-			// }
 			this.showPage();
 		}
 	}
