@@ -1021,7 +1021,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             if (this._navModeSelector.currentVerticalActiveState === VerticalNavModeState.TO || this._navModeSelector.currentVerticalActiveState === VerticalNavModeState.GA) {
                 this.handleTogaMode();
             }
-            if (this.currentFlightPhase === FlightPhase.FLIGHT_PHASE_TAKEOFF) {
+            else if (this.currentFlightPhase === FlightPhase.FLIGHT_PHASE_TAKEOFF) {
                 if (this.getIsVNAVActive()) {
                     let speed = this.getTakeOffManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);

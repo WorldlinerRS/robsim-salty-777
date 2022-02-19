@@ -51,7 +51,7 @@ var B747_8_UpperEICAS;
                 this.allEngineInfos.push(new B777_EICAS_Gauge_EGT(2, this.querySelector("#EGT_2_GAUGE"), gaugeTemplate, true));
                 
                 gaugeTemplate.remove();
-            }       
+            }
             
             this.infoPanel = new Boeing.InfoPanel(this, "InfoPanel");
             this.infoPanel.init();
@@ -309,7 +309,7 @@ var B747_8_UpperEICAS;
             return 0;
         }
     }
-    class B787_10_EICAS_Gauge_N2 extends B777_EICAS_CircleGauge {
+    class B777_EICAS_Gauge_N2 extends B777_EICAS_CircleGauge {
         getCurrentValue() {
             return SimVar.GetSimVarValue("ENG N2 RPM:" + this.engineIndex, "percent");
         }
