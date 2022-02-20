@@ -1021,16 +1021,22 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             if (this._navModeSelector.currentVerticalActiveState === VerticalNavModeState.TO || this._navModeSelector.currentVerticalActiveState === VerticalNavModeState.GA) {
                 this.handleTogaMode();
             }
-            else if (this.currentFlightPhase === FlightPhase.FLIGHT_PHASE_TAKEOFF) {
+            if (this.currentFlightPhase === FlightPhase.FLIGHT_PHASE_TAKEOFF) {
                 if (this.getIsVNAVActive()) {
                     let speed = this.getTakeOffManagedSpeed();
-                    this.setAPManagedSpeed(speed, Aircraft.B747_8);
                     //Sets CLB Thrust when passing thrust reduction altitude
-                    let alt = Simplane.getAltitude();
-                    let thrRedAlt = SimVar.GetSimVarValue("L:AIRLINER_THR_RED_ALT", "number");
-                    let n1 = 85;
-                    if (alt > thrRedAlt) {
+                    let altitude = Simplane.getAltitudeAboveGround();
+                    let accelAlt = SimVar.GetSimVarValue("L:AIRLINER_ACC_ALT", "number");
+                    let n1 = 99
+                    if (altitude < accelAlt) {
+                        n1 = this.getThrustTakeOffLimit() / 100;
+                        this.setAPManagedSpeed(speed, Aircraft.B747_8);
+                        SimVar.SetSimVarValue("AUTOPILOT THROTTLE MAX THRUST", "number", n1);
+                    }  
+                    else {
                         n1 = this.getThrustClimbLimit() / 100;
+                        speed = this.getClbManagedSpeed();
+                        this.setAPManagedSpeed(speed, Aircraft.B747_8);
                         SimVar.SetSimVarValue("AUTOPILOT THROTTLE MAX THRUST", "number", n1);
                     }
                 }
@@ -1040,7 +1046,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                     let speed = this.getClbManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);
                     let altitude = Simplane.getAltitudeAboveGround();
-                    let n1 = 100;
+                    let n1 = 99;
                     if (altitude < this.thrustReductionAltitude) {
                         n1 = this.getThrustTakeOffLimit() / 100;
                     }

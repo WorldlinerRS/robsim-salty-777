@@ -166,7 +166,7 @@ class Boeing_FMC extends FMCMainDisplay {
             this._navModeSelector.onNavChangedEvent('FD_TOGGLE');
         }
         else if (_event.indexOf("AP_SPD") != -1) {
-
+            
         }
         else if (_event.indexOf("AP_SPEED_INTERVENTION") != -1) {
             this.toggleSpeedIntervention();
@@ -331,10 +331,10 @@ class Boeing_FMC extends FMCMainDisplay {
         this.cruiseFlightLevel = Math.floor(displayedAltitude / 100);
     }
     getThrustTakeOffLimit() {
-        return 85;
+        return 106;
     }
     getThrustClimbLimit() {
-        return 80;
+        return 99;
     }
     getTakeOffManagedSpeed() {
         if (this.v2Speed) {

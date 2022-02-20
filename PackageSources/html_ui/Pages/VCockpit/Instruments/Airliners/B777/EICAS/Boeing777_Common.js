@@ -102,9 +102,9 @@ var Boeing;
         }
         update(_deltaTime) {
             var leverPos = Simplane.getFlapsHandleIndex();
-            var flapsPercent = ((SimVar.GetSimVarValue("TRAILING EDGE FLAPS LEFT PERCENT", "percent") + SimVar.GetSimVarValue("TRAILING EDGE FLAPS RIGHT PERCENT", "percent")) * 0.5) * 0.01;
-            var leadingEdgePercent = ((SimVar.GetSimVarValue("LEADING EDGE FLAPS LEFT PERCENT", "percent") + SimVar.GetSimVarValue("LEADING EDGE FLAPS RIGHT PERCENT", "percent")) * 0.5) * 0.01;
-            var flapsAngle = (SimVar.GetSimVarValue("TRAILING EDGE FLAPS LEFT ANGLE", "degrees") + SimVar.GetSimVarValue("TRAILING EDGE FLAPS RIGHT ANGLE", "degrees")) * 0.5;
+            var flapsPercent = ((SimVar.GetSimVarValue("TRAILING EDGE FLAPS LEFT PERCENT", "percent") + SimVar.GetSimVarValue("TRAILING EDGE FLAPS RIGHT PERCENT", "percent")) * 0.5 ) * 0.01; //* 0.5
+            var leadingEdgePercent = ((SimVar.GetSimVarValue("LEADING EDGE FLAPS LEFT PERCENT", "percent") + SimVar.GetSimVarValue("LEADING EDGE FLAPS RIGHT PERCENT", "percent")) * 0.5 ) * 0.01; //* 0.5
+            var flapsAngle = (SimVar.GetSimVarValue("TRAILING EDGE FLAPS LEFT ANGLE", "degrees") + SimVar.GetSimVarValue("TRAILING EDGE FLAPS RIGHT ANGLE", "degrees")) * 0.5; //* 0.5;
             this.refreshValue(leverPos, flapsPercent, flapsAngle, leadingEdgePercent);
             if ((this.currentAngle <= 0) && (this.timeout > 0)) {
                 this.timeout -= _deltaTime;

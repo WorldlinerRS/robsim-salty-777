@@ -46,13 +46,13 @@ class FMCThrustLimPage {
             ["SEL", "TO N1", "OAT"],
             [selectedTempCell, toN1Cell, oatCell],
             [""],
-            ["\<TO" + (thrustTOMode === 0 ? " <SEL>" : ""), (thrustClimbMode === 0 ? "<SEL> " : "") + "CLB>"],
+            ["<TO" + (thrustTOMode === 0 ? " <-" : ""), (thrustClimbMode === 0 ? "-> " : "") + "CLB>"],
             ["TO 1"],
-            ["\<-10%" + (thrustTOMode === 1 ? " <SEL>" : ""), (thrustClimbMode === 1 ? "<SEL> " : "") + "CLB 1>"],
+            ["<-10%" + (thrustTOMode === 1 ? " <-" : ""), (thrustClimbMode === 1 ? "-> " : "") + "CLB 1>"],
             ["TO 2"],
-            ["\<-20%" + (thrustTOMode === 2 ? " <SEL>" : ""), (thrustClimbMode === 2 ? "<SEL> " : "") + "CLB 2>"],
+            ["<-20%" + (thrustTOMode === 2 ? " <-" : ""), (thrustClimbMode === 2 ? "-> " : "") + "CLB 2>"],
             [""],
-            ["\<TO-B"],
+            ["<TO-B"],
             ["__FMCSEPARATOR"],
             ["\<INDEX", "TAKEOFF>"]
         ]);

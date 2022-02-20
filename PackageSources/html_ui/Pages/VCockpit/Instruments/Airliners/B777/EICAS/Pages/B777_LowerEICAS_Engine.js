@@ -16,9 +16,8 @@ var B747_8_LowerEICAS_Engine;
             var stateParent = this.querySelector("#EngineStates");
             var n2Parent = this.querySelector("#N2Gauges");
             var ffParent = this.querySelector("#FFGauges");
-            for (var engine = 1; engine <= Simplane.getEngineCount(); ++engine) {
-                this.allEngineInfos.push(new EngineInfo(this.eicas, engine, stateParent, n2Parent, ffParent));
-            }
+            this.allEngineInfos.push(new EngineInfo(this.eicas, 1, stateParent, n2Parent, ffParent));
+            this.allEngineInfos.push(new EngineInfo(this.eicas, 2, stateParent, n2Parent, ffParent));
             this.createOilPGauges();
             this.createOilTGauges();
             this.createOilQGauges();
