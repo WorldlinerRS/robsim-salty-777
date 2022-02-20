@@ -1731,7 +1731,7 @@ class FMCMainDisplay extends BaseAirliners {
                 let altitude = SimVar.GetSimVarValue("PLANE ALTITUDE", "feet");
                 let cruiseFlightLevel = this.cruiseFlightLevel * 100;
                 if (isFinite(cruiseFlightLevel)) {
-                    if (altitude >= 0.98 * cruiseFlightLevel) {
+                    if (altitude >= 0.96 * cruiseFlightLevel) {
                         this.currentFlightPhase = FlightPhase.FLIGHT_PHASE_CRUISE;
                         this.flightPhaseHasChangedToCruise = true;
                     }
@@ -1752,6 +1752,17 @@ class FMCMainDisplay extends BaseAirliners {
                     let todDistance = SimVar.GetSimVarValue("L:WT_CJ4_TOD_REMAINING", "number");
                     if (todDistance < 1 && todDistance !== 0) {
                         this.currentFlightPhase = FlightPhase.FLIGHT_PHASE_DESCENT;
+                    }
+                }
+            }
+            if (this.currentFlightPhase != FlightPhase.FLIGHT_PHASE_APPROACH) {
+                if (this.flightPlanManager.decelWaypoint) {
+                    let lat = SimVar.GetSimVarValue('PLANE LATITUDE', 'degree latitude');
+                    let long = Simplane.getCurrentLon();
+                    let planeLla = new LatLongAlt(lat, long);
+                    let dist = Avionics.Utils.computeGreatCircleDistance(this.flightPlanManager.decelWaypoint.infos.coordinates, planeLla);
+                    if (dist < 3) {
+                        this.tryGoInApproachPhase();
                     }
                 }
             }
