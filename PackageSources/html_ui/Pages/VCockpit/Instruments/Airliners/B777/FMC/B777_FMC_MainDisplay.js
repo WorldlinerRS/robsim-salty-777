@@ -641,7 +641,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         if (_cduPageEconRequest) {
             return speed;
         }
-        if (altitude <= 10700) {
+        if (altitude <= 10500) {
             if (machMode && !isSpeedIntervention) {
                 this.managedMachOff();
             }
@@ -730,6 +730,10 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             return (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots") * 1.15) + 5;
         }
         return (SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") * 1.15) + 5;
+    }
+    getCleanApproachSpeed() {
+        let cleanApproachSpeed = SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 80;
+        return cleanApproachSpeed;
     }
 
     /* Turns off VNAV Mach speed mode */
@@ -904,7 +908,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     getThrustClimbLimit() {
         let altitude = Simplane.getAltitude();
         let temperature = SimVar.GetSimVarValue("AMBIENT TEMPERATURE", "celsius");
-        let n1 = this.getClimbThrustN1(temperature, altitude) - this.getThrustCLBMode() * 8.6;;
+        let n1 = this.getClimbThrustN1(temperature, altitude) - this.getThrustCLBMode() * 8.6;
         return n1;
     }
     updateAutopilot() {
@@ -1024,19 +1028,18 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             if (this.currentFlightPhase === FlightPhase.FLIGHT_PHASE_TAKEOFF) {
                 if (this.getIsVNAVActive()) {
                     let speed = this.getTakeOffManagedSpeed();
+                    this.setAPManagedSpeed(speed, Aircraft.B747_8);
                     //Sets CLB Thrust when passing thrust reduction altitude
-                    let altitude = Simplane.getAltitudeAboveGround();
-                    let accelAlt = SimVar.GetSimVarValue("L:AIRLINER_ACC_ALT", "number");
-                    let n1 = 99
-                    if (altitude < accelAlt) {
+                    let alt = Simplane.getAltitudeAboveGround();
+                    let thrRedAlt = SimVar.GetSimVarValue("L:AIRLINER_THR_RED_ALT", "number");
+                    let n1 = 99;
+                    if (alt < thrRedAlt) {
                         n1 = this.getThrustTakeOffLimit() / 100;
-                        this.setAPManagedSpeed(speed, Aircraft.B747_8);
                         SimVar.SetSimVarValue("AUTOPILOT THROTTLE MAX THRUST", "number", n1);
                     }  
                     else {
                         n1 = this.getThrustClimbLimit() / 100;
                         speed = this.getClbManagedSpeed();
-                        this.setAPManagedSpeed(speed, Aircraft.B747_8);
                         SimVar.SetSimVarValue("AUTOPILOT THROTTLE MAX THRUST", "number", n1);
                     }
                 }
@@ -1045,9 +1048,9 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                 if (this.getIsVNAVActive()) {
                     let speed = this.getClbManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);
-                    let altitude = Simplane.getAltitudeAboveGround();
+                    let alt = Simplane.getAltitudeAboveGround();
                     let n1 = 99;
-                    if (altitude < this.thrustReductionAltitude) {
+                    if (alt < this.thrustReductionAltitude) {
                         n1 = this.getThrustTakeOffLimit() / 100;
                     }
                     else {
@@ -1060,9 +1063,9 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                 if (this.getIsVNAVActive()) {
                     let speed = this.getCrzManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);
-                    let altitude = Simplane.getAltitudeAboveGround();
+                    let alt = Simplane.getAltitudeAboveGround();
                     let n1 = 100;
-                    if (altitude < this.thrustReductionAltitude) {
+                    if (alt < this.thrustReductionAltitude) {
                         n1 = this.getThrustTakeOffLimit() / 100;
                     }
                     else {

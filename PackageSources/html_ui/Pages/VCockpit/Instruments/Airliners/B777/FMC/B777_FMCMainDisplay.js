@@ -1358,7 +1358,7 @@ class FMCMainDisplay extends BaseAirliners {
     setTakeOffFlap(s) {
         let value = Number.parseInt(s);
         if (isFinite(value)) {
-            if (value === 5  || value === 15) {
+            if (value === 5  || value === 15 || value === 20) {
                 SimVar.SetSimVarValue("L:SALTY_TAKEOFF_FLAP_VALUE", "number", value);
                 this._takeOffFlap = value;
                 SimVar.SetSimVarValue("H:B747_8_EICAS_2_UPDATE_ECL", "bool", 1);
@@ -1752,17 +1752,6 @@ class FMCMainDisplay extends BaseAirliners {
                     let todDistance = SimVar.GetSimVarValue("L:WT_CJ4_TOD_REMAINING", "number");
                     if (todDistance < 1 && todDistance !== 0) {
                         this.currentFlightPhase = FlightPhase.FLIGHT_PHASE_DESCENT;
-                    }
-                }
-            }
-            if (this.currentFlightPhase != FlightPhase.FLIGHT_PHASE_APPROACH) {
-                if (this.flightPlanManager.decelWaypoint) {
-                    let lat = SimVar.GetSimVarValue('PLANE LATITUDE', 'degree latitude');
-                    let long = Simplane.getCurrentLon();
-                    let planeLla = new LatLongAlt(lat, long);
-                    let dist = Avionics.Utils.computeGreatCircleDistance(this.flightPlanManager.decelWaypoint.infos.coordinates, planeLla);
-                    if (dist < 3) {
-                        this.tryGoInApproachPhase();
                     }
                 }
             }
