@@ -301,7 +301,7 @@ class B777_FMC_PayloadManager {
 			B777_FMC_PayloadManager.requestedPayload = this.getTotalPayload(true);
 		}
 		if (!B777_FMC_PayloadManager.requestedCenterOfGravity) {
-			B777_FMC_PayloadManager.requestedCenterOfGravity = 20.5;
+			B777_FMC_PayloadManager.requestedCenterOfGravity = 25.5;
 		}
 		if (!B777_FMC_PayloadManager.requestedFuel) {
 			B777_FMC_PayloadManager.requestedFuel = this.getTotalFuel();
@@ -483,11 +483,11 @@ class B777_FMC_PayloadManager {
 						this.calculateTanks(this.getTotalFuel());
 					}
 					if (B777_FMC_PayloadManager.requestedPayload) {
-						this.calculatePayload(B777_FMC_PayloadManager.requestedPayload)
+						this.calculatePayload(B777_FMC_PayloadManager.requestedPayload);
 						B777_FMC_PayloadManager.isPayloadManagerExecuted = false;
 					}
 					else {
-						this.calculatePayload(this.getTotalPayload(true))
+						this.calculatePayload(this.getTotalPayload(true));
 						B777_FMC_PayloadManager.isPayloadManagerExecuted = false;
 					}
 					this.showPage();
@@ -515,7 +515,7 @@ class B777_FMC_PayloadManager {
 		await this.resetPayload();
 		B777_FMC_PayloadManager.remainingPayload = requestedPayload;
 		let amount = 0;
-		let requestedCenterOfGravity = (B777_FMC_PayloadManager.requestedCenterOfGravity ? B777_FMC_PayloadManager.requestedCenterOfGravity : 20.5);
+		let requestedCenterOfGravity = (B777_FMC_PayloadManager.requestedCenterOfGravity ? B777_FMC_PayloadManager.requestedCenterOfGravity : 25.5);
 		while (B777_FMC_PayloadManager.remainingPayload > 0) {
 			B777_FMC_PayloadManager.centerOfGravity = this.getCenterOfGravity();
 			if (B777_FMC_PayloadManager.remainingPayload > 30000) {

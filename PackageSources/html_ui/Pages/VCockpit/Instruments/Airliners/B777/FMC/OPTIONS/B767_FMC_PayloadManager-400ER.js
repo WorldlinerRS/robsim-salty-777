@@ -481,11 +481,11 @@ class B777_FMC_PayloadManager {
 						this.calculateTanks(this.getTotalFuel());
 					}
 					if (B777_FMC_PayloadManager.requestedPayload) {
-						this.calculatePayload(B777_FMC_PayloadManager.requestedPayload)
+						this.calculatePayload(B777_FMC_PayloadManager.requestedPayload);
 						B777_FMC_PayloadManager.isPayloadManagerExecuted = false;
 					}
 					else {
-						this.calculatePayload(this.getTotalPayload(true))
+						this.calculatePayload(this.getTotalPayload(true));
 						B777_FMC_PayloadManager.isPayloadManagerExecuted = false;
 					}
 					this.showPage();
