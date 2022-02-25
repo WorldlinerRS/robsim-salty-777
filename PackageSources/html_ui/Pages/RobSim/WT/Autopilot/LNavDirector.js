@@ -72,20 +72,15 @@
 		const bank = Math.round(maxBank * Avionics.Utils.RAD2DEG);
 		switch (bank) {
 			case 30:
-				//return 32;
-				return 33;
+				return 32;
 			case 25:
-				//return 26.6;
-				return 28;
+				return 26.6;
 			case 20:
-				return 23;
-			//return 21.6;
+        return 21.6;
 			case 15:
-				//return 16.1;
-				return 18;
+        return 16.1;
 			case 10:
-				//return 11;
-				return 13;
+				return 11;
 		}
 	}
 
@@ -500,7 +495,7 @@
     SimVar.SetSimVarValue("L:WT_CJ4_XTK", "number", xtk);
     SimVar.SetSimVarValue("L:WT_CJ4_DTK", "number", correctedDtk);
 
-    const interceptAngle = AutopilotMath.interceptAngle(xtk, navSensitivity, 20);
+    const interceptAngle = AutopilotMath.interceptAngle(xtk, navSensitivity);
     const bearingToWaypoint = Avionics.Utils.computeGreatCircleHeading(planeState.position, legEnd);
     const deltaAngle = Math.abs(Avionics.Utils.diffAngle(dtk, bearingToWaypoint));
 
@@ -704,7 +699,7 @@ class LNavDirectorOptions {
 		this.maxBankAngle = 30;
 
 		/** The rate of bank in degrees per second. */
-		this.bankRate = 3;
+		this.bankRate = 2.5;
 
     /** The maximum turn angle in degrees to calculate turn anticipation to. */
     this.maxTurnAnticipationAngle = 110;
@@ -713,7 +708,7 @@ class LNavDirectorOptions {
     this.maxTurnAnticipationDistance = (planeState) => planeState.trueAirspeed < 350 ? 7 : 10;
 
     /** The number of degrees left in the turn that turn completion will stop and rollout/tracking will begin. */
-    this.degreesRollout = 20;
+    this.degreesRollout = 15;
   }
 }
 
