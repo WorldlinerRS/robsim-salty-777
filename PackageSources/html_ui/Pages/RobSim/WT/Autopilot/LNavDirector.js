@@ -47,99 +47,6 @@
     this.previousDeviation = 0;
   }
 
-  /*
-		calculateRateOfTurn(maxBank) {
-			const trueSpeed = Simplane.getTrueSpeed();
-			const magic = 1091;
-			const correction = 0.4;
-			const rateOfTurn = (magic * Math.tan(maxBank)) / trueSpeed;
-
-			return [rateOfTurn, rateOfTurn + correction];
-			//return (magic * Math.tan(maxBank)) / trueSpeed;
-		}
-	*/
-
-	calculateRateOfTurn(maxBank) {
-		const trueSpeed = Simplane.getTrueSpeed();
-		const magic = 1091;
-		const correction = 0.4;
-		const rateOfTurn = (magic * Math.tan(maxBank)) / trueSpeed;
-
-		return [rateOfTurn];
-	}
-
-	getfixedMaxBank(maxBank) {
-		const bank = Math.round(maxBank * Avionics.Utils.RAD2DEG);
-		switch (bank) {
-			case 30:
-				return 32;
-			case 25:
-				return 26.6;
-			case 20:
-        return 21.6;
-			case 15:
-        return 16.1;
-			case 10:
-				return 11;
-		}
-	}
-
-	resolveBankKnobPosition() {
-		const maxBank = SimVar.GetSimVarValue('AUTOPILOT MAX BANK', 'Radians');
-		this.options.maxBankAngle = this.getfixedMaxBank(maxBank);
-
-		this.options.degreesRollout = this.options.maxBankAngle / 2;
-
-		const rateOfTurn = this.calculateRateOfTurn(this.options.maxBankAngle * Avionics.Utils.DEG2RAD);
-		this.options.bankRate = rateOfTurn[0];
-
-		//console.log("RATE delta: " + Math.abs(Simplane.getTurnRate() * Avionics.Utils.RAD2DEG - rateOfTurn[0]));
-		//console.log('Max aircraft bank: ' + this.options.maxBankAngle);
-		//console.log('Calculated bank rate (REAL): ' + rateOfTurn[0]);
-		//console.log('Calculated bank rate (CORRECTION): ' + rateOfTurn[1]);
-		//console.log('MSFS turn rate: ' + Simplane.getTurnRate() * Avionics.Utils.RAD2DEG);
-		/**
-		 * BANK LIMIT fix
-		 */
-		/*
-		switch (SimVar.GetSimVarValue('A:AUTOPILOT MAX BANK ID', 'Number')) {
-			case 0:
-
-				this.options.maxBankAngle = 30;
-				this.options.bankRate = 3;
-				break;
-			case 1:
-				this.options.maxBankAngle = 25;
-				this.options.bankRate = 2.4;
-				break;
-			case 2:
-				this.options.maxBankAngle = 20;
-				this.options.bankRate = 1.7;
-				break;
-			case 3:
-				this.options.maxBankAngle = 15;
-				this.options.bankRate = 1.25;
-				break;
-			case 4:
-				this.options.maxBankAngle = 10;
-				this.options.bankRate = 0.8;
-				break;
-			case 5:
-				if (Simplane.getIndicatedSpeed() > 250) {
-					this.options.maxBankAngle = 25;
-					this.options.bankRate = 2.2;
-				} else {
-					this.options.maxBankAngle = 15;
-					this.options.bankRate = 1.25;
-				}
-				break;
-			default:
-				this.options.maxBankAngle = 30;
-				this.options.bankRate = 3;
-		}
-		*/
-	}
-
   /**
    * Updates the LNavDirector.
    */
@@ -150,17 +57,6 @@
     }
 
     if (this.activeFlightPlan) {
-
-      this.resolveBankKnobPosition();
-
-			/**
-			 * Only for DEBUG purpose
-			 */
-			if (this.sequencingMode === FlightPlanSequencing.AUTO) {
-				SimVar.SetSimVarValue('L:WT_CJ4_SEQUENCING', 'number', 1);
-			} else {
-				SimVar.SetSimVarValue('L:WT_CJ4_SEQUENCING', 'number', 0);
-			}
       const previousWaypoint = this.activeFlightPlan.getWaypoint(this.activeFlightPlan.activeWaypointIndex - 1);
       const activeWaypoint = this.activeFlightPlan.getWaypoint(this.activeFlightPlan.activeWaypointIndex);
 
@@ -333,13 +229,6 @@
     const turnAnticipationAngle = Math.min(this.options.maxTurnAnticipationAngle, Math.abs(turnAngle)) * Avionics.Utils.DEG2RAD;
     return Math.min((turnRadius * Math.abs(Math.tan(turnAnticipationAngle / 2))) + enterBankDistance, this.options.maxTurnAnticipationDistance(planeState));
   }
-
-  static turnRadiusTest(airspeedTrue, bankAngle) {
-		// Normal turn radius formula
-		// R =v^2/(11.23*tan(0.01745*b))
-		return (Math.pow(airspeedTrue, 2) / (11.26 * Math.tan(bankAngle * Avionics.Utils.DEG2RAD)))
-			/ 6076.1093456638;
-	}
 
   /**
    * Handles when the flight plan version changes.
