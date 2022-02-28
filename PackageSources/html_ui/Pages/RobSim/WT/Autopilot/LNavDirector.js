@@ -105,7 +105,7 @@
       const planeToActiveBearing = planeLatLon.initialBearingTo(activeLatLon);
       const nextStartTrack = nextWaypoint ? activeLatLon.initialBearingTo(nextLatLon) : planeToActiveBearing;
 
-      const anticipationDistance = this.getAnticipationDistance(planeState, Avionics.Utils.diffAngle(planeToActiveBearing, nextStartTrack)) * 0.9;
+      const anticipationDistance = this.getAnticipationDistance(planeState, Avionics.Utils.diffAngle(planeToActiveBearing, nextStartTrack));
       if (!nextWaypoint || !nextWaypoint.isFlyover) {
         this.alertIfClose(planeState, distanceToActive, anticipationDistance);
 
@@ -345,7 +345,7 @@
     const armedState = this.navModeSelector.currentLateralArmedState;
     const agl = Simplane.getAltitudeAboveGround();
     if ((armedState === LateralNavModeState.LNAV || (armedState === LateralNavModeState.APPR && this.navModeSelector.approachMode === WT_ApproachType.RNAV))
-      && !planeState.onGround && agl > 50) {
+      && !planeState.onGround && agl > 400) {
       const xtk = AutopilotMath.crossTrack(legStart, legEnd, planeState.position);
       let activationXtk = 1.9;
 
@@ -588,7 +588,7 @@ class LNavDirectorOptions {
 		this.maxBankAngle = 30;
 
 		/** The rate of bank in degrees per second. */
-		this.bankRate = 2.5;
+		this.bankRate = 5;
 
     /** The maximum turn angle in degrees to calculate turn anticipation to. */
     this.maxTurnAnticipationAngle = 110;
