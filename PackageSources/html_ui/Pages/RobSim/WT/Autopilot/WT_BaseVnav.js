@@ -147,7 +147,7 @@ class WT_BaseVnav {
     }
 
     get vnavTargetFPA() {
-        return WTDataStore.get('CJ4_vpa', 3);
+        return WTDataStore.get("CJ4_vpa", 3);
     }
 
     get constraintValue() {
@@ -216,13 +216,17 @@ class WT_BaseVnav {
                 if (this._fpm.isLoadedApproach()) {
                     this._approachGlidePath = this.buildGlidepath();
 
-                } else { this._approachGlidePath = undefined; }
+                } else { 
+                    this._approachGlidePath = undefined; 
+                }
 
                 this._fpChecksum = this.flightplan.checksum;
             }
 
             if (this._vnavState === VnavState.DIRECT) {
-                const directWaypoint = this.currentWaypoints.find(w => { return (w && w.ident === this._verticalDirectWaypoint.ident); });
+                const directWaypoint = this.currentWaypoints.find(w => { 
+                        return (w && w.ident === this._verticalDirectWaypoint.ident); 
+                    });
                 if (!directWaypoint) {
                     this._vnavState = VnavState.PATH;
                 }
@@ -230,6 +234,7 @@ class WT_BaseVnav {
 
             this.manageConstraints();
             this.calculateTod();
+            this.calculateAdvisoryDescent();
         }
     }
 
@@ -263,7 +268,9 @@ class WT_BaseVnav {
     }
 
     reactivateVerticalDirect() {
-        const directWaypoint = this.allWaypoints.find(w => { return (w && w.ident === this._verticalDirectWaypoint.ident); });
+        const directWaypoint = this.allWaypoints.find(w => { 
+            return (w && w.ident === this._verticalDirectWaypoint.ident); 
+        });
         if (directWaypoint) {
             const directWaypointIndex = this.allWaypoints.indexOf(directWaypoint);
             let constraintAddedBeforeDirectWaypoint = false;
@@ -290,7 +297,7 @@ class WT_BaseVnav {
 
     cancelVerticalDirectTo() {
         this._verticalDirectWaypoint = undefined;
-        this._pathExists = buildVerticalFlightPlan();
+        this._pathExists = this.buildVerticalFlightPlan();
     }
 
     buildVerticalFlightPlan(verticalDirect = false, vDirectTargetIndex, vDirectAltitude, vDirectFpa) {
@@ -792,31 +799,58 @@ class WT_BaseVnav {
         }
         if (this._fmc._currentVerticalAutopilot && this._fmc._currentVerticalAutopilot._vnavPathStatus && (this._fmc._currentVerticalAutopilot._vnavPathStatus == VnavPathStatus.PATH_ACTIVE
             || this._fmc._currentVerticalAutopilot._glidepathStatus == GlidepathStatus.GP_ACTIVE || this._fmc._currentVerticalAutopilot._glideslopeStatus == GlideslopeStatus.GS_ACTIVE)) {
-            todExists = false;
-        }
-        else if (this._firstPathSegment < 0 || !this._verticalFlightPlan[this.flightplan.activeWaypointIndex]) {
-            todExists = false;
-        }
-        altitude = SimVar.GetSimVarValue("L:AIRLINER_CRUISE_ALTITUDE", "number");
-        if (currentSegment >= 0) {
-            const fptaIdx = this._verticalFlightPlan.findIndex(x => (x.waypointFPTA !== undefined && !x.isClimb && x.waypointFPTA < altitude + 100 && x.indexInFlightPlan >= this.flightplan.activeWaypointIndex));
-            if (fptaIdx > -1) {
-                const fptaSegment = this._verticalFlightPlan[fptaIdx].segment;
-                if (fptaSegment !== undefined) {
-                    fpta = this._verticalFlightPlan[this._verticalFlightPlanSegments[fptaSegment].targetIndex].waypointFPTA;
-                    fpa = this._verticalFlightPlanSegments[fptaSegment].fpa;
-                    const descentDistance = AutopilotMath.calculateDescentDistance(fpa, altitude - fpta);
-                    todDistanceInFP = this.allWaypoints[this._verticalFlightPlanSegments[fptaSegment].targetIndex].cumulativeDistanceInFP - descentDistance;
-                    todExists = true;
+            todExists = false;		
+            } 
+            else if (this._firstPathSegment < 0 || !this._verticalFlightPlan[this.flightplan.activeWaypointIndex]) {
+                todExists = false;
+            }
+            altitude = SimVar.GetSimVarValue("L:AIRLINER_CRUISE_ALTITUDE", "number");
+            if (currentSegment >= 0) {
+                const fptaIdx = this._verticalFlightPlan.findIndex(x => (x.waypointFPTA !== undefined && !x.isClimb && x.waypointFPTA < altitude + 100 && x.indexInFlightPlan >= this.flightplan.activeWaypointIndex));
+                if (fptaIdx > -1) {
+                    const fptaSegment = this._verticalFlightPlan[fptaIdx].segment;
+                    if (fptaSegment !== undefined) {
+                        fpta = this._verticalFlightPlan[this._verticalFlightPlanSegments[fptaSegment].targetIndex].waypointFPTA;
+                        fpa = this._verticalFlightPlanSegments[fptaSegment].fpa;
+                        const descentDistance = AutopilotMath.calculateDescentDistance(fpa, altitude - fpta);
+                        todDistanceInFP = this.allWaypoints[this._verticalFlightPlanSegments[fptaSegment].targetIndex].cumulativeDistanceInFP - descentDistance;
+                        todExists = true;
+                    }
                 }
             }
-        }
         if (todExists) {
             this.setTodWaypoint(true, todDistanceInFP);
         } else {
             this.setTodWaypoint();
         }
     }
+
+    calculateAdvisoryDescent() { //Creates a point when VNAV is not available to start descent to reach 1500" AGL 10nm from airport
+		if (this.vnavState == VnavState.NONE) {
+			if (this.destination && this._fmc.cruiseFlightLevel && !Simplane.getIsGrounded()) {
+				const elevation = parseFloat(this.destination.infos.oneWayRunways[0].elevation) * 3.28;
+				const altitude = this._fmc.cruiseFlightLevel * 100;
+				const verticalDistance = (altitude - elevation) - 1500;
+				const horizontalDescentDistance = ((verticalDistance / Math.tan(3 * Math.PI / 180)) / 6076.12) + 10;
+				const distanceToTod = (this.destination.cumulativeDistanceInFP - horizontalDescentDistance) - this._currentDistanceInFP;
+				const WT_CJ4_TOD_DISTANCE = SimVar.GetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number");
+				const WT_CJ4_TOD_REMAINING = SimVar.GetSimVarValue("L:WT_CJ4_TOD_REMAINING", "number");
+				const WT_CJ4_ADV_DES_ACTIVE = SimVar.GetSimVarValue("L:WT_CJ4_ADV_DES_ACTIVE", "number");
+				if (WT_CJ4_TOD_DISTANCE < horizontalDescentDistance - .1 || WT_CJ4_TOD_DISTANCE > horizontalDescentDistance + .1) {
+					SimVar.SetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number", horizontalDescentDistance);
+				}
+				if (WT_CJ4_TOD_REMAINING < distanceToTod - .1 || WT_CJ4_TOD_REMAINING > distanceToTod + .1) {
+					SimVar.SetSimVarValue("L:WT_CJ4_TOD_REMAINING", "number", distanceToTod);
+				}
+				const desActive = distanceToTod > .1 ? 1 : 0;
+				if (WT_CJ4_ADV_DES_ACTIVE != desActive) {
+					SimVar.SetSimVarValue("L:WT_CJ4_ADV_DES_ACTIVE", "number", distanceToTod > .1 ? 1 : 0);
+				}
+			}
+		} else {
+			SimVar.SetSimVarValue("L:WT_CJ4_ADV_DES_ACTIVE", "number", 0);
+		}
+	}
 
     setTodWaypoint(calculate = false, todDistanceInFP) {
 
@@ -843,12 +877,12 @@ class WT_BaseVnav {
     //         gpExists: this._gpExists,
     //         gpAngle: this._gpAngle
     //     };
-    //     WTDataStore.set('CJ4_vnavValues', JSON.stringify(vnavValues));
+    //     WTDataStore.set("CJ4_vnavValues", JSON.stringify(vnavValues));
     // }
 
     // writeMonitorValues() {
     //     if (this._vnavTargetWaypoint) {
-    //         WTDataStore.set('CJ4_vnavTargetWaypoint', this._vnavTargetWaypoint.ident);
+    //         WTDataStore.set("CJ4_vnavTargetWaypoint", this._vnavTargetWaypoint.ident);
     //     }
     // }
 
@@ -886,7 +920,7 @@ class WT_BaseVnav {
 class VerticalWaypoint {
     constructor(index = undefined, ident = undefined, isClimb = false) {
         /** 
-         * The waypoint's index in the lateral flight plan. 
+         * The waypoint"s index in the lateral flight plan. 
          * @type {number}
          */
         this.indexInFlightPlan = index;
@@ -1014,6 +1048,6 @@ class PathSegment {
  * VNAV States.
  */
 class VnavState { }
-VnavState.NONE = 'NONE';
-VnavState.PATH = 'PATH';
-VnavState.DIRECT = 'DIRECT';
+VnavState.NONE = "NONE";
+VnavState.PATH = "PATH";
+VnavState.DIRECT = "DIRECT";

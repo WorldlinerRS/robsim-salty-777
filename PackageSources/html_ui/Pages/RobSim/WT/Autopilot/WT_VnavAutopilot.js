@@ -295,7 +295,7 @@ class WT_VerticalAutopilot {
                 break;
             case VnavPathStatus.PATH_EXISTS:
                 if (this.canPathArm()) {
-                    console.log("path arm");
+					console.log("path arm");
                     this._vnavPathStatus = VnavPathStatus.PATH_ARMED;
                 } else {
                     this.checkPreselector();
@@ -307,7 +307,7 @@ class WT_VerticalAutopilot {
                     break;
                 }
                 if (this.canPathActivate()) {
-                    console.log("path activate");
+					console.log("path activate");
                     this._vnavPathStatus = VnavPathStatus.PATH_ACTIVE;
                     this.verticalMode = VerticalNavModeState.PATH;
                     this._navModeSelector.activateSpeedMode();
@@ -545,7 +545,7 @@ class WT_VerticalAutopilot {
     }
 
     canGlidepathActivate() {
-        const gsBasedDeviation = -1 * (((this.groundSpeed && this.groundSpeed > 100 ? this.groundSpeed : 200) * (4 / 11)) + (750/11));
+        const gsBasedDeviation = -1 * (((this.groundSpeed && this.groundSpeed > 100 ? this.groundSpeed : 200) * (4 / 11)) + (750 / 11));
         if (this.glidepath.deviation < 100 && this.glidepath.deviation > gsBasedDeviation) {
             return true;
         }
@@ -1079,7 +1079,7 @@ class WT_VerticalAutopilot {
         if (isGlidepathActive || isPathActive) {
             if (this._pathInterceptStatus === PathInterceptStatus.LEVELED) {
                 newSnowflakeStatus = false;
-            } else if (this.path.deviation) {
+            } else if (this.path.deviation && Math.abs(this.path.deviation) < 1000) {
                 newSnowflakeStatus = true;
             } else {
                 newSnowflakeStatus = false;
@@ -1136,7 +1136,7 @@ class WT_VerticalAutopilot {
     }
 
     isClimb() {
-        switch(this.verticalMode) {
+        switch (this.verticalMode) {
             case VerticalNavModeState.VS:
                 if (this.vsSlot1Value > 0) {
                     return true;
@@ -1179,12 +1179,12 @@ class WT_VerticalAutopilot {
         const altCap = {
             altitude: targetAltitude,
             mode: mode
-        }
+        };
         // console.log("isClimb && this.indicatedAltitude < targetAltitude " + this.indicatedAltitude + " " + targetAltitude);
         // console.log("isClimb " + isClimb);
         // console.log("this.verticalMode " + this.verticalMode);
 
-        switch(this.verticalMode) {
+        switch (this.verticalMode) {
             case VerticalNavModeState.VS:
             case VerticalNavModeState.FLC:
             case VerticalNavModeState.PTCH:
@@ -1279,7 +1279,7 @@ class WT_VerticalAutopilot {
                 this._altInterceptValues = false;
                 this._lastUpdateTime = undefined;
                 this._navModeSelector.pressureAltitudeTarget = altitude;
-                switch(this.verticalMode) {
+                switch (this.verticalMode) {
                     case VerticalNavModeState.ALTCAP:
                         this.verticalMode = VerticalNavModeState.ALT;
                         break;
@@ -1301,7 +1301,7 @@ class WT_VerticalAutopilot {
             value: undefined,
             altitude: altitude
         };
-        switch(mode) {
+        switch (mode) {
             case VerticalNavModeState.VS:
                 priorVerticalModeState.value = this.vsSlot1Value;
                 break;
@@ -1370,7 +1370,7 @@ class WT_VerticalAutopilot {
                 this.simAltSet = -5000;
             }
         }
-        switch(this.verticalMode) {
+        switch (this.verticalMode) {
             case VerticalNavModeState.ALT:
             case VerticalNavModeState.ALTS:
             case VerticalNavModeState.ALTV:
@@ -1611,7 +1611,7 @@ ConstraintStatus.PASSED = 'PASSED';
 
 class AltitudeCaptureStatus { }
 AltitudeCaptureStatus.CAPTURING_CLIMB = 'CAPTURING_CLIMB';
-AltitudeCaptureStatus.CAPTURING_DESCENT = 'OCAPTURING_DESCENT';
+AltitudeCaptureStatus.CAPTURING_DESCENT = 'CAPTURING_DESCENT';
 AltitudeCaptureStatus.CAPTURED = 'CAPTURED';
 AltitudeCaptureStatus.LEVEL = 'LEVEL';
 AltitudeCaptureStatus.WATCHING = 'WATCHING';

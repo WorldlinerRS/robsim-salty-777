@@ -1122,8 +1122,8 @@
 			</UseTemplate>
 			<Component ID="HANDLING_Lever_Spoilers_Helper">
 				<DefaultTemplateParameters>
-					<FRAME_ARMED>0</FRAME_ARMED>
-					<FRAME_RET>1</FRAME_RET>
+					<FRAME_ARMED>1</FRAME_ARMED>
+					<FRAME_RET>0</FRAME_RET>
 					<FRAME_HALF>5</FRAME_HALF>
 					<FRAME_FULL>9</FRAME_FULL>
 					<FRAME_COUNT>9</FRAME_COUNT>
@@ -1132,29 +1132,28 @@
 					<NODE_ID>lever_speed_brake</NODE_ID>
 					<ANIM_NAME>speed_brake_lever</ANIM_NAME>
 					<TYPE>AIRLINER</TYPE>
-								 
 					<PHYSICAL_AUTOSPOILER>True</PHYSICAL_AUTOSPOILER>
 					<RETRACT_ARMED_FULL>True</RETRACT_ARMED_FULL>
 					<STEPS_NUMBER>3</STEPS_NUMBER>
-					<DRAG_SPEED>10</DRAG_SPEED>																									 
+					<DRAG_SPEED>10</DRAG_SPEED>
 					<!-- The animation is not linear, there is some extra keyframes so we must re-interpolate -->
 					<OVERRIDE_ANIM_CODE>
-						(A:SPOILERS ARMED, Bool) if{ 0 } els{
+						(A:SPOILERS ARMED, Bool) if{ #FRAME_ARMED# sp0 } els{
 							(O:Position) sp1
 							l1 1 &lt; if{
-								#FRAME_RET# #FRAME_ARMED# - l1 * sp0
+								#FRAME_RET# sp0
 							} els{
 								l1 2 &lt; if{
-									#FRAME_HALF# #FRAME_RET# - l1 1 - * #FRAME_RET# + sp0
+									#FRAME_HALF# #FRAME_ARMED# - l1 1 - * #FRAME_ARMED# + sp0
 								} els{
 									#FRAME_FULL# #FRAME_HALF# - l1 2 - * #FRAME_HALF# + sp0
 								}
 							}
-							l0 #FRAME_COUNT# / 100 *
-						}	  
+						}
+						l0 #FRAME_COUNT# / 100 *
 					</OVERRIDE_ANIM_CODE>
 					<OVERRIDE_NEW_POSITION>
-						#FRAME_RET# #FRAME_COUNT# / sp5
+						#FRAME_ARMED# #FRAME_COUNT# / sp5
 						#FRAME_HALF# #FRAME_COUNT# / sp6
 						(M:DragPercent) l5 &lt; if{
 							(M:DragPercent) l5 / sp0
@@ -1165,8 +1164,7 @@
 							} els{
 								(M:DragPercent) l6 - 1 l6 - / 2 + sp0
 							}
-						}
-            l0
+						} l0
 					</OVERRIDE_NEW_POSITION>
 					<INVERT_IM_DRAG_INPUT_SCALAR>True</INVERT_IM_DRAG_INPUT_SCALAR>
 				</UseTemplate>
@@ -2101,11 +2099,13 @@
 					<UseTemplate Name="ASOBO_ENGINE_Switch_Hydraulic_Template">
 						<NODE_ID>push_ovhd_hyd_pump_switch_01</NODE_ID>
 						<ANIM_NAME>ovhd_push_hyd_pump_switch_01</ANIM_NAME>
+            <TT_DESCRIPTION_INDEX>1</TT_DESCRIPTION_INDEX>
 						<ID>1</ID>
 					</UseTemplate>
 					<UseTemplate Name="ASOBO_ENGINE_Switch_Hydraulic_Template">
 						<NODE_ID>push_ovhd_hyd_pump_switch_02</NODE_ID>
 						<ANIM_NAME>ovhd_push_hyd_pump_switch_02</ANIM_NAME>
+            <TT_DESCRIPTION_INDEX>2</TT_DESCRIPTION_INDEX>
 						<ID>2</ID>
 					</UseTemplate>
 					<UseTemplate Name="ASOBO_ENGINE_Switch_Hydraulic_Template">
@@ -2245,6 +2245,7 @@
 					<INVERT_ANIM>True</INVERT_ANIM>
 					<ANIMTIP_0>TT:COCKPIT.TOOLTIPS.STARTER_1_SET_OFF</ANIMTIP_0>
 					<ANIMTIP_1>TT:COCKPIT.TOOLTIPS.STARTER_1_SET_ON</ANIMTIP_1>
+          <TT_ICON>MOVE_Y</TT_ICON>
 				</UseTemplate>
 				<UseTemplate Name="ASOBO_ENGINE_Switch_Starter_Template">
 					<NODE_ID>switch_ovhd_start_fuel_engine_light_02</NODE_ID>
@@ -2260,6 +2261,7 @@
 					<INVERT_ANIM>True</INVERT_ANIM>
 					<ANIMTIP_0>TT:COCKPIT.TOOLTIPS.STARTER_2_SET_OFF</ANIMTIP_0>
 					<ANIMTIP_1>TT:COCKPIT.TOOLTIPS.STARTER_2_SET_ON</ANIMTIP_1>
+          <TT_ICON>MOVE_Y</TT_ICON>
 				</UseTemplate>
 				<UseTemplate Name="ASOBO_ENGINE_Switch_Starter_Template">
           <!--777 INOP-->
@@ -3463,6 +3465,8 @@
           <NODE_ID>wheel_autopilot_vert_speed</NODE_ID>
           <ANIM_NAME>autopilot_wheel_vert_speed</ANIM_NAME>
           <UP_DEC_DN_INC>True</UP_DEC_DN_INC>
+          <INTERACTION_AXIS>Y</INTERACTION_AXIS>
+					<TT_ICON>MOVE_AXIS_Y</TT_ICON>
         </UseTemplate>
         <!-- SALTY 747 BUTTONS -->
         <UseTemplate Name="ASOBO_BOEING_Push_Heading_Track_Template">
@@ -5762,6 +5766,10 @@
           <FAILURE>(A:LIGHT PANEL ON:1, Bool)</FAILURE>
           <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:1</SIMVAR_POWER_SETTING>
         </DefaultTemplateParameters>
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+          <NODE_ID>O01_002_BUT</NODE_ID>
+          <ID>1</ID>
+        </UseTemplate>
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
           <NODE_ID>knob_ovhd_electrics_apu_text</NODE_ID>
           <DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
