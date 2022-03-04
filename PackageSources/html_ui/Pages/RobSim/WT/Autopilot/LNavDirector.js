@@ -699,7 +699,7 @@ class LNavDirectorOptions {
     this.minimumTrackingDistance = 1;
 
 		/** The maximum bank angle of the aircraft. */
-		this.maxBankAngle = 30;
+		this.maxBankAngle = 25;
 
 		/** The rate of bank in degrees per second. */
 		this.bankRate = 3;
