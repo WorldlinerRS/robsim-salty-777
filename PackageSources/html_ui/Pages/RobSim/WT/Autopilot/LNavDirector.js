@@ -182,6 +182,9 @@
       if (!this.delegateToHoldsDirector(activeWaypoint) && activeWaypoint && previousWaypoint) {
         this.generateGuidance(activeWaypoint, planeState, previousWaypoint, navSensitivity, navSensitivityScalar);
       }
+      else {
+        this.delegateToLocDirector();
+      }
     }
   }
 
@@ -214,7 +217,7 @@
       const planeToActiveBearing = planeLatLon.initialBearingTo(activeLatLon);
       const nextStartTrack = nextWaypoint ? activeLatLon.initialBearingTo(nextLatLon) : planeToActiveBearing;
 
-      const anticipationDistance = this.getAnticipationDistance(planeState, Avionics.Utils.diffAngle(planeToActiveBearing, nextStartTrack)) * 0.9;
+      const anticipationDistance = this.getAnticipationDistance(planeState, Avionics.Utils.diffAngle(planeToActiveBearing, nextStartTrack));// * 0.9;
       if (!nextWaypoint || !nextWaypoint.isFlyover) {
         this.alertIfClose(planeState, distanceToActive, anticipationDistance);
 
@@ -313,8 +316,7 @@
     const armedState = this.navModeSelector.currentLateralArmedState;
     const activeState = this.navModeSelector.currentLateralActiveState;
 
-    if ((armedState === LateralNavModeState.APPR || activeState === LateralNavModeState.APPR)
-       && (this.navModeSelector.approachMode === WT_ApproachType.ILS || this.navModeSelector.lNavModeState === LNavModeState.NAV1 || this.navModeSelector.lNavModeState === LNavModeState.NAV2)) {
+    if (armedState === LateralNavModeState.APPR || activeState === LateralNavModeState.APPR) {
       this.locDirector.update();
       return this.locDirector.state === LocDirectorState.ACTIVE;
     }

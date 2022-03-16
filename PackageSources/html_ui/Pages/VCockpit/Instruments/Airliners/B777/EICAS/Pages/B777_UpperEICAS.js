@@ -103,6 +103,9 @@ var B747_8_UpperEICAS;
             if (this.flapsDisplay != null) {
                 this.flapsDisplay.update(_deltaTime);
             }
+            if (this.stabDisplay != null) {
+                this.stabDisplay.update(_deltaTime);
+            }
             if (this.allAntiIceStatus != null) {
                 for (var i = 0; i < this.allAntiIceStatus.length; ++i) {
                     if (this.allAntiIceStatus[i] != null) {
@@ -213,6 +216,12 @@ var B747_8_UpperEICAS;
                 if (this.redMarker != null) {
                     this.redMarker.setAttribute("transform", this.defaultMarkerTransform + " rotate(" + B777_EICAS_CircleGauge.MAX_ANGLE + ")");
                 }
+                if (this.orangeMarker != null) {
+                    diffAndSetStyle(this.orangeMarker, StyleProperty.display, 'none');
+                }
+                if (this.greenMarker != null) {
+                    diffAndSetStyle(this.greenMarker, StyleProperty.display, 'none');
+                }
             }
             this.refresh(0, true);
         }
@@ -237,7 +246,7 @@ var B747_8_UpperEICAS;
                 }
                 var angle = Math.max((this.valueToPercentage(this.currentValue) * 0.01) * B777_EICAS_CircleGauge.MAX_ANGLE, 0.001);
                 var angleo = Math.max((this.getN1LimitValue() * 0.01) * B777_EICAS_CircleGauge.MAX_ANGLE, 0.001);
-                var anglet = Math.max((this. getN1CommandedValue() * 0.01) * B777_EICAS_CircleGauge.MAX_ANGLE, 0.001);
+                var anglet = Math.max((this.getN1CommandedValue() * 0.01) * B777_EICAS_CircleGauge.MAX_ANGLE, 0.001);
                 
                 if (this.whiteMarker != null) {
                     this.whiteMarker.setAttribute("transform", this.defaultMarkerTransform + " rotate(" + angle + ")");
@@ -273,7 +282,7 @@ var B747_8_UpperEICAS;
     B777_EICAS_CircleGauge.MAX_ANGLE = 210;
     B777_EICAS_CircleGauge.WARNING_ANGLE = 202;
     B777_EICAS_CircleGauge.DEG_TO_RAD = (Math.PI / 180);
-    class B787_10_EICAS_Gauge_TPR extends B777_EICAS_CircleGauge {
+    class B777_EICAS_Gauge_TPR extends B777_EICAS_CircleGauge {
         getCurrentValue() {
             return Utils.Clamp(SimVar.GetSimVarValue("ENG PRESSURE RATIO:" + this.engineIndex, "ratio") * (100 / 1.7), 0, 100);
         }
