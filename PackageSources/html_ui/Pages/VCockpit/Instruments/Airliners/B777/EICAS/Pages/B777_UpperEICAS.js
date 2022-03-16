@@ -138,6 +138,36 @@ var B747_8_UpperEICAS;
             }
             return;
         }
+        updatePressurisationValues() {
+            if (SimVar.GetSimVarValue("L:XMLVAR_EICAS_CURRENT_PAGE", "Enum") !== 3) {
+                this.pressureInfo.style.visibility = "hidden";
+                return;
+            }
+            else {
+                this.pressureInfo.style.visibility = "visible";
+            }
+            this.cabinAlt.textContent = (Math.round(Simplane.getPressurisationCabinAltitude() / 100) * 100).toFixed(0);
+            this.cabinRate.textContent = (Math.round(Simplane.getPressurisationCabinAltitudeRate() / 100) * 100).toFixed(0);
+            let deltaPValue = Math.abs(Simplane.getPressurisationDifferential() * 10);
+            if (Math.round(deltaPValue) < 10) {
+                this.deltaP.textContent = "0" + deltaPValue.toFixed(0);
+            }
+            else {
+                this.deltaP.textContent = deltaPValue.toFixed(0);
+            }
+            return;
+        }
+        updateWeights() {
+            this.grossWeight.textContent = (this.getGrossWeightInMegagrams() * 10).toFixed(0);
+            this.totalFuel.textContent = (this.getTotalFuelInMegagrams() * 10).toFixed(0);
+            return;
+        }
+        getGrossWeightInMegagrams() {
+            if (this.units) {
+                return SimVar.GetSimVarValue("TOTAL WEIGHT", "kg") * 0.001;
+            }
+            return SimVar.GetSimVarValue("TOTAL WEIGHT", "lbs") * 0.001;
+        }
         getTotalFuelInMegagrams() {
             let factor = this.gallonToMegapounds;
             if (this.units)

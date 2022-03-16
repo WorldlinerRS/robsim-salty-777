@@ -189,6 +189,8 @@ b747-8-upper-eicas {
     fill: none;
     stroke: lime;
     stroke-width: 2px; }
+  b747-8-upper-eicas #StabInfo.inactive {
+    display: none; }
   b747-8-upper-eicas #PrimaryEngine {
     top: 20%;
     transform: scale(0.6); }
