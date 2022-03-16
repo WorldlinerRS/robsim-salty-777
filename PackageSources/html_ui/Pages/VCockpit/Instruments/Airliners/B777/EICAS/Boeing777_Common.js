@@ -39,7 +39,7 @@ var Boeing;
             if ((_text != this.currentText) || _force) {
                 this.currentText = _text;
                 if (this.rootElement != null) {
-                    this.rootElement.innerHTML = this.currentText;
+                    diffAndSetHTML(this.rootElement, this.currentText);
                 }
             }
         }
@@ -59,7 +59,7 @@ var Boeing;
                 this.timeout -= _deltaTime;
                 if (this.timeout <= 0) {
                     if (this.rootElement != null) {
-                        this.rootElement.setAttribute("class", "inactive");
+                        diffAndSetAttribute(this.rootElement, "class", "inactive");
                     }
                 }
             }
@@ -69,13 +69,13 @@ var Boeing;
                 this.currentValue = _value;
                 if (this.rootElement != null) {
                     if (this.currentValue <= 0) {
-                        this.rootElement.setAttribute("class", "up");
+                        diffAndSetAttribute(this.rootElement, "class", "up");
                     }
                     else if (this.currentValue >= 100) {
-                        this.rootElement.setAttribute("class", "down");
+                        diffAndSetAttribute(this.rootElement, "class", "down");
                     }
                     else {
-                        this.rootElement.setAttribute("class", "transit");
+                        diffAndSetAttribute(this.rootElement, "class", "transit");
                     }
                 }
                 if (this.currentValue <= 0) {
@@ -88,107 +88,94 @@ var Boeing;
     Boeing.GearDisplay = GearDisplay;
     class FlapsDisplay {
         constructor(_rootElement, _marker, _valueText, _bar, _gauge) {
+            this.barHeight = 0;
+            this.barTop = 0;
+            this.flapsAngles = [];
+            this.flapsHandlePercents = [];
             this.rootElement = _rootElement;
             this.marker = _marker;
             this.valueText = _valueText;
             this.bar = _bar;
             this.gauge = _gauge;
+            if (this.bar) {
+                this.barTop = this.bar.y.baseVal.value;
+                this.barHeight = this.bar.height.baseVal.value;
+            }
+            let flapsNbHandles = Simplane.getFlapsNbHandles();
+            this.flapsHandlePercents = new Array();
+            this.flapsAngles = new Array();
+            for (let i = 0; i <= flapsNbHandles; i++) {
+                this.flapsAngles[i] = Simplane.getFlapsHandleAngle(i);
+                this.flapsHandlePercents[i] = i / flapsNbHandles;
+            }
             this.cockpitSettings = SimVar.GetGameVarValue("", "GlassCockpitSettings");
             // Fix for flaps 15 not displaying
             this.cockpitSettings.FlapsLevels.flapsAngle = [ 0, 1, 5, 15, 20, 25, 30 ];
             this.cockpitSettings.FlapsLevels.slatsAngle = [ 0, 1, 5, 15, 20, 25, 30 ];
             // End of fix
-            this.refreshValue(0, 0, 0, 0, true);
+            this.refreshValue(0, true);
         }
         update(_deltaTime) {
-            var leverPos = Simplane.getFlapsHandleIndex();
-            var flapsPercent = ((SimVar.GetSimVarValue("TRAILING EDGE FLAPS LEFT PERCENT", "percent") + SimVar.GetSimVarValue("TRAILING EDGE FLAPS RIGHT PERCENT", "percent")) * 0.5 ) * 0.01; //* 0.5
-            var leadingEdgePercent = ((SimVar.GetSimVarValue("LEADING EDGE FLAPS LEFT PERCENT", "percent") + SimVar.GetSimVarValue("LEADING EDGE FLAPS RIGHT PERCENT", "percent")) * 0.5 ) * 0.01; //* 0.5
-            var flapsAngle = (SimVar.GetSimVarValue("TRAILING EDGE FLAPS LEFT ANGLE", "degrees") + SimVar.GetSimVarValue("TRAILING EDGE FLAPS RIGHT ANGLE", "degrees")) * 0.5; //* 0.5;
-            this.refreshValue(leverPos, flapsPercent, flapsAngle, leadingEdgePercent);
-            if ((this.currentAngle <= 0) && (this.timeout > 0)) {
+            this.refreshValue(Simplane.getFlapsAngle());
+            if ((this.realFlapsAngle <= 0) && (this.timeout > 0)) {
                 this.timeout -= _deltaTime;
                 if (this.timeout <= 0) {
                     if (this.rootElement != null) {
-                        this.rootElement.setAttribute("class", "inactive");
+                        diffAndSetAttribute(this.rootElement, "class", "inactive");
                     }
                 }
             }
         }
-        refreshValue(_leverPos, _realFlapsPercent, _realFlapsAngle, _leadingEdgeFlapsPercent, _force = false) {
-            if ((_leverPos != this.currentLeverPosition) || (_realFlapsPercent != this.currentPercent) || (_realFlapsAngle != this.currentAngle) || (_leadingEdgeFlapsPercent != this.currentLeadingEdgePercent) || _force) {
-                this.currentLeverPosition = _leverPos;
-                this.currentPercent = _realFlapsPercent;
-                this.currentLeadingEdgePercent = _leadingEdgeFlapsPercent;
-                this.currentAngle = _realFlapsAngle;
-                var targetAngle = this.flapsLeverPositionToAngle(this.currentLeverPosition);
-                var barTop = 0;
-                var barBottom = 0;
-                var barHeight = 0;
-                if (this.bar != null) {
-                    barTop = this.bar.y.baseVal.value;
-                    barBottom = barTop + this.bar.height.baseVal.value;
-                    barHeight = (barBottom - barTop);
+        refreshValue(_realFlapsAngle, _force = false) {
+            if ((_realFlapsAngle != this.realFlapsAngle) || _force) {
+                this.realFlapsAngle = _realFlapsAngle;
+                let currentHandlePos = Simplane.getFlapsHandleIndex();
+                let targetAnglePercent = Simplane.getFlapsHandlePercent();
+                let targetAngle = Simplane.getFlapsHandleAngle(currentHandlePos);
+                let currentAngle = this.realFlapsAngle;
+                if (this.cockpitSettings && this.cockpitSettings.FlapsLevels.initialised) {
+                    targetAngle = this.cockpitSettings.FlapsLevels.flapsAngle[currentHandlePos];
+                    for (let i = 0; i < this.flapsAngles.length - 1; i++) {
+                        if (this.realFlapsAngle >= this.flapsAngles[i] && this.realFlapsAngle < this.flapsAngles[i + 1]) {
+                            let ratio = (this.realFlapsAngle - this.flapsAngles[i]) / (this.flapsAngles[i + 1] - this.flapsAngles[i]);
+                            currentAngle = this.cockpitSettings.FlapsLevels.flapsAngle[i] + (this.cockpitSettings.FlapsLevels.flapsAngle[i + 1] - this.cockpitSettings.FlapsLevels.flapsAngle[i]) * ratio;
+                            break;
+                        }
+                    }
+                    if (this.realFlapsAngle >= this.flapsAngles[this.flapsAngles.length - 1]) {
+                        currentAngle = this.cockpitSettings.FlapsLevels.flapsAngle[this.flapsAngles.length - 1];
+                    }
                 }
-                var markerY = barTop + (barHeight * this.flapsAngleToPercentage(targetAngle));
-                var markerYStr = markerY.toString();
+                let currentAnglePercent = 1;
+                for (let i = 0; i < this.flapsAngles.length - 1; i++) {
+                    if (this.realFlapsAngle >= this.flapsAngles[i] && this.realFlapsAngle < this.flapsAngles[i + 1]) {
+                        let ratio = (this.realFlapsAngle - this.flapsAngles[i]) / (this.flapsAngles[i + 1] - this.flapsAngles[i]);
+                        currentAnglePercent = this.flapsHandlePercents[i] + (this.flapsHandlePercents[i + 1] - this.flapsHandlePercents[i]) * ratio;
+                        break;
+                    }
+                }
+                let markerY = this.barTop + (this.barHeight * targetAnglePercent);
                 if (this.marker != null) {
-                    this.marker.setAttribute("y1", markerYStr);
-                    this.marker.setAttribute("y2", markerYStr);
+                    diffAndSetAttribute(this.marker, "y1", markerY + '');
+                    diffAndSetAttribute(this.marker, "y2", markerY + '');
                 }
                 if (this.valueText != null) {
-                    this.valueText.textContent = (targetAngle <= 0) ? "UP" : targetAngle.toFixed(0);
-                    this.valueText.setAttribute("y", markerYStr - 2);
+                    diffAndSetText(this.valueText, (targetAngle <= 0) ? "UP" : fastToFixed(targetAngle, 0));
+                    diffAndSetAttribute(this.valueText, "y", markerY + '');
                 }
                 if (this.gauge != null) {
-                    //Normalises non-linear flap settings for gauge.
-                    const seg1 = barHeight * this.currentLeadingEdgePercent / 6;
-                    const seg2 = barHeight * Math.min(this.currentPercent, 0.333);
-                    const seg3 = Math.min(barHeight * 0.5 * Math.max(this.currentPercent - 0.333, 0), 22);
-                    const seg4 = barHeight * Math.max(this.currentPercent - 0.667, 0);
-                    var height = seg1 + seg2 + seg3 + seg4;
-
-                    this.gauge.setAttribute("height", height.toString());
+                    let height = this.barHeight * currentAnglePercent;
+                    diffAndSetAttribute(this.gauge, "height", height + '');
                 }
                 if (this.rootElement != null) {
-                    if (this.currentLeverPosition == 0) {
-                        this.rootElement.setAttribute("class", (Math.round(_leadingEdgeFlapsPercent * 100) == Math.round(0)) ? "static" : "transit");
-                    }
-                    else if (this.currentLeverPosition == 1) {
-                        this.rootElement.setAttribute("class", (Math.round(_leadingEdgeFlapsPercent * 100) == Math.round(100) && Math.round(this.currentAngle) == Math.round(0)) ? "static" : "transit");
-                    }
-                    else {
-                        this.rootElement.setAttribute("class", (Math.round(this.currentAngle) == Math.round(targetAngle)) ? "static" : "transit");
-                    }
+                    diffAndSetAttribute(this.rootElement, "class", (currentAngle == targetAngle) ? "static" : "transit");
                 }
-                if (this.currentAngle <= 0) {
+                if (currentAngle <= 0) {
                     this.timeout = Boeing.FlapsDisplay.TIMEOUT_LENGTH;
                 }
             }
         }
-
-        flapsLeverPositionToAngle(_leverPos) {
-            if (this.cockpitSettings && this.cockpitSettings.FlapsLevels.initialised) {
-                return this.cockpitSettings.FlapsLevels.flapsAngle[_leverPos];
-            }
-            return Simplane.getFlapsHandleAngle(_leverPos);
-        }
-
-        flapsAngleToPercentage(_angle) {
-            const angToPercent = {
-                0: 0,
-                1: 0.167,
-                5: 0.333,
-                15: 0.5,
-                20: 0.667,
-                25: 0.833,
-                30: 1
-            };
-
-            return angToPercent[_angle]; 
-        }
     }
-
     FlapsDisplay.TIMEOUT_LENGTH = 3000;
     Boeing.FlapsDisplay = FlapsDisplay;
     class StabDisplay {
@@ -210,13 +197,13 @@ var Boeing;
                 this.valueText = _root.querySelector(".value");
                 this.arrow = _root.querySelector(".arrow");
                 this.trimBand = _root.querySelector(".trimBand");
-                var bar = _root.querySelector(".bar");
+                let bar = _root.querySelector(".bar");
                 if (bar != null) {
-                    var barHeight = bar.y2.baseVal.value - bar.y1.baseVal.value - 110.75;
+                    let barHeight = bar.y2.baseVal.value - bar.y1.baseVal.value - 110.75;
                     this.valueToArrowY = (barHeight * 0.5) / this.maxValue;
                 }
                 if (this.takeoffText != null) {
-                    this.takeoffText.style.display = "none";
+                    diffAndSetStyle(this.takeoffText, StyleProperty.display, "none");
                 }
             }
             this.refreshValue(0, true);
@@ -272,9 +259,9 @@ var Boeing;
                 this.leftText = _root.querySelector(".left");
                 this.rightText = _root.querySelector(".right");
                 this.arrow = _root.querySelector(".arrow");
-                var bar = _root.querySelector(".bar");
+                let bar = _root.querySelector(".bar");
                 if (bar != null) {
-                    var barLength = bar.x2.baseVal.value - bar.x1.baseVal.value;
+                    let barLength = bar.x2.baseVal.value - bar.x1.baseVal.value;
                     this.valueToArrowX = (barLength * 0.5) / this.maxValue;
                 }
             }
@@ -286,9 +273,9 @@ var Boeing;
         refreshValue(_value, _force = false) {
             if ((_value != this.currentValue) || _force) {
                 this.currentValue = Utils.Clamp(_value, -this.maxValue, this.maxValue);
-                var bShowLeft = false;
-                var bShowRight = false;
-                var displayValue = Math.abs(this.currentValue);
+                let bShowLeft = false;
+                let bShowRight = false;
+                let displayValue = Math.abs(this.currentValue);
                 if (displayValue <= 0.05) {
                     displayValue = 0;
                 }
@@ -297,17 +284,17 @@ var Boeing;
                     bShowRight = !bShowLeft;
                 }
                 if (this.valueText != null) {
-                    this.valueText.textContent = displayValue.toFixed(1);
+                    diffAndSetText(this.valueText, fastToFixed(displayValue, 1));
                 }
                 if (this.leftText != null) {
-                    this.leftText.style.display = bShowLeft ? "block" : "none";
+                    diffAndSetStyle(this.leftText, StyleProperty.display, bShowLeft ? "block" : "none");
                 }
                 if (this.rightText != null) {
-                    this.rightText.style.display = bShowRight ? "block" : "none";
+                    diffAndSetStyle(this.rightText, StyleProperty.display, bShowRight ? "block" : "none");
                 }
                 if (this.arrow != null) {
-                    var arrowX = this.currentValue * this.valueToArrowX;
-                    this.arrow.setAttribute("transform", "translate(" + arrowX + ",0)");
+                    let arrowX = this.currentValue * this.valueToArrowX;
+                    diffAndSetAttribute(this.arrow, "transform", "translate(" + arrowX + ",0)");
                 }
             }
         }
@@ -337,8 +324,8 @@ var Boeing;
             if (_force || (this.isActive != _isActive)) {
                 this.isActive = _isActive;
                 if (this.element != null) {
-                    var className = this.isActive ? "active" : "inactive";
-                    this.element.setAttribute("class", "fuelengine-" + className);
+                    let className = this.isActive ? "active" : "inactive";
+                    diffAndSetAttribute(this.element, "class", "fuelengine-" + className);
                 }
             }
         }
@@ -363,14 +350,14 @@ var Boeing;
                 this.isActive = _isActive;
                 this.jettisonActive = _jettisonActive;
                 if (this.element != null) {
-                    var className = this.isSwitched ? "switched" : "notswitched";
+                    let className = this.isSwitched ? "switched" : "notswitched";
                     className += this.isActive ? "-active" : "-inactive";
                     if (this.isSwitched && this.isActive && (this.index === 1 || this.index === 2) && this.jettisonActive) {
                         className+= "-jett";
                     }
                         
 
-                    this.element.setAttribute("class", "fuelpump-" + className);
+                    diffAndSetAttribute(this.element, "class", "fuelpump-" + className);
                 }
             }
         }
@@ -386,17 +373,17 @@ var Boeing;
         }
         init() {
             if (this.element != null) {
-                var baseTransform = this.element.getAttribute("transform");
-                var rotateIndex = baseTransform.search("rotate");
+                let baseTransform = this.element.getAttribute("transform");
+                let rotateIndex = baseTransform.search("rotate");
                 if (rotateIndex < 0) {
                     this.transformStringClosed = baseTransform + " rotate(0)";
                     this.transformStringOpen = baseTransform + " rotate(90)";
                 }
                 else {
                     this.transformStringClosed = baseTransform;
-                    var rotateStartIndex = baseTransform.indexOf("rotate(") + 7;
-                    var rotateEndIndex = baseTransform.indexOf(")", rotateStartIndex);
-                    var angle = parseFloat(baseTransform.slice(rotateStartIndex, rotateEndIndex));
+                    let rotateStartIndex = baseTransform.indexOf("rotate(") + 7;
+                    let rotateEndIndex = baseTransform.indexOf(")", rotateStartIndex);
+                    let angle = parseFloat(baseTransform.slice(rotateStartIndex, rotateEndIndex));
                     this.transformStringOpen = baseTransform.replace("rotate(" + angle + ")", "rotate(" + (angle + 90) + ")");
                 }
             }
@@ -406,7 +393,7 @@ var Boeing;
             this.refresh(SimVar.GetSimVarValue("FUELSYSTEM VALVE SWITCH:" + this.index, "Bool"), SimVar.GetSimVarValue("FUELSYSTEM VALVE OPEN:" + this.index, "number"));
         }
         refresh(_isSwitched, _openLevel, _force = false) {
-            var open = this.isOpen;
+            let open = this.isOpen;
             if (_openLevel >= 1) {
                 open = true;
             }
@@ -418,12 +405,12 @@ var Boeing;
                 this.isOpen = open;
                 if (this.element != null) {
                     if (this.isSwitched || this.isOpen) {
-                        this.element.setAttribute("class", this.isSwitched ? "fuelvalve-open" : "fuelvalve-closing");
-                        this.element.setAttribute("transform", this.transformStringOpen);
+                        diffAndSetAttribute(this.element, "class", this.isSwitched ? "fuelvalve-open" : "fuelvalve-closing");
+                        diffAndSetAttribute(this.element, "transform", this.transformStringOpen);
                     }
                     else {
-                        this.element.setAttribute("class", "fuelvalve-closed");
-                        this.element.setAttribute("transform", this.transformStringClosed);
+                        diffAndSetAttribute(this.element, "class", "fuelvalve-closed");
+                        diffAndSetAttribute(this.element, "transform", this.transformStringClosed);
                     }
                 }
             }
@@ -439,19 +426,84 @@ var Boeing;
             this.refresh(false, true);
         }
         update(_deltaTime) {
-            this.refresh(SimVar.GetSimVarValue("FUELSYSTEM LINE FUEL FLOW:" + this.index, "number") > 0);
+            this.refresh(Simplane.getEngFuelLineFlow(this.index) > 0);
         }
         refresh(_isActive, _force = false) {
             if (_force || (this.isActive != _isActive)) {
                 this.isActive = _isActive;
                 if (this.element != null) {
-                    var className = this.isActive ? "active" : "inactive";
-                    this.element.setAttribute("class", "fuelline-" + className);
+                    let className = this.isActive ? "active" : "inactive";
+                    diffAndSetAttribute(this.element, "class", "fuelline-" + className);
                 }
             }
         }
     }
     Boeing.FuelLine = FuelLine;
+    class FakeFuelLine extends FuelLine {
+        constructor() {
+            super(...arguments);
+            this.fuelTankIndex = [];
+            this.fuelPumpsIndex = [];
+            this.fuelValveIndex = [];
+            this.fuelCrossfeedIndex = "";
+        }
+        init() {
+            this.getActiveLineBehaviorContent();
+        }
+        update(_deltaTime) {
+            this.refresh();
+        }
+        refresh() {
+            let className = this.getLineState() ? "active" : "inactive";
+            diffAndSetAttribute(this.element, "class", "fuelline-" + className);
+        }
+        getActiveLineBehaviorContent() {
+            if (this.element != null) {
+                let activeLineBehaviorContent = this.element.getAttribute("active-line-behavior");
+                const activeLineBehaviorItems = activeLineBehaviorContent.split(" ");
+                activeLineBehaviorItems.forEach(item => {
+                    if (item.startsWith("tank", 0)) {
+                        this.fuelTankIndex.push(item[item.length - 1]);
+                    }
+                    else if (item.startsWith("pump", 0)) {
+                        this.fuelPumpsIndex.push(item[item.length - 1]);
+                    }
+                    else if (item.startsWith("valve", 0)) {
+                        this.fuelValveIndex.push(item[item.length - 1]);
+                    }
+                    else if (item.startsWith("crossfeed", 0)) {
+                        this.fuelCrossfeedIndex = item.replace("crossfeed", "");
+                    }
+                });
+            }
+        }
+        getLineState() {
+            let isTankFilled = false;
+            let isPumpOn = false;
+            let isValveOpen = false;
+            let isCrossfeedOpen = false;
+            for (let i = 0; i < this.fuelTankIndex.length; i++) {
+                if (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:" + this.fuelTankIndex[i], "gallons") > 1) {
+                    isTankFilled = true;
+                }
+            }
+            for (let i = 0; i < this.fuelPumpsIndex.length; i++) {
+                if (Simplane.getEngFuelPumpSwitch(this.fuelPumpsIndex[i])) {
+                    isPumpOn = true;
+                }
+            }
+            for (let i = 0; i < this.fuelValveIndex.length; i++) {
+                if (Simplane.getEngFuelValveOpen(this.fuelValveIndex[i]) == 0) {
+                    isValveOpen = true;
+                }
+            }
+            if (this.fuelCrossfeedIndex != "" && Simplane.getEngFuelLineFlow(parseInt(this.fuelCrossfeedIndex)) != 0) {
+                isCrossfeedOpen = true;
+            }
+            return isTankFilled && isPumpOn && !isValveOpen || isCrossfeedOpen;
+        }
+    }
+    Boeing.FakeFuelLine = FakeFuelLine;
     class InfoPanelsManager extends Airliners.EICASInfoPanelManager {
         init(_panel) {
             this.mainPanel = _panel;
