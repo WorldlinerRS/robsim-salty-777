@@ -192,6 +192,7 @@ var Boeing;
             this.valueDecimals = _valueDecimals;
             this.valueStroke = document.querySelector("#valueStroke");
             this.decimalPoint = document.querySelector("#decimalPoint");
+            this.rootElement = _root
             if (_root != null) {
                 this.takeoffText = _root.querySelector(".takeoff");
                 this.valueText = _root.querySelector(".value");
@@ -203,7 +204,7 @@ var Boeing;
                     this.valueToArrowY = (barHeight * 0.5) / this.maxValue;
                 }
                 if (this.takeoffText != null) {
-                    diffAndSetStyle(this.takeoffText, StyleProperty.display, "none");
+                    this.takeoffText.style.display = "none";
                 }
             }
             this.refreshValue(0, true);
@@ -218,12 +219,14 @@ var Boeing;
                     this.trimBand.style.display = "block";
                     this.valueStroke.style.display = "block";
                     this.decimalPoint.style.display = "block";
+                    diffAndSetAttribute(this.rootElement, "class", "active");
                 }
                 else {
                     this.valueText.style.display = "none";
                     this.trimBand.style.display = "none";
                     this.valueStroke.style.display = "none";
                     this.decimalPoint.style.display = "none";
+                    diffAndSetAttribute(this.rootElement, "class", "inactive");
                 }
             }
         }
@@ -284,17 +287,17 @@ var Boeing;
                     bShowRight = !bShowLeft;
                 }
                 if (this.valueText != null) {
-                    diffAndSetText(this.valueText, fastToFixed(displayValue, 1));
+                    this.valueText.textContent = displayValue.toFixed(1);
                 }
                 if (this.leftText != null) {
-                    diffAndSetStyle(this.leftText, StyleProperty.display, bShowLeft ? "block" : "none");
+                    this.leftText.style.display = bShowLeft ? "block" : "none";
                 }
                 if (this.rightText != null) {
-                    diffAndSetStyle(this.rightText, StyleProperty.display, bShowRight ? "block" : "none");
+                    this.rightText.style.display = bShowRight ? "block" : "none";
                 }
                 if (this.arrow != null) {
-                    let arrowX = this.currentValue * this.valueToArrowX;
-                    diffAndSetAttribute(this.arrow, "transform", "translate(" + arrowX + ",0)");
+                    var arrowX = this.currentValue * this.valueToArrowX;
+                    this.arrow.setAttribute("transform", "translate(" + arrowX + ",0)");
                 }
             }
         }
