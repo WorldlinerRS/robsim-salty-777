@@ -1010,7 +1010,7 @@
   <Behaviors>
     <Include ModelBehaviorFile="Asobo\Common.xml"/>
     <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
-    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
+    <Include ModelBehaviorFile="Salty\Salty_Boeing.xml"/>
     <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
     <Include ModelBehaviorFile="Asobo\Exterior.xml"/>
     <Include ModelBehaviorFile="ASOBO\Inputs\Helpers.xml"/>
