@@ -458,7 +458,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.v1Speed = min * (1 - runwayCoef) + max * runwayCoef;
         this.v1Speed *= dWeightCoeff;
         this.v1Speed -= (flapsHandleIndex - 3) * 12;
-        this.v1Speed = Math.round(this.v1Speed  * 1.10);
+        this.v1Speed = Math.round(this.v1Speed  * 1.05);
         SimVar.SetSimVarValue("L:AIRLINER_V1_SPEED", "Knots", this.v1Speed);
         console.log("Computed V1Speed = " + this.v1Speed);
     }
@@ -487,7 +487,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.vRSpeed = min * (1 - runwayCoef) + max * runwayCoef;
         this.vRSpeed *= dWeightCoeff;
         this.vRSpeed -= (flapsHandleIndex - 3) * 11;
-        this.vRSpeed = Math.round(this.vRSpeed  * 1.10);
+        this.vRSpeed = Math.round(this.vRSpeed  * 1.05);
         SimVar.SetSimVarValue("L:AIRLINER_VR_SPEED", "Knots", this.vRSpeed);
         console.log("Computed VRSpeed = " + this.vRSpeed);
     }
@@ -516,7 +516,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.v2Speed = min * (1 - runwayCoef) + max * runwayCoef;
         this.v2Speed *= dWeightCoeff;
         this.v2Speed -= (flapsHandleIndex - 3) * 12;
-        this.v2Speed = Math.round(this.v2Speed  * 1.10);
+        this.v2Speed = Math.round(this.v2Speed  * 1.05);
         SimVar.SetSimVarValue("L:AIRLINER_V2_SPEED", "Knots", this.v2Speed);
         console.log("Computed VRSpeed = " + this.v2Speed);
     }
