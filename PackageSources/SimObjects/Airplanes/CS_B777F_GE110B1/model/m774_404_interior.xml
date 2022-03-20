@@ -1050,10 +1050,11 @@
   <Behaviors>
     <Include ModelBehaviorFile="Asobo\Common.xml"/>
     <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
-    <Include ModelBehaviorFile="Salty\Salty_Boeing.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
     <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
     <Include ModelBehaviorFile="Asobo\Exterior.xml"/>
     <Include ModelBehaviorFile="ASOBO\Inputs\Helpers.xml"/>
+    <Include ModelBehaviorFile="Salty\Salty_Boeing.xml"/>
     <Include ModelBehaviorFile="RobSim\index.xml"/>
 
 
@@ -3686,7 +3687,7 @@
             <ANIM_CODE>0</ANIM_CODE>
           </UseTemplate>
         </Component>
-                <Component ID="EICAS_Control_Panel">
+        <Component ID="EICAS_Control_Panel">
           <OverrideTemplateParameters>
             <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:4</SIMVAR_POWER_SETTING>
           </OverrideTemplateParameters>
@@ -3974,7 +3975,7 @@
             <NODE_ID>knob_afds_std_l1</NODE_ID>
           </UseTemplate>
         </Component>
-         <Component ID="AUTOPILOT">
+        <Component ID="AUTOPILOT">
           <OverrideTemplateParameters>
             <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
           </OverrideTemplateParameters>
@@ -6859,17 +6860,17 @@
         <NODE_ID>push_aural_reset</NODE_ID>
       </UseTemplate>
       <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>btn_cursor_control_sel_pilot</NODE_ID>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>knob_cursor_control_pilot</NODE_ID>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>btn_cursor_control_sel_copilot</NODE_ID>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>knob_cursor_control_copilot</NODE_ID>
-      </UseTemplate>
+				<NODE_ID>btn_cursor_control_sel_pilot</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+				<NODE_ID>knob_cursor_control_pilot</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+				<NODE_ID>btn_cursor_control_sel_copilot</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+				<NODE_ID>knob_cursor_control_copilot</NODE_ID>
+			</UseTemplate>
       <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
         <NODE_ID>cover_stab_trim_1</NODE_ID>
       </UseTemplate>

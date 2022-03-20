@@ -1010,10 +1010,11 @@
   <Behaviors>
     <Include ModelBehaviorFile="Asobo\Common.xml"/>
     <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
-    <Include ModelBehaviorFile="Salty\Salty_Boeing.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
     <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
     <Include ModelBehaviorFile="Asobo\Exterior.xml"/>
     <Include ModelBehaviorFile="ASOBO\Inputs\Helpers.xml"/>
+    <Include ModelBehaviorFile="Salty\Salty_Boeing.xml"/>
     <Include ModelBehaviorFile="RobSim\index.xml"/>
 
 
@@ -5082,7 +5083,7 @@
 						<NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_3</NODE_ID>
 					</UseTemplate>
 				</Component>
-				
+
         <Component ID="CDU1">
           <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
             <NODE_ID>P34</NODE_ID>
@@ -6819,17 +6820,17 @@
         <NODE_ID>push_aural_reset</NODE_ID>
       </UseTemplate>
       <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>btn_cursor_control_sel_pilot</NODE_ID>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>knob_cursor_control_pilot</NODE_ID>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>btn_cursor_control_sel_copilot</NODE_ID>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-        <NODE_ID>knob_cursor_control_copilot</NODE_ID>
-      </UseTemplate>
+				<NODE_ID>btn_cursor_control_sel_pilot</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+				<NODE_ID>knob_cursor_control_pilot</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+				<NODE_ID>btn_cursor_control_sel_copilot</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+				<NODE_ID>knob_cursor_control_copilot</NODE_ID>
+			</UseTemplate>
       <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
         <NODE_ID>cover_stab_trim_1</NODE_ID>
       </UseTemplate>

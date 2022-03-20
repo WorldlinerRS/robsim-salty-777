@@ -1010,10 +1010,11 @@
   <Behaviors>
     <Include ModelBehaviorFile="Asobo\Common.xml"/>
     <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
-    <Include ModelBehaviorFile="Salty\Salty_Boeing.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
     <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
     <Include ModelBehaviorFile="Asobo\Exterior.xml"/>
     <Include ModelBehaviorFile="ASOBO\Inputs\Helpers.xml"/>
+    <Include ModelBehaviorFile="Salty\Salty_Boeing.xml"/>
     <Include ModelBehaviorFile="RobSim\index.xml"/>
 
 
@@ -3934,7 +3935,7 @@
             <NODE_ID>knob_afds_std_l1</NODE_ID>
           </UseTemplate>
         </Component>
-         <Component ID="AUTOPILOT">
+        <Component ID="AUTOPILOT">
           <OverrideTemplateParameters>
             <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
           </OverrideTemplateParameters>
@@ -5082,7 +5083,7 @@
 						<NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_3</NODE_ID>
 					</UseTemplate>
 				</Component>
-
+        
         <Component ID="CDU1">
           <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
             <NODE_ID>P34</NODE_ID>
