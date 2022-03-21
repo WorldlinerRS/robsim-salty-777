@@ -107,14 +107,14 @@ class B747_8_PFD_VSpeed extends NavSystemElement {
     }
     onUpdate(_deltaTime) {
         var vSpeed = Math.round(Simplane.getVerticalSpeed());
-        diffAndSetAttribute(this.vsi, "vspeed", vSpeed + '');
+        this.vsi.setAttribute("vspeed", vSpeed.toString());
         if (Simplane.getAutoPilotVerticalSpeedHoldActive()) {
             var selVSpeed = Math.round(Simplane.getAutoPilotVerticalSpeedHoldValue());
-            diffAndSetAttribute(this.vsi, "selected_vspeed", selVSpeed + '');
-            diffAndSetAttribute(this.vsi, "selected_vspeed_active", "true");
+            this.vsi.setAttribute("selected_vspeed", selVSpeed.toString());
+            this.vsi.setAttribute("selected_vspeed_active", "true");
         }
         else {
-            diffAndSetAttribute(this.vsi, "selected_vspeed_active", "false");
+            this.vsi.setAttribute("selected_vspeed_active", "false");
         }
     }
     onExit() {
@@ -146,9 +146,6 @@ class B747_8_PFD_Altimeter extends NavSystemElement {
         super();
         this.isMTRSActive = false;
         this.minimumReference = 200;
-        this.lastTimeKnobUsed = 0;
-        this.lastTimeKnobUsedHits = 0;
-        this.resetState = false;
     }
     init(root) {
         this.altimeter = this.gps.getChildById("Altimeter");
@@ -164,7 +161,6 @@ class B747_8_PFD_Altimeter extends NavSystemElement {
     }
     onEvent(_event) {
         let units = Simplane.getPressureSelectedUnits();
-        const decisionHeightMode = Simplane.getMinimumReferenceMode();
         switch (_event) {
             case "BARO_INC":
                 if (Simplane.getPressureSelectedMode(this.altimeter.aircraft) == "STD") {
@@ -206,36 +202,14 @@ class B747_8_PFD_Altimeter extends NavSystemElement {
             case "Mins_INC":
                 this.minimumReference += 10;
                 this.altimeter.minimumReferenceValue = this.minimumReference;
-                if (decisionHeightMode === MinimumReferenceMode.BARO) {
-                    SimVar.SetSimVarValue("K:INCREASE_DECISION_ALTITUDE_MSL", "number", increment);
-                    this.altimeter.setMinimumBaroVisibility(true);
-                }
-                else {
-                    SimVar.SetSimVarValue("K:INCREASE_DECISION_HEIGHT", "number", increment);
-                }
                 break;
             case "Mins_DEC":
                 this.minimumReference -= 10;
                 this.altimeter.minimumReferenceValue = this.minimumReference;
-                if (decisionHeightMode === MinimumReferenceMode.BARO) {
-                    SimVar.SetSimVarValue("K:DECREASE_DECISION_ALTITUDE_MSL", "number", increment);
-                    this.altimeter.setMinimumBaroVisibility(true);
-                }
-                else {
-                    SimVar.SetSimVarValue("K:DECREASE_DECISION_HEIGHT", "number", increment);
-                }
                 break;
             case "Mins_Press":
                 this.minimumReference = 200;
                 this.altimeter.minimumReferenceValue = this.minimumReference;
-                if (decisionHeightMode === MinimumReferenceMode.BARO) {
-                    SimVar.SetSimVarValue("K:SET_DECISION_ALTITUDE_MSL", "number", this.altimeter.minimumResetValue);
-                    this.altimeter.setMinimumBaroVisibility(this.resetState);
-                    this.resetState = !this.resetState;
-                }
-                else {
-                    SimVar.SetSimVarValue("K:SET_DECISION_HEIGHT", "number", this.altimeter.minimumResetValue);
-                }
                 break;
         }
     }
@@ -257,12 +231,12 @@ class B747_8_PFD_Attitude extends NavSystemElement {
             this.hsi.update(_deltaTime);
             var xyz = Simplane.getOrientationAxis();
             if (xyz) {
-                diffAndSetAttribute(this.hsi, "pitch", (xyz.pitch / Math.PI * 180) + '');
-                diffAndSetAttribute(this.hsi, "bank", (xyz.bank / Math.PI * 180) + '');
+                this.hsi.setAttribute("pitch", (xyz.pitch / Math.PI * 180).toString());
+                this.hsi.setAttribute("bank", (xyz.bank / Math.PI * 180).toString());
             }
-            diffAndSetAttribute(this.hsi, "slip_skid", Simplane.getInclinometer() + '');
-            diffAndSetAttribute(this.hsi, "radio_altitude", Simplane.getAltitudeAboveGround() + '');
-            diffAndSetAttribute(this.hsi, "radio_decision_height", this.gps.radioNav.getRadioDecisionHeight() + '');
+            this.hsi.setAttribute("slip_skid", Simplane.getInclinometer().toString());
+            this.hsi.setAttribute("radio_altitude", Simplane.getAltitudeAboveGround().toString());
+            this.hsi.setAttribute("radio_decision_height", this.gps.radioNav.getRadioDecisionHeight().toString());
         }
     }
     onExit() {

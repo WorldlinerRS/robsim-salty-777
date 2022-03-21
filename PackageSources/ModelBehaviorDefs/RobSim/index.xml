@@ -1,4 +1,5 @@
 <ModelBehaviors>
+    <Include RelativeFile="Salty_Boeing.xml"/>
     <Include RelativeFile="NDRange.xml"/>
     <Include RelativeFile="EICASButton.xml"/>
     <Include RelativeFile="ADIRUButton.xml"/>
