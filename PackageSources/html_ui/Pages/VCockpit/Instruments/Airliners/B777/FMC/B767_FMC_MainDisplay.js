@@ -264,6 +264,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.updateAutopilot();
         this.updateAltitudeAlerting();
         if (this.timer == 1000) {
+            this.updateVREF20();
             this.updateVREF25();
             this.updateVREF30();
             this.timer = 0;
@@ -746,19 +747,40 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         }
     }
 
+    /* Calculates VREF for Flap 30 using Polynomial regression derived from FCOM data */
+    updateVREF20() {
+        let coefficients = [
+            2.75495921e+003,
+           -1.27295624e-001,
+            2.47580310e-006,
+           -2.50018575e-011,
+            1.39228098e-016,
+           -4.06250000e-022,
+            4.86111111e-028
+        ];
+        let vRef20 = 0;
+        let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "kilograms");
+        let i;
+        for (i = 0; i < coefficients.length; i++) {
+            let a = coefficients[i] * (Math.pow(grossWeight, i) );
+            vRef20 += a;
+        }
+        SimVar.SetSimVarValue("L:SALTY_VREF20", "knots", Math.round(vRef20));
+    }
+
     /* Calculates VREF for Flap 25 using Polynomial regression derived from FCOM data */
     updateVREF25() {
         let coefficients = [
-           -1.5467919598658073e+003,
-            1.5106421359771541e-002,
-           -5.6968579138009758e-008,
-            1.1360121592598009e-013,
-           -1.2514991427515442e-019,
-            7.2184630711155283e-026,
-           -1.7036813116590257e-032
+            1.06051981e+003,
+           -3.64663287e-002,
+            5.41978438e-007,
+           -3.89656177e-012,
+            1.37820513e-017,
+           -1.92307692e-023,
+           -3.47109028e-040
          ];
          let vRef25 = 0;
-         let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "pounds");
+         let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "kilograms");
          let i;
          for (i = 0; i < coefficients.length; i++) {
              let a = coefficients[i] * (Math.pow(grossWeight, i) );
@@ -770,16 +792,16 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     /* Calculates VREF for Flap 30 using Polynomial regression derived from FCOM data */
     updateVREF30() {
         let coefficients = [
-           -1.0271030433117912e+003,
-            1.0235086042112870e-002,
-           -3.8432475698588999e-008,
-            7.6704299010379434e-014,
-           -8.4569127892214961e-020,
-            4.8771524333784454e-026,
-           -1.1496146052268411e-032
+            1.45406737e+004,
+           -6.32322401e-001,
+            1.13868120e-005,
+           -1.07933057e-010,
+            5.68552350e-016,
+           -1.57852564e-021,
+            1.80555556e-027
         ];
         let vRef30 = 0;
-        let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "pounds");
+        let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "kilograms");
         let i;
         for (i = 0; i < coefficients.length; i++) {
             let a = coefficients[i] * (Math.pow(grossWeight, i) );

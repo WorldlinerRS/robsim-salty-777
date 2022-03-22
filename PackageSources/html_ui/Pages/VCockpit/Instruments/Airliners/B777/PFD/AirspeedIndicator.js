@@ -1313,8 +1313,8 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
                 }
                 _marker.setText(degrees.toFixed(0));
             }
-            let vRef25 = Math.round(SimVar.GetSimVarValue("L:SALTY_VREF25", "knots") * 1.15);
-            let vRef30 = Math.round(SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") * 1.15);
+            let vRef25 = Math.round(SimVar.GetSimVarValue("L:SALTY_VREF25", "knots"));
+            let vRef30 = Math.round(SimVar.GetSimVarValue("L:SALTY_VREF30", "knots"));
             let flapMarkerSpeed = 0;
             switch (markerHandleIndex) {
                 case 0:
