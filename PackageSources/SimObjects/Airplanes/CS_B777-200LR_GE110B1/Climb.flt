@@ -210,7 +210,7 @@ Nav1Lock=False
 HeadingLock=False
 HeadingValue=0
 AltitudeLock=False
-AltitudeValue=10000
+AltitudeValue=30000
 AttitudeHold=False
 AirspeedHold=False
 AirspeedValue=200
@@ -229,6 +229,7 @@ AutoThrottleArm=False
 GPSdrivesNAV1=True
 IsUsedForLesson=False
 ForceDisplayUI=False
+MaxBankIndex=6
 
 [Controls.0]
 SpoilersHandle=000.00
