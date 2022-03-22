@@ -42,7 +42,7 @@
     <MouseRect>
       <Cursor>Hand</Cursor>
       <MouseFlags>LeftSingle+RightSingle+LeftRelease+RightRelease+Wheel+Move</MouseFlags>
-      <TooltipText>Transponder Mode        <!--%((L:P30_010_GL5))%{case}%{:0}STBY%{:1}ALT RPTG OFF%{:2}XPNDR%{:3}TA ONLY%{:4}TA/RA%{end}--></TooltipText>
+      <TooltipText>Transponder Mode                <!--%((L:P30_010_GL5))%{case}%{:0}STBY%{:1}ALT RPTG OFF%{:2}XPNDR%{:3}TA ONLY%{:4}TA/RA%{end}--></TooltipText>
       <CallbackCode>
         (L:P30_010_GL5) sp0 2630010 sp1 (M:Event) sp2 5 sp3
         l2 'WheelDown'   scmi 0 == if{ l0 flr -- sp2 } els{
@@ -1134,26 +1134,26 @@
       </UseTemplate>
       <Component ID="HANDLING_Lever_Spoilers_Helper">
         <DefaultTemplateParameters>
-					<FRAME_ARMED>1</FRAME_ARMED>
-					<FRAME_RET>0</FRAME_RET>
-					<FRAME_HALF>5</FRAME_HALF>
-					<FRAME_FULL>9</FRAME_FULL>
-					<FRAME_COUNT>9</FRAME_COUNT>
-				</DefaultTemplateParameters>
-				<UseTemplate Name="ASOBO_HANDLING_Lever_Spoilers_Template">					
-					<NODE_ID>lever_speed_brake</NODE_ID>
-					<ANIM_NAME>speed_brake_lever</ANIM_NAME>
-					<TYPE>AIRLINER</TYPE>
-					<PHYSICAL_AUTOSPOILER>True</PHYSICAL_AUTOSPOILER>
-					<RETRACT_ARMED_FULL>True</RETRACT_ARMED_FULL>
-					<STEPS_NUMBER>3</STEPS_NUMBER>
-					<DRAG_SPEED>10</DRAG_SPEED>
-					<!-- The animation is not linear, there is some extra keyframes so we must re-interpolate -->
-					<OVERRIDE_ANIM_CODE>
+          <FRAME_ARMED>1</FRAME_ARMED>
+          <FRAME_RET>0</FRAME_RET>
+          <FRAME_HALF>5</FRAME_HALF>
+          <FRAME_FULL>9</FRAME_FULL>
+          <FRAME_COUNT>9</FRAME_COUNT>
+        </DefaultTemplateParameters>
+        <UseTemplate Name="ASOBO_HANDLING_Lever_Spoilers_Template">
+          <NODE_ID>lever_speed_brake</NODE_ID>
+          <ANIM_NAME>speed_brake_lever</ANIM_NAME>
+          <TYPE>AIRLINER</TYPE>
+          <PHYSICAL_AUTOSPOILER>True</PHYSICAL_AUTOSPOILER>
+          <RETRACT_ARMED_FULL>True</RETRACT_ARMED_FULL>
+          <STEPS_NUMBER>3</STEPS_NUMBER>
+          <DRAG_SPEED>10</DRAG_SPEED>
+          <!-- The animation is not linear, there is some extra keyframes so we must re-interpolate -->
+          <OVERRIDE_ANIM_CODE>
 						(A:SPOILERS ARMED, Bool) if{ #FRAME_ARMED# sp0 } els{
 							(O:Position) sp1
 							l1 1 &lt; if{
-								#FRAME_RET# sp0
+								#FRAME_RET# #FRAME_RET# - l1 * sp0
 							} els{
 								l1 2 &lt; if{
 									#FRAME_HALF# #FRAME_ARMED# - l1 1 - * #FRAME_ARMED# + sp0
@@ -1163,8 +1163,8 @@
 							}
 						}
 						l0 #FRAME_COUNT# / 100 *
-					</OVERRIDE_ANIM_CODE>
-					<OVERRIDE_NEW_POSITION>
+          </OVERRIDE_ANIM_CODE>
+          <OVERRIDE_NEW_POSITION>
 						#FRAME_ARMED# #FRAME_COUNT# / sp5
 						#FRAME_HALF# #FRAME_COUNT# / sp6
 						(M:DragPercent) l5 &lt; if{
@@ -3478,7 +3478,7 @@
           <ANIM_NAME>autopilot_wheel_vert_speed</ANIM_NAME>
           <UP_DEC_DN_INC>True</UP_DEC_DN_INC>
           <INTERACTION_AXIS>Y</INTERACTION_AXIS>
-					<TT_ICON>MOVE_AXIS_Y</TT_ICON>
+          <TT_ICON>MOVE_AXIS_Y</TT_ICON>
         </UseTemplate>
         <!-- SALTY 747 BUTTONS -->
         <UseTemplate Name="ASOBO_BOEING_Push_Heading_Track_Template">
@@ -3934,7 +3934,7 @@
             <NODE_ID>knob_afds_std_l1</NODE_ID>
           </UseTemplate>
         </Component>
-         <Component ID="AUTOPILOT">
+        <Component ID="AUTOPILOT">
           <OverrideTemplateParameters>
             <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
           </OverrideTemplateParameters>
@@ -5030,58 +5030,58 @@
 
         <Component ID="FUEL">
           <!--777 INOP-->
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>btn_fuel_flow_ctrl_4_text</NODE_ID>
-						<EMISSIVE_CODE>0</EMISSIVE_CODE>
-					</UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_fuel_flow_ctrl_4_text</NODE_ID>
+            <EMISSIVE_CODE>0</EMISSIVE_CODE>
+          </UseTemplate>
           <!--777 INOP-->
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>btn_fuel_flow_ctrl_3_text</NODE_ID>
-						<EMISSIVE_CODE>0</EMISSIVE_CODE>
-					</UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_fuel_flow_ctrl_3_text</NODE_ID>
+            <EMISSIVE_CODE>0</EMISSIVE_CODE>
+          </UseTemplate>
 
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>btn_fuel_flow_ctrl_2_text</NODE_ID>
-						<EMISSIVE_CODE>0</EMISSIVE_CODE>
-					</UseTemplate>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>btn_fuel_flow_ctrl_1_text</NODE_ID>
-						<EMISSIVE_CODE>0</EMISSIVE_CODE>
-					</UseTemplate>
-				</Component>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_fuel_flow_ctrl_2_text</NODE_ID>
+            <EMISSIVE_CODE>0</EMISSIVE_CODE>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>btn_fuel_flow_ctrl_1_text</NODE_ID>
+            <EMISSIVE_CODE>0</EMISSIVE_CODE>
+          </UseTemplate>
+        </Component>
 
         <Component ID="Knobs">
-					<DefaultTemplateParameters>
-						<DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
-					</DefaultTemplateParameters>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>BOEING_AudioReceiver_Knob_vor_adf_receiver_selector_1</NODE_ID>
-					</UseTemplate>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>BOEING_AudioReceiver_Knob_filter_selector_1</NODE_ID>
-					</UseTemplate>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_1</NODE_ID>
-					</UseTemplate>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>BOEING_AudioReceiver_Knob_vor_adf_receiver_selector_2</NODE_ID>
-					</UseTemplate>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>BOEING_AudioReceiver_Knob_filter_selector_2</NODE_ID>
-					</UseTemplate>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_2</NODE_ID>
-					</UseTemplate>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>BOEING_AudioReceiver_Knob_vor_adf_receiver_selector_3</NODE_ID>
-					</UseTemplate>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>BOEING_AudioReceiver_Knob_filter_selector_3</NODE_ID>
-					</UseTemplate>
-					<UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-						<NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_3</NODE_ID>
-					</UseTemplate>
-				</Component>
+          <DefaultTemplateParameters>
+            <DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
+          </DefaultTemplateParameters>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>BOEING_AudioReceiver_Knob_vor_adf_receiver_selector_1</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>BOEING_AudioReceiver_Knob_filter_selector_1</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_1</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>BOEING_AudioReceiver_Knob_vor_adf_receiver_selector_2</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>BOEING_AudioReceiver_Knob_filter_selector_2</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_2</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>BOEING_AudioReceiver_Knob_vor_adf_receiver_selector_3</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>BOEING_AudioReceiver_Knob_filter_selector_3</NODE_ID>
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>BOEING_AudioReceiver_Knob_approach_receiver_selector_3</NODE_ID>
+          </UseTemplate>
+        </Component>
 
         <Component ID="CDU1">
           <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
@@ -6819,17 +6819,17 @@
         <NODE_ID>push_aural_reset</NODE_ID>
       </UseTemplate>
       <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-				<NODE_ID>btn_cursor_control_sel_pilot</NODE_ID>
-			</UseTemplate>
-			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-				<NODE_ID>knob_cursor_control_pilot</NODE_ID>
-			</UseTemplate>
-			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-				<NODE_ID>btn_cursor_control_sel_copilot</NODE_ID>
-			</UseTemplate>
-			<UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
-				<NODE_ID>knob_cursor_control_copilot</NODE_ID>
-			</UseTemplate>
+        <NODE_ID>btn_cursor_control_sel_pilot</NODE_ID>
+      </UseTemplate>
+      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+        <NODE_ID>knob_cursor_control_pilot</NODE_ID>
+      </UseTemplate>
+      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+        <NODE_ID>btn_cursor_control_sel_copilot</NODE_ID>
+      </UseTemplate>
+      <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
+        <NODE_ID>knob_cursor_control_copilot</NODE_ID>
+      </UseTemplate>
       <UseTemplate Name="ASOBO_GT_Interaction_Tooltip">
         <NODE_ID>cover_stab_trim_1</NODE_ID>
       </UseTemplate>

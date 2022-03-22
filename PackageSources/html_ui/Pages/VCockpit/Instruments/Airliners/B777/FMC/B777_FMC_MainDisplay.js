@@ -270,6 +270,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.updateAutopilot();
         this.updateAltitudeAlerting();
         if (this.timer == 1000) {
+            this.updateVREF20();
             this.updateVREF25();
             this.updateVREF30();
             this.timer = 0;
@@ -458,7 +459,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.v1Speed = min * (1 - runwayCoef) + max * runwayCoef;
         this.v1Speed *= dWeightCoeff;
         this.v1Speed -= (flapsHandleIndex - 3) * 12;
-        this.v1Speed = Math.round(this.v1Speed  * 1.10);
+        this.v1Speed = Math.round(this.v1Speed);
         SimVar.SetSimVarValue("L:AIRLINER_V1_SPEED", "Knots", this.v1Speed);
         console.log("Computed V1Speed = " + this.v1Speed);
     }
@@ -487,7 +488,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.vRSpeed = min * (1 - runwayCoef) + max * runwayCoef;
         this.vRSpeed *= dWeightCoeff;
         this.vRSpeed -= (flapsHandleIndex - 3) * 11;
-        this.vRSpeed = Math.round(this.vRSpeed  * 1.10);
+        this.vRSpeed = Math.round(this.vRSpeed);
         SimVar.SetSimVarValue("L:AIRLINER_VR_SPEED", "Knots", this.vRSpeed);
         console.log("Computed VRSpeed = " + this.vRSpeed);
     }
@@ -516,7 +517,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.v2Speed = min * (1 - runwayCoef) + max * runwayCoef;
         this.v2Speed *= dWeightCoeff;
         this.v2Speed -= (flapsHandleIndex - 3) * 12;
-        this.v2Speed = Math.round(this.v2Speed  * 1.10);
+        this.v2Speed = Math.round(this.v2Speed);
         SimVar.SetSimVarValue("L:AIRLINER_V2_SPEED", "Knots", this.v2Speed);
         console.log("Computed VRSpeed = " + this.v2Speed);
     }
@@ -727,9 +728,9 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     }
     getManagedApproachSpeed() {
         if (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots")) {
-            return (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots") * 1.15) + 5;
+            return (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots")) + 5;
         }
-        return (SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") * 1.15) + 5;
+        return (SimVar.GetSimVarValue("L:SALTY_VREF30", "knots")) + 5;
     }
     getCleanApproachSpeed() {
         let cleanApproachSpeed = SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 80;
@@ -753,15 +754,36 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     }
 
     /* Calculates VREF for Flap 25 using Polynomial regression derived from FCOM data */
+    updateVREF20() {
+        let coefficients = [
+             1.27467412e+003,
+            -1.48679250e-002,
+             7.77152741e-008,
+            -2.13022320e-13,
+             3.27098978e-019,
+            -2.66881670e-025,
+             9.03129097e-032
+         ];
+         let vRef20 = 0;
+         let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "pounds");
+         let i;
+         for (i = 0; i < coefficients.length; i++) {
+             let a = coefficients[i] * (Math.pow(grossWeight, i) );
+             vRef20 += a;
+         }
+         SimVar.SetSimVarValue("L:SALTY_VREF20", "knots", Math.round(vRef20));
+    }
+
+    /* Calculates VREF for Flap 25 using Polynomial regression derived from FCOM data */
     updateVREF25() {
         let coefficients = [
-           -1.5467919598658073e+003,
-            1.5106421359771541e-002,
-           -5.6968579138009758e-008,
-            1.1360121592598009e-013,
-           -1.2514991427515442e-019,
-            7.2184630711155283e-026,
-           -1.7036813116590257e-032
+             2.42879385e+003,
+            -3.12714792e-002,
+             1.72602879e-007,
+            -4.99760898e-013,
+             8.04523841e-019,
+            -6.82537521e-025,
+             2.38318972e-031
          ];
          let vRef25 = 0;
          let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "pounds");
@@ -776,13 +798,13 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     /* Calculates VREF for Flap 30 using Polynomial regression derived from FCOM data */
     updateVREF30() {
         let coefficients = [
-           -1.0271030433117912e+003,
-            1.0235086042112870e-002,
-           -3.8432475698588999e-008,
-            7.6704299010379434e-014,
-           -8.4569127892214961e-020,
-            4.8771524333784454e-026,
-           -1.1496146052268411e-032
+            -2.18867397e+003,
+             3.09950056e-002,
+            -1.72830218e-007,
+             5.07867339e-013,
+            -8.25378914e-019,
+             7.03713774e-025,
+            -2.46108765e-031
         ];
         let vRef30 = 0;
         let grossWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "pounds");

@@ -54,6 +54,9 @@ var B747_8_LowerEICAS_ECL;
                 this._pointer.style.left = x + "px";
                 this._pointer.style.top = y + "px";
             });
+            document.body.style.overflow = "hidden";
+            document.body.style.clip = "auto";
+            document.body.style.position = "absolute";
             this.isInitialised = true;
         }
         //Event Handler for Cursor Control - 50ms timeout to limit cursor scroll rate caused by duplicate events - 2nd 100ms timer prevents update loop running before triggered H Event has been processed by sim.
