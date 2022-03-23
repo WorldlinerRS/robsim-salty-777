@@ -673,50 +673,50 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     /* Gets Cruise Mach number from altitude - Used regression from B744 data using weight correction factor needs B748 data to refine */
     getCrzMach() {
         let roundedFlightLevel = Math.ceil(this.cruiseFlightLevel / 10) * 10;
-        let weightCorrectionFactor = 0.887;
-        let grossWeight = this.getWeight(false) * weightCorrectionFactor * 1000;
-        let crzMach = 0.8;
+        let weightCorrectionFactor = 0.99;
+        let grossWeight = this.getWeight(true) * weightCorrectionFactor * 1000;
+        let crzMach = 0.84;
         const flightLeveltoGradient = {
-            250: 8.000e-7,
-            260: 7.880e-7,
-            270: 7.660e-7,
-            280: 7.460e-7,
-            290: 7.080e-7,
-            300: 6.560e-7,
-            310: 6.040e-7,
-            320: 5.420e-7,
-            330: 4.800e-7,
-            340: 4.414e-7,
-            350: 4.188e-7,
-            360: 3.676e-7,
-            370: 3.558e-7,
-            380: 3.375e-7,
-            390: 2.725e-7,
-            400: 2.975e-7,
-            410: 1.796e-7,
-            420: 1.172e-7,
-            430: 7.162e-8
+            250: 5.67576e-7,
+            260: 5.79697e-7,
+            270: 6.02121e-7,
+            280: 6.11667e-7,
+            290: 6.09394e-7,
+            300: 5.98788e-7,
+            310: 5.68182e-7,
+            320: 5.20455e-7,
+            330: 4.72424e-7,
+            340: 4.90417e-7,
+            350: 4.23333e-7,
+            360: 4.375e-7,
+            370: 3.5744e-7,
+            380: 4.75e-7,
+            390: 3.85714e-7,
+            400: 3.95e-7,
+            410: 2.825e-7,
+            420: 2.925e-7,
+            430: 1.425e-7
         };
         const flightLeveltoIntercept = {
-            250: 0.5234,
-            260: 0.5368,
-            270: 0.5528,
-            280: 0.5678,
-            290: 0.5878,
-            300: 0.6114,
-            310: 0.6340,
-            320: 0.6594,
-            330: 0.6840,
-            340: 0.7023,
-            350: 0.7155,
-            360: 0.7357,
-            370: 0.7453,
-            380: 0.7566,
-            390: 0.7792,
-            400: 0.7776,
-            410: 0.8116,
-            420: 0.8300,
-            430: 0.8423
+            250: 0.423363636,
+            260: 0.428745455,
+            270: 0.430181818,
+            280: 0.4405,
+            290: 0.456690909,
+            300: 0.473981818,
+            310: 0.499272727,
+            320: 0.531881818,
+            330: 0.563436364,
+            340: 0.567852778,
+            350: 0.606933333,
+            360: 0.612,
+            370: 0.65460119,
+            380: 0.6215,
+            390: 0.664714286,
+            400: 0.6715,
+            410: 0.72065,
+            420: 0.72545,
+            430: 0.78395
         };
         if (this.cruiseFlightLevel <= 240) {
             crzMach = 1;
@@ -753,7 +753,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         }
     }
 
-    /* Calculates VREF for Flap 25 using Polynomial regression derived from FCOM data */
+    /* Calculates VREF for Flap 20 using Polynomial regression derived from FCOM data */
     updateVREF20() {
         let coefficients = [
              1.27467412e+003,
