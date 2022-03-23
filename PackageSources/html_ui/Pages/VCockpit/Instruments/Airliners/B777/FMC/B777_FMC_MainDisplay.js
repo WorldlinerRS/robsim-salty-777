@@ -674,7 +674,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     getCrzMach() {
         let roundedFlightLevel = Math.ceil(this.cruiseFlightLevel / 10) * 10;
         let weightCorrectionFactor = 0.99;
-        let grossWeight = this.getWeight(false) * weightCorrectionFactor * 1000;
+        let grossWeight = this.getWeight(true) * weightCorrectionFactor * 1000;
         let crzMach = 0.84;
         const flightLeveltoGradient = {
             250: 5.67576e-7,
