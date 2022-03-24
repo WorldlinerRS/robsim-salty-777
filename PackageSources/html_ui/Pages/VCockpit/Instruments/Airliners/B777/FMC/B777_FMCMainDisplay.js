@@ -1731,7 +1731,7 @@ class FMCMainDisplay extends BaseAirliners {
                 let altitude = SimVar.GetSimVarValue("PLANE ALTITUDE", "feet");
                 let cruiseFlightLevel = this.cruiseFlightLevel * 100;
                 if (isFinite(cruiseFlightLevel)) {
-                    if (altitude >= 0.96 * cruiseFlightLevel) {
+                    if (altitude >= 0.98 * cruiseFlightLevel) {
                         this.currentFlightPhase = FlightPhase.FLIGHT_PHASE_CRUISE;
                         this.flightPhaseHasChangedToCruise = true;
                     }
