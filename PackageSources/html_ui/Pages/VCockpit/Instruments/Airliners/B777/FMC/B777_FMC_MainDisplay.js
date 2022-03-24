@@ -596,7 +596,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
 
     /* Returns VNAV cruise speed target in accordance with active VNAV mode */
     getCrzManagedSpeed(cduSpeedRequest) {
-        let flapsUPmanueverSpeed = SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 80; 
+        let flapsUPmanueverSpeed = SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 80;
         let mach = this.getCrzMach();
         let machlimit = SimVar.GetGameVarValue("FROM MACH TO KIAS", "number", mach);
         let machMode = Simplane.getAutoPilotMachModeActive();
@@ -637,12 +637,19 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         let altitude = Simplane.getAltitude();
         let desMode = SimVar.GetSimVarValue("L:SALTY_VNAV_DES_MODE" , "Enum");
         let machMode = Simplane.getAutoPilotMachModeActive();
-        let speed = Math.min(290, machlimit);
+        let speed = Math.min(280, machlimit);
         let isSpeedIntervention = SimVar.GetSimVarValue("L:AP_SPEED_INTERVENTION_ACTIVE", "number");
         if (_cduPageEconRequest) {
             return speed;
         }
-        if (altitude <= 10500) {
+        // Set descend speed to 270 knots below 25000 ft (FCOM recommendation for minimum fuel burn)
+        if (altitude <= 25000 && altitude > 10500) {
+            if (machMode && !isSpeedIntervention) {
+                this.managedMachOff();
+            }
+            return speed = 270;
+        }
+        else if (altitude <= 10500) {
             if (machMode && !isSpeedIntervention) {
                 this.managedMachOff();
             }
@@ -673,7 +680,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     /* Gets Cruise Mach number from altitude - Used regression from B744 data using weight correction factor needs B748 data to refine */
     getCrzMach() {
         let roundedFlightLevel = Math.ceil(this.cruiseFlightLevel / 10) * 10;
-        let weightCorrectionFactor = 0.99;
+        let weightCorrectionFactor = 0.999;
         let grossWeight = this.getWeight(true) * weightCorrectionFactor * 1000;
         let crzMach = 0.84;
         const flightLeveltoGradient = {
@@ -1052,7 +1059,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                     let speed = this.getTakeOffManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);
                     //Sets CLB Thrust when passing thrust reduction altitude
-                    let alt = Simplane.getAltitudeAboveGround();
+                    let alt = Simplane.getAltitude();
                     let thrRedAlt = SimVar.GetSimVarValue("L:AIRLINER_THR_RED_ALT", "number");
                     let n1 = 99;
                     if (alt < thrRedAlt) {
@@ -1071,7 +1078,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                     let speed = this.getClbManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);
                     let alt = Simplane.getAltitudeAboveGround();
-                    let n1 = 99;
+                    let n1 = 106;
                     if (alt < this.thrustReductionAltitude) {
                         n1 = this.getThrustTakeOffLimit() / 100;
                     }
@@ -1086,7 +1093,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                     let speed = this.getCrzManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);
                     let alt = Simplane.getAltitudeAboveGround();
-                    let n1 = 100;
+                    let n1 = 106;
                     if (alt < this.thrustReductionAltitude) {
                         n1 = this.getThrustTakeOffLimit() / 100;
                     }

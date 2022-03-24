@@ -323,14 +323,14 @@ class Boeing_FMC extends FMCMainDisplay {
         this.cruiseFlightLevel = Math.floor(displayedAltitude / 100);
     }
     getThrustTakeOffLimit() {
-        return 106;
+        return 121;
     }
     getThrustClimbLimit() {
-        return 99;
+        return 106;
     }
     getTakeOffManagedSpeed() {
         if (this.v2Speed) {
-            return this.v2Speed + 10;
+            return this.v2Speed + 25;
         }
         let takeoffSpeed = Simplane.getAutoPilotAirspeedHoldValue();
         return takeoffSpeed;
