@@ -388,7 +388,7 @@ class B747_8_FMC_VNAVPage {
             ["\xa0N1"],
             [n1Cell],
             ["\xa0STEP", "RECMD", "OPT\xa0\xa0\xa0MAX"],
-            ["RVSM", "FL" + recmdFltLevel.toFixed(0), "FL" + optFltLevel.toFixed(0) + "\xa0" + "FL" + maxFltLevel.toFixed(0)],
+            ["RVSM", "FL" + recmdFltLevel.toFixed(0), "FL" + optFltLevel.toFixed(0) + "\xa0\xa0" + "FL" + maxFltLevel.toFixed(0)],
             ["__FMCSEPARATOR"],
             [lsk5lCell, "ENG OUT>"],
             [],
