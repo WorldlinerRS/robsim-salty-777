@@ -362,7 +362,7 @@ class B747_8_FMC_VNAVPage {
         let currentWeightKg = SimVar.GetSimVarValue("TOTAL WEIGHT", "kilograms");
         let weightLimitedFltLevel = Math.min(431,(((-0.06587013 * currentWeightKg) + 53688.13852814) / 100));
         let optFltLevel  = Math.min(431,(((-0.08231169 * currentWeightKg) + 56215.32467532) / 100)) ;
-        let recmdFltLevel = Math.floor(optFltLevel / 10) * 10;
+        let recmdFltLevel = Math.round(optFltLevel / 10) * 10;
         let maxFltLevel = Math.min(431, weightLimitedFltLevel);
 
         /* LSK 5L  - ECON Button */
@@ -388,7 +388,7 @@ class B747_8_FMC_VNAVPage {
             ["\xa0N1"],
             [n1Cell],
             ["\xa0STEP", "RECMD", "OPT\xa0\xa0\xa0MAX"],
-            ["RVSM", "FL" + recmdFltLevel.toFixed(0), "FL" + optFltLevel.toFixed(0) + "\xa0" + "FL" + maxFltLevel.toFixed(0)],
+            ["RVSM", "FL" + recmdFltLevel.toFixed(0), "FL" + optFltLevel.toFixed(0) + "\xa0\xa0" + "FL" + maxFltLevel.toFixed(0)],
             ["__FMCSEPARATOR"],
             [lsk5lCell, "ENG OUT>"],
             [],
