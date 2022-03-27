@@ -564,7 +564,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         let isSpeedIntervention = SimVar.GetSimVarValue("L:AP_SPEED_INTERVENTION_ACTIVE", "number");
         //When flaps 1 - commands UP + 20 or speed transition, whichever higher 
         if (flapsHandleIndex <= 1 && alt <= speedTrans) {
-            speed = Math.max(flapsUPmanueverSpeed + 20, 250);
+            speed = Math.max(flapsUPmanueverSpeed, 250);
         }
         //ECON SPEED Above 10000 commands lowest of UP + 100, 355kts or Cruise Mach
         if ((flapsHandleIndex <= 1 && alt > speedTrans) || _cduPageEconRequest) {
