@@ -790,7 +790,7 @@ class Jet_NDCompass extends HTMLElement {
 			diffAndSetAttribute(range.text, 'y', _y + '');
 			diffAndSetAttribute(range.text, 'fill', _color);
 			diffAndSetAttribute(range.text, 'font-size', _size + '');
-			diffAndSetAttribute(range.text, 'font-family', 'Roboto-Light');
+			diffAndSetAttribute(range.text, 'font-family', 'BoeingEFIS');
 			diffAndSetAttribute(range.text, 'text-anchor', 'middle');
 			diffAndSetAttribute(range.text, 'alignment-baseline', 'central');
             range.factor = _rangeFactor;

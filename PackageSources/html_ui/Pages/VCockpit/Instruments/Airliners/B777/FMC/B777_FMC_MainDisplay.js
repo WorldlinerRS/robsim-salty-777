@@ -729,7 +729,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             crzMach = 1;
         }
         else {
-            crzMach = grossWeight * flightLeveltoGradient[roundedFlightLevel] + flightLeveltoIntercept[roundedFlightLevel];
+            crzMach = Math.min(0.843, (grossWeight * flightLeveltoGradient[roundedFlightLevel] + flightLeveltoIntercept[roundedFlightLevel]));
         }
         return crzMach;
     }

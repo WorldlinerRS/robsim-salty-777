@@ -147,7 +147,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
         this.targetSpeedSVG.setAttribute("y", (posY + sideTextHeight * 0.5).toString());
         this.targetSpeedSVG.setAttribute("fill", "#D570FF");
         this.targetSpeedSVG.setAttribute("font-size", (this.fontSize * 1.6).toString());
-        this.targetSpeedSVG.setAttribute("font-family", "BoeingEICAS");
+        this.targetSpeedSVG.setAttribute("font-family", "BoeingEFIS");
         this.targetSpeedSVG.style.letterSpacing = "1px";
         this.targetSpeedSVG.setAttribute("text-anchor", "middle");
         this.targetSpeedSVG.setAttribute("alignment-baseline", "central");
@@ -198,7 +198,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
                         line.SVGText1.setAttribute("x", (linePosX - 15).toString());
                         line.SVGText1.setAttribute("fill", "white");
                         line.SVGText1.setAttribute("font-size", (this.fontSize * 1.2).toString());
-                        line.SVGText1.setAttribute("font-family", "BoeingEICAS");
+                        line.SVGText1.setAttribute("font-family", "BoeingEFIS");
                         line.SVGText1.setAttribute("text-anchor", "end");
                         line.SVGText1.style.letterSpacing = "1.5px";
                         line.SVGText1.setAttribute("alignment-baseline", "central");
@@ -239,9 +239,9 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
                 this.cursorSVG.appendChild(this.cursorSVGShape);
                 var _cursorPosX = -14;
                 var _cursorPosY = cursorHeight * 0.5;
-                this.cursorIntegrals[0].construct(this.cursorSVG, _cursorPosX + 42, _cursorPosY + 3, _width, "BoeingEICAS", this.fontSize * 1.5, "white");
-                this.cursorIntegrals[1].construct(this.cursorSVG, _cursorPosX + 62, _cursorPosY + 3, _width, "BoeingEICAS", this.fontSize * 1.5, "white");
-                this.cursorDecimals.construct(this.cursorSVG, _cursorPosX + 83, _cursorPosY + 3, _width, "BoeingEICAS", this.fontSize * 1.5, "white");
+                this.cursorIntegrals[0].construct(this.cursorSVG, _cursorPosX + 42, _cursorPosY + 3, _width, "BoeingEFIS", this.fontSize * 1.5, "white");
+                this.cursorIntegrals[1].construct(this.cursorSVG, _cursorPosX + 62, _cursorPosY + 3, _width, "BoeingEFIS", this.fontSize * 1.5, "white");
+                this.cursorDecimals.construct(this.cursorSVG, _cursorPosX + 83, _cursorPosY + 3, _width, "BoeingEFIS", this.fontSize * 1.5, "white");
                 this.cursorSVGShapeMask = document.createElementNS(Avionics.SVG.NS, "path");
                 this.cursorSVGShapeMask.setAttribute("fill", "transparent");
                 this.cursorSVGShapeMask.setAttribute("d", "M7 7 L71 7 L71 73 L7 73 Z");
@@ -358,7 +358,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
                 text.setAttribute("y", textPosY.toString());
                 text.setAttribute("fill", "orange");
                 text.setAttribute("font-size", (this.fontSize * 1.3).toString());
-                text.setAttribute("font-family", "BoeingEICAS");
+                text.setAttribute("font-family", "BoeingEFIS");
                 text.setAttribute("text-anchor", "middle");
                 text.setAttribute("alignment-baseline", "central");
                 this.speedNotSetSVG.appendChild(text);
@@ -369,7 +369,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
                 text.setAttribute("y", textPosY.toString());
                 text.setAttribute("fill", "orange");
                 text.setAttribute("font-size", (this.fontSize * 1.3).toString());
-                text.setAttribute("font-family", "BoeingEICAS");
+                text.setAttribute("font-family", "BoeingEFIS");
                 text.setAttribute("text-anchor", "middle");
                 text.setAttribute("alignment-baseline", "central");
                 this.speedNotSetSVG.appendChild(text);
@@ -380,7 +380,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
                 text.setAttribute("y", textPosY.toString());
                 text.setAttribute("fill", "orange");
                 text.setAttribute("font-size", (this.fontSize * 1.3).toString());
-                text.setAttribute("font-family", "BoeingEICAS");
+                text.setAttribute("font-family", "BoeingEFIS");
                 text.setAttribute("text-anchor", "middle");
                 text.setAttribute("alignment-baseline", "central");
                 this.speedNotSetSVG.appendChild(text);
@@ -391,7 +391,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
                 text.setAttribute("y", textPosY.toString());
                 text.setAttribute("fill", "orange");
                 text.setAttribute("font-size", (this.fontSize * 1.3).toString());
-                text.setAttribute("font-family", "BoeingEICAS");
+                text.setAttribute("font-family", "BoeingEFIS");
                 text.setAttribute("text-anchor", "middle");
                 text.setAttribute("alignment-baseline", "central");
                 this.speedNotSetSVG.appendChild(text);
@@ -402,7 +402,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
                 text.setAttribute("y", textPosY.toString());
                 text.setAttribute("fill", "orange");
                 text.setAttribute("font-size", (this.fontSize * 1.3).toString());
-                text.setAttribute("font-family", "BoeingEICAS");
+                text.setAttribute("font-family", "BoeingEFIS");
                 text.setAttribute("text-anchor", "middle");
                 text.setAttribute("alignment-baseline", "central");
                 this.speedNotSetSVG.appendChild(text);
@@ -453,7 +453,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
             this.machPrefixSVG.setAttribute("y", (posY + 15 + height + sideTextHeight * 0.65).toString());
             this.machPrefixSVG.setAttribute("fill", "white");
             this.machPrefixSVG.setAttribute("font-size", (this.fontSize * 1.1).toString());
-            this.machPrefixSVG.setAttribute("font-family", "BoeingEICAS");
+            this.machPrefixSVG.setAttribute("font-family", "BoeingEFIS");
             this.machPrefixSVG.setAttribute("text-anchor", "end");
             this.machPrefixSVG.setAttribute("alignment-baseline", "top");
             this.machPrefixSVG.style.letterSpacing = "1px";
@@ -464,7 +464,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
             this.machValueSVG.setAttribute("y", (posY + 15 + height + sideTextHeight * 0.65).toString());
             this.machValueSVG.setAttribute("fill", "white");
             this.machValueSVG.setAttribute("font-size", (this.fontSize * 1.6).toString());
-            this.machValueSVG.setAttribute("font-family", "BoeingEICAS");
+            this.machValueSVG.setAttribute("font-family", "BoeingEFIS");
             this.machValueSVG.setAttribute("text-anchor", "start");
             this.machValueSVG.setAttribute("alignment-baseline", "top");
             this.machValueSVG.style.letterSpacing = "1px";
@@ -509,7 +509,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
         text.setAttribute("y", (offsetY + this.speedMarkersHeight * 0.5).toString());
         text.setAttribute("fill", _color);
         text.setAttribute("font-size", (this.fontSize * _textScale).toString());
-        text.setAttribute("font-family", "BoeingEICAS");
+        text.setAttribute("font-family", "BoeingEFIS");
         text.setAttribute("text-anchor", "start");
         text.setAttribute("alignment-baseline", "central");
         svg.appendChild(text);
@@ -519,7 +519,7 @@ class Jet_PFD_AirspeedIndicator extends HTMLElement {
         speed.setAttribute("y", (offsetY + this.speedMarkersHeight * 0.8).toString());
         speed.setAttribute("fill", _color);
         speed.setAttribute("font-size", (this.fontSize * _textScale).toString());
-        speed.setAttribute("font-family", "BoeingEICAS");
+        speed.setAttribute("font-family", "BoeingEFIS");
         speed.setAttribute("text-anchor", "start");
         speed.setAttribute("alignment-baseline", "central");
         svg.appendChild(speed);

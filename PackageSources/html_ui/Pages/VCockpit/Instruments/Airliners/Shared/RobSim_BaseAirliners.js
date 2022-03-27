@@ -318,7 +318,7 @@ var Airliners;
             return ((_value > 0) ? "+" : "") + fastToFixed(_value, _dp);
         }
         static formatValueToPosNegTemperature(_value, _dp = 0) {
-            return (DynamicValueComponent.formatValueToPosNegString(_value, _dp) + "c");
+            return (DynamicValueComponent.formatValueToPosNegString(_value, _dp) + "C");
         }
         static formatValueToThrottleDisplay(_value, _dp = 0) {
             if (_value < 0) {
