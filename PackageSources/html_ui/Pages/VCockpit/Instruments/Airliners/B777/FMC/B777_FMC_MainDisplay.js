@@ -677,7 +677,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         return speed;
     }
 
-    /* Gets Cruise Mach number from altitude - Used regression from B744 data using weight correction factor needs B748 data to refine */
+    /* Gets Cruise Mach number from altitude - Used regression from B777-200LR data using weight correction factor needs B748 data to refine */
     getCrzMach() {
         let roundedFlightLevel = Math.ceil(this.cruiseFlightLevel / 10) * 10;
         let weightCorrectionFactor = 0.999;
