@@ -29,7 +29,7 @@ class SaltyIRS {
             IRSState = 1;
 
             // irs "TIME TO ALIGN" in seconds, default = 7 * 60 ... reduce this to a lower number whilst debugging to protect sanity.
-            this.irsTimer = 4 * 60;
+            this.irsTimer = 7 * 60;
         }
 
         if (IRSState == 1) {

@@ -636,7 +636,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         if (_cduPageEconRequest) {
             return speed;
         }
-        if (altitude <= 10500) {
+        if (altitude <= 10700) {
             if (machMode && !isSpeedIntervention) {
                 this.managedMachOff();
             }
