@@ -98,6 +98,9 @@ class B747_8_FMC_VNAVPage {
             }
             clbSpeedCell += "[color]magenta";
         }
+        if (isNaN(clbSpeedCell)) {
+            clbSpeedCell = "";
+        }
 
         fmc.onLeftInput[1] = () => {
             let value = fmc.inOut;
@@ -313,7 +316,9 @@ class B747_8_FMC_VNAVPage {
         if (Simplane.getCurrentFlightPhase() === FlightPhase.FLIGHT_PHASE_CRUISE) {
             crzSpeedCell += "[color]magenta";
         }
-
+        if (isNaN(crzSpeedCell)) {
+            crzSpeedCell = "";
+        }
         fmc.onLeftInput[1] = () => {
             let value = fmc.inOut;
             if (crzMode === 2) {
@@ -485,6 +490,9 @@ class B747_8_FMC_VNAVPage {
             if (altitude > 10500) {
                 desSpeedCell += "[color]magenta";
             }
+        }
+        if (isNaN(desSpeedCell)) {
+            desSpeedCell = "";
         }
 
         fmc.onLeftInput[1] = () => {
