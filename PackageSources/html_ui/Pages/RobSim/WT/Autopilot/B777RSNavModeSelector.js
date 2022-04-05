@@ -546,7 +546,7 @@
         this.getFLCHSpeed();
         this.vnavOff();
         this.activateThrustMode();
-        break; 
+        break;
       case VerticalNavModeState.GS:
         break;
     }
@@ -1038,17 +1038,17 @@
       case LateralNavModeState.HDG:
       case LateralNavModeState.APPR:
         if (this.approachMode !== WT_ApproachType.ILS) {
-        this.cancelApproachMode(false);
-        SimVar.SetSimVarValue("K:HEADING_SLOT_INDEX_SET", "number", 1);
-        SimVar.SetSimVarValue("L:WT_CJ4_HDG_ON", "number", 1);
-        SimVar.SetSimVarValue("L:AP_HEADING_HOLD_ACTIVE", "number", 0);
-
-        if (this.approachMode === WT_ApproachType.ILS || this.approachMode === WT_ApproachType.NONE) {
-          SimVar.SetSimVarValue("K:AP_PANEL_HEADING_HOLD", "number", 1);
+          this.cancelApproachMode(false);
+          SimVar.SetSimVarValue("K:HEADING_SLOT_INDEX_SET", "number", 1);
+          SimVar.SetSimVarValue("L:WT_CJ4_HDG_ON", "number", 1);
+          SimVar.SetSimVarValue("L:AP_HEADING_HOLD_ACTIVE", "number", 0);
+  
+          if (this.approachMode === WT_ApproachType.ILS || this.approachMode === WT_ApproachType.NONE) {
+            SimVar.SetSimVarValue("K:AP_PANEL_HEADING_HOLD", "number", 1);
+          }
+  
+          this.currentLateralActiveState = LateralNavModeState.HDG;
         }
-
-        this.currentLateralActiveState = LateralNavModeState.HDG;
-      }
         break;
     }
   }
@@ -1270,7 +1270,7 @@
       if (this.glidepathState === GlidepathStatus.GP_ACTIVE || this.glideslopeState === GlideslopeStatus.GS_ACTIVE) {
         SimVar.SetSimVarValue("K:VS_SLOT_INDEX_SET", "number", 1);
         SimVar.SetSimVarValue("K:AP_PANEL_VS_HOLD", "number", 0);
-      } 
+      }
 
       if (cancelHeadingHold) {
         SimVar.SetSimVarValue("K:AP_PANEL_HEADING_HOLD", "number", 0);
