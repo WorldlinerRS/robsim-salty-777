@@ -216,17 +216,13 @@ class WT_BaseVnav {
                 if (this._fpm.isLoadedApproach()) {
                     this._approachGlidePath = this.buildGlidepath();
 
-                } else { 
-                    this._approachGlidePath = undefined; 
-                }
+                } else { this._approachGlidePath = undefined; }
 
                 this._fpChecksum = this.flightplan.checksum;
             }
 
             if (this._vnavState === VnavState.DIRECT) {
-                const directWaypoint = this.currentWaypoints.find(w => { 
-                        return (w && w.ident === this._verticalDirectWaypoint.ident); 
-                    });
+                const directWaypoint = this.currentWaypoints.find(w => { return (w && w.ident === this._verticalDirectWaypoint.ident); });
                 if (!directWaypoint) {
                     this._vnavState = VnavState.PATH;
                 }
@@ -234,7 +230,6 @@ class WT_BaseVnav {
 
             this.manageConstraints();
             this.calculateTod();
-            this.calculateAdvisoryDescent();
         }
     }
 
@@ -297,7 +292,7 @@ class WT_BaseVnav {
 
     cancelVerticalDirectTo() {
         this._verticalDirectWaypoint = undefined;
-        this._pathExists = this.buildVerticalFlightPlan();
+        this._pathExists = buildVerticalFlightPlan();
     }
 
     buildVerticalFlightPlan(verticalDirect = false, vDirectTargetIndex, vDirectAltitude, vDirectFpa) {
@@ -799,8 +794,8 @@ class WT_BaseVnav {
         }
         if (this._fmc._currentVerticalAutopilot && this._fmc._currentVerticalAutopilot._vnavPathStatus && (this._fmc._currentVerticalAutopilot._vnavPathStatus == VnavPathStatus.PATH_ACTIVE
             || this._fmc._currentVerticalAutopilot._glidepathStatus == GlidepathStatus.GP_ACTIVE || this._fmc._currentVerticalAutopilot._glideslopeStatus == GlideslopeStatus.GS_ACTIVE)) {
-            todExists = false;		
-            } 
+                todExists = false;
+            }
             else if (this._firstPathSegment < 0 || !this._verticalFlightPlan[this.flightplan.activeWaypointIndex]) {
                 todExists = false;
             }
@@ -824,33 +819,6 @@ class WT_BaseVnav {
             this.setTodWaypoint();
         }
     }
-
-    calculateAdvisoryDescent() { //Creates a point when VNAV is not available to start descent to reach 1500" AGL 10nm from airport
-		if (this.vnavState == VnavState.NONE) {
-			if (this.destination && this._fmc.cruiseFlightLevel && !Simplane.getIsGrounded()) {
-				const elevation = parseFloat(this.destination.infos.oneWayRunways[0].elevation) * 3.28;
-				const altitude = this._fmc.cruiseFlightLevel * 100;
-				const verticalDistance = (altitude - elevation) - 1500;
-				const horizontalDescentDistance = ((verticalDistance / Math.tan(3 * Math.PI / 180)) / 6076.12) + 10;
-				const distanceToTod = (this.destination.cumulativeDistanceInFP - horizontalDescentDistance) - this._currentDistanceInFP;
-				const WT_CJ4_TOD_DISTANCE = SimVar.GetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number");
-				const WT_CJ4_TOD_REMAINING = SimVar.GetSimVarValue("L:WT_CJ4_TOD_REMAINING", "number");
-				const WT_CJ4_ADV_DES_ACTIVE = SimVar.GetSimVarValue("L:WT_CJ4_ADV_DES_ACTIVE", "number");
-				if (WT_CJ4_TOD_DISTANCE < horizontalDescentDistance - .1 || WT_CJ4_TOD_DISTANCE > horizontalDescentDistance + .1) {
-					SimVar.SetSimVarValue("L:WT_CJ4_TOD_DISTANCE", "number", horizontalDescentDistance);
-				}
-				if (WT_CJ4_TOD_REMAINING < distanceToTod - .1 || WT_CJ4_TOD_REMAINING > distanceToTod + .1) {
-					SimVar.SetSimVarValue("L:WT_CJ4_TOD_REMAINING", "number", distanceToTod);
-				}
-				const desActive = distanceToTod > .1 ? 1 : 0;
-				if (WT_CJ4_ADV_DES_ACTIVE != desActive) {
-					SimVar.SetSimVarValue("L:WT_CJ4_ADV_DES_ACTIVE", "number", distanceToTod > .1 ? 1 : 0);
-				}
-			}
-		} else {
-			SimVar.SetSimVarValue("L:WT_CJ4_ADV_DES_ACTIVE", "number", 0);
-		}
-	}
 
     setTodWaypoint(calculate = false, todDistanceInFP) {
 
