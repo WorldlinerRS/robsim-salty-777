@@ -82,7 +82,7 @@ TailhookState=0
 FoldingWingsHandle=False
 FoldingWingsState=0, 0
 AuxPowerUnitSwitch=False
-MaxBankIndex=6
+
 
 [Electrical.0]
 alternator.5=False

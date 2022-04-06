@@ -3469,14 +3469,14 @@
           <TT_ICON>MOVE_AXIS_Y</TT_ICON>
         </UseTemplate>
         <!-- SALTY 747 BUTTONS -->
-        <UseTemplate Name="ASOBO_BOEING_Push_Heading_Track_Template">
+        <UseTemplate Name="Robsim_BOEING_Push_Heading_Track_Template">
           <NODE_ID>G04_006_SW2</NODE_ID>
           <ANIM_NAME>G04_006_SW2</ANIM_NAME>
           <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
           <NO_INDICATOR>True</NO_INDICATOR>
           <TYPE>B747</TYPE>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_BOEING_Push_VS_FPA_Template">
+        <UseTemplate Name="Robsim_BOEING_Push_VS_FPA_Template">
           <NODE_ID>G04_007_SW2</NODE_ID>
           <ANIM_NAME>G04_007_SW2</ANIM_NAME>
           <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>

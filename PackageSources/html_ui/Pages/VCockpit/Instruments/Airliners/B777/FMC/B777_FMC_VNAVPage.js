@@ -71,7 +71,7 @@ class B747_8_FMC_VNAVPage {
         /* LSK 2L  - Climb Speed */
         let clbSpeedCell = fmc.getClbManagedSpeed(true).toFixed(0);
         let machMode = Simplane.getAutoPilotMachModeActive();
-        if (isNaN(parseFloat(clbSpeedCell))) {
+        if (isNaN(clbSpeedCell)) {
             clbSpeedCell = "";
         }
         if (clbMode === 2) {
@@ -128,7 +128,7 @@ class B747_8_FMC_VNAVPage {
         let flapsUPmanueverSpeed = SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 80;
         let transSpeed = Math.max(flapsUPmanueverSpeed + 20, 250);
         let spdRestr = SimVar.GetSimVarValue("L:SALTY_SPEED_RESTRICTION", "knots");
-        let spdRestrAlt = SimVar.GetSimVarValue("L:SALTY_SPEED_RESTRICTION_ALT", "feet"); 
+        let spdRestrAlt = SimVar.GetSimVarValue("L:SALTY_SPEED_RESTRICTION_ALT", "feet");
         if (isFinite(transSpeed)) {
             spdTransCell = transSpeed.toFixed(0);
             if (Simplane.getAltitude() < 10000 && Simplane.getAltitude() > spdRestrAlt && Simplane.getCurrentFlightPhase() === FlightPhase.FLIGHT_PHASE_CLIMB) {
@@ -195,7 +195,7 @@ class B747_8_FMC_VNAVPage {
                 SimVar.SetSimVarValue("L:SALTY_VNAV_CLB_MODE" , "Enum", 0);
                 B747_8_FMC_VNAVPage.ShowPage1(fmc);
             }
-        };  
+        };
 
         /* Climb Page Template */
         fmc.setTemplate([
@@ -268,7 +268,7 @@ class B747_8_FMC_VNAVPage {
             case 5:
                 crzPageTitle += "LIM SPD CRZ";
                 crzSpeedModeCell = "\xa0SEL SPD";
-                break;          
+                break;
         }
 
         /* LSK 1L  - Cruise Alt */
@@ -278,7 +278,7 @@ class B747_8_FMC_VNAVPage {
             if (Simplane.getCurrentFlightPhase() === FlightPhase.FLIGHT_PHASE_CRUISE) {
                 crzAltCell = "{magenta}FL" + fmc.cruiseFlightLevel + "{end}";
             }
-        }  
+        }
         fmc.onLeftInput[0] = () => {
             let value = fmc.inOut;
             fmc.clearUserInput();
@@ -364,9 +364,9 @@ class B747_8_FMC_VNAVPage {
         }
         
         /* Maximum & Optimum Flight level - Calculates uses linear regression derived formula from actual aircraft data */
-        let currentWeightKg = SimVar.GetSimVarValue("TOTAL WEIGHT", "kilograms");
-        let weightLimitedFltLevel = Math.min(431,(((-0.06587013 * currentWeightKg) + 53688.13852814) / 100));
-        let optFltLevel  = Math.min(431,(((-0.08231169 * currentWeightKg) + 56215.32467532) / 100)) ;
+        let currentWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "kilograms");
+        let weightLimitedFltLevel = Math.min(431,(((-0.06587013 * currentWeight) + 53688.13852814) / 100));
+        let optFltLevel  = Math.min(431,(((-0.08231169 * currentWeight) + 56215.32467532) / 100)) ;
         let recmdFltLevel = Math.round(optFltLevel / 10) * 10;
         let maxFltLevel = Math.min(431, weightLimitedFltLevel);
 
@@ -381,7 +381,7 @@ class B747_8_FMC_VNAVPage {
                 SimVar.SetSimVarValue("L:SALTY_VNAV_CRZ_MODE" , "Enum", 0);
                 B747_8_FMC_VNAVPage.ShowPage2(fmc);
             }
-        };  
+        };
 
         /* Cruise Page Template */
         fmc.setTemplate([
@@ -456,7 +456,7 @@ class B747_8_FMC_VNAVPage {
         /* LSK 2L  - Descent Speed */
         let desSpeedCell = SimVar.GetSimVarValue("L:SALTY_DES_SPEED", "knots").toFixed(0);
         let machMode = Simplane.getAutoPilotMachModeActive();
-        if (isNaN(parseFloat(desSpeedCell))) {
+        if (isNaN(desSpeedCell)) {
             desSpeedCell = "";
         }
         if (Simplane.getCurrentFlightPhase() >= FlightPhase.FLIGHT_PHASE_DESCENT && SimVar.GetSimVarValue("L:AP_VNAV_ACTIVE", "bool") && desMode === 1) {
@@ -484,7 +484,7 @@ class B747_8_FMC_VNAVPage {
             else {
                 desSpeedCell = fmc.getCrzMach().toFixed(3).substring(1) + "/" + fmc.getDesManagedSpeed(true).toFixed(0);
             }
-        } 
+        }
         else {
             desSpeedCell = fmc.getDesManagedSpeed(true).toFixed(0);
         }
@@ -520,7 +520,7 @@ class B747_8_FMC_VNAVPage {
 
         /* LSK 3L  - Speed Transition */
         let spdRestr = SimVar.GetSimVarValue("L:SALTY_SPEED_RESTRICTION_DES", "knots");
-        let spdRestrAlt = SimVar.GetSimVarValue("L:SALTY_SPEED_RESTRICTION_DES_ALT", "feet"); 
+        let spdRestrAlt = SimVar.GetSimVarValue("L:SALTY_SPEED_RESTRICTION_DES_ALT", "feet");
         let speedTransCell = "240/10000";
         if (altitude < 10500 && Simplane.getCurrentFlightPhase() >= FlightPhase.FLIGHT_PHASE_DESCENT) {
             speedTransCell = "{magenta}240{end}/10000";
