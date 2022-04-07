@@ -291,7 +291,7 @@ class B747_8_FMC_VNAVPage {
         let crzSpeedCell = ""
         let crzSpeed = fmc.getCrzManagedSpeed(true);
         let crzMach = fmc.getCrzMach();
-        if (isNaN(parseFloat(crzSpeedCell))) {
+        if (isNaN(crzSpeed) || isNaN(crzMach)) {
             crzSpeedCell = "";
         }
         if (crzMach !== 1) {
@@ -362,13 +362,12 @@ class B747_8_FMC_VNAVPage {
         if (isFinite(n1Value)) {
             n1Cell = n1Value.toFixed(1) + "%";
         }
-        
+
         /* Maximum & Optimum Flight level - Calculates uses linear regression derived formula from actual aircraft data */
         let currentWeight = SimVar.GetSimVarValue("TOTAL WEIGHT", "kilograms");
-        let weightLimitedFltLevel = Math.min(431,(((-0.06587013 * currentWeight) + 53688.13852814) / 100));
+        let maxFltLevel = Math.min(431,(((-0.06587013 * currentWeight) + 53688.13852814) / 100));
         let optFltLevel  = Math.min(431,(((-0.08231169 * currentWeight) + 56215.32467532) / 100)) ;
         let recmdFltLevel = Math.round(optFltLevel / 10) * 10;
-        let maxFltLevel = Math.min(431, weightLimitedFltLevel);
 
         /* LSK 5L  - ECON Button */
         let lsk5lCell = "";
