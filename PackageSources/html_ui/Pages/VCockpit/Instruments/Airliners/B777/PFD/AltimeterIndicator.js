@@ -12,9 +12,13 @@ class Jet_PFD_AltimeterIndicator extends HTMLElement {
         this.totalGraduations = this.nbPrimaryGraduations + ((this.nbPrimaryGraduations - 1) * this.nbSecondaryGraduations);
         this.graduationSpacing = 42;
         this.groundRibbonHasFixedHeight = false;
+        this.groundReference = 0;
         this.groundLineSVGHeight = 0;
         this.mtrsVisible = false;
         this.minimumReferenceValue = 200;
+        this.minimumResetValue = 200;
+        this.minimumDisplayedValue = -100;
+        this.minimumLastMode = MinimumReferenceMode.RADIO;
         this.hudAPAltitude = 0;
         this.isHud = false;
         this._aircraft = Aircraft.A320_NEO;
@@ -468,9 +472,9 @@ class Jet_PFD_AltimeterIndicator extends HTMLElement {
     }
     update(_dTime) {
         let indicatedAltitude = Simplane.getAltitude();
-        var groundReference = indicatedAltitude - Simplane.getAltitudeAboveGround();
-        var baroMode = Simplane.getPressureSelectedMode(this.aircraft);
-        var selectedAltitude;
+        let groundReference = indicatedAltitude - Simplane.getAltitudeAboveGround(true);
+        let baroMode = Simplane.getPressureSelectedMode(this.aircraft);
+        let selectedAltitude;
         if (this.aircraft === Aircraft.AS01B || this.aircraft === Aircraft.B747_8) {
             selectedAltitude = Math.max(0, Simplane.getAutoPilotDisplayedAltitudeLockValue());
         }
@@ -482,7 +486,7 @@ class Jet_PFD_AltimeterIndicator extends HTMLElement {
         }
         this.updateGraduationScrolling(indicatedAltitude);
         this.updateCursorScrolling(indicatedAltitude);
-        this.updateGroundReference(indicatedAltitude, groundReference);
+        this.updateGroundReference(indicatedAltitude, groundReference, _dTime);
         this.updateTargetAltitude(indicatedAltitude, selectedAltitude, baroMode);
         this.updateBaroPressure(baroMode);
         this.updateMtrs(indicatedAltitude, selectedAltitude);
@@ -494,7 +498,7 @@ class Jet_PFD_AltimeterIndicator extends HTMLElement {
             if (this.mtrsSelectedGroup) {
                 var APMode = this.getAutopilotMode();
                 if (APMode != AutopilotMode.MANAGED) {
-                    let meters = Math.round(_selected * 0.03048) * 10;
+                    let meters = Math.round(_selected * 0.3048);
                     this.mtrsSelectedSVGText.textContent = meters.toString();
                     this.mtrsSelectedGroup.setAttribute("visibility", "visible");
                 }
@@ -625,17 +629,18 @@ class Jet_PFD_AltimeterIndicator extends HTMLElement {
             this.cursorSVGAltitudeLevelShapeMask.classList.toggle('hide', _altitude >= 10000);
     }
     valueToSvg(current, target) {
-        var _top = 0;
-        var _height = this.refHeight;
+        let _top = 0;
+        let _height = this.refHeight;
         let deltaValue = current - target;
         let deltaSVG = deltaValue * this.graduationSpacing * (this.nbSecondaryGraduations + 1) / this.graduationScroller.increment;
-        var posY = _top + _height * 0.5 + deltaSVG;
+        let posY = _top + _height * 0.5 + deltaSVG;
         return posY;
     }
-    updateGroundReference(currentAltitude, groundReference) {
-        var currentY = this.valueToSvg(currentAltitude, groundReference);
+    updateGroundReference(currentAltitude, groundReference, _dTime) {
+        this.groundReference = Utils.SmoothPow(this.groundReference, groundReference, 1.2, _dTime / 1000);
+        let currentY = this.valueToSvg(currentAltitude, this.groundReference);
         if (this.groundRibbonSVG && this.groundRibbonSVGShape) {
-            var rectHeight = (this.refHeight - currentY - this.borderSize);
+            let rectHeight = (this.refHeight - currentY - this.borderSize);
             if (rectHeight > 0) {
                 this.groundRibbonSVG.setAttribute("visibility", "visible");
                 this.groundRibbonSVG.setAttribute("y", currentY.toString());
