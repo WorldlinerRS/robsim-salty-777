@@ -99,7 +99,7 @@
       <Simvar name="CIRCUIT ON:7" unit="Boolean"/>
     </Electric>
   </Instrument>
-  
+
   <Instrument>
     <Name>B747_8_RUDDER</Name>
     <Electric>
@@ -920,7 +920,7 @@
 					<LinearMultiPoint>
 						<Table>
 							<ReferencePoints>1160,2320,4930,12000</ReferencePoints>
-							<Maximums>0,1075,2380,4285</Maximums>
+							<Maximums>0,1070,2380,4285</Maximums>
 						</Table>
 						<Param>
 							<Multiply>
@@ -947,7 +947,7 @@
 					<LinearMultiPoint>
 						<Table>
 							<ReferencePoints>1160,2320,4930,12000</ReferencePoints>
-							<Minimums>0,1075,2380,4285</Minimums>
+							<Minimums>0,1070,2380,4285</Minimums>
 							<Maximums>0,1460,2980,5360</Maximums>
 						</Table>
 						<Param>
@@ -983,8 +983,8 @@
 					<Or>
 						<LinearMultiPoint>
 							<Table>
-								<ReferencePoints>0,500,7500</ReferencePoints>
-								<Maximums>50,750,750</Maximums>
+								<ReferencePoints>0,500,7000</ReferencePoints>
+								<Maximums>50,700,700</Maximums>
 								<Minimums>50,50,50</Minimums>
 							</Table>
 							<Param>
@@ -999,8 +999,8 @@
 						</LinearMultiPoint>
 						<LinearMultiPoint>
 							<Table>
-								<ReferencePoints>10,75,150</ReferencePoints>
-								<Maximums>50,750,750</Maximums>
+								<ReferencePoints>10,70,150</ReferencePoints>
+								<Maximums>50,700,700</Maximums>
 								<Minimums>50,50,50</Minimums>
 							</Table>
 							<Param>
@@ -1212,6 +1212,36 @@
 
 		<Alert>
 			<Type>SoundOnly</Type>
+			<SoundEvent>aural_5ft</SoundEvent>
+			<Condition>
+				<StateMachine>
+					<State id="Under" value="0">
+						<Transition to="Over">
+							<GreaterEqual>
+								<Simvar name="PLANE ALT ABOVE GROUND MINUS CG" unit="feet"/>
+								<Constant>55</Constant>
+							</GreaterEqual>
+						</Transition>
+					</State>
+					<State id="Over" value="0">
+						<Transition to="Alerting">
+							<LowerEqual>
+								<Simvar name="PLANE ALT ABOVE GROUND MINUS CG" unit="feet"/>
+								<Constant>5</Constant>
+							</LowerEqual>
+						</Transition>
+					</State>
+					<State id="Alerting" value="1">
+						<Transition to="Under">
+							<Constant>1</Constant>
+						</Transition>
+					</State>
+				</StateMachine>
+			</Condition>
+		</Alert>
+
+		<Alert>
+			<Type>SoundOnly</Type>
 			<SoundEvent>aural_10ft</SoundEvent>
 			<Condition>
 				<StateMachine>
@@ -1249,7 +1279,7 @@
 						<Transition to="Over">
 							<GreaterEqual>
 								<Simvar name="PLANE ALT ABOVE GROUND MINUS CG" unit="feet"/>
-								<Constant>75</Constant>
+								<Constant>70</Constant>
 							</GreaterEqual>
 						</Transition>
 					</State>

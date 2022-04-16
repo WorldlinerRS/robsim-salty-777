@@ -208,7 +208,6 @@ class Boeing_FMC extends FMCMainDisplay {
                         }
                         this._currentVerticalAutopilot._constraintStatus = ConstraintStatus.PASSED;
                         this.flightPlanManager._updateFlightPlanVersion();
-                        return;
                     }
                     else if (SimVar.GetSimVarValue("L:AIRLINER_FLIGHT_PHASE", "number") >= 4){
                         let arrivalWaypoints = this.flightPlanManager.getArrivalWaypoints();
@@ -225,12 +224,10 @@ class Boeing_FMC extends FMCMainDisplay {
                                 approachWaypoints[i].speedConstraint = -1;
                             }
                         }
+                        this._currentVerticalAutopilot._constraintStatus = ConstraintStatus.PASSED;
+                        this.flightPlanManager._updateFlightPlanVersion();
                     }
-                    this._currentVerticalAutopilot._constraintStatus = ConstraintStatus.PASSED;
-                    this.flightPlanManager._updateFlightPlanVersion();
                 }
-
-
                 if (mcpAlt !== Math.round(altitude/100) * 100) {
                     this._navModeSelector.onNavChangedEvent('ALT_INT_PRESSED');
                 }
