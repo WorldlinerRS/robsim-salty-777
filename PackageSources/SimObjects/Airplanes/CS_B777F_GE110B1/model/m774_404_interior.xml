@@ -3159,31 +3159,31 @@
             <ANIM_NAME_PUSH>afds_push_std_l</ANIM_NAME_PUSH>
             <AIRLINER_TYPE>PUSH</AIRLINER_TYPE>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_WXR_Template">
+          <UseTemplate Name="Robsim_BOEING_Push_WXR_Template">
             <NODE_ID>btn_afds_wxr_l1</NODE_ID>
             <ANIM_NAME>afds_push_wxr_l</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_STA_Template">
+          <UseTemplate Name="Robsim_BOEING_Push_STA_Template">
             <NODE_ID>btn_afds_sta_l1</NODE_ID>
             <ANIM_NAME>afds_push_sta_l</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_WPT_Template">
+          <UseTemplate Name="Robsim_BOEING_Push_WPT_Template">
             <NODE_ID>btn_afds_wpt_l1</NODE_ID>
             <ANIM_NAME>afds_push_wpt_l</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_ARPT_Template">
+          <UseTemplate Name="Robsim_BOEING_Push_ARPT_Template">
             <NODE_ID>btn_afds_arpt_l1</NODE_ID>
             <ANIM_NAME>afds_push_arpt_l</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_DATA_Template">
+          <UseTemplate Name="Robsim_BOEING_Push_DATA_Template">
             <NODE_ID>btn_afds_data_l1</NODE_ID>
             <ANIM_NAME>afds_push_data_l</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_POS_Template">
+          <UseTemplate Name="Robsim_BOEING_Push_POS_Template">
             <NODE_ID>btn_afds_pos_l1</NODE_ID>
             <ANIM_NAME>afds_push_pos_l</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_TERR_Template">
+          <UseTemplate Name="Robsim_BOEING_Push_TERR_Template">
             <NODE_ID>btn_afds_terr_l1</NODE_ID>
             <ANIM_NAME>afds_push_terr_l</ANIM_NAME>
           </UseTemplate>
@@ -3255,31 +3255,31 @@
             <AIRLINER_TYPE>PUSH</AIRLINER_TYPE>
             <ID>2</ID>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_WXR_Template">
+          <UseTemplate Name="RobSim_BOEING_Push_WXR_Template">
             <NODE_ID>btn_afds_wxr_r</NODE_ID>
             <ANIM_NAME>afds_push_wxr_r</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_STA_Template">
+          <UseTemplate Name="RobSim_BOEING_Push_STA_Template">
             <NODE_ID>btn_afds_sta_r</NODE_ID>
             <ANIM_NAME>afds_push_sta_r</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_WPT_Template">
+          <UseTemplate Name="RobSim_BOEING_Push_WPT_Template">
             <NODE_ID>btn_afds_wpt_r</NODE_ID>
             <ANIM_NAME>afds_push_wpt_r</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_ARPT_Template">
+          <UseTemplate Name="RobSim_BOEING_Push_ARPT_Template">
             <NODE_ID>btn_afds_arpt_r</NODE_ID>
             <ANIM_NAME>afds_push_arpt_r</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_DATA_Template">
+          <UseTemplate Name="RobSim_BOEING_Push_DATA_Template">
             <NODE_ID>btn_afds_data_r</NODE_ID>
             <ANIM_NAME>afds_push_data_r</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_POS_Template">
+          <UseTemplate Name="RobSim_BOEING_Push_POS_Template">
             <NODE_ID>btn_afds_pos_r</NODE_ID>
             <ANIM_NAME>afds_push_pos_r</ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_BOEING_Push_TERR_Template">
+          <UseTemplate Name="RobSim_BOEING_Push_TERR_Template">
             <NODE_ID>btn_afds_terr_r</NODE_ID>
             <ANIM_NAME>afds_push_terr_r</ANIM_NAME>
           </UseTemplate>

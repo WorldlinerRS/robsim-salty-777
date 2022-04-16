@@ -203,6 +203,7 @@ class B747_8_MFD_MainPage extends NavSystemPage {
             this.setMapMode(this.mapIsCentered, this.mapMode);
             if (this.terrainOn) {
                 this.mapConfigId = 1;
+                this.map.instrument.bingMap.setVisible(false);
             }
             else if (this.wxRadarOn) {
                 this.showWeather();
@@ -300,6 +301,7 @@ class B747_8_MFD_MainPage extends NavSystemPage {
         this.compass.svg.showArcRange(false);
         SimVar.SetSimVarValue("L:FMC_UPDATE_CURRENT_PAGE", "number", 1);
     }
+
     showWeather() {
         this.setMapMode(this.mapIsCentered, this.mapMode);
         this.compass.svg.showArcRange(true);
@@ -313,6 +315,7 @@ class B747_8_MFD_MainPage extends NavSystemPage {
         this.info.showSymbol(B747_8_ND_Symbol.WPT, this.map.instrument.showIntersections);
         this.info.showSymbol(B747_8_ND_Symbol.ARPT, this.map.instrument.showAirports);
         this.info.showSymbol(B747_8_ND_Symbol.TFC, this.map.instrument.showTraffic);
+        this.info.showSymbol(B747_8_ND_Symbol.POS, this.map.instrument.showVORs);
         this.info.showSymbol(B747_8_ND_Symbol.DATA, this.map.instrument.showConstraints);
     }
     updateDeviationScale() {
@@ -484,7 +487,8 @@ var B747_8_ND_Symbol;
     B747_8_ND_Symbol[B747_8_ND_Symbol["WXR"] = 4] = "WXR";
     B747_8_ND_Symbol[B747_8_ND_Symbol["WXRINFO"] = 5] = "WXRINFO";
     B747_8_ND_Symbol[B747_8_ND_Symbol["TFC"] = 6] = "TFC";
-    B747_8_ND_Symbol[B747_8_ND_Symbol["DATA"] = 7] = "DATA";
+    B747_8_ND_Symbol[B747_8_ND_Symbol["POS"] = 7] = "POS";
+    B747_8_ND_Symbol[B747_8_ND_Symbol["DATA"] = 8] = "DATA";
 })(B747_8_ND_Symbol || (B747_8_ND_Symbol = {}));
 class B747_8_MFD_NDInfo extends NavSystemElement {
     constructor() {
@@ -513,6 +517,7 @@ class B747_8_MFD_NDInfo extends NavSystemElement {
         this.allSymbols.push(this.ndInfo.querySelector("#WXR"));
         this.allSymbols.push(this.ndInfo.querySelector("#WXRInfo"));
         this.allSymbols.push(this.ndInfo.querySelector("#TFC"));
+        this.allSymbols.push(this.ndInfo.querySelector("#POS"));
         this.allSymbols.push(this.ndInfo.querySelector("#DATA"));
         this.greenArc = document.querySelector("#greenArc");
     }

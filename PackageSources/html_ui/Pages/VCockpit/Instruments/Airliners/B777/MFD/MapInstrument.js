@@ -224,20 +224,17 @@ class MapInstrument extends ISvgMapRootElement {
             "show-airspaces",
             "show-airways",
             "show-flightplan",
-            "show-flightplan-waypoints",
             "hide-flightplan-if-bushtrip",
             "show-waypoints",
             "show-obstacles",
             "show-constraints",
             "show-vors",
-            "shown-vors-ident-list",
             "show-intersections",
             "show-termwpts",
             "show-ndbs",
             "show-airports",
             "show-cities",
             "show-traffic",
-            "shown-waypoint-index",
             "show-missed",
         ];
     }
@@ -315,8 +312,6 @@ class MapInstrument extends ISvgMapRootElement {
                 this.showFlightPlan = true;
                 this.updateFlightPlanVisibility();
             }
-        } else if (lowercaseName === "show-flightplan-waypoints") {
-            this.bIsFlightPlanWaypointsVisible = (newValue === "true");
         } else if (lowercaseName === "hide-flightplan-if-bushtrip") {
             this.bHideFlightPlanIfBushtrip = false;
             if (newValue === "true") {
@@ -329,8 +324,6 @@ class MapInstrument extends ISvgMapRootElement {
             if (newValue === "true") {
                 this.showVORs = true;
             }
-        } else if (lowercaseName === "shown-vors-ident-list") {
-            this.shownVorsIdentList = newValue.split(",").filter(e => { return e; }).map(e => { return e.toUpperCase(); });
         } else if (lowercaseName === "show-intersections") {
             this.showIntersections = false;
             if (newValue === "true") {
@@ -366,11 +359,6 @@ class MapInstrument extends ISvgMapRootElement {
             this.showConstraints = false;
             if (newValue === "true") {
                 this.showConstraints = true;
-            }
-        } else if (lowercaseName === "shown-waypoint-index") {
-            this.shownWaypointIndex = -1;
-            if (isFinite(newValue)) {
-                this.shownWaypointIndex = parseFloat(newValue);
             }
         } else if (lowercaseName === "show-missed") {
             this.showMissedAppr = false;
