@@ -1294,9 +1294,11 @@ class WT_VerticalAutopilot {
                 switch (this.verticalMode) {
                     case VerticalNavModeState.ALTCAP:
                         this.verticalMode = VerticalNavModeState.ALT;
+                        SimVar.SetSimVarValue("L:AP_ALT_HOLD_ACTIVE", "number", 1);
                         break;
                     case VerticalNavModeState.ALTSCAP:
                         this.verticalMode = VerticalNavModeState.ALTS;
+                        SimVar.SetSimVarValue("L:AP_ALT_HOLD_ACTIVE", "number", 1);
                         break;
                     case VerticalNavModeState.ALTVCAP:
                         this.verticalMode = VerticalNavModeState.ALTV;

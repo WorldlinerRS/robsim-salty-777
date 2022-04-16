@@ -73,13 +73,14 @@ class B747_8_MFD_MainPage extends NavSystemPage {
         this.map.instrument.showNDBs = false;
         this.map.instrument.showAirports = false;
         this.map.instrument.showAirspaces = false;
+        this.map.instrument.showConstraints = false;
         this.map.instrument.intersectionMaxRange = Infinity;
         this.map.instrument.vorMaxRange = Infinity;
         this.map.instrument.ndbMaxRange = Infinity;
         this.map.instrument.smallAirportMaxRange = 0;
         this.map.instrument.medAirportMaxRange = 0;
         this.map.instrument.largeAirportMaxRange = Infinity;
-        SimVar.SetSimVarValue("L:B747_8_MFD_NAV_MODE", "number", 2);
+        Simplane.set747MFDNavMode(2);
 
         this.trkBox = document.querySelector("#trk-box");
         this.mapBox = document.querySelector("#map-box");
@@ -137,15 +138,15 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 break;
             case "BTN_WXR":
                 if (this.wxRadarOn) {
-                    SimVar.SetSimVarValue("L:BTN_WX_ACTIVE", "number", 0);
+                    Simplane.setBTNWXActive(false);
                 }
                 else {
-                    SimVar.SetSimVarValue("L:BTN_WX_ACTIVE", "number", 1);
-                    SimVar.SetSimVarValue("L:BTN_TERRONND_ACTIVE", "number", 0);
+                    Simplane.setBTNWXActive(true);
+                    Simplane.setBTNTerrOnNdActive(false);
                 }
                 break;
             case "BTN_STA":
-                this.map.instrument.showVORs = !this.map.instrument.showVORs;
+                this.map.instrument.showNDBs = !this.map.instrument.showNDBs;
                 this._updateNDFiltersStatuses();
                 break;
             case "BTN_WPT":
@@ -157,11 +158,12 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 this._updateNDFiltersStatuses();
                 break;
             case "BTN_DATA":
-                // lines were commented
                 this.map.instrument.showConstraints = !this.map.instrument.showConstraints;
                 this._updateNDFiltersStatuses();
                 break;
             case "BTN_POS":
+                this.map.instrument.showVORs = !this.map.instrument.showVORs;
+                this._updateNDFiltersStatuses();
                 break;
             case "BTN_TERR":
                 if (this.terrainOn) {
@@ -169,7 +171,7 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 }
                 else {
                     SimVar.SetSimVarValue("L:BTN_TERRONND_ACTIVE", "number", 1);
-                    SimVar.SetSimVarValue("L:BTN_WX_ACTIVE", "number", 0);
+                    Simplane.setBTNWXActive(false);
                 }
                 break;
         }
@@ -178,21 +180,21 @@ class B747_8_MFD_MainPage extends NavSystemPage {
         SimVar.SetSimVarValue("L:BTN_CSTR_FILTER_ACTIVE", "number", this.map.instrument.showConstraints ? 1 : 0);
         SimVar.SetSimVarValue("L:BTN_VORD_FILTER_ACTIVE", "number", this.map.instrument.showVORs ? 1 : 0);
         SimVar.SetSimVarValue("L:BTN_WPT_FILTER_ACTIVE", "number", this.map.instrument.showIntersections ? 1 : 0);
-        SimVar.SetSimVarValue("L:BTN_NDB_FILTER_ACTIVE", "number", this.map.instrument.showVORs ? 1 : 0);
+        SimVar.SetSimVarValue("L:BTN_NDB_FILTER_ACTIVE", "number", this.map.instrument.showNDBs ? 1 : 0);
         SimVar.SetSimVarValue("L:BTN_ARPT_FILTER_ACTIVE", "number", this.map.instrument.showAirports ? 1 : 0);
     }
     updateMap(_deltaTime) {
         if (this.modeChangeMask && this.modeChangeTimer >= 0) {
             this.modeChangeTimer -= _deltaTime / 1000;
             if (this.modeChangeTimer <= 0) {
-                this.modeChangeMask.style.display = "none";
+                diffAndSetStyle(this.modeChangeMask, StyleProperty.display, "none");
                 this.modeChangeTimer = -1;
             }
         }
-        var wxRadarOn = SimVar.GetSimVarValue("L:BTN_WX_ACTIVE", "bool");
+        var wxRadarOn = Simplane.getBTNWXActive();
         var terrainOn = SimVar.GetSimVarValue("L:BTN_TERRONND_ACTIVE", "number");
-        var mapMode = SimVar.GetSimVarValue("L:B747_8_MFD_NAV_MODE", "number");
-        var mapRange = SimVar.GetSimVarValue("L:B747_8_MFD_Range", "number");
+        var mapMode = Simplane.get747MFDNavMode();
+        var mapRange = Simplane.get747MFDRange();
         if (this.wxRadarOn != wxRadarOn || this.terrainOn != terrainOn || this.mapMode != mapMode || this.forceMapUpdate) {
             this.wxRadarOn = wxRadarOn;
             this.terrainOn = terrainOn;
@@ -201,11 +203,9 @@ class B747_8_MFD_MainPage extends NavSystemPage {
             this.setMapMode(this.mapIsCentered, this.mapMode);
             if (this.terrainOn) {
                 this.mapConfigId = 1;
-                this.map.instrument.bingMap.setVisible(true);
             }
-            else if (this.wxRadarOn && mapMode != 3) {
+            else if (this.wxRadarOn) {
                 this.showWeather();
-                this.map.instrument.bingMap.setVisible(true);
             }
             else {
                 this.mapConfigId = 0;
@@ -219,13 +219,9 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 this.map.hideCompassMask();
             }
             if (this.modeChangeMask) {
-                this.modeChangeMask.style.display = "block";
+                diffAndSetStyle(this.modeChangeMask, StyleProperty.display, "block");
                 this.modeChangeTimer = 0.15;
             }
-        } else if (!this.wxRadarOn && !this.terrainOn && this.map.instrument.showAirports) {
-            this.map.instrument.bingMap.setVisible(true);
-        } else if (!this.wxRadarOn && !this.terrainOn) {
-            this.map.instrument.bingMap.setVisible(false);
         }
         switch (this.mapConfigId) {
             case 0:
@@ -255,38 +251,55 @@ class B747_8_MFD_MainPage extends NavSystemPage {
     
     setMapMode(_centered, _mode) {
         SimVar.SetSimVarValue("L:B747_MAP_MODE", "number", _mode);
-
-        const modeSwitch = {
-            0: Jet_NDCompass_Navigation.ILS,
-            1: Jet_NDCompass_Navigation.VOR,
-            2: Jet_NDCompass_Navigation.NAV,
-            3: Jet_NDCompass_Navigation.NAV
-        };
-
-        var navStyle = modeSwitch[_mode];
-
-        var compassStyle;
-
-        if (_mode === 3) {
-            compassStyle = Jet_NDCompass_Display.PLAN;
-            this.gps.setAttribute("mapstyle", "plan");
-        } else if (_centered) {
-            compassStyle = Jet_NDCompass_Display.ROSE;
-            this.gps.setAttribute("mapstyle", "rose");
-        } else {
-            compassStyle = Jet_NDCompass_Display.ARC;
-            this.gps.setAttribute("mapstyle", "arc");
+        switch (_mode) {
+            case 0:
+                if (_centered) {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ROSE, Jet_NDCompass_Navigation.ILS);
+                    this.map.setMode(Jet_NDCompass_Display.ROSE);
+                }
+                else {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ARC, Jet_NDCompass_Navigation.ILS);
+                    this.map.setMode(Jet_NDCompass_Display.ARC);
+                }
+                this.info.setMode(Jet_NDCompass_Navigation.ILS);
+                break;
+            case 1:
+                if (_centered) {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ROSE, Jet_NDCompass_Navigation.VOR);
+                    this.map.setMode(Jet_NDCompass_Display.ROSE);
+                }
+                else {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ARC, Jet_NDCompass_Navigation.VOR);
+                    this.map.setMode(Jet_NDCompass_Display.ARC);
+                }
+                this.info.setMode(Jet_NDCompass_Navigation.VOR);
+                break;
+            case 2:
+                if (_centered) {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ROSE, Jet_NDCompass_Navigation.NAV);
+                    this.map.setMode(Jet_NDCompass_Display.ROSE);
+                }
+                else {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ARC, Jet_NDCompass_Navigation.NAV);
+                    this.map.setMode(Jet_NDCompass_Display.ARC);
+                }
+                this.info.setMode(Jet_NDCompass_Navigation.NAV);
+                break;
+            case 3:
+                this.compass.svg.setMode(Jet_NDCompass_Display.PLAN, Jet_NDCompass_Navigation.NAV);
+                this.map.setMode(Jet_NDCompass_Display.PLAN);
+                this.info.setMode(Jet_NDCompass_Navigation.NAV);
+                break;
         }
-
-        this.compass.svg.setMode(compassStyle, navStyle);
-        this.map.setMode(compassStyle);
-        this.info.setMode(navStyle);
-
-        
+        if (_mode == 3)
+            diffAndSetAttribute(this.gps, "mapstyle", "plan");
+        else if (_centered)
+            diffAndSetAttribute(this.gps, "mapstyle", "rose");
+        else
+            diffAndSetAttribute(this.gps, "mapstyle", "arc");
         this.compass.svg.showArcRange(false);
         SimVar.SetSimVarValue("L:FMC_UPDATE_CURRENT_PAGE", "number", 1);
     }
-
     showWeather() {
         this.setMapMode(this.mapIsCentered, this.mapMode);
         this.compass.svg.showArcRange(true);
@@ -296,7 +309,7 @@ class B747_8_MFD_MainPage extends NavSystemPage {
         this.info.showSymbol(B747_8_ND_Symbol.WXR, this.wxRadarOn);
         this.info.showSymbol(B747_8_ND_Symbol.WXRINFO, this.wxRadarOn);
         this.info.showSymbol(B747_8_ND_Symbol.TERR, this.terrainOn);
-        this.info.showSymbol(B747_8_ND_Symbol.STA, this.map.instrument.showVORs);
+        this.info.showSymbol(B747_8_ND_Symbol.STA, this.map.instrument.showNDBs);
         this.info.showSymbol(B747_8_ND_Symbol.WPT, this.map.instrument.showIntersections);
         this.info.showSymbol(B747_8_ND_Symbol.ARPT, this.map.instrument.showAirports);
         this.info.showSymbol(B747_8_ND_Symbol.TFC, this.map.instrument.showTraffic);
@@ -363,8 +376,7 @@ class B747_8_MFD_Compass extends NavSystemElement {
 class B747_8_MFD_Map extends MapInstrumentElement {
     constructor() {
         super(...arguments);
-        //this.zoomRanges = [0.25, 0.5, 1, 2, 5, 10, 20, 40, 80, 160, 320, 640];
-        this.zoomRanges = [10, 20, 40, 80, 160, 320, 640];
+        this.zoomRanges = [10, 20, 40, 80, 160, 320, 640]; //B777 zoom ranges
     }
     init(root) {
         super.init(root);
@@ -420,7 +432,7 @@ class B747_8_MFD_Map extends MapInstrumentElement {
         }
     }
     showWeather() {
-        this.instrument.showWeatherWithGPS(EWeatherRadar.HORIZONTAL, Math.PI * 2);
+        this.instrument.showWeatherWithGPS(EWeatherRadar.HORIZONTAL, Math.PI * 2.0);
         this.instrument.setBingMapStyle("2.25%", "4.0%", "92%", "92%");
     }
     hideWeather() {
@@ -492,7 +504,7 @@ class B747_8_MFD_NDInfo extends NavSystemElement {
         this.zuluETA = document.querySelector("#WP_ZuluTime");
         this.zuluClock = document.querySelector("#ZuluClock_Time");
         this.waypointDistance = document.querySelector("#WP_Distance_Value");
-        this.ndInfo.aircraft = Aircraft.B747_8; //Was B747_8
+        this.ndInfo.aircraft = Aircraft.B747_8;
         this.ndInfo.gps = this.gps;
         this.allSymbols.push(this.ndInfo.querySelector("#ARPT"));
         this.allSymbols.push(this.ndInfo.querySelector("#WPT"));
@@ -574,7 +586,7 @@ class B747_8_MFD_NDInfo extends NavSystemElement {
     }
     showSymbol(_symbol, _show) {
         if (this.allSymbols[_symbol])
-            this.allSymbols[_symbol].setAttribute("visibility", (_show) ? "visible" : "hidden");
+            diffAndSetAttribute(this.allSymbols[_symbol], "visibility", (_show) ? "visible" : "hidden");
     }
 }
 registerInstrument("b747-8-mfd-element", B747_8_MFD);
