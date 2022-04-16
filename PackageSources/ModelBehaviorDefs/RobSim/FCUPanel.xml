@@ -119,7 +119,7 @@
 			</Condition>
 		</Component>
 	</Template>
-		<Template Name="Robsim_BOEING_Push_Heading_Track_Template">
+	<Template Name="Robsim_BOEING_Push_Heading_Track_Template">
 		<Parameters Type="Default">
           	<NODE_ID>G04_006_SW2</NODE_ID>
           	<ANIM_NAME>G04_006_SW2</ANIM_NAME>
