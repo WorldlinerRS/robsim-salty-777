@@ -155,3 +155,8 @@ b747-8-lower-eicas-fuel {
     stroke-width: 0px;
     fill: var(--eicasGreen);
     stroke: var(--eicasGreen); }
+  b747-8-lower-eicas-fuel #Values #ExtLBox {
+    stroke-width: 3px;
+    fill: var(--eicasBlack);
+    stroke: var(--eicasWhite);
+  }

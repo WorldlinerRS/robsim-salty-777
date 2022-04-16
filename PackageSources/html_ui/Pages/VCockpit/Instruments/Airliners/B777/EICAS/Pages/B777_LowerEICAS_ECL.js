@@ -26,7 +26,6 @@ var B747_8_LowerEICAS_ECL;
             this.nextChecklistIsPending = false;
             this.normalChecklistSequence = 0;
             this.checklistOverriden = false;
-            this.cursorPosition = 3;
             this.cursor = document.querySelector("#maincursor");
             this.nextItemPosition = 3;
             this.nextItemBox = document.querySelector("#currentBox");
@@ -39,21 +38,19 @@ var B747_8_LowerEICAS_ECL;
             this.chklResetButton = document.querySelector("#chkl-reset");
             this.nonNormalButton = document.querySelector("#non-normal");
             this.maxCursorIndex = 0;
-            this.cursorHasJumped = false;
             this.eventTimeout = 0;
             this.buildChecklist();
-            this._pointer = document.querySelector("#fms-pointer");
-            this._pointer.style.zIndex = "5";
-            this._pointer.style.position = "fixed";
-            this._pointer.style.width = "36px";
-            this._pointer.style.height = "36px";
-            this._pointer.style.pointerEvents = "none";
-            document.body.addEventListener("mousemove", (e) => {
-                let x = e.clientX - 18;
-                let y = e.clientY - 18;
-                this._pointer.style.left = x + "px";
-                this._pointer.style.top = y + "px";
+            this.addEventListener("mousedown", this.OnMouseDown.bind(this));
+            this.addEventListener("mousemove", this.OnMouseMove.bind(this));
+            this.addEventListener("mouseup", this.OnMouseUp.bind(this));
+            this.addEventListener("mouseleave", (e) => {
+                this.bMouseOver = false;
+                this.OnMouseUp(e);
             });
+            this.addEventListener("mouseenter", () => {
+                this.bMouseOver = true;
+            });
+            this.addEventListener("mousewheel", this.OnMouseWheel.bind(this));
             document.body.style.overflow = "hidden";
             document.body.style.clip = "auto";
             document.body.style.position = "absolute";
@@ -83,47 +80,9 @@ var B747_8_LowerEICAS_ECL;
                         }
                     }, 300);
                 }
-                else if (_event === "ECL_KNOB_FWD" && this.cursorPosition < this.maxCursorIndex - 1) {
-                    this.cursorPosition ++;
-                    this.updateCursor();
-                } 
-                else if (_event === "ECL_KNOB_BACK" && this.cursorPosition != 0) {
-                    this.cursorPosition --;
-                    this.updateCursor();
-                }
-                else if (_event === "ECL_SEL_PUSH") {
-                    let cursorTarget = this.getCursorTarget();
+                else if (_event === "mouseenter") {
                     if (this.menuOpen == 0) {
-                        if (this.cursorPosition === 0 || this.cursorPosition == this.maxCursorIndex - 1) {
-                            this.refreshChecklist();
-                        }
-                        else if (this.cursorPosition > 2 && this.cursorPosition < this.maxCursorIndex - 1) {
-                            this.normalChecklistSequence = this.cursorPosition - 3;
-                            this.refreshChecklist();
-                        }
-                    }
-                    else {
-                        if (this.cursorPosition === 0) {
-                            this.buildMenu(this.cursorPosition);
-                        }
-                        else if (this.cursorPosition === this.getMaxCursorIndex() - 3) {
-                            this.itemOverride();
-                        }
-                        else if (this.cursorPosition === this.getMaxCursorIndex() - 2) {
-                            this.chklOverride();
-                        }
-                        else if (this.cursorPosition === this.getMaxCursorIndex() - 1) {
-                            this.refreshChecklist();
-                        }
-                        else if (this.cursorPosition === this.getMaxCursorIndex() - 4) {
-                            if (this.normalChecklistSequence < 9) {
-                                this.normalChecklistSequence ++;
-                                this.refreshChecklist();
-                            }
-                        }
-                        else if (cursorTarget != -1) {
-                            this.toggleItem(cursorTarget);
-                        }
+                        this.refreshChecklist();
                     }
                 }
                 this.eventTimeout = 1;
@@ -212,42 +171,11 @@ var B747_8_LowerEICAS_ECL;
                     this.completeGroup.style.visibility = "visible";
                 }
                 this.nextChecklistIsPending = true;
-                if (this.cursorHasJumped === false) {
-                    this.cursorPosition = this.getMaxCursorIndex() - 4;
-                    this.cursorHasJumped = true;
-                    this.updateCursor();
-                }
             }
             else {
                 this.completeGroup.style.visibility = "hidden";
                 this.ovrdGroup.style.visibility = "hidden";
                 this.nextChecklistIsPending = false;
-                this.cursorHasJumped = false;
-            }
-        }
-        //Updates position and size of cursor UI elements.
-        updateCursor() {
-            this.cursor.setAttribute("x", cursorMap[this.cursorPosition * 2]);
-            this.cursor.setAttribute("y", cursorMap[(this.cursorPosition * 2) + 1]);
-            if (this.cursorPosition > -1 && this.cursorPosition < 3) {
-                this.cursor.setAttribute("width", cursorSizes.largeBox.width + "px");
-                this.cursor.setAttribute("height", cursorSizes.largeBox.height + "px");
-            }
-            else if (this.menuMode === true && this.cursorPosition <= this.maxCursorIndex && this.cursorPosition < this.maxCursorIndex - 1) {
-                this.cursor.setAttribute("width", cursorSizes.menuItems.width + "px");
-                this.cursor.setAttribute("height", cursorSizes.menuItems.height + "px");
-            }
-            else if (this.menuMode === true && this.cursorPosition == this.maxCursorIndex - 1) {
-                this.cursor.setAttribute("width", cursorSizes.smallBox.width + "px");
-                this.cursor.setAttribute("height", cursorSizes.smallBox.height + "px");
-            }
-            else if (this.cursorPosition <= this.maxCursorIndex && this.cursorPosition >= this.maxCursorIndex - 4) {
-                this.cursor.setAttribute("width", cursorSizes.smallBox.width + "px");
-                this.cursor.setAttribute("height", cursorSizes.smallBox.height + "px");
-            }
-            else {
-                this.cursor.setAttribute("width", cursorSizes.items.width + "px");
-                this.cursor.setAttribute("height", cursorSizes.items.height + "px");
             }
         }
         //Updates position and size of Next Line Item box UI elements.
@@ -271,8 +199,6 @@ var B747_8_LowerEICAS_ECL;
         refreshChecklist() {
             this.buildChecklist();
             this.update();
-            this.cursorPosition = this.nextItemPosition;
-            this.updateCursor();
         }
         //Clears display elements and main logic array.
         clearChecklist() {
@@ -292,7 +218,6 @@ var B747_8_LowerEICAS_ECL;
             this.ovrdGroup.style.visibility = "hidden";
             this.checklistItems = [];
             this.completeItemsCounter = 0;
-            this.cursorHasJumped = false;
         }
         //Main checklist build function.
         buildChecklist() {
@@ -301,13 +226,10 @@ var B747_8_LowerEICAS_ECL;
             this.menuMode = false;
             this.clearMenu();
             this.clearChecklist();
-            this.buildCursorMap();
-            this.updateCursor();
             this.buildTitle();
             this.buildBody();
             this.updateBottomMenus();
             this.updateNextLineItem();
-            this.cursorPosition = this.nextItemPosition;
         }
         //Builds Checklist Title.
         buildTitle() {
@@ -385,49 +307,6 @@ var B747_8_LowerEICAS_ECL;
             let tick = this.querySelector("#tick" + i);
             tick.setAttribute("d", "M 18," + (item.y - 8) + "l 6.4 8 l 12.8 -16 l -1.6 -1.6 l -11.2 14.4 l -4.8 -6.4 Z");
         }
-        //Builds an array from the currently loaded checklist of valid x/y coord positions for the cursor and sets upper bound.
-        buildCursorMap() {
-            let itemsCoords = [];
-            if (this.menuMode === true) {
-                for (let i = 0; i < menus[this.menuOpen].items.length; i++) {
-                    itemsCoords.splice(i, 0, 0);
-                }
-                for (let i = 0; i < menus[this.menuOpen].items.length; i++) {
-                    itemsCoords.splice(i * 2 + 1, 0, menus[this.menuOpen].items[i].y);
-                }
-            }
-            else {
-                for (let i = 0; i < normalChecklists[this.normalChecklistSequence].items.length; i++) {
-                    itemsCoords.splice(i, 0, 5);
-                }
-                for (let i = 0; i < normalChecklists[this.normalChecklistSequence].items.length; i++) {
-                    itemsCoords.splice(i * 2 + 1, 0, normalChecklists[this.normalChecklistSequence].items[i].y - 28);
-                }
-            }
-            if (this.menuOpen === 0) {
-                cursorMap = cursorPosTop.concat(itemsCoords.concat(cursorPosBottomMenu));
-            }
-            else {
-                cursorMap = cursorPosTop.concat(itemsCoords.concat(cursorPosBottom));
-            }
-            this.maxCursorIndex = this.getMaxCursorIndex();
-        }
-        //Gets upper bound for cursor scrolling.
-        getMaxCursorIndex() {
-            if (this.menuMode) {
-                return 3 + menus[this.menuOpen].items.length + 1;
-            }
-            return 3 + normalChecklists[this.normalChecklistSequence].itemCount + 4;
-        }
-        //Gets value corresponding to currently selected checklist line item.
-        getCursorTarget() {
-            if (this.cursorPosition > 2 && this.cursorPosition < this.maxCursorIndex - 4) {
-                return this.cursorPosition - 3;
-            }
-            else {
-                return -1;
-            }
-        }
         //Toggles open loop items between pending and checked states and pushes cursor to next unchecked item.
         toggleItem(cPos) {
             if (this.checklistItems[cPos].conditionType === "open") {
@@ -435,15 +314,8 @@ var B747_8_LowerEICAS_ECL;
                     this.checklistItems[cPos].status = "checked";
                     if (this.nextItemPosition !== -1) {
                         this.updateNextLineItem();
-                        if (this.cursorPosition < this.nextItemPosition) {
-                            this.cursorPosition = this.nextItemPosition;
-                        }
                     }
                     this.updateChecklistStatus();
-                    if (this.nextChecklistIsPending === true) {
-                        this.cursorPosition = this.getMaxCursorIndex() - 4;
-                    }
-                    this.updateCursor();
                 }
                 else {
                     this.checklistItems[cPos].status = "pending";
@@ -474,8 +346,6 @@ var B747_8_LowerEICAS_ECL;
             this.menuMode = true;
             this.menuOpen = menu;
             this.clearChecklist();
-            this.buildCursorMap();
-            this.updateCursor();
             this.buildTitle();
             this.displayMenu();
             this.updateBottomMenus();

@@ -191,6 +191,12 @@ var B747_8_LowerEICAS_Fuel;
                 this.querySelector('#JettTimeValue').setAttribute("style", "opacity: 0;");
             }
             this.fuelPreselected();
+
+            if (SimVar.GetSimVarValue("EXTERNAL POWER ON", "bool")) {
+                this.querySelector('#ExtLBox').setAttribute("style", "stroke: lime;");
+            } else {
+                this.querySelector('#ExtLBox').setAttribute("style", "var(--eicasWhite);");
+            }
         }
         getTotalFuelInMegagrams() {
             let factor = this.gallonToMegapounds;
