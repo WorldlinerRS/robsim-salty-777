@@ -246,12 +246,12 @@ var B747_8_UpperEICAS;
                 if (this.redMarker != null) {
                     this.redMarker.setAttribute("transform", this.defaultMarkerTransform + " rotate(" + B777_EICAS_CircleGauge.MAX_ANGLE + ")");
                 }
-                if (this.orangeMarker != null) {
-                    diffAndSetStyle(this.orangeMarker, StyleProperty.display, 'none');
-                }
-                if (this.greenMarker != null) {
-                    diffAndSetStyle(this.greenMarker, StyleProperty.display, 'none');
-                }
+                // if (this.orangeMarker != null) {
+                //     diffAndSetStyle(this.orangeMarker, StyleProperty.display, 'none');
+                // }
+                // if (this.greenMarker != null) {
+                //     diffAndSetStyle(this.greenMarker, StyleProperty.display, 'none');
+                // }
             }
             this.refresh(0, true);
         }
