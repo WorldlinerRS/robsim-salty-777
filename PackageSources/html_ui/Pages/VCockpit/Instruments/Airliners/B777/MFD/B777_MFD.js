@@ -138,11 +138,11 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 break;
             case "BTN_WXR":
                 if (this.wxRadarOn) {
-                    SimVar.SetSimVarValue("L:BTN_WX_ACTIVE", "number", 0);
+                    Simplane.setBTNWXActive(false);
                 }
                 else {
-                    SimVar.SetSimVarValue("L:BTN_WX_ACTIVE", "number", 1);
-                    SimVar.SetSimVarValue("L:BTN_TERRONND_ACTIVE", "number", 0);
+                    Simplane.setBTNWXActive(true);
+                    Simplane.setBTNTerrOnNdActive(false);
                 }
                 break;
             case "BTN_STA":
@@ -171,7 +171,7 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 }
                 else {
                     SimVar.SetSimVarValue("L:BTN_TERRONND_ACTIVE", "number", 1);
-                    SimVar.SetSimVarValue("L:BTN_WX_ACTIVE", "number", 0);
+                    Simplane.setBTNWXActive(false);
                 }
                 break;
         }
@@ -191,10 +191,10 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 this.modeChangeTimer = -1;
             }
         }
-        var wxRadarOn = SimVar.GetSimVarValue("L:BTN_WX_ACTIVE", "bool");
+        var wxRadarOn = Simplane.getBTNWXActive();
         var terrainOn = SimVar.GetSimVarValue("L:BTN_TERRONND_ACTIVE", "number");
-        var mapMode = SimVar.GetSimVarValue("L:B747_8_MFD_NAV_MODE", "number");
-        var mapRange = SimVar.GetSimVarValue("L:B747_8_MFD_Range", "number");
+        var mapMode = Simplane.get747MFDNavMode();
+        var mapRange = Simplane.get747MFDRange();
         if (this.wxRadarOn != wxRadarOn || this.terrainOn != terrainOn || this.mapMode != mapMode || this.forceMapUpdate) {
             this.wxRadarOn = wxRadarOn;
             this.terrainOn = terrainOn;
@@ -205,9 +205,8 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 this.mapConfigId = 1;
                 this.map.instrument.bingMap.setVisible(false);
             }
-            else if (this.wxRadarOn && mapMode != 3) {
+            else if (this.wxRadarOn) {
                 this.showWeather();
-                this.map.instrument.bingMap.setVisible(true);
             }
             else {
                 this.mapConfigId = 0;
@@ -224,10 +223,6 @@ class B747_8_MFD_MainPage extends NavSystemPage {
                 diffAndSetStyle(this.modeChangeMask, StyleProperty.display, "block");
                 this.modeChangeTimer = 0.15;
             }
-        } else if (!this.wxRadarOn && !this.terrainOn && this.map.instrument.showAirports) {
-            this.map.instrument.bingMap.setVisible(true);
-        } else if (!this.wxRadarOn && !this.terrainOn) {
-            this.map.instrument.bingMap.setVisible(false);
         }
         switch (this.mapConfigId) {
             case 0:
@@ -257,34 +252,52 @@ class B747_8_MFD_MainPage extends NavSystemPage {
     
     setMapMode(_centered, _mode) {
         SimVar.SetSimVarValue("L:B747_MAP_MODE", "number", _mode);
-
-        const modeSwitch = {
-            0: Jet_NDCompass_Navigation.ILS,
-            1: Jet_NDCompass_Navigation.VOR,
-            2: Jet_NDCompass_Navigation.NAV,
-            3: Jet_NDCompass_Navigation.NAV
-        };
-
-        var navStyle = modeSwitch[_mode];
-
-        var compassStyle;
-
-        if (_mode === 3) {
-            compassStyle = Jet_NDCompass_Display.PLAN;
-            this.gps.setAttribute("mapstyle", "plan");
-        } else if (_centered) {
-            compassStyle = Jet_NDCompass_Display.ROSE;
-            this.gps.setAttribute("mapstyle", "rose");
-        } else {
-            compassStyle = Jet_NDCompass_Display.ARC;
-            this.gps.setAttribute("mapstyle", "arc");
+        switch (_mode) {
+            case 0:
+                if (_centered) {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ROSE, Jet_NDCompass_Navigation.ILS);
+                    this.map.setMode(Jet_NDCompass_Display.ROSE);
+                }
+                else {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ARC, Jet_NDCompass_Navigation.ILS);
+                    this.map.setMode(Jet_NDCompass_Display.ARC);
+                }
+                this.info.setMode(Jet_NDCompass_Navigation.ILS);
+                break;
+            case 1:
+                if (_centered) {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ROSE, Jet_NDCompass_Navigation.VOR);
+                    this.map.setMode(Jet_NDCompass_Display.ROSE);
+                }
+                else {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ARC, Jet_NDCompass_Navigation.VOR);
+                    this.map.setMode(Jet_NDCompass_Display.ARC);
+                }
+                this.info.setMode(Jet_NDCompass_Navigation.VOR);
+                break;
+            case 2:
+                if (_centered) {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ROSE, Jet_NDCompass_Navigation.NAV);
+                    this.map.setMode(Jet_NDCompass_Display.ROSE);
+                }
+                else {
+                    this.compass.svg.setMode(Jet_NDCompass_Display.ARC, Jet_NDCompass_Navigation.NAV);
+                    this.map.setMode(Jet_NDCompass_Display.ARC);
+                }
+                this.info.setMode(Jet_NDCompass_Navigation.NAV);
+                break;
+            case 3:
+                this.compass.svg.setMode(Jet_NDCompass_Display.PLAN, Jet_NDCompass_Navigation.NAV);
+                this.map.setMode(Jet_NDCompass_Display.PLAN);
+                this.info.setMode(Jet_NDCompass_Navigation.NAV);
+                break;
         }
-
-        this.compass.svg.setMode(compassStyle, navStyle);
-        this.map.setMode(compassStyle);
-        this.info.setMode(navStyle);
-
-        
+        if (_mode == 3)
+            diffAndSetAttribute(this.gps, "mapstyle", "plan");
+        else if (_centered)
+            diffAndSetAttribute(this.gps, "mapstyle", "rose");
+        else
+            diffAndSetAttribute(this.gps, "mapstyle", "arc");
         this.compass.svg.showArcRange(false);
         SimVar.SetSimVarValue("L:FMC_UPDATE_CURRENT_PAGE", "number", 1);
     }
