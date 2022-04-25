@@ -453,7 +453,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.v1Speed = min * (1 - runwayCoef) + max * runwayCoef;
         this.v1Speed *= dWeightCoeff;
         this.v1Speed -= (flapsHandleIndex - 3) * 12;
-        this.v1Speed = Math.round(this.v1Speed  * 1.05);
+        this.v1Speed = Math.round(this.v1Speed);
         SimVar.SetSimVarValue("L:AIRLINER_V1_SPEED", "Knots", this.v1Speed);
         console.log("Computed V1Speed = " + this.v1Speed);
     }
@@ -482,7 +482,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.vRSpeed = min * (1 - runwayCoef) + max * runwayCoef;
         this.vRSpeed *= dWeightCoeff;
         this.vRSpeed -= (flapsHandleIndex - 3) * 11;
-        this.vRSpeed = Math.round(this.vRSpeed  * 1.05);
+        this.vRSpeed = Math.round(this.vRSpeed);
         SimVar.SetSimVarValue("L:AIRLINER_VR_SPEED", "Knots", this.vRSpeed);
         console.log("Computed VRSpeed = " + this.vRSpeed);
     }
@@ -511,7 +511,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.v2Speed = min * (1 - runwayCoef) + max * runwayCoef;
         this.v2Speed *= dWeightCoeff;
         this.v2Speed -= (flapsHandleIndex - 3) * 12;
-        this.v2Speed = Math.round(this.v2Speed  * 1.05);
+        this.v2Speed = Math.round(this.v2Speed);
         SimVar.SetSimVarValue("L:AIRLINER_V2_SPEED", "Knots", this.v2Speed);
         console.log("Computed VRSpeed = " + this.v2Speed);
     }
@@ -558,7 +558,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         let isSpeedIntervention = SimVar.GetSimVarValue("L:AP_SPEED_INTERVENTION_ACTIVE", "number");
         //When flaps 1 - commands UP + 20 or speed transition, whichever higher 
         if (flapsHandleIndex <= 1 && alt <= speedTrans) {
-            speed = Math.max(flapsUPmanueverSpeed + 20, 250);
+            speed = Math.max(flapsUPmanueverSpeed, 250);
         }
         //ECON SPEED Above 10000 commands lowest of UP + 100, 355kts or Cruise Mach
         if ((flapsHandleIndex <= 1 && alt > speedTrans) || _cduPageEconRequest) {
@@ -590,7 +590,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
 
     /* Returns VNAV cruise speed target in accordance with active VNAV mode */
     getCrzManagedSpeed(cduSpeedRequest) {
-        let flapsUPmanueverSpeed = SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 80; 
+        let flapsUPmanueverSpeed = SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 80;
         let mach = this.getCrzMach();
         let machlimit = SimVar.GetGameVarValue("FROM MACH TO KIAS", "number", mach);
         let machMode = Simplane.getAutoPilotMachModeActive();
@@ -636,7 +636,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         if (_cduPageEconRequest) {
             return speed;
         }
-        if (altitude <= 10700) {
+        if (altitude <= 10500) {
             if (machMode && !isSpeedIntervention) {
                 this.managedMachOff();
             }
@@ -667,64 +667,69 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     /* Gets Cruise Mach number from altitude - Used regression from B744 data using weight correction factor needs B748 data to refine */
     getCrzMach() {
         let roundedFlightLevel = Math.ceil(this.cruiseFlightLevel / 10) * 10;
-        let weightCorrectionFactor = 0.887;
+        let weightCorrectionFactor = 0.999;
         let grossWeight = this.getWeight(false) * weightCorrectionFactor * 1000;
-        let crzMach = 0.8;
+        let crzMach = 0.80;
         const flightLeveltoGradient = {
-            250: 8.000e-7,
-            260: 7.880e-7,
-            270: 7.660e-7,
-            280: 7.460e-7,
-            290: 7.080e-7,
-            300: 6.560e-7,
-            310: 6.040e-7,
-            320: 5.420e-7,
-            330: 4.800e-7,
-            340: 4.414e-7,
-            350: 4.188e-7,
-            360: 3.676e-7,
-            370: 3.558e-7,
-            380: 3.375e-7,
-            390: 2.725e-7,
-            400: 2.975e-7,
-            410: 1.796e-7,
-            420: 1.172e-7,
-            430: 7.162e-8
+            230: 2.01697e-6,
+            240: 1.95485e-6,
+            250: 1.89273e-6,
+            260: 1.80455e-6,
+            270: 1.71636e-6,
+            280: 1.58606e-6,
+            290: 1.45576e-6,
+            300: 1.27879e-6,
+            310: 1.10182e-6,
+            320: 9.08788e-7,
+            330: 7.15758e-7,
+            340: 8.36905e-7,
+            350: 4.91667e-7,
+            360: 5.98214e-7,
+            370: 3.89286e-7,
+            380: 3.3e-7,
+            390: 1.05714e-7,
+            400: 1.65e-7,
+            410: -1.20e-7,
+            420: -1.5e-7,
+            430: -3.00e-8
         };
         const flightLeveltoIntercept = {
-            250: 0.5234,
-            260: 0.5368,
-            270: 0.5528,
-            280: 0.5678,
-            290: 0.5878,
-            300: 0.6114,
-            310: 0.6340,
-            320: 0.6594,
-            330: 0.6840,
-            340: 0.7023,
-            350: 0.7155,
-            360: 0.7357,
-            370: 0.7453,
-            380: 0.7566,
-            390: 0.7792,
-            400: 0.7776,
-            410: 0.8116,
-            420: 0.8300,
-            430: 0.8423
+            230: 0.403339394,
+            240: 0.42349697,
+            250: 0.443654545,
+            260: 0.466890909,
+            270: 0.490127273,
+            280: 0.518421212,
+            290: 0.546715152,
+            300: 0.579875758,
+            310: 0.613036364,
+            320: 0.646475758,
+            330: 0.679915152,
+            340: 0.671642857,
+            350: 0.721388889,
+            360: 0.713517857,
+            370: 0.743964286,
+            380: 0.755,
+            390: 0.785285714,
+            400: 0.7809,
+            410: 0.8148,
+            420: 0.818,
+            430: 0.834
+
         };
         if (this.cruiseFlightLevel <= 240) {
             crzMach = 1;
         }
         else {
-            crzMach = grossWeight * flightLeveltoGradient[roundedFlightLevel] + flightLeveltoIntercept[roundedFlightLevel];
+            crzMach = Math.min(0.804, (grossWeight * flightLeveltoGradient[roundedFlightLevel] + flightLeveltoIntercept[roundedFlightLevel]));
         }
         return crzMach;
     }
     getManagedApproachSpeed() {
         if (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots")) {
-            return (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots") * 1.15) + 5;
+            return SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots") + 5;
         }
-        return (SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") * 1.15) + 5;
+        return SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 5;
     }
     getCleanApproachSpeed() {
         let cleanApproachSpeed = SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 80;
@@ -747,7 +752,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         }
     }
 
-    /* Calculates VREF for Flap 30 using Polynomial regression derived from FCOM data */
+    /* Calculates VREF for Flap 20 using Polynomial regression derived from FCOM data */
     updateVREF20() {
         let coefficients = [
             2.75495921e+003,

@@ -735,9 +735,9 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     }
     getManagedApproachSpeed() {
         if (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots")) {
-            return (SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots")) + 5;
+            return SimVar.GetSimVarValue("L:AIRLINER_VREF_SPEED", "knots") + 5;
         }
-        return (SimVar.GetSimVarValue("L:SALTY_VREF30", "knots")) + 5;
+        return SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 5;
     }
     getCleanApproachSpeed() {
         let cleanApproachSpeed = SimVar.GetSimVarValue("L:SALTY_VREF30", "knots") + 80;
