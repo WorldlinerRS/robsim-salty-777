@@ -607,6 +607,8 @@ class MapInstrument extends ISvgMapRootElement {
                         let svgConstraint = new SvgConstraintElement(wpWithConstraints[i]);
                         this.constraints.push(svgConstraint);
                     }
+                } else {
+                    this.constraints = [];
                 }
             }
             let lat = Simplane.getCurrentLat();

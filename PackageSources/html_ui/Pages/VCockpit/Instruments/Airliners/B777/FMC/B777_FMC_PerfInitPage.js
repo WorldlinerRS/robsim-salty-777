@@ -107,10 +107,8 @@ class FMCPerfInitPage {
                     [zeroFuelWeightCell, `${minFuelTempCell}°C`],
                     ["\xa0RESERVES", "CRZ CG"],
                     [reservesCell, `${crzCg}`],
-                    //[`\xa0${store.dataLink}`, `${store.stepSizeLabel}`, `${store.perfUplinkHeader}`],
-                    ["", `${store.stepSizeLabel}`, `${store.perfUplinkHeader}`],
-                    //[`${store.requestData}`, `${stepSizeCell}`],
-                    ["", `${stepSizeCell}`],
+                    [`\xa0${store.dataLink}`, `${store.stepSizeLabel}`, `${store.perfUplinkHeader}`],
+                    [`${store.requestData}`, `${stepSizeCell}`],
                     ["__FMCSEPARATOR"],
                     ["\<INDEX", "THRUST LIM>"]
                 ]);
