@@ -3,7 +3,7 @@
 <ModelInfo>
 
 	<LODS>
-		<LOD minSize="0" ModelFile="m772_201.gltf"/>
+		<LOD minSize="0" ModelFile="m773_305.gltf"/>
 	</LODS>
 
   <Animation name="c_wheel" guid="BC935F16-43CD-4046-8EF3-06E44A5940AB" length="200" type="Sim" typeparam2="c_wheel" typeparam="AutoPlay"/>
@@ -25,8 +25,6 @@
   <Animation name="N1_1_blurred" guid="5A2A3E08-7E67-4522-A3A3-E48388F191B3" length="100" type="Sim" typeParam2="N1_1_blurred" typeParam="AutoPlay"/>
   <Animation name="N1_1_slow" guid="F8C7E48E-EB6F-438f-80FD-AF9F6EA688AD" length="100" type="Sim" typeParam2="N1_1_slow" typeParam="AutoPlay"/>
   <Animation name="N1_1_still" guid="41C33B6F-E52A-45e9-BEC1-3D722E69BBFF" length="100" type="Sim" typeParam2="N1_1_still" typeParam="AutoPlay"/>
-  <Animation name="thrust_rev_1" guid="18AF77CB-6457-47d0-8A10-2BA619430ACE" length="100" type="Sim" typeParam2="thrust_rev_1" typeParam="AutoPlay"/>
-  <Animation name="thrust_rev_2" guid="2D50D1B9-ED30-4405-A77A-99AA338D1548" length="100" type="Sim" typeParam2="thrust_rev_2" typeParam="AutoPlay"/>
   <Animation name="l_wing_flex" guid="23FBBCC2-C861-41b4-90D2-051AC1BCA338" length="100" type="Sim" typeParam2="l_wing_flex" typeParam="AutoPlay"/>
   <Animation name="r_wing_flex" guid="40A98760-2FCB-4422-A469-7001DBAAB766" length="100" type="Sim" typeParam2="r_wing_flex" typeParam="AutoPlay"/>
   <Animation name="l_flap_percent_key" guid="DB029E5C-1A48-42d5-8290-EF098DFABB4F" length="100" type="Sim" typeparam2="l_flap_percent_key" typeparam="AutoPlay"/>
@@ -110,8 +108,6 @@
       </Parameter>
     </Animation>
   </PartInfo>
-
-
   
   <PartInfo>
     <Name>l_truck</Name>
@@ -285,126 +281,6 @@
   </PartInfo>
 
   <PartInfo>
-    <Name>N1_0_still</Name>
-    <AnimLength>100</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>
-          (L:ext777_eng1_n1_pos, position)
-        </Code>
-      </Parameter>
-    </Animation>
-    <Visibility>
-      <Parameter>
-        <Code>
-          (A:ENG N1 RPM:1, percent) 3.0 &lt; if{ 1 } els{ 0 }
-        </Code>
-      </Parameter>
-    </Visibility>
-  </PartInfo>
-  
-  <PartInfo>
-    <Name>N1_0_slow</Name>
-    <AnimLength>100</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>
-          (L:ext777_eng1_n1_pos, position)
-        </Code>
-      </Parameter>
-    </Animation>
-    <Visibility>
-      <Parameter>
-        <Code>
-          (A:ENG N1 RPM:1, percent) 3.0 &gt;
-          if{
-          (A:ENG N1 RPM:1, percent) 6.0 &lt; if{ 1 } els{ 0 }
-          } els{ 0 }
-        </Code>
-      </Parameter>
-    </Visibility>
-  </PartInfo>
-  
-  <PartInfo>
-    <Name>N1_0_blurred</Name>
-    <AnimLength>100</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>
-          (L:ext777_eng1_n1_pos, position)
-        </Code>
-      </Parameter>
-    </Animation>
-    <Visibility>
-      <Parameter>
-        <Code>
-          (A:ENG N1 RPM:1, percent) 6.0 &gt; if{ 1 } els{ 0 }
-        </Code>
-      </Parameter>
-    </Visibility>
-  </PartInfo>
-  
-  <PartInfo>
-    <Name>N1_1_still</Name>
-    <AnimLength>100</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>
-          (L:ext777_eng2_n1_pos, position)
-        </Code>
-      </Parameter>
-    </Animation>
-    <Visibility>
-      <Parameter>
-        <Code>
-          (A:ENG N1 RPM:2, percent) 3.0 &lt; if{ 1 } els{ 0 }
-        </Code>
-      </Parameter>
-    </Visibility>
-  </PartInfo>
-  
-  <PartInfo>
-    <Name>N1_1_slow</Name>
-    <AnimLength>100</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>
-          (L:ext777_eng2_n1_pos, position)
-        </Code>
-      </Parameter>
-    </Animation>
-    <Visibility>
-      <Parameter>
-        <Code>
-          (A:ENG N1 RPM:2, percent) 3.0 &gt;
-          if{
-          (A:ENG N1 RPM:2, percent) 6.0 &lt; if{ 1 } els{ 0 }
-          } els{ 0 }
-        </Code>
-      </Parameter>
-    </Visibility>
-  </PartInfo>
-  
-  <PartInfo>
-    <Name>N1_1_blurred</Name>
-    <AnimLength>100</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>
-          (L:ext777_eng2_n1_pos, position)
-        </Code>
-      </Parameter>
-    </Animation>
-    <Visibility>
-      <Parameter>
-        <Code>
-          (A:ENG N1 RPM:2, percent) 6.0 &gt; if{ 1 } els{ 0 }
-        </Code>
-      </Parameter>
-    </Visibility>
-  </PartInfo>
-
-  <PartInfo>
     <Name>thrust_rev</Name>
     <AnimLength>100</AnimLength>
     <Animation>
@@ -414,30 +290,6 @@
           <Scale>1</Scale>
           <Units>percent</Units>
           <Bias>0</Bias>
-        </Sim>
-      </Parameter>
-    </Animation>
-  </PartInfo>
-
-  <PartInfo>
-    <Name>thrust_rev_1</Name>
-    <Copy>thrust_rev</Copy>
-    <Animation>
-      <Parameter>
-        <Sim>
-          <Variable>TURB ENG REVERSE NOZZLE PERCENT:1</Variable>
-        </Sim>
-      </Parameter>
-    </Animation>
-  </PartInfo>
-
-  <PartInfo>
-    <Name>thrust_rev_2</Name>
-    <Copy>thrust_rev</Copy>
-    <Animation>
-      <Parameter>
-        <Sim>
-          <Variable>TURB ENG REVERSE NOZZLE PERCENT:2</Variable>
         </Sim>
       </Parameter>
     </Animation>
@@ -669,7 +521,6 @@
     </Animation>
   </PartInfo>
 
-
   <PartInfo>
     <Name>ext777_lt_nose_vis</Name>
     <Visibility>
@@ -680,9 +531,127 @@
       </Parameter>
     </Visibility>
   </PartInfo>
+
+  <PartInfo>
+    <Name>N1_0_still</Name>
+    <AnimLength>100</AnimLength>
+    <Animation>
+      <Parameter>
+        <Code>
+          (L:ext777_eng1_n1_pos, position)
+        </Code>
+      </Parameter>
+    </Animation>
+    <Visibility>
+      <Parameter>
+        <Code>
+          (A:ENG N1 RPM:1, percent) 3.0 &lt; if{ 1 } els{ 0 }
+        </Code>
+      </Parameter>
+    </Visibility>
+  </PartInfo>
   
+  <PartInfo>
+    <Name>N1_0_slow</Name>
+    <AnimLength>100</AnimLength>
+    <Animation>
+      <Parameter>
+        <Code>
+          (L:ext777_eng1_n1_pos, position)
+        </Code>
+      </Parameter>
+    </Animation>
+    <Visibility>
+      <Parameter>
+        <Code>
+          (A:ENG N1 RPM:1, percent) 3.0 &gt;
+          if{
+          (A:ENG N1 RPM:1, percent) 6.0 &lt; if{ 1 } els{ 0 }
+          } els{ 0 }
+        </Code>
+      </Parameter>
+    </Visibility>
+  </PartInfo>
   
+  <PartInfo>
+    <Name>N1_0_blurred</Name>
+    <AnimLength>100</AnimLength>
+    <Animation>
+      <Parameter>
+        <Code>
+          (L:ext777_eng1_n1_pos, position)
+        </Code>
+      </Parameter>
+    </Animation>
+    <Visibility>
+      <Parameter>
+        <Code>
+          (A:ENG N1 RPM:1, percent) 6.0 &gt; if{ 1 } els{ 0 }
+        </Code>
+      </Parameter>
+    </Visibility>
+  </PartInfo>
   
+  <PartInfo>
+    <Name>N1_1_still</Name>
+    <AnimLength>100</AnimLength>
+    <Animation>
+      <Parameter>
+        <Code>
+          (L:ext777_eng2_n1_pos, position)
+        </Code>
+      </Parameter>
+    </Animation>
+    <Visibility>
+      <Parameter>
+        <Code>
+          (A:ENG N1 RPM:2, percent) 3.0 &lt; if{ 1 } els{ 0 }
+        </Code>
+      </Parameter>
+    </Visibility>
+  </PartInfo>
+  
+  <PartInfo>
+    <Name>N1_1_slow</Name>
+    <AnimLength>100</AnimLength>
+    <Animation>
+      <Parameter>
+        <Code>
+          (L:ext777_eng2_n1_pos, position)
+        </Code>
+      </Parameter>
+    </Animation>
+    <Visibility>
+      <Parameter>
+        <Code>
+          (A:ENG N1 RPM:2, percent) 3.0 &gt;
+          if{
+          (A:ENG N1 RPM:2, percent) 6.0 &lt; if{ 1 } els{ 0 }
+          } els{ 0 }
+        </Code>
+      </Parameter>
+    </Visibility>
+  </PartInfo>
+  
+  <PartInfo>
+    <Name>N1_1_blurred</Name>
+    <AnimLength>100</AnimLength>
+    <Animation>
+      <Parameter>
+        <Code>
+          (L:ext777_eng2_n1_pos, position)
+        </Code>
+      </Parameter>
+    </Animation>
+    <Visibility>
+      <Parameter>
+        <Code>
+          (A:ENG N1 RPM:2, percent) 6.0 &gt; if{ 1 } els{ 0 }
+        </Code>
+      </Parameter>
+    </Visibility>
+  </PartInfo>
+
   <!-- antennas -->
 <PartInfo><Name>A01_001_VIS</Name><Visibility><Parameter><Code>(L:A01_000_VIS) 0x1 &amp;</Code></Parameter></Visibility></PartInfo>
 <PartInfo><Name>A01_002_VIS</Name><Visibility><Parameter><Code>(L:A01_000_VIS) 0x2 &amp;</Code></Parameter></Visibility></PartInfo>
@@ -703,8 +672,7 @@
     <Include ModelBehaviorFile="Asobo\Common.xml"/>
     <Include ModelBehaviorFile="Asobo\Exterior.xml"/>
     <Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
-    
-    
+
     <Component ID="INTERACTIVE_POINTS">
       <UseTemplate Name="ASOBO_DOOR_InteractivePoint_Template">
         <ID>12</ID>
@@ -730,37 +698,7 @@
       -->
     </Component>
     
-    <Component ID="ENGINE">
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
-          <ID>1</ID>
-          <ANIM_NODE_ID>N1_0_anim</ANIM_NODE_ID>
-          <ANIM_NAME>N1_0_anim</ANIM_NAME>
-          <STILL_NODE_ID>N1_0_stil</STILL_NODE_ID>
-          <SLOW_NODE_ID>N1_0_slow</SLOW_NODE_ID>
-          <BLURRED_NODE_ID>N1_0_blur</BLURRED_NODE_ID>
-          <MIN_RPM_FOR_SLOW>11000</MIN_RPM_FOR_SLOW>
-		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>           
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
-          <ID>2</ID>
-          <ANIM_NODE_ID>N1_1_anim</ANIM_NODE_ID>
-          <ANIM_NAME>N1_1_anim</ANIM_NAME>
-          <STILL_NODE_ID>N1_1_stil</STILL_NODE_ID>
-          <SLOW_NODE_ID>N1_1_slow</SLOW_NODE_ID>
-          <BLURRED_NODE_ID>N1_1_blur</BLURRED_NODE_ID>
-          <MIN_RPM_FOR_SLOW>11000</MIN_RPM_FOR_SLOW>
-		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
-          <ID>1</ID>
-          <ANIM_NAME>thrust_rev_1</ANIM_NAME>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
-          <ID>2</ID>
-          <ANIM_NAME>thrust_rev_2</ANIM_NAME>
-      </UseTemplate>
-    </Component>
-       
+    
     <Component ID="FX_CONTRAIL_QUAD">
       <OverrideTemplateParameters>
         <FX_CODE>(A:CONTRAILS CONDITIONS MET:1, Keyframe) 0 &gt;</FX_CODE>
@@ -797,6 +735,37 @@
         <UseTemplate Name="ASOBO_GT_FX">
         </UseTemplate>
       </Component>
+    </Component>
+
+    <Component ID="ENGINE">
+      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+          <ID>1</ID>
+          <ANIM_NODE_ID>N2_1_anim</ANIM_NODE_ID>
+          <ANIM_NAME>N2_1_anim</ANIM_NAME>
+          <STILL_NODE_ID>N2_1_stil</STILL_NODE_ID>
+          <SLOW_NODE_ID>N2_1_slow</SLOW_NODE_ID>
+          <BLURRED_NODE_ID>N2_1_blur</BLURRED_NODE_ID>
+          <MIN_RPM_FOR_SLOW>11000</MIN_RPM_FOR_SLOW>
+		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>           
+      </UseTemplate>
+      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+          <ID>2</ID>
+          <ANIM_NODE_ID>N2_2_anim</ANIM_NODE_ID>
+          <ANIM_NAME>N2_2_anim</ANIM_NAME>
+          <STILL_NODE_ID>N2_2_stil</STILL_NODE_ID>
+          <SLOW_NODE_ID>N2_2_slow</SLOW_NODE_ID>
+          <BLURRED_NODE_ID>N2_2_blur</BLURRED_NODE_ID>
+          <MIN_RPM_FOR_SLOW>11000</MIN_RPM_FOR_SLOW>
+		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>
+      </UseTemplate>
+      <UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
+          <ID>1</ID>
+          <ANIM_NAME>thrust_rev_1</ANIM_NAME>
+      </UseTemplate>
+      <UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
+          <ID>2</ID>
+          <ANIM_NAME>thrust_rev_2</ANIM_NAME>
+      </UseTemplate>
     </Component>
 
     <Component ID="LANDING_FX">
@@ -872,8 +841,7 @@
         <FX_CONTACT_POINT_ID>2</FX_CONTACT_POINT_ID>
         <FX_NODE>RightFrontBaseWheel</FX_NODE>
       </UseTemplate>
-    </Component>
-    
+    </Component>   
   </Behaviors>
 
 </ModelInfo>
