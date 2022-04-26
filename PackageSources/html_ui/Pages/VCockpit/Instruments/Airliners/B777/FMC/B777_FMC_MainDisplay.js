@@ -766,7 +766,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
              1.27467412e+003,
             -1.48679250e-002,
              7.77152741e-008,
-            -2.13022320e-13,
+            -2.13022320e-013,
              3.27098978e-019,
             -2.66881670e-025,
              9.03129097e-032
@@ -1059,7 +1059,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
                     let speed = this.getTakeOffManagedSpeed();
                     this.setAPManagedSpeed(speed, Aircraft.B747_8);
                     //Sets CLB Thrust when passing thrust reduction altitude
-                    let alt = Simplane.getAltitude();
+                    let alt = Simplane.getAltitudeAboveGround();
                     let thrRedAlt = SimVar.GetSimVarValue("L:AIRLINER_THR_RED_ALT", "number");
                     let n1 = 99;
                     if (alt < thrRedAlt) {
