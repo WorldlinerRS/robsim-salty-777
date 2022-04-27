@@ -2062,18 +2062,6 @@
             <TT_DESCRIPTION_INDEX>2</TT_DESCRIPTION_INDEX>
             <ID>2</ID>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_ENGINE_Switch_Hydraulic_Template">
-            <!--777 INOP-->
-            <NODE_ID>push_ovhd_hyd_pump_switch_03</NODE_ID>
-            <ANIM_NAME>ovhd_push_hyd_pump_switch_03</ANIM_NAME>
-            <ID>3</ID>
-          </UseTemplate>
-          <UseTemplate Name="ASOBO_ENGINE_Switch_Hydraulic_Template">
-            <!--777 INOP-->
-            <NODE_ID>push_ovhd_hyd_pump_switch_04</NODE_ID>
-            <ANIM_NAME>ovhd_push_hyd_pump_switch_04</ANIM_NAME>
-            <ID>4</ID>
-          </UseTemplate>
         </Component>
         <Component ID="Safety_Indicators_Pressure">
           <DefaultTemplateParameters>
@@ -2091,16 +2079,6 @@
             <NODE_ID>ovhd_hyd_demand_pump_press_light_02_SEQ1</NODE_ID>
             <ID>2</ID>
           </UseTemplate>
-          <UseTemplate Name="ASOBO_SAFETY_Indicator_HydraulicsPressure_Template">
-            <!--777 INOP-->
-            <NODE_ID>ovhd_hyd_demand_pump_press_light_03_SEQ1</NODE_ID>
-            <ID>3</ID>
-          </UseTemplate>
-          <UseTemplate Name="ASOBO_SAFETY_Indicator_HydraulicsPressure_Template">
-            <!--777 INOP-->
-            <NODE_ID>ovhd_hyd_demand_pump_press_light_04_SEQ1</NODE_ID>
-            <ID>4</ID>
-          </UseTemplate>
         </Component>
         <Component ID="Safety_Indicators_Failure">
           <DefaultTemplateParameters>
@@ -2113,16 +2091,6 @@
           <UseTemplate Name="ASOBO_SAFETY_Indicator_HydraulicsFailure_Template">
             <NODE_ID>ovhd_hyd_sys_fault_light_02_SEQ1</NODE_ID>
             <ID>2</ID>
-          </UseTemplate>
-          <UseTemplate Name="ASOBO_SAFETY_Indicator_HydraulicsFailure_Template">
-            <!--777 INOP-->
-            <NODE_ID>ovhd_hyd_sys_fault_light_03_SEQ1</NODE_ID>
-            <ID>3</ID>
-          </UseTemplate>
-          <UseTemplate Name="ASOBO_SAFETY_Indicator_HydraulicsFailure_Template">
-            <!--777 INOP-->
-            <NODE_ID>ovhd_hyd_sys_fault_light_04_SEQ1</NODE_ID>
-            <ID>4</ID>
           </UseTemplate>
         </Component>
         <UseTemplate Name="ASOBO_GT_Knob_Dummy_Boeing">
@@ -2232,7 +2200,6 @@
           <NODE_ID>push_ovhd_fuel_xfeed_01</NODE_ID>
           <ANIM_NAME>ovhd_push_fuel_xfeed_01</ANIM_NAME>
           <TYPE>BOEING</TYPE>
-				  <VARIANT>AS01B</VARIANT>
           <ID>1</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_OFF</ON_TOOLTIP>
@@ -2248,7 +2215,6 @@
           <NODE_ID>push_ovhd_fuel_xfeed_04</NODE_ID>
           <ANIM_NAME>ovhd_push_fuel_xfeed_04</ANIM_NAME>
           <TYPE>BOEING</TYPE>
-				  <VARIANT>AS01B</VARIANT>
           <ID>2</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_OFF</ON_TOOLTIP>
@@ -2346,8 +2312,7 @@
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
           <IE_VALVE_ID>Jettison_Nozzle_R</IE_VALVE_ID>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_GT_Knob_Dummy_Boeing">
-          <!--777 INOP-->
+        <UseTemplate Name="ASOBO_AIRLINER_Jettison_Knob_Template">
           <NODE_ID>knob_ovhd_start_fuel_jettison_sel</NODE_ID>
           <ANIM_NAME>ovhd_knob_start_fuel_jettison_sel</ANIM_NAME>
           <ANIM_CODE>50</ANIM_CODE>
@@ -4730,16 +4695,6 @@
         </UseTemplate>
 
         <Component ID="FUEL">
-          <!--777 INOP-->
-          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-            <NODE_ID>btn_fuel_flow_ctrl_4_text</NODE_ID>
-            <EMISSIVE_CODE>0</EMISSIVE_CODE>
-          </UseTemplate>
-          <!--777 INOP-->
-          <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
-            <NODE_ID>btn_fuel_flow_ctrl_3_text</NODE_ID>
-            <EMISSIVE_CODE>0</EMISSIVE_CODE>
-          </UseTemplate>
 
           <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
             <NODE_ID>btn_fuel_flow_ctrl_2_text</NODE_ID>
