@@ -42,7 +42,7 @@
     <MouseRect>
       <Cursor>Hand</Cursor>
       <MouseFlags>LeftSingle+RightSingle+LeftRelease+RightRelease+Wheel+Move</MouseFlags>
-      <TooltipText>Transponder Mode                        <!--%((L:P30_010_GL5))%{case}%{:0}STBY%{:1}ALT RPTG OFF%{:2}XPNDR%{:3}TA ONLY%{:4}TA/RA%{end}--></TooltipText>
+      <TooltipText>Transponder Mode                <!--%((L:P30_010_GL5))%{case}%{:0}STBY%{:1}ALT RPTG OFF%{:2}XPNDR%{:3}TA ONLY%{:4}TA/RA%{end}--></TooltipText>
       <CallbackCode>
         (L:P30_010_GL5) sp0 2630010 sp1 (M:Event) sp2 5 sp3
         l2 'WheelDown'   scmi 0 == if{ l0 flr -- sp2 } els{
@@ -2199,7 +2199,6 @@
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_fuel_xfeed_01</NODE_ID>
           <ANIM_NAME>ovhd_push_fuel_xfeed_01</ANIM_NAME>
-          <TYPE>BOEING</TYPE>
           <ID>1</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_OFF</ON_TOOLTIP>
@@ -2214,7 +2213,6 @@
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_fuel_xfeed_04</NODE_ID>
           <ANIM_NAME>ovhd_push_fuel_xfeed_04</ANIM_NAME>
-          <TYPE>BOEING</TYPE>
           <ID>2</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_OFF</ON_TOOLTIP>
@@ -2234,7 +2232,6 @@
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_CTR_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_CTR_TURN_OFF</ON_TOOLTIP>
           <IE_PUMP_ID>Ctr_Tank_L</IE_PUMP_ID>
-          <LINE_ID>3</LINE_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_ctr_tank_pump_r</NODE_ID>
@@ -2244,7 +2241,6 @@
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_CTR_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_CTR_TURN_OFF</ON_TOOLTIP>
           <IE_PUMP_ID>Ctr_Tank_R</IE_PUMP_ID>
-          <LINE_ID>4</LINE_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_01_fwd</NODE_ID>
@@ -2253,8 +2249,7 @@
           <TANK_ID>2</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_FWD_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_FWD_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Main_Fwd_1</IE_PUMP_ID>
-          <LINE_ID>7</LINE_ID>
+          <IE_PUMP_ID>Left_Fwd</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_01_aft</NODE_ID>
@@ -2263,8 +2258,7 @@
           <TANK_ID>2</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_AFT_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_AFT_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Main_Aft_1</IE_PUMP_ID>
-          <LINE_ID>8</LINE_ID>
+          <IE_PUMP_ID>Left_Aft</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_02_fwd</NODE_ID>
@@ -2273,8 +2267,7 @@
           <TANK_ID>3</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_FWD_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_FWD_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Main_Fwd_2</IE_PUMP_ID>
-          <LINE_ID>26</LINE_ID>
+          <IE_PUMP_ID>Right_Fwd</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_02_aft</NODE_ID>
@@ -2283,14 +2276,12 @@
           <TANK_ID>3</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_AFT_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_AFT_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Main_Aft_2</IE_PUMP_ID>
-          <LINE_ID>27</LINE_ID>
+          <IE_PUMP_ID>Right_Aft</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_start_fuel_jettison_nozzle_l</NODE_ID>
           <ANIM_NAME>ovhd_push_start_fuel_jettison_nozzle_l</ANIM_NAME>
           <REVERSE_SEQ/>
-          <TYPE>BOEING</TYPE>
           <ID>8</ID>
           <COVER_NODE_ID>push_ovhd_start_fuel_jettison_nozzle_l_cover</COVER_NODE_ID>
           <COVER_ANIM_NAME>push_ovhd_start_fuel_jettison_nozzle_l_cover</COVER_ANIM_NAME>
@@ -2303,7 +2294,6 @@
           <NODE_ID>push_ovhd_start_fuel_jettison_nozzle_r</NODE_ID>
           <ANIM_NAME>ovhd_push_start_fuel_jettison_nozzle_r</ANIM_NAME>
           <REVERSE_SEQ/>
-          <TYPE>BOEING</TYPE>
           <ID>9</ID>
           <COVER_NODE_ID>push_ovhd_start_fuel_jettison_nozzle_r_cover</COVER_NODE_ID>
           <COVER_ANIM_NAME>push_ovhd_start_fuel_jettison_nozzle_r_cover</COVER_ANIM_NAME>
@@ -2347,8 +2337,8 @@
 					<COVER_NODE_ID>push_ovhd_electrics_battery_cover</COVER_NODE_ID>
 					<COVER_ANIM_NAME>ovhd_push_electrics_battery_cover</COVER_ANIM_NAME>-->
           <ID>1</ID>
-          <BATTERY_BUS_ID>6</BATTERY_BUS_ID>
-          <HOT_BATTERY_BUS_ID>7</HOT_BATTERY_BUS_ID>
+          <BATTERY_BUS_ID>4</BATTERY_BUS_ID>
+          <HOT_BATTERY_BUS_ID>5</HOT_BATTERY_BUS_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_ELECTRICAL_Push_APU_Generator_Template">
           <NODE_ID>push_ovhd_electrics_apu_gen_01</NODE_ID>

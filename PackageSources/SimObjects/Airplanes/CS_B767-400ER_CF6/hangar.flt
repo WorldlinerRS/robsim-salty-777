@@ -83,16 +83,14 @@ FoldingWingsHandle=False
 FoldingWingsState=0, 0
 AuxPowerUnitSwitch=False
 
-
 [Electrical.0]
-alternator.5=False
-alternator.6=False
-circuit.104 = True,0.5
-circuit.105 = True,0.5
-circuit.106 = True,0.5
-circuit.107 = True,0.5
-circuit.108 = True,0.5
-circuit.111 = False,1.0
+alternator.3=False
+circuit.76 = True,0.5
+circuit.77 = True,0.5
+circuit.78 = True,0.5
+circuit.79 = True,0.5
+circuit.80 = True,0.5
+circuit.83 = False,1.0
 
 [LocalVars.0]
 XMLVAR_SeatBelts=1
@@ -157,6 +155,7 @@ AutoThrottleArm=False
 GPSdrivesNAV1=False
 IsUsedForLesson=False
 ForceDisplayUI=False
+
 
 [Controls.0]
 SpoilersHandle=000.00

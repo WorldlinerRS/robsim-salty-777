@@ -85,15 +85,13 @@ Valve.6=False
 Valve.7=False
 Valve.8=False
 Valve.9=False
-Pump.1=0
-Pump.2=0
-Pump.3=0
-Pump.4=0
-Pump.5=0
-Pump.6=0
-Pump.7=0
-Pump.8=0
-Pump.9=0
+Pump.1=False
+Pump.2=False
+Pump.3=False
+Pump.4=False
+Pump.5=False
+Pump.6=False
+Pump.7=False
 
 [Systems.0]
 BatterySwitch=False
