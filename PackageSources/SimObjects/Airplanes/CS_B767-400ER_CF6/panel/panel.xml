@@ -326,7 +326,7 @@
 		  <Text>L ENG SHUTDOWN</Text>
 		  <Condition>
 			<Equal>
-				<Simvar name="FUELSYSTEM VALVE SWITCH:5" unit="Bool"/>
+				<Simvar name="FUELSYSTEM VALVE SWITCH:3" unit="Bool"/>
 				<Constant>0</Constant>
 			</Equal>
 		  </Condition>
@@ -337,7 +337,7 @@
 		  <Text>R ENG SHUTDOWN</Text>
 		  <Condition>
 			<Equal>
-				<Simvar name="FUELSYSTEM VALVE SWITCH:8" unit="Bool"/>
+				<Simvar name="FUELSYSTEM VALVE SWITCH:4" unit="Bool"/>
 				<Constant>0</Constant>
 			</Equal>
 		  </Condition>
@@ -398,7 +398,7 @@
 		  <Text>AFT FUEL X-FEED</Text>
 		  <Condition>
 			<Equal>
-			  <Simvar name="FUELSYSTEM VALVE SWITCH:4" unit="Bool"/>
+			  <Simvar name="FUELSYSTEM VALVE SWITCH:2" unit="Bool"/>
 			  <Constant>1</Constant>
 			</Equal>
 		  </Condition>
@@ -410,11 +410,11 @@
 		  <Condition>
 		  <And>
 			<Equal>
-			  <Simvar name="FUELSYSTEM VALVE SWITCH:24" unit="Bool"/>
+			  <Simvar name="FUELSYSTEM VALVE SWITCH:8" unit="Bool"/>
 			  <Constant>1</Constant>
 			</Equal>
 			<Equal>
-			  <Simvar name="FUELSYSTEM VALVE SWITCH:25" unit="Bool"/>
+			  <Simvar name="FUELSYSTEM VALVE SWITCH:9" unit="Bool"/>
 			  <Constant>1</Constant>
 			</Equal>
 		  </And>
