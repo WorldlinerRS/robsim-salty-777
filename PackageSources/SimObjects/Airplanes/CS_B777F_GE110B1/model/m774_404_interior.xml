@@ -2239,6 +2239,7 @@
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_fuel_xfeed_01</NODE_ID>
           <ANIM_NAME>ovhd_push_fuel_xfeed_01</ANIM_NAME>
+          <TYPE>BOEING</TYPE>
           <ID>1</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_OFF</ON_TOOLTIP>
@@ -2253,6 +2254,7 @@
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_fuel_xfeed_04</NODE_ID>
           <ANIM_NAME>ovhd_push_fuel_xfeed_04</ANIM_NAME>
+          <TYPE>BOEING</TYPE>
           <ID>2</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_XFEED_TURN_OFF</ON_TOOLTIP>
@@ -2321,10 +2323,11 @@
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_start_fuel_jettison_nozzle_l</NODE_ID>
           <ANIM_NAME>ovhd_push_start_fuel_jettison_nozzle_l</ANIM_NAME>
-          <REVERSE_SEQ/>
-          <ID>8</ID>
           <COVER_NODE_ID>push_ovhd_start_fuel_jettison_nozzle_l_cover</COVER_NODE_ID>
           <COVER_ANIM_NAME>push_ovhd_start_fuel_jettison_nozzle_l_cover</COVER_ANIM_NAME>
+          <!-- <REVERSE_SEQ/> -->
+          <TYPE>BOEING</TYPE>
+          <ID>8</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_OFF</ON_TOOLTIP>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
@@ -2333,10 +2336,11 @@
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_start_fuel_jettison_nozzle_r</NODE_ID>
           <ANIM_NAME>ovhd_push_start_fuel_jettison_nozzle_r</ANIM_NAME>
-          <REVERSE_SEQ/>
-          <ID>9</ID>
           <COVER_NODE_ID>push_ovhd_start_fuel_jettison_nozzle_r_cover</COVER_NODE_ID>
           <COVER_ANIM_NAME>push_ovhd_start_fuel_jettison_nozzle_r_cover</COVER_ANIM_NAME>
+          <!-- <REVERSE_SEQ/> -->
+          <TYPE>BOEING</TYPE>
+          <ID>9</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_OFF</ON_TOOLTIP>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
