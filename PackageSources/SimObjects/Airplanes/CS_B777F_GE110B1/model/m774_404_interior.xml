@@ -1281,18 +1281,16 @@
         <NODE_ID>btn_fuel_flow_ctrl_1</NODE_ID>
         <ANIM_NAME>btn_fuel_flow_ctrl_1</ANIM_NAME>
         <ID>3</ID>
-        <TT_DESCRIPTION_ID>@TT_Package.FUEL_SWITCH_VALVE_4ENG_ACTION</TT_DESCRIPTION_ID>
-        <TT_DESCRIPTION_INDEX>1</TT_DESCRIPTION_INDEX>
-        <TOOLTIP_TITLE>@TT_Package.FUEL_SWITCH_VALVE_ENG_TITLE</TOOLTIP_TITLE>
+        <ANIMTIP_0>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_L_SET_RUN</ANIMTIP_0>
+				<ANIMTIP_1>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_L_SET_CUTOFF</ANIMTIP_1>
         <IE_VALVE_ID>Flow_Ctrl_1</IE_VALVE_ID>
       </UseTemplate>
       <UseTemplate Name="ASOBO_FUEL_Switch_Valve_Template">
         <NODE_ID>btn_fuel_flow_ctrl_2</NODE_ID>
         <ANIM_NAME>btn_fuel_flow_ctrl_2</ANIM_NAME>
-        <TT_DESCRIPTION_ID>@TT_Package.FUEL_SWITCH_VALVE_4ENG_ACTION</TT_DESCRIPTION_ID>
-        <TT_DESCRIPTION_INDEX>2</TT_DESCRIPTION_INDEX>
-        <TOOLTIP_TITLE>@TT_Package.FUEL_SWITCH_VALVE_ENG_TITLE</TOOLTIP_TITLE>
         <ID>4</ID>
+				<ANIMTIP_0>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_R_SET_RUN</ANIMTIP_0>
+				<ANIMTIP_1>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_R_SET_CUTOFF</ANIMTIP_1>
         <IE_VALVE_ID>Flow_Ctrl_2</IE_VALVE_ID>
       </UseTemplate>
       <Component ID="CDUs">
@@ -2325,8 +2323,8 @@
           <ANIM_NAME>ovhd_push_start_fuel_jettison_nozzle_l</ANIM_NAME>
           <COVER_NODE_ID>push_ovhd_start_fuel_jettison_nozzle_l_cover</COVER_NODE_ID>
           <COVER_ANIM_NAME>push_ovhd_start_fuel_jettison_nozzle_l_cover</COVER_ANIM_NAME>
-          <!-- <REVERSE_SEQ/> -->
-          <TYPE>BOEING</TYPE>
+          <REVERSE_SEQ/>
+          <PUSH_TYPE>BOEING</PUSH_TYPE>
           <ID>8</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_OFF</ON_TOOLTIP>
@@ -2338,8 +2336,8 @@
           <ANIM_NAME>ovhd_push_start_fuel_jettison_nozzle_r</ANIM_NAME>
           <COVER_NODE_ID>push_ovhd_start_fuel_jettison_nozzle_r_cover</COVER_NODE_ID>
           <COVER_ANIM_NAME>push_ovhd_start_fuel_jettison_nozzle_r_cover</COVER_ANIM_NAME>
-          <!-- <REVERSE_SEQ/> -->
-          <TYPE>BOEING</TYPE>
+          <REVERSE_SEQ/>
+          <PUSH_TYPE>BOEING</PUSH_TYPE>
           <ID>9</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_OFF</ON_TOOLTIP>
@@ -2347,23 +2345,21 @@
           <IE_VALVE_ID>Jettison_Nozzle_R</IE_VALVE_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_AIRLINER_Jettison_Knob_Template">
-          <NODE_ID>knob_ovhd_start_fuel_jettison_sel</NODE_ID>
-          <ANIM_NAME>ovhd_knob_start_fuel_jettison_sel</ANIM_NAME>
+          <NODE_ID>O11_003_KNB</NODE_ID>
+          <ANIM_NAME>O11_003_KNB</ANIM_NAME>
           <ANIM_CODE>50</ANIM_CODE>
           <DONT_OVERRIDE_BASE_EMISSIVE>True</DONT_OVERRIDE_BASE_EMISSIVE>
         </UseTemplate>
-        <!-- <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
-				  <NODE_ID>FUEL_Push_Jettison_Arm</NODE_ID>
-				  <ANIM_NAME>FUEL_Push_Jettison_Arm</ANIM_NAME>
+        <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
+				  <NODE_ID>O11_004_BUT</NODE_ID>
+          <ANIM_NAME>O11_004_BUT</ANIM_NAME>
 				  <ID>6</ID>
 				  <ID2>7</ID2>
-				  <SEQ1_NODE_ID>FUEL_Push_Jettison_Arm_SEQ1</SEQ1_NODE_ID>
-				  <SEQ2_NODE_ID>FUEL_Push_Jettison_Arm_SEQ2</SEQ2_NODE_ID>
-				  <TYPE>BOEING</TYPE>
+				  <PUSH_TYPE>BOEING</PUSH_TYPE>
 				  <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_JETTISON_ARM</OFF_TOOLTIP>
 				  <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_JETTISON_DISARM</ON_TOOLTIP>
 				  <SEQ2_EMISSIVE_CODE>0</SEQ2_EMISSIVE_CODE>
-			  </UseTemplate> -->
+			  </UseTemplate>
       </Component>
 
       <Component ID="Electrical_Panel">
