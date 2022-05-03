@@ -15,7 +15,6 @@ OBS1=360
 Nav2Active=110.50
 Nav2Standby=113.90
 OBS2=360
-
 TransponderState=4
 ADFActive=890
 ADF2Active=890
@@ -75,53 +74,21 @@ ITT_DegR=1600
 
 [FuelSystem.0]
 Valve.1=False
-Valve.2=True
+Valve.2=False
 Valve.3=True
-Valve.4=False
-Valve.5=True
+Valve.4=True
+Valve.5=False
 Valve.6=False
 Valve.7=False
-Valve.8=True
-Valve.9=True
-Valve.10=False
-Valve.11=False
-Valve.12=False
-Valve.13=False
-Valve.14=False
-Valve.15=False
-Valve.16=False
-Valve.17=False
-Valve.18=False
-Valve.19=False
-Valve.20=False
-Valve.21=False
-Valve.22=False
-Valve.23=False
-Valve.24=False
-Valve.25=False
-Valve.26=False
-Valve.27=False
+Valve.8=False
+Valve.9=False
 Pump.1=True
 Pump.2=True
 Pump.3=True
 Pump.4=True
-Pump.5=False
-Pump.6=False
+Pump.5=True
+Pump.6=True
 Pump.7=False
-Pump.8=False
-Pump.9=False
-Pump.10=False
-Pump.11=False
-Pump.12=False
-Pump.13=True
-Pump.14=True
-Pump.15=False
-Pump.16=False
-Pump.17=False
-Pump.18=True
-Pump.19=False
-Pump.20=False
-Pump.21=True
 
 [Systems.0]
 BatterySwitch=True
@@ -142,14 +109,13 @@ FoldingWingsState=0, 0
 AuxPowerUnitSwitch=False
 
 [Electrical.0]
-alternator.5=False
-alternator.6=False
-circuit.104 = True,0.5
-circuit.105 = True,0.5
-circuit.106 = True,0.5
-circuit.107 = True,0.5
-circuit.108 = True,0.5
-circuit.111 = False,1.0
+alternator.3=False
+circuit.76 = True,0.5
+circuit.77 = True,0.5
+circuit.78 = True,0.5
+circuit.79 = True,0.5
+circuit.80 = True,0.5
+circuit.83 = False,1.0
 
 [LocalVars.0]
 XMLVAR_SeatBelts=1
@@ -246,7 +212,6 @@ Rudder=050.00
 LeftBrake=000.00
 RightBrake=000.00
 ParkingBrake=000.00
-
 RudderTrimPct=0
 AileronTrimPct=0
 AileronTrimDisabled=False
