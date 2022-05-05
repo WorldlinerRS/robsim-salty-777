@@ -1243,7 +1243,7 @@
         <ID>3</ID>
         <ANIMTIP_0>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_L_SET_RUN</ANIMTIP_0>
 				<ANIMTIP_1>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_L_SET_CUTOFF</ANIMTIP_1>
-        <IE_VALVE_ID>Flow_Ctrl_1</IE_VALVE_ID>
+        <!-- <IE_VALVE_ID>Flow_Ctrl_1</IE_VALVE_ID> -->
       </UseTemplate>
       <UseTemplate Name="ASOBO_FUEL_Switch_Valve_Template">
         <NODE_ID>btn_fuel_flow_ctrl_2</NODE_ID>
@@ -1251,7 +1251,7 @@
         <ID>4</ID>
 				<ANIMTIP_0>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_R_SET_RUN</ANIMTIP_0>
 				<ANIMTIP_1>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_R_SET_CUTOFF</ANIMTIP_1>
-        <IE_VALVE_ID>Flow_Ctrl_2</IE_VALVE_ID>
+        <!-- <IE_VALVE_ID>Flow_Ctrl_2</IE_VALVE_ID> -->
       </UseTemplate>
       <Component ID="CDUs">
         <DefaultTemplateParameters>
@@ -2207,7 +2207,7 @@
           <SEQ2_CODE_DRIVES_VISIBILITY>True</SEQ2_CODE_DRIVES_VISIBILITY>
           <SEQ1_NOT_DIMMABLE>True</SEQ1_NOT_DIMMABLE>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
-          <IE_VALVE_ID>XFeed_1</IE_VALVE_ID>
+          <!-- <IE_VALVE_ID>XFeed_1</IE_VALVE_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_fuel_xfeed_04</NODE_ID>
@@ -2222,7 +2222,7 @@
           <SEQ2_CODE_DRIVES_VISIBILITY>True</SEQ2_CODE_DRIVES_VISIBILITY>
           <SEQ1_NOT_DIMMABLE>True</SEQ1_NOT_DIMMABLE>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
-          <IE_VALVE_ID>XFeed_2</IE_VALVE_ID>
+          <!-- <IE_VALVE_ID>XFeed_2</IE_VALVE_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_ctr_tank_pump_l</NODE_ID>
@@ -2231,7 +2231,7 @@
           <TANK_ID>1</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_CTR_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_CTR_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Ctr_Tank_L</IE_PUMP_ID>
+          <!-- <IE_PUMP_ID>Ctr_Tank_L</IE_PUMP_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_ctr_tank_pump_r</NODE_ID>
@@ -2240,7 +2240,7 @@
           <TANK_ID>1</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_CTR_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_CTR_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Ctr_Tank_R</IE_PUMP_ID>
+          <!-- <IE_PUMP_ID>Ctr_Tank_R</IE_PUMP_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_01_fwd</NODE_ID>
@@ -2249,7 +2249,7 @@
           <TANK_ID>2</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_FWD_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_FWD_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Left_Fwd</IE_PUMP_ID>
+          <!-- <IE_PUMP_ID>Left_Fwd</IE_PUMP_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_01_aft</NODE_ID>
@@ -2258,7 +2258,7 @@
           <TANK_ID>2</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_AFT_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_AFT_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Left_Aft</IE_PUMP_ID>
+          <!-- <IE_PUMP_ID>Left_Aft</IE_PUMP_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_02_fwd</NODE_ID>
@@ -2267,7 +2267,7 @@
           <TANK_ID>3</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_FWD_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_FWD_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Right_Fwd</IE_PUMP_ID>
+          <!-- <IE_PUMP_ID>Right_Fwd</IE_PUMP_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_02_aft</NODE_ID>
@@ -2276,7 +2276,7 @@
           <TANK_ID>3</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_AFT_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_AFT_TURN_OFF</ON_TOOLTIP>
-          <IE_PUMP_ID>Right_Aft</IE_PUMP_ID>
+          <!-- <IE_PUMP_ID>Right_Aft</IE_PUMP_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_start_fuel_jettison_nozzle_l</NODE_ID>
@@ -2289,7 +2289,7 @@
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_OFF</ON_TOOLTIP>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
-          <IE_VALVE_ID>Jettison_Nozzle_L</IE_VALVE_ID>
+          <!-- <IE_VALVE_ID>Jettison_Nozzle_L</IE_VALVE_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_start_fuel_jettison_nozzle_r</NODE_ID>
@@ -2302,7 +2302,7 @@
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_OFF</ON_TOOLTIP>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
-          <IE_VALVE_ID>Jettison_Nozzle_R</IE_VALVE_ID>
+          <!-- <IE_VALVE_ID>Jettison_Nozzle_R</IE_VALVE_ID> -->
         </UseTemplate>
         <UseTemplate Name="ASOBO_AIRLINER_Jettison_Knob_Template">
           <NODE_ID>O11_003_KNB</NODE_ID>
