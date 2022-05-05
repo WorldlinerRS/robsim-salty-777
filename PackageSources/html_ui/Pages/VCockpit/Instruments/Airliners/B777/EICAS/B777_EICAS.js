@@ -7,7 +7,7 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
     Init() {
         super.Init();
         for (let i = 0; i < Simplane.getEngineCount(); i++) {
-            this.engines.push(new B747_8_Engine());
+            this.engines.push(new B777_Engine());
         }
         this.currentPage = "B747_8_EICAS_fuel";
     }
@@ -136,7 +136,7 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
         if (index >= 0 && index < this.engines.length) {
             return this.engines[index].currentState;
         }
-        return B747_8_EngineState.IDLE;
+        return B777_EngineState.IDLE;
     }
     
     getN2IdleValue() {
@@ -146,7 +146,7 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
         return SimVar.GetSimVarValue("ENG N2 RPM:" + _engineId, "percent") * 10;
     }
     getFuelValveOpen(_engineId) {
-        return SimVar.GetSimVarValue("FUELSYSTEM VALVE OPEN:" + (4 + _engineId), "boolean");
+        return SimVar.GetSimVarValue("FUELSYSTEM VALVE OPEN:" + (2 + _engineId), "boolean");
     }
     
     updateEngines(_deltaTime) {
@@ -154,39 +154,39 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
             let N2Value = this.getN2Value(i + 1);
             switch (this.engines[i].currentState) {
                 
-                case B747_8_EngineState.IDLE:
+                case B777_EngineState.IDLE:
                     if (this.getFuelValveOpen(i + 1)) {
                         if (N2Value >= this.getN2IdleValue())
-                            this.changeState(i, B747_8_EngineState.RUNNING);
+                            this.changeState(i, B777_EngineState.RUNNING);
                         else if (N2Value >= 0.05)
-                            this.changeState(i, B747_8_EngineState.AUTOSTART);
+                            this.changeState(i, B777_EngineState.AUTOSTART);
                     }
                     break;
 
-                case B747_8_EngineState.AUTOSTART:
+                case B777_EngineState.AUTOSTART:
                     if (!this.getFuelValveOpen(i + 1))
-                        this.changeState(i, B747_8_EngineState.DECELERATE);
+                        this.changeState(i, B777_EngineState.DECELERATE);
                     else if (N2Value >= this.getN2IdleValue())
-                        this.changeState(i, B747_8_EngineState.RUNNING);
+                        this.changeState(i, B777_EngineState.RUNNING);
                     break;
 
-                case B747_8_EngineState.RUNNING:
+                case B777_EngineState.RUNNING:
                     if (N2Value < this.getN2IdleValue())
-                        this.changeState(i, B747_8_EngineState.DECELERATE);
+                        this.changeState(i, B777_EngineState.DECELERATE);
                     else if (this.engines[i].timeInState > 30)
-                        this.changeState(i, B747_8_EngineState.READY);
+                        this.changeState(i, B777_EngineState.READY);
                     break;
 
-                case B747_8_EngineState.READY:
+                case B777_EngineState.READY:
                     if (N2Value < this.getN2IdleValue())
-                        this.changeState(i, B747_8_EngineState.DECELERATE);
+                        this.changeState(i, B777_EngineState.DECELERATE);
                     break;
 
-                case B747_8_EngineState.DECELERATE:
+                case B777_EngineState.DECELERATE:
                     if (N2Value < 0.05)
-                        this.changeState(i, B747_8_EngineState.IDLE);
+                        this.changeState(i, B777_EngineState.IDLE);
                     else if (N2Value >= this.getN2IdleValue())
-                        this.changeState(i, B747_8_EngineState.RUNNING);
+                        this.changeState(i, B777_EngineState.RUNNING);
                     break;
             }
             this.engines[i].timeInState += _deltaTime / 1000;
@@ -199,17 +199,17 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
         this.engines[_index].timeInState = 0;
     }
 }
-var B747_8_EngineState;
-(function (B747_8_EngineState) {
-    B747_8_EngineState[B747_8_EngineState["IDLE"] = 0] = "IDLE";
-    B747_8_EngineState[B747_8_EngineState["AUTOSTART"] = 1] = "AUTOSTART";
-    B747_8_EngineState[B747_8_EngineState["RUNNING"] = 2] = "RUNNING";
-    B747_8_EngineState[B747_8_EngineState["READY"] = 3] = "READY";
-    B747_8_EngineState[B747_8_EngineState["DECELERATE"] = 4] = "DECELERATE";
-})(B747_8_EngineState || (B747_8_EngineState = {}));
-class B747_8_Engine {
+var B777_EngineState;
+(function (B777_EngineState) {
+    B777_EngineState[B777_EngineState["IDLE"] = 0] = "IDLE";
+    B777_EngineState[B777_EngineState["AUTOSTART"] = 1] = "AUTOSTART";
+    B777_EngineState[B777_EngineState["RUNNING"] = 2] = "RUNNING";
+    B777_EngineState[B777_EngineState["READY"] = 3] = "READY";
+    B777_EngineState[B777_EngineState["DECELERATE"] = 4] = "DECELERATE";
+})(B777_EngineState || (B777_EngineState = {}));
+class B777_Engine {
     constructor() {
-        this.currentState = B747_8_EngineState.IDLE;
+        this.currentState = B777_EngineState.IDLE;
         this.timeInState = 0;
     }
 }
