@@ -8,8 +8,8 @@ ZVelBodyAxis=0
 SimOnGround=True
 
 [Avionics.0]
-Comm1Active=118.300
-Comm1Standby=122.800
+Comm1Active=122.800
+Comm1Standby=118.300
 Comm2Active=124.850
 Comm2Standby=122.800
 Comm3Active=120.100
@@ -20,6 +20,7 @@ OBS1=360
 Nav2Active=110.50
 Nav2Standby=113.90
 OBS2=360
+Transponder=2000
 
 TransponderState=1
 ADFActive=890
