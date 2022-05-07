@@ -703,7 +703,8 @@
     <Include ModelBehaviorFile="Asobo\Common.xml"/>
     <Include ModelBehaviorFile="Asobo\Exterior.xml"/>
     <Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
-    
+    <Include ModelBehaviorFile="RobSim\index.xml"/>
+    <Include Path="RobSim\B777_300ER_200LR_F_Engines.xml"/>   
     
     <Component ID="INTERACTIVE_POINTS">
       <UseTemplate Name="ASOBO_DOOR_InteractivePoint_Template">
@@ -750,25 +751,21 @@
     </Component>
 
     <Component ID="ENGINE">
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+      <UseTemplate Name="Salty_777_ENGINE_Turbine_Template">
           <ID>1</ID>
           <ANIM_NODE_ID>N2_1_anim</ANIM_NODE_ID>
           <ANIM_NAME>N2_1_anim</ANIM_NAME>
           <STILL_NODE_ID>N2_1_stil</STILL_NODE_ID>
           <SLOW_NODE_ID>N2_1_slow</SLOW_NODE_ID>
-          <BLURRED_NODE_ID>N2_1_blur</BLURRED_NODE_ID>
-          <MIN_RPM_FOR_SLOW>11000</MIN_RPM_FOR_SLOW>
-		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>           
+          <BLURRED_NODE_ID>N2_1_blur</BLURRED_NODE_ID>          
       </UseTemplate>
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+      <UseTemplate Name="Salty_777_ENGINE_Turbine_Template">
           <ID>2</ID>
           <ANIM_NODE_ID>N2_2_anim</ANIM_NODE_ID>
           <ANIM_NAME>N2_2_anim</ANIM_NAME>
           <STILL_NODE_ID>N2_2_stil</STILL_NODE_ID>
           <SLOW_NODE_ID>N2_2_slow</SLOW_NODE_ID>
           <BLURRED_NODE_ID>N2_2_blur</BLURRED_NODE_ID>
-          <MIN_RPM_FOR_SLOW>11000</MIN_RPM_FOR_SLOW>
-		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>
       </UseTemplate>
       <UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
           <ID>1</ID>
@@ -778,7 +775,7 @@
           <ID>2</ID>
           <ANIM_NAME>thrust_rev_2</ANIM_NAME>
       </UseTemplate>
-    </Component>  
+    </Component>
 
     <Component ID="FX_CONTRAIL_RIBBON">
       <OverrideTemplateParameters>
@@ -815,37 +812,6 @@
         <UseTemplate Name="ASOBO_GT_FX">
         </UseTemplate>
       </Component>
-    </Component>
-
-    <Component ID="ENGINE">
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
-          <ID>1</ID>
-          <ANIM_NODE_ID>N2_1_anim</ANIM_NODE_ID>
-          <ANIM_NAME>N2_1_anim</ANIM_NAME>
-          <STILL_NODE_ID>N2_1_stil</STILL_NODE_ID>
-          <SLOW_NODE_ID>N2_1_slow</SLOW_NODE_ID>
-          <BLURRED_NODE_ID>N2_1_blur</BLURRED_NODE_ID>
-          <MIN_RPM_FOR_SLOW>9000</MIN_RPM_FOR_SLOW>
-		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>           
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
-          <ID>2</ID>
-          <ANIM_NODE_ID>N2_2_anim</ANIM_NODE_ID>
-          <ANIM_NAME>N2_2_anim</ANIM_NAME>
-          <STILL_NODE_ID>N2_2_stil</STILL_NODE_ID>
-          <SLOW_NODE_ID>N2_2_slow</SLOW_NODE_ID>
-          <BLURRED_NODE_ID>N2_2_blur</BLURRED_NODE_ID>
-          <MIN_RPM_FOR_SLOW>9000</MIN_RPM_FOR_SLOW>
-		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
-          <ID>1</ID>
-          <ANIM_NAME>thrust_rev_1</ANIM_NAME>
-      </UseTemplate>
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
-          <ID>2</ID>
-          <ANIM_NAME>thrust_rev_2</ANIM_NAME>
-      </UseTemplate>
     </Component>
     
     <Component ID="LANDING_FX">
