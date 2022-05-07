@@ -703,6 +703,8 @@
     <Include ModelBehaviorFile="Asobo\Common.xml"/>
     <Include ModelBehaviorFile="Asobo\Exterior.xml"/>
     <Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
+    <Include ModelBehaviorFile="RobSim\index.xml"/>
+    <Include Path="RobSim\B777_200ER_Engines.xml"/>
     
     
     <Component ID="INTERACTIVE_POINTS">
@@ -731,25 +733,21 @@
     </Component>
     
     <Component ID="ENGINE">
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+      <UseTemplate Name="Salty_777_ENGINE_Turbine_Template">
           <ID>1</ID>
           <ANIM_NODE_ID>N1_0_anim</ANIM_NODE_ID>
           <ANIM_NAME>N1_0_anim</ANIM_NAME>
           <STILL_NODE_ID>N1_0_stil</STILL_NODE_ID>
           <SLOW_NODE_ID>N1_0_slow</SLOW_NODE_ID>
-          <BLURRED_NODE_ID>N1_0_blur</BLURRED_NODE_ID>
-          <MIN_RPM_FOR_SLOW>11000</MIN_RPM_FOR_SLOW>
-		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>           
+          <BLURRED_NODE_ID>N1_0_blur</BLURRED_NODE_ID>          
       </UseTemplate>
-      <UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+      <UseTemplate Name="Salty_777_ENGINE_Turbine_Template">
           <ID>2</ID>
           <ANIM_NODE_ID>N1_1_anim</ANIM_NODE_ID>
           <ANIM_NAME>N1_1_anim</ANIM_NAME>
           <STILL_NODE_ID>N1_1_stil</STILL_NODE_ID>
           <SLOW_NODE_ID>N1_1_slow</SLOW_NODE_ID>
           <BLURRED_NODE_ID>N1_1_blur</BLURRED_NODE_ID>
-          <MIN_RPM_FOR_SLOW>11000</MIN_RPM_FOR_SLOW>
-		      <MIN_RPM_FOR_BLUR>13000</MIN_RPM_FOR_BLUR>
       </UseTemplate>
       <UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
           <ID>1</ID>
