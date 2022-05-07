@@ -147,11 +147,11 @@ var B747_8_LowerEICAS_Engine;
         refresh(_deltaTime) {
             let state = this.eicas.getEngineState(this.engineId);
             switch (state) {
-                case B747_8_EngineState.AUTOSTART:
+                case B777_EngineState.AUTOSTART:
                     this.stateText.textContent = "AUTOSTART";
                     this.stateText.setAttribute("class", "white");
                     break;
-                case B747_8_EngineState.RUNNING:
+                case B777_EngineState.RUNNING:
                     this.stateText.textContent = "RUNNING";
                     this.stateText.setAttribute("class", "");
                     break;
