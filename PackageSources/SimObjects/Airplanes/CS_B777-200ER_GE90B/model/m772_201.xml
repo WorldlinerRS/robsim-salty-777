@@ -704,7 +704,6 @@
     <Include ModelBehaviorFile="Asobo\Exterior.xml"/>
     <Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
     <Include ModelBehaviorFile="RobSim\index.xml"/>
-    <Include Path="RobSim\B777_200ER_Engines.xml"/>
     
     
     <Component ID="INTERACTIVE_POINTS">
