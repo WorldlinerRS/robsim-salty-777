@@ -4,4 +4,6 @@
     <Include RelativeFile="NDPanel.xml"/>
     <Include RelativeFile="EICASButton.xml"/>
     <Include RelativeFile="ADIRUButton.xml"/>
+    <Include RelativeFile="B777_200ER_Engines.xml"/>
+    <Include RelativeFile="B777_300ER_200LR_F_Engines.xml"/>
 </ModelBehaviors>
