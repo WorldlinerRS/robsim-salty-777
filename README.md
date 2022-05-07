@@ -4,9 +4,6 @@ This Compatibility Mod is an addition to [Salty Simulations 747](https://github.
 
 This is an open-source modification for Captain Sim Boeing 777-200ER, Boeing 777-300ER, Boeing 777F and Boeing 767-400ER. Our goal is to make all CS aircrafts, which mainly based on the original Asobo Boeing 747 implementation flyable again. We decided implement this mod on top of Salty Simulation 747 as thier main goal is also to improve the Asobo Boeing 747 to a enjoyable level.
 
-## All new features are explain here
-https://flightsim.to/file/23875/captain-sim-b777-salty-compatibility-mod-with-eicas-mod
-
 ## Download Salty 747 - Step 1
 In order to get use of this mod or start a development environment you need to install the latest Development Build of Salty Simulation 747
 
