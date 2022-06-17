@@ -1,3 +1,12 @@
+[SimVars.0]
+PVelBodyAxis=0
+BVelBodyAxis=0
+HVelBodyAxis=0
+XVelBodyAxis=0
+YVelBodyAxis=0
+ZVelBodyAxis=0
+SimOnGround=True
+
 [Avionics.0]
 Comm1Active=118.300
 Comm1Standby=124.850
@@ -66,7 +75,7 @@ IgnitionSwitch=0
 Afterburner=0
 
 [Systems.0]
-BatterySwitch=True
+BatterySwitch=False
 StructuralDeiceSwitch=False
 PropDeiceSwitch=False
 Autobrakes=0
@@ -85,12 +94,32 @@ AuxPowerUnitSwitch=False
 
 [Electrical.0]
 alternator.3=False
+circuit.74 = True,0.5
+circuit.75 = True,0.5
 circuit.76 = True,0.5
 circuit.77 = True,0.5
 circuit.78 = True,0.5
-circuit.79 = True,0.5
-circuit.80 = True,0.5
-circuit.83 = False,1.0
+circuit.81 = False,1.0
+
+[FuelSystem.0]
+Valve.1=False
+Valve.2=False
+Valve.3=False
+Valve.4=False
+Valve.5=False
+Valve.6=False
+Valve.7=False
+Valve.8=False
+Valve.9=False
+Pump.1=False
+Pump.2=False
+Pump.3=False
+Pump.4=False
+Pump.5=False
+Pump.6=False
+Pump.7=True
+Pump.8=False
+Pump.9=False
 
 [LocalVars.0]
 XMLVAR_SeatBelts=1
@@ -113,7 +142,7 @@ BeaconLights=True
 LandingLights=True
 LogoLights=True
 NavLights=True
-PanelLights=True
+PanelLights=False
 RecognitionLights=True
 StrobeLights=True
 TaxiLights=True
