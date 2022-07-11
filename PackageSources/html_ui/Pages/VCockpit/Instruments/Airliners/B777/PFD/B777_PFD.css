@@ -60,7 +60,7 @@ html body {
   --refHeight: 1024;
 }
 
-b747-8-pfd-element {
+b777-pfd-element {
   width: 100%;
   height: 100%;
   background-color: black;
@@ -69,26 +69,26 @@ b747-8-pfd-element {
   overflow: hidden;
   z-index: -10;
 }
-b747-8-pfd-element #Electricity {
+b777-pfd-element #Electricity {
   width: 100%;
   height: 100%;
 }
-b747-8-pfd-element #Electricity[state=off] {
+b777-pfd-element #Electricity[state=off] {
   display: none;
 }
-b747-8-pfd-element #DUborder {
+b777-pfd-element #DUborder {
   width: 100%;
   height: 100%;
   display: block;
   position: relative; 
 }
-b747-8-pfd-element #Mainframe {
+b777-pfd-element #Mainframe {
   width: 100%;
   height: 100%;
   display: block;
   position: relative;
 }
-b747-8-pfd-element #Mainframe #HorizonContainer {
+b777-pfd-element #Mainframe #HorizonContainer {
   transform: rotateX(0);
   position: absolute;
   width: 100%;
@@ -97,7 +97,7 @@ b747-8-pfd-element #Mainframe #HorizonContainer {
   border: none;
   overflow: hidden;
 }
-b747-8-pfd-element #Mainframe #HorizonContainer #Horizon {
+b777-pfd-element #Mainframe #HorizonContainer #Horizon {
   position: absolute;
   left: 16.5%;
   top: 23%;
@@ -105,13 +105,13 @@ b747-8-pfd-element #Mainframe #HorizonContainer #Horizon {
   height: 44%;
   border: none;
 }
-b747-8-pfd-element #Mainframe #InstrumentsContainer {
+b777-pfd-element #Mainframe #InstrumentsContainer {
   transform: rotateX(0);
   width: 100%;
   height: 100%;
   z-index: 0;
 }
-b747-8-pfd-element #Mainframe #InstrumentsContainer #Airspeed {
+b777-pfd-element #Mainframe #InstrumentsContainer #Airspeed {
   transform: rotateX(0);
   position: absolute;
   top: 7.75%;
@@ -119,7 +119,7 @@ b747-8-pfd-element #Mainframe #InstrumentsContainer #Airspeed {
   width: 28%;
   height: 100%;
 }
-b747-8-pfd-element #Mainframe #InstrumentsContainer #Altimeter {
+b777-pfd-element #Mainframe #InstrumentsContainer #Altimeter {
   transform: rotateX(0);
   position: absolute;
   top: 5.75%;
@@ -127,7 +127,7 @@ b747-8-pfd-element #Mainframe #InstrumentsContainer #Altimeter {
   width: 28%;
   height: 100%;
 }
-b747-8-pfd-element #Mainframe #InstrumentsContainer #VSpeed {
+b777-pfd-element #Mainframe #InstrumentsContainer #VSpeed {
   transform: rotateX(0);
   position: absolute;
   border: none;
@@ -137,7 +137,7 @@ b747-8-pfd-element #Mainframe #InstrumentsContainer #VSpeed {
   height: 100%;
   z-index: 0;
 }
-b747-8-pfd-element #Mainframe #InstrumentsContainer #Compass {
+b777-pfd-element #Mainframe #InstrumentsContainer #Compass {
   transform: rotateX(0);
   position: absolute;
   border: none;
@@ -147,7 +147,7 @@ b747-8-pfd-element #Mainframe #InstrumentsContainer #Compass {
   height: 100%;
   z-index: 0;
 }
-b747-8-pfd-element #Mainframe #InstrumentsContainer #FMA {
+b777-pfd-element #Mainframe #InstrumentsContainer #FMA {
   transform: rotateX(0);
   position: absolute;
   border: none;
@@ -157,7 +157,7 @@ b747-8-pfd-element #Mainframe #InstrumentsContainer #FMA {
   left: 17.5%;
   z-index: 0;
 }
-b747-8-pfd-element #Mainframe #InstrumentsContainer #ILS {
+b777-pfd-element #Mainframe #InstrumentsContainer #ILS {
   transform: rotateX(0);
   position: absolute;
   border: none;

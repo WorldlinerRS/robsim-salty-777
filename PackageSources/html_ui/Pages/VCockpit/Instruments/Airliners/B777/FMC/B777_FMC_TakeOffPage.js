@@ -147,7 +147,7 @@ class FMCTakeOffPage {
             ["\<INDEX", "THRUST LIM>"]
         ]);
         fmc.onNextPage = () => { FMCTakeOffPage.ShowPage2(fmc); };
-        fmc.onLeftInput[5] = () => { B747_8_FMC_InitRefIndexPage.ShowPage1(fmc); };
+        fmc.onLeftInput[5] = () => { B777_FMC_InitRefIndexPage.ShowPage1(fmc); };
         fmc.onRightInput[5] = () => { FMCThrustLimPage.ShowPage1(fmc); };
     }
     static ShowPage2(fmc) {
@@ -229,7 +229,7 @@ class FMCTakeOffPage {
             ["\<INDEX", "OFF←→ARMED>[color]inop"]
         ]);
         fmc.onPrevPage = () => { FMCTakeOffPage.ShowPage1(fmc); };
-        fmc.onLeftInput[5] = () => { B747_8_FMC_InitRefIndexPage.ShowPage1(fmc); };
+        fmc.onLeftInput[5] = () => { B777_FMC_InitRefIndexPage.ShowPage1(fmc); };
     }
 }
 FMCTakeOffPage._timer = 0;

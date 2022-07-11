@@ -1,24 +1,24 @@
-class B747_8_FMC_VNAVPage {
+class B777_FMC_VNAVPage {
     
     /* PAGE 1 - VNAV CLIMB - */
     static ShowPage1(fmc) {
         
         /* Climb Page Refresh Timer */
         fmc.clearDisplay();
-        B747_8_FMC_VNAVPage._timer = 0;
+        B777_FMC_VNAVPage._timer = 0;
         fmc.pageUpdate = () => {
-            B747_8_FMC_VNAVPage._timer++;
-            if (B747_8_FMC_VNAVPage._timer >= 35) {
+            B777_FMC_VNAVPage._timer++;
+            if (B777_FMC_VNAVPage._timer >= 35) {
                 if (fmc.flightPhaseHasChangedToCruise === true) {
                     fmc.flightPhaseHasChangedToCruise = false;
-                    B747_8_FMC_VNAVPage.ShowPage2(fmc);
+                    B777_FMC_VNAVPage.ShowPage2(fmc);
                 }
                 else if (fmc.flightPhaseHasChangedToDescent === true) {
                     fmc.flightPhaseHasChangedToDescent = false;
-                    B747_8_FMC_VNAVPage.ShowPage3(fmc);
+                    B777_FMC_VNAVPage.ShowPage3(fmc);
                 }
                 else {
-                    B747_8_FMC_VNAVPage.ShowPage1(fmc);
+                    B777_FMC_VNAVPage.ShowPage1(fmc);
                 }
             }
         };
@@ -64,7 +64,7 @@ class B747_8_FMC_VNAVPage {
             let value = fmc.inOut;
             fmc.clearUserInput();
             if (fmc.setCruiseFlightLevelAndTemperature(value)) {
-                B747_8_FMC_VNAVPage.ShowPage1(fmc);
+                B777_FMC_VNAVPage.ShowPage1(fmc);
             }
         };
 
@@ -106,7 +106,7 @@ class B747_8_FMC_VNAVPage {
             if (value === "DELETE" && !SimVar.GetSimVarValue("L:AP_SPEED_INTERVENTION_ACTIVE", "number")) {
                 fmc.inOut = "";
                 SimVar.SetSimVarValue("L:SALTY_VNAV_CLB_MODE" , "Enum", 0);
-                B747_8_FMC_VNAVPage.ShowPage1(fmc);
+                B777_FMC_VNAVPage.ShowPage1(fmc);
             }
             else {
                 value = parseFloat(fmc.inOut);
@@ -114,7 +114,7 @@ class B747_8_FMC_VNAVPage {
                 if (150 < value && value < 360) {
                     SimVar.SetSimVarValue("L:SALTY_VNAV_CLB_SPEED", "knots", value);
                     SimVar.SetSimVarValue("L:SALTY_VNAV_CLB_MODE" , "Enum", 2);
-                    B747_8_FMC_VNAVPage.ShowPage1(fmc);
+                    B777_FMC_VNAVPage.ShowPage1(fmc);
                 }
                 else {
                     fmc.showErrorMessage("INVALID ENTRY");
@@ -163,7 +163,7 @@ class B747_8_FMC_VNAVPage {
             if (value === "DELETE") {
                 fmc.inOut = ""
                 fmc.setSpeedRestriction(0, 0, false);
-                B747_8_FMC_VNAVPage.ShowPage1(fmc);
+                B777_FMC_VNAVPage.ShowPage1(fmc);
             }
             else {
                 let rSpeed = value.split("/")[0];
@@ -173,7 +173,7 @@ class B747_8_FMC_VNAVPage {
                 if ((rSpeed > 100 && rSpeed < 399) && (rAlt > 0 && rAlt < 45100)) {
                     fmc.setSpeedRestriction(rSpeed, rAlt, false);
                     fmc.inOut = "";
-                    B747_8_FMC_VNAVPage.ShowPage1(fmc);
+                    B777_FMC_VNAVPage.ShowPage1(fmc);
                 }
                 else {
                     fmc.showErrorMessage("INVALID ENTRY");
@@ -192,7 +192,7 @@ class B747_8_FMC_VNAVPage {
         fmc.onLeftInput[4] = () => {
             if (clbMode !== 0 && clbMode !== 1) {
                 SimVar.SetSimVarValue("L:SALTY_VNAV_CLB_MODE" , "Enum", 0);
-                B747_8_FMC_VNAVPage.ShowPage1(fmc);
+                B777_FMC_VNAVPage.ShowPage1(fmc);
             }
         };
 
@@ -212,22 +212,22 @@ class B747_8_FMC_VNAVPage {
             [],
             ["", "CLB DIR>"]
         ]);
-        fmc.onNextPage = () => { B747_8_FMC_VNAVPage.ShowPage2(fmc); };
+        fmc.onNextPage = () => { B777_FMC_VNAVPage.ShowPage2(fmc); };
     }
 
     /* PAGE 2 - VNAV CRUISE - */
     static ShowPage2(fmc) {
         fmc.clearDisplay();
-        B747_8_FMC_VNAVPage._timer = 0;
+        B777_FMC_VNAVPage._timer = 0;
         fmc.pageUpdate = () => {
-            B747_8_FMC_VNAVPage._timer++;
-            if (B747_8_FMC_VNAVPage._timer >= 35) {
+            B777_FMC_VNAVPage._timer++;
+            if (B777_FMC_VNAVPage._timer >= 35) {
                 if (fmc.flightPhaseHasChangedToDescent === true) {
                     fmc.flightPhaseHasChangedToDescent = false;
-                    B747_8_FMC_VNAVPage.ShowPage3(fmc);
+                    B777_FMC_VNAVPage.ShowPage3(fmc);
                 }
                 else {
-                    B747_8_FMC_VNAVPage.ShowPage2(fmc);
+                    B777_FMC_VNAVPage.ShowPage2(fmc);
                 }
             }
         };
@@ -282,7 +282,7 @@ class B747_8_FMC_VNAVPage {
             let value = fmc.inOut;
             fmc.clearUserInput();
             if (fmc.setCruiseFlightLevelAndTemperature(value)) {
-                B747_8_FMC_VNAVPage.ShowPage2(fmc);
+                B777_FMC_VNAVPage.ShowPage2(fmc);
             }
         };
 
@@ -326,7 +326,7 @@ class B747_8_FMC_VNAVPage {
             else if (value === "DELETE" && !SimVar.GetSimVarValue("L:AP_SPEED_INTERVENTION_ACTIVE", "number")) {
                 fmc.inOut = "";
                 fmc.setEconCruiseSpeed();
-                B747_8_FMC_VNAVPage.ShowPage2(fmc);
+                B777_FMC_VNAVPage.ShowPage2(fmc);
             }
             else {
                 fmc.clearUserInput();
@@ -377,7 +377,7 @@ class B747_8_FMC_VNAVPage {
         fmc.onLeftInput[4] = () => {
             if (crzMode !== 0 && crzMode !== 2) {
                 SimVar.SetSimVarValue("L:SALTY_VNAV_CRZ_MODE" , "Enum", 0);
-                B747_8_FMC_VNAVPage.ShowPage2(fmc);
+                B777_FMC_VNAVPage.ShowPage2(fmc);
             }
         };
 
@@ -397,18 +397,18 @@ class B747_8_FMC_VNAVPage {
             [],
             ["<RTA PROGRESS", "LRC>"]
         ]);
-        fmc.onPrevPage = () => { B747_8_FMC_VNAVPage.ShowPage1(fmc); };
-        fmc.onNextPage = () => { B747_8_FMC_VNAVPage.ShowPage3(fmc); };
+        fmc.onPrevPage = () => { B777_FMC_VNAVPage.ShowPage1(fmc); };
+        fmc.onNextPage = () => { B777_FMC_VNAVPage.ShowPage3(fmc); };
     }
 
     /* PAGE 3 - VNAV DESCENT - */
     static ShowPage3(fmc) {
         fmc.clearDisplay();
-        B747_8_FMC_VNAVPage._timer = 0;
+        B777_FMC_VNAVPage._timer = 0;
         fmc.pageUpdate = () => {
-            B747_8_FMC_VNAVPage._timer++;
-            if (B747_8_FMC_VNAVPage._timer >= 35) {
-                B747_8_FMC_VNAVPage.ShowPage3(fmc);
+            B777_FMC_VNAVPage._timer++;
+            if (B777_FMC_VNAVPage._timer >= 35) {
+                B777_FMC_VNAVPage.ShowPage3(fmc);
             }
         };
 
@@ -501,7 +501,7 @@ class B747_8_FMC_VNAVPage {
             else if (value === "DELETE" && !SimVar.GetSimVarValue("L:AP_SPEED_INTERVENTION_ACTIVE", "number")) {
                 fmc.inOut = "";
                 SimVar.SetSimVarValue("L:SALTY_VNAV_DES_MODE" , "Enum", 0);
-                B747_8_FMC_VNAVPage.ShowPage3(fmc);
+                B777_FMC_VNAVPage.ShowPage3(fmc);
             }
             else {
                 fmc.clearUserInput();
@@ -539,7 +539,7 @@ class B747_8_FMC_VNAVPage {
             if (value === "DELETE") {
                 fmc.inOut = ""
                 fmc.setSpeedRestriction(0, 0, true);
-                B747_8_FMC_VNAVPage.ShowPage3(fmc);
+                B777_FMC_VNAVPage.ShowPage3(fmc);
             }
             else {
                 let rSpeed = value.split("/")[0];
@@ -549,7 +549,7 @@ class B747_8_FMC_VNAVPage {
                 if ((rSpeed > 100 && rSpeed < 399) && (rAlt > 0 && rAlt < 45100)) {
                     fmc.setSpeedRestriction(rSpeed, rAlt, true);
                     fmc.inOut = "";
-                    B747_8_FMC_VNAVPage.ShowPage3(fmc);
+                    B777_FMC_VNAVPage.ShowPage3(fmc);
                 }
                 else {
                     fmc.showErrorMessage("INVALID ENTRY");
@@ -572,7 +572,7 @@ class B747_8_FMC_VNAVPage {
             [],
             ["\<OFFPATH DES", "DES DIR>"]
         ]);
-        fmc.onPrevPage = () => { B747_8_FMC_VNAVPage.ShowPage2(fmc); };
+        fmc.onPrevPage = () => { B777_FMC_VNAVPage.ShowPage2(fmc); };
     }
 }
 //# sourceMappingURL=B747_8_FMC_VNAVPage.js.map

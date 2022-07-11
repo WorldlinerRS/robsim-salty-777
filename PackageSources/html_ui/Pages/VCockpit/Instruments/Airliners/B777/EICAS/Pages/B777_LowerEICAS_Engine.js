@@ -1,5 +1,5 @@
-var B747_8_LowerEICAS_Engine;
-(function (B747_8_LowerEICAS_Engine) {
+var B777_LowerEICAS_Engine;
+(function (B777_LowerEICAS_Engine) {
     class Display extends Airliners.EICASTemplateElement {
         constructor() {
             super();
@@ -7,7 +7,7 @@ var B747_8_LowerEICAS_Engine;
             this.allEngineInfos = new Array();
             this.allGaugeDuals = new Array();
         }
-        get templateID() { return "B747_8LowerEICASEngineTemplate"; }
+        get templateID() { return "B777LowerEICASEngineTemplate"; }
         connectedCallback() {
             super.connectedCallback();
         }
@@ -25,7 +25,7 @@ var B747_8_LowerEICAS_Engine;
             this.isInitialised = true;
         }
         createOilPGauges() {
-            var definition = new B747_8_EICAS_Common.GaugeDualDefinition();
+            var definition = new B777_EICAS_Common.GaugeDualDefinition();
             definition.maxValue = 500;
             definition.barTop = 6;
             definition.barHeight = 88;
@@ -35,7 +35,7 @@ var B747_8_LowerEICAS_Engine;
             this.createGaugeDual(parent, definition);
         }
         createOilTGauges() {
-            var definition = new B747_8_EICAS_Common.GaugeDualDefinition();
+            var definition = new B777_EICAS_Common.GaugeDualDefinition();
             definition.maxValue = 200;
             definition.barTop = 6;
             definition.barHeight = 88;
@@ -45,7 +45,7 @@ var B747_8_LowerEICAS_Engine;
             this.createGaugeDual(parent, definition);
         }
         createOilQGauges() {
-            var definition = new B747_8_EICAS_Common.GaugeDualDefinition();
+            var definition = new B777_EICAS_Common.GaugeDualDefinition();
             definition.barHeight = 0;
             var parent = this.querySelector("#OilQGauges");
             definition.getValueLeft = this.allEngineInfos[0].getOilQValue.bind(this.allEngineInfos[0]);
@@ -53,7 +53,7 @@ var B747_8_LowerEICAS_Engine;
             this.createGaugeDual(parent, definition);
         }
         createVIBGauges() {
-            var definition = new B747_8_EICAS_Common.GaugeDualDefinition();
+            var definition = new B777_EICAS_Common.GaugeDualDefinition();
             definition.useDoubleDisplay = true;
             definition.valueTextPrecision = 1;
             definition.maxValue = 4;
@@ -65,7 +65,7 @@ var B747_8_LowerEICAS_Engine;
             this.createGaugeDual(parent, definition);
         }
         createGaugeDual(_parent, _definition) {
-            var gauge = window.document.createElement("b747-8-eicas-gauge-dual");
+            var gauge = window.document.createElement("b777-eicas-gauge-dual");
             gauge.init(_definition);
             _parent.appendChild(gauge);
             this.allGaugeDuals.push(gauge);
@@ -86,7 +86,7 @@ var B747_8_LowerEICAS_Engine;
             }
         }
     }
-    B747_8_LowerEICAS_Engine.Display = Display;
+    B777_LowerEICAS_Engine.Display = Display;
     class EngineInfo {
         constructor(_eicas, _engineId, _engineStateParent, _n2Parent, _ffParent) {
             this.eicas = _eicas;
@@ -94,9 +94,9 @@ var B747_8_LowerEICAS_Engine;
             if (_engineStateParent != null) {
                 this.stateText = _engineStateParent.querySelector("#Engine" + this.engineId + "_State");
             }
-            this.n2Gauge = window.document.createElement("b747-8-eicas-gauge");
+            this.n2Gauge = window.document.createElement("b777-eicas-gauge");
             this.n2Gauge.init(this.createN2GaugeDefinition());
-            this.ffGauge = window.document.createElement("b747-8-eicas-gauge");
+            this.ffGauge = window.document.createElement("b777-eicas-gauge");
             this.ffGauge.init(this.createFFGaugeDefinition());
             if (_n2Parent != null) {
                 _n2Parent.appendChild(this.n2Gauge);
@@ -106,7 +106,7 @@ var B747_8_LowerEICAS_Engine;
             }
         }
         createN2GaugeDefinition() {
-            var definition = new B747_8_EICAS_Common.GaugeDefinition();
+            var definition = new B777_EICAS_Common.GaugeDefinition();
             definition.getValue = this.eicas.getN2Value.bind(this, this.engineId);
             definition.maxValue = 1100;
             definition.valueBoxWidth = 70;
@@ -118,7 +118,7 @@ var B747_8_LowerEICAS_Engine;
             return definition;
         }
         createFFGaugeDefinition() {
-            var definition = new B747_8_EICAS_Common.GaugeDefinition();
+            var definition = new B777_EICAS_Common.GaugeDefinition();
             definition.getValue = this.getFFValue.bind(this);
             definition.maxValue = 1000;
             definition.valueBoxWidth = 55;
@@ -438,6 +438,6 @@ var B747_8_LowerEICAS_Engine;
     B777_EICAS_Gauge_VIB.TOO_HIGH_VALUE = 4;
     B777_EICAS_Gauge_VIB.MARKER_TOO_HIGH_LENGTH = 10; */
 
-})(B747_8_LowerEICAS_Engine || (B747_8_LowerEICAS_Engine = {}));
-customElements.define("b747-8-lower-eicas-engine", B747_8_LowerEICAS_Engine.Display);
+})(B777_LowerEICAS_Engine || (B777_LowerEICAS_Engine = {}));
+customElements.define("b777-lower-eicas-engine", B777_LowerEICAS_Engine.Display);
 //# sourceMappingURL=B747_8_LowerEICAS_Engine.js.map

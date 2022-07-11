@@ -1,4 +1,4 @@
-class B747_8_EICAS extends Airliners.BaseEICAS {
+class B777_EICAS extends Airliners.BaseEICAS {
     constructor() {
         super(...arguments);
         this.engines = new Array();
@@ -9,7 +9,7 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
         for (let i = 0; i < Simplane.getEngineCount(); i++) {
             this.engines.push(new B777_Engine());
         }
-        this.currentPage = "B747_8_EICAS_fuel";
+        this.currentPage = "B777_EICAS_fuel";
     }
 
     reboot() {
@@ -47,7 +47,7 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
     }
 
     get templateID() {
-        return "B747_8_EICAS";
+        return "B777_EICAS";
     }
 
     createUpperScreenPage() {
@@ -213,5 +213,5 @@ class B777_Engine {
         this.timeInState = 0;
     }
 }
-registerInstrument("b747-8-eicas-element", B747_8_EICAS);
+registerInstrument("b777-eicas-element", B777_EICAS);
 //# sourceMappingURL=B747_8_EICAS.js.map

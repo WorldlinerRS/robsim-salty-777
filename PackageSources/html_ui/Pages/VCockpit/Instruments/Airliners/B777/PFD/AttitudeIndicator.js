@@ -362,7 +362,7 @@ class Jet_PFD_AttitudeIndicator extends HTMLElement {
             //New CenterRectGroup allows FD bars to be drawn correctly underneath center rect.
             {
                 let centerRectGroup = document.createElementNS(Avionics.SVG.NS, "g");
-                this.flightDirector = new Jet_PFD_FlightDirector.B747_8_Handler();
+                this.flightDirector = new Jet_PFD_FlightDirector.B777_Handler();
                 this.flightDirector.init(this.attitude_bank_root);
                 this.applyAttributes();
                 this.attitude_bank_root.appendChild(centerRectGroup);
@@ -814,7 +814,7 @@ var Jet_PFD_FlightDirector;
     class A320_Neo_Handler extends Handler {
     }
     Jet_PFD_FlightDirector.A320_Neo_Handler = A320_Neo_Handler;
-    class B747_8_Handler extends Handler {
+    class B777_Handler extends Handler {
         createDisplayModes(_group) {
             this.displayMode.push(new CommandBarsDisplay_B747(_group));
             this.displayMode.push(new FPV_Boeing(_group));
@@ -829,7 +829,7 @@ var Jet_PFD_FlightDirector;
             this.fFDPitchOffset = 1.75;
         }
     }
-    Jet_PFD_FlightDirector.B747_8_Handler = B747_8_Handler;
+    Jet_PFD_FlightDirector.B777_Handler = B777_Handler;
     class AS01B_Handler extends Handler {
     }
     Jet_PFD_FlightDirector.AS01B_Handler = AS01B_Handler;

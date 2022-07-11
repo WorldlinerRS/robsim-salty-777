@@ -1,12 +1,12 @@
-var B747_8_LowerEICAS_ECL;
-(function (B747_8_LowerEICAS_ECL) {
+var B777_LowerEICAS_ECL;
+(function (B777_LowerEICAS_ECL) {
     class Display extends Airliners.EICASTemplateElement {
         constructor() {
             super();
             this._registered = false;
             this.isInitialised = false;
         }
-        get templateID() { return "B747_8LowerEICASECLTemplate" }
+        get templateID() { return "B777LowerEICASECLTemplate" }
         get isInteractive() { return true; }
         connectedCallback() {
             super.connectedCallback();
@@ -66,7 +66,7 @@ var B747_8_LowerEICAS_ECL;
                 if (_event === "EICAS_CHANGE_PAGE_chkl" && this.nextChecklistIsPending === true) {
                     this.nextChecklistIsPending = false;
                     if (this.normalChecklistSequence < 9) {
-                        SimVar.SetSimVarValue("H:B747_8_EICAS_2_EICAS_CHANGE_PAGE_chkl", "bool", 1);
+                        SimVar.SetSimVarValue("H:B777_EICAS_2_EICAS_CHANGE_PAGE_chkl", "bool", 1);
                         setTimeout(() => {
                             this.normalChecklistSequence ++;
                             this.refreshChecklist();
@@ -383,7 +383,7 @@ var B747_8_LowerEICAS_ECL;
                 this.nonNormalButton.style.visibility = "hidden";
             }
         }
-    }B747_8_LowerEICAS_ECL.Display = Display;
-})(B747_8_LowerEICAS_ECL || (B747_8_LowerEICAS_ECL = {}));
-customElements.define("b747-8-lower-eicas-ecl", B747_8_LowerEICAS_ECL.Display);
+    }B777_LowerEICAS_ECL.Display = Display;
+})(B777_LowerEICAS_ECL || (B777_LowerEICAS_ECL = {}));
+customElements.define("b777-lower-eicas-ecl", B777_LowerEICAS_ECL.Display);
 //# sourceMappingURL=B747_8_LowerEICAS_ECL.js.map 

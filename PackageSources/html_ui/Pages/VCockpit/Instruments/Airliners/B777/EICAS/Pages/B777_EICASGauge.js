@@ -1,5 +1,5 @@
-var B747_8_EICAS_Common;
-(function (B747_8_EICAS_Common) {
+var B777_EICAS_Common;
+(function (B777_EICAS_Common) {
     class GaugeDefinition {
         constructor() {
             this.getValue = null;
@@ -23,7 +23,7 @@ var B747_8_EICAS_Common;
     GaugeDefinition.VALUE_TEXT_X_OFFSET_FROM_BOX = 5;
     GaugeDefinition.GAUGE_TOP = 20;
     GaugeDefinition.GAUGE_WIDTH = 12;
-    B747_8_EICAS_Common.GaugeDefinition = GaugeDefinition;
+    B777_EICAS_Common.GaugeDefinition = GaugeDefinition;
     class GaugeLineDefinition {
         constructor() {
             this.value = 0;
@@ -208,7 +208,7 @@ var B747_8_EICAS_Common;
             return null;
         }
     }
-    B747_8_EICAS_Common.Gauge = Gauge;
+    B777_EICAS_Common.Gauge = Gauge;
     class GaugeDualDefinition {
         constructor() {
             this.useDoubleDisplay = false;
@@ -225,7 +225,7 @@ var B747_8_EICAS_Common;
     GaugeDualDefinition.VALUE_INDICATOR_X_OFFSET = 7;
     GaugeDualDefinition.VALUE_INDICATOR_LENGTH = 16;
     GaugeDualDefinition.VALUE_INDICATOR_HEIGHT = 8;
-    B747_8_EICAS_Common.GaugeDualDefinition = GaugeDualDefinition;
+    B777_EICAS_Common.GaugeDualDefinition = GaugeDualDefinition;
     class GaugeDualValueDisplay {
         constructor(_parent, _definition, _isLeft) {
             this.text = null;
@@ -352,8 +352,8 @@ var B747_8_EICAS_Common;
             }
         }
     }
-    B747_8_EICAS_Common.GaugeDual = GaugeDual;
-})(B747_8_EICAS_Common || (B747_8_EICAS_Common = {}));
-customElements.define('b747-8-eicas-gauge', B747_8_EICAS_Common.Gauge);
-customElements.define('b747-8-eicas-gauge-dual', B747_8_EICAS_Common.GaugeDual);
+    B777_EICAS_Common.GaugeDual = GaugeDual;
+})(B777_EICAS_Common || (B777_EICAS_Common = {}));
+customElements.define('b777-eicas-gauge', B777_EICAS_Common.Gauge);
+customElements.define('b777-eicas-gauge-dual', B777_EICAS_Common.GaugeDual);
 //# sourceMappingURL=B747_8_EICASGauge.js.map

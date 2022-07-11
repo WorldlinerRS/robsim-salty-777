@@ -1,12 +1,12 @@
-var B747_8_LowerEICAS_ELEC;
-(function(B747_8_LowerEICAS_ELEC) {
+var B777_LowerEICAS_ELEC;
+(function(B777_LowerEICAS_ELEC) {
 	class Display extends Airliners.EICASTemplateElement {
 		constructor() {
 			super();
 			this.isInitialised = false;
 		}
 		get templateID() {
-			return "B747_8LowerEICASELECTemplate"
+			return "B777LowerEICASELECTemplate"
 		}
 		connectedCallback() {
 			super.connectedCallback();
@@ -351,7 +351,7 @@ var B747_8_LowerEICAS_ELEC;
 
 		}
 	}
-	B747_8_LowerEICAS_ELEC.Display = Display;
-})(B747_8_LowerEICAS_ELEC || (B747_8_LowerEICAS_ELEC = {}));
-customElements.define("b747-8-lower-eicas-elec", B747_8_LowerEICAS_ELEC.Display);
+	B777_LowerEICAS_ELEC.Display = Display;
+})(B777_LowerEICAS_ELEC || (B777_LowerEICAS_ELEC = {}));
+customElements.define("b777-lower-eicas-elec", B777_LowerEICAS_ELEC.Display);
 //# sourceMappingURL=B747_8_LowerEICAS_ELEC.js.map

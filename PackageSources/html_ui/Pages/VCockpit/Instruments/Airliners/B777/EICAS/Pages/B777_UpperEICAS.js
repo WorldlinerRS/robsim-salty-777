@@ -1,5 +1,5 @@
-var B747_8_UpperEICAS;
-(function (B747_8_UpperEICAS) {
+var B777_UpperEICAS;
+(function (B777_UpperEICAS) {
     class Display extends Airliners.EICASTemplateElement {
         constructor() {
             super();
@@ -15,7 +15,7 @@ var B747_8_UpperEICAS;
             this.gallonToMegapounds = 0;
             this.units;
         }
-        get templateID() { return "B747_8UpperEICASTemplate"; }
+        get templateID() { return "B777UpperEICASTemplate"; }
         connectedCallback() {
             super.connectedCallback();
         }
@@ -179,7 +179,7 @@ var B747_8_UpperEICAS;
         }
     }
     
-    B747_8_UpperEICAS.Display = Display;
+    B777_UpperEICAS.Display = Display;
     
     class B777_EICAS_Gauge {
     }
@@ -389,6 +389,6 @@ var B747_8_UpperEICAS;
             return SimVar.GetSimVarValue("STRUCTURAL DEICE SWITCH", "bool");
         }
     }
-})(B747_8_UpperEICAS || (B747_8_UpperEICAS = {}));
-customElements.define("b747-8-upper-eicas", B747_8_UpperEICAS.Display);
+})(B777_UpperEICAS || (B777_UpperEICAS = {}));
+customElements.define("b777-upper-eicas", B777_UpperEICAS.Display);
 //# sourceMappingURL=B747_8_UpperEICAS.js.map

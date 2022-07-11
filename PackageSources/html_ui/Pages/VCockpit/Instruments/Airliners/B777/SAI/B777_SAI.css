@@ -48,19 +48,19 @@ html body {
   font-weight: normal;
   font-style: normal; 
 }
-b747-8-sai {
+b777-sai {
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
-b747-8-sai #Mainframe {
+b777-sai #Mainframe {
   top: 0%;
   left: 0%;
   width: 100%;
   height: 100%;
   position: relative;
 }
-b747-8-sai #Horizon {
+b777-sai #Horizon {
   position: absolute;
   height: 80%;
   bottom: 14.5%;
@@ -69,7 +69,7 @@ b747-8-sai #Horizon {
   width: auto;
   z-index: -1;
 }
-b747-8-sai #Altimeter {
+b777-sai #Altimeter {
   position: absolute;
   left: 50%;
   top: 0%;
@@ -77,7 +77,7 @@ b747-8-sai #Altimeter {
   height: 100%;
   z-index: 1;
 }
-b747-8-sai #Airspeed {
+b777-sai #Airspeed {
   position: absolute;
   left: 0%;
   top: 0%;
@@ -85,7 +85,7 @@ b747-8-sai #Airspeed {
   height: 100%;
   z-index: 1;
 }
-b747-8-sai #Baro {
+b777-sai #Baro {
   position: absolute;
   left: 0;
   top: 0;
@@ -93,7 +93,7 @@ b747-8-sai #Baro {
   height: 100%;
   z-index: 1;
 }
-b747-8-sai #Compass {
+b777-sai #Compass {
   position: absolute;
   top: 0;
   left: 0;

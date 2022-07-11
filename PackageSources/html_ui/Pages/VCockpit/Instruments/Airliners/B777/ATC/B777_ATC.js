@@ -1,5 +1,5 @@
-class B747_8_ATC extends Airliners.BaseATC {
-    get templateID() { return "B747_8_ATC"; }
+class B777_ATC extends Airliners.BaseATC {
+    get templateID() { return "B777_ATC"; }
     Init() {
         super.Init();
         this.emptySlot = "";
@@ -11,5 +11,5 @@ class B747_8_ATC extends Airliners.BaseATC {
         }
     }
 }
-registerInstrument("b747-8-atc", B747_8_ATC);
+registerInstrument("b777-atc", B777_ATC);
 //# sourceMappingURL=B747_8_ATC.js.map

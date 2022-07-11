@@ -1,5 +1,5 @@
-var B747_8_LowerEICAS_Fuel;
-(function (B747_8_LowerEICAS_Fuel) {
+var B777_LowerEICAS_Fuel;
+(function (B777_LowerEICAS_Fuel) {
     class Display extends Airliners.EICASTemplateElement {
         constructor() {
             super();
@@ -10,7 +10,7 @@ var B747_8_LowerEICAS_Fuel;
             this.units;
             this.isInitialised = false;
         }
-        get templateID() { return "B747_8LowerEICASFuelTemplate"; }
+        get templateID() { return "B777LowerEICASFuelTemplate"; }
         connectedCallback() {
             super.connectedCallback();
         }
@@ -225,7 +225,7 @@ var B747_8_LowerEICAS_Fuel;
             }
         }
     }
-    B747_8_LowerEICAS_Fuel.Display = Display;
-})(B747_8_LowerEICAS_Fuel || (B747_8_LowerEICAS_Fuel = {}));
-customElements.define("b747-8-lower-eicas-fuel", B747_8_LowerEICAS_Fuel.Display);
+    B777_LowerEICAS_Fuel.Display = Display;
+})(B777_LowerEICAS_Fuel || (B777_LowerEICAS_Fuel = {}));
+customElements.define("b777-lower-eicas-fuel", B777_LowerEICAS_Fuel.Display);
 //# sourceMappingURL=B747_8_LowerEICAS_Fuel.js.map

@@ -1,5 +1,5 @@
-class B747_8_ALT extends Boeing_FCU.ALT {
-    get templateID() { return "B747_8_ALT"; }
+class B777_ALT extends Boeing_FCU.ALT {
+    get templateID() { return "B777_ALT"; }
 }
-registerInstrument("b747-8-alt-element", B747_8_ALT);
+registerInstrument("b777-alt-element", B777_ALT);
 //# sourceMappingURL=B747_8_ALT.js.map

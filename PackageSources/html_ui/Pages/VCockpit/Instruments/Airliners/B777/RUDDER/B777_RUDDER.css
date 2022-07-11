@@ -48,41 +48,41 @@ html body {
   font-weight: normal;
   font-style: normal; 
 }
-b747-8-rudder {
+b777-rudder {
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
   background-color: black;
 }
-b747-8-rudder #Content {
+b777-rudder #Content {
   background-color: black;
   width: 512px;
   height: 100px;
 }
-b747-8-rudder #Content svg {
+b777-rudder #Content svg {
   width: 100%;
   height: 100%;
 }
-b747-8-rudder #Content text {
+b777-rudder #Content text {
   text-anchor: middle;
   fill: white;
   alignment-baseline: central;
 }
-b747-8-rudder #Content text.title {
+b777-rudder #Content text.title {
   font-size: 16px;
 }
-b747-8-rudder #Content text.marker {
+b777-rudder #Content text.marker {
   font-size: 12px;
 }
-b747-8-rudder #Content text.label {
+b777-rudder #Content text.label {
   font-size: 15px;
 }
-b747-8-rudder #Content line {
+b777-rudder #Content line {
   stroke: white;
   stroke-width: 2px;
 }
-b747-8-rudder #Content #Arrow {
+b777-rudder #Content #Arrow {
   fill: white;
 }
 
