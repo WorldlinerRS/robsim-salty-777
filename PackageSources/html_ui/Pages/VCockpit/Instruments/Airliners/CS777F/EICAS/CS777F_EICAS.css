@@ -41,26 +41,26 @@ html {
   #Electricity[state=off] {
     display: none; }
 
-b747-8-eicas-element {
+b777-eicas-element {
   width: 100%;
   height: 100%;
   background-color: black;
   font-family: "BoeingEFIS" !important;
   position: relative;
   overflow: hidden; }
-  b747-8-eicas-element #highlight {
+  b777-eicas-element #highlight {
     position: absolute;
     height: 100%;
     width: 100%;
     z-index: 10; }
-  b747-8-eicas-element #Mainframe {
+  b777-eicas-element #Mainframe {
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     display: block;
     position: relative; }
-    b747-8-eicas-element #Mainframe #TopScreen {
+    b777-eicas-element #Mainframe #TopScreen {
       transform: rotateX(0);
       top: 0%;
       left: 0%;
@@ -68,7 +68,7 @@ b747-8-eicas-element {
       height: 100%;
       position: relative;
       display: none; }
-    b747-8-eicas-element #Mainframe #BottomScreen {
+    b777-eicas-element #Mainframe #BottomScreen {
       transform: rotateX(0);
       top: 5%;
       left: 0%;
@@ -76,8 +76,8 @@ b747-8-eicas-element {
       height: 100%;
       position: relative;
       display: none; }
-  b747-8-eicas-element[index="1"] #Mainframe #TopScreen {
+  b777-eicas-element[index="1"] #Mainframe #TopScreen {
     display: block; }
-  b747-8-eicas-element[index="2"] #Mainframe #BottomScreen {
+  b777-eicas-element[index="2"] #Mainframe #BottomScreen {
     display: block; }
 
