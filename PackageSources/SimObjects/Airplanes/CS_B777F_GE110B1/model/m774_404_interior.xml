@@ -1255,7 +1255,7 @@
         <NO_INDICATOR>True</NO_INDICATOR>
         <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
         <CLEARS_EICAS_WARNING>True</CLEARS_EICAS_WARNING>
-        <PLANE_PREFIX>B747_8</PLANE_PREFIX>
+        <PLANE_PREFIX>B777</PLANE_PREFIX>
       </UseTemplate>
       <UseTemplate Name="ASOBO_AUTOPILOT_Push_AutoThrottle_Disengage_Template">
         <NODE_ID>ENGINE_Switch_ATDisc_2</NODE_ID>
@@ -1263,18 +1263,18 @@
         <NO_INDICATOR>True</NO_INDICATOR>
         <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
         <CLEARS_EICAS_WARNING>True</CLEARS_EICAS_WARNING>
-        <PLANE_PREFIX>B747_8</PLANE_PREFIX>
+        <PLANE_PREFIX>B777</PLANE_PREFIX>
       </UseTemplate>
       <UseTemplate Name="ASOBO_ENGINE_Push_TOGA_Template">
         <NODE_ID>ENGINE_Switch_TOGA_1</NODE_ID>
         <ANIM_NAME>ENGINE_Switch_TOGA_1</ANIM_NAME>
-        <ON_PUSH_TO_GA>(&gt;H:B747_8_FMC_1_THROTTLE_TO_GA)</ON_PUSH_TO_GA>
+        <ON_PUSH_TO_GA>(&gt;H:B777_FMC_1_THROTTLE_TO_GA)</ON_PUSH_TO_GA>
         <ID>1</ID>
       </UseTemplate>
       <UseTemplate Name="ASOBO_ENGINE_Push_TOGA_Template">
         <NODE_ID>ENGINE_Switch_TOGA_2</NODE_ID>
         <ANIM_NAME>ENGINE_Switch_TOGA_2</ANIM_NAME>
-        <ON_PUSH_TO_GA>(&gt;H:B747_8_FMC_1_THROTTLE_TO_GA)</ON_PUSH_TO_GA>
+        <ON_PUSH_TO_GA>(&gt;H:B777_FMC_1_THROTTLE_TO_GA)</ON_PUSH_TO_GA>
         <ID>2</ID>
       </UseTemplate>
       <UseTemplate Name="ASOBO_FUEL_Switch_Valve_Template">
@@ -1832,7 +1832,7 @@
         <Component ID="Radio_1">
           <Component ID="Radio">
             <UseTemplate Name="ASOBO_COM_Template_Boeing">
-              <PANEL_NAME>B747_8_Com</PANEL_NAME>
+              <PANEL_NAME>B777_Com</PANEL_NAME>
               <COM_INDEX>1</COM_INDEX>
             </UseTemplate>
           </Component>
@@ -1879,7 +1879,7 @@
         </Component>
         <Component ID="Radio_2">
           <UseTemplate Name="ASOBO_COM_Template_Boeing">
-            <PANEL_NAME>B747_8_Com</PANEL_NAME>
+            <PANEL_NAME>B777_Com</PANEL_NAME>
             <COM_INDEX>2</COM_INDEX>
           </UseTemplate>
           <Component ID="Audio_Panel">
@@ -1925,7 +1925,7 @@
         </Component>
         <Component ID="Radio_3">
           <UseTemplate Name="ASOBO_COM_Template_Boeing">
-            <PANEL_NAME>B747_8_Com</PANEL_NAME>
+            <PANEL_NAME>B777_Com</PANEL_NAME>
             <COM_INDEX>3</COM_INDEX>
           </UseTemplate>
           <Component ID="Audio_Panel">
@@ -2785,7 +2785,7 @@
         <DefaultTemplateParameters>
           <NO_SEQ1>True</NO_SEQ1>
           <NO_SEQ2>True</NO_SEQ2>
-          <PLANE_PREFIX>B747_8</PLANE_PREFIX>
+          <PLANE_PREFIX>B777</PLANE_PREFIX>
         </DefaultTemplateParameters>
 
         <Component ID="GlassCockpit_Panel_Pilot">
@@ -2979,7 +2979,7 @@
       </Component>
       <Component ID="Autopilot_Panel">
         <OverrideTemplateParameters>
-          <PLANE_PREFIX>B747_8</PLANE_PREFIX>
+          <PLANE_PREFIX>B777</PLANE_PREFIX>
         </OverrideTemplateParameters>
         <UseTemplate Name="ASOBO_AUTOPILOT_Push_Autopilot_Template">
           <AP_COUNT>3</AP_COUNT>
@@ -3667,7 +3667,7 @@
         <Component ID="FCU">
           <OverrideTemplateParameters>
             <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
-            <SCREEN_PREFIX>B747_8_</SCREEN_PREFIX>
+            <SCREEN_PREFIX>B777_</SCREEN_PREFIX>
             <FAILURE>(A:CIRCUIT ON:13, Bool)</FAILURE>
           </OverrideTemplateParameters>
           <UseTemplate Name="ASOBO_GT_Screen_Template">
@@ -5907,7 +5907,7 @@
       </Component>
       <Component ID="Screens">
         <DefaultTemplateParameters>
-          <SCREEN_PREFIX>B747_8_</SCREEN_PREFIX>
+          <SCREEN_PREFIX>B777_</SCREEN_PREFIX>
         </DefaultTemplateParameters>
         <UseTemplate Name="ASOBO_GT_Screen_Template">
           <NODE_ID>SCREEN_EICAS1</NODE_ID>
