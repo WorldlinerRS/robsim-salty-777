@@ -3245,7 +3245,7 @@
 				eicas_knob_master_fmc_master
 				-->
         <UseTemplate Name="RobSim_EICAS_PAGE_SELECTION_Template_Boeing">
-          <PANEL_NAME>B747_8_EICAS_2</PANEL_NAME>
+          <PANEL_NAME>B777_EICAS_2</PANEL_NAME>
         </UseTemplate>
       </Component>
     </Component>

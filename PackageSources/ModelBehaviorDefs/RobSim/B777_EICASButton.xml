@@ -94,7 +94,7 @@
 					<GROUP_INDEX Process="Param">GROUP_ID_#CUR_ID#</GROUP_INDEX>
 					<BASE_NAME Process="Param">ID_BTN_#CUR_ID#</BASE_NAME>
 				</Parameters>
-				<UseTemplate Name="ASOBO_EICAS_PAGE_BUTTON_Template_Boeing">
+				<UseTemplate Name="RobSim_EICAS_PAGE_BUTTON_Template_Boeing">
 					<TOOLTIP_TITLE>@TT_Package.#TT_ID#_TITLE</TOOLTIP_TITLE>
 					<TT_DESCRIPTION_ID>@TT_Package.#TT_ID#_ACTION</TT_DESCRIPTION_ID>
 				</UseTemplate>

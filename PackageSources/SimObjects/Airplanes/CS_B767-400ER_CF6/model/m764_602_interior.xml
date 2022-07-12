@@ -1251,7 +1251,7 @@
           <SCREEN_ID>FMC</SCREEN_ID>
         </DefaultTemplateParameters>
         <Component ID="CDU_1">
-          <UseTemplate Name="ASOBO_FMC_B747">
+          <UseTemplate Name="CS_FMC_B777">
             <NODE_ID_SCREEN>SCREEN_FMC1</NODE_ID_SCREEN>
             <CIRCUIT_ID>27</CIRCUIT_ID>
             <ID>1</ID>
@@ -1411,7 +1411,7 @@
 				-->
         </Component>
         <Component ID="CDU_2">
-          <UseTemplate Name="ASOBO_FMC_B747">
+          <UseTemplate Name="CS_FMC_B777">
             <ID>2</ID>
             <NODE_ID_SCREEN>SCREEN_FMC2</NODE_ID_SCREEN>
             <CIRCUIT_ID>27</CIRCUIT_ID>
@@ -1609,7 +1609,7 @@
           <NO_BRT_DIM_EMISSIVE_SEQ2>True</NO_BRT_DIM_EMISSIVE_SEQ2>
           <SCREEN_ID>FMC</SCREEN_ID>
         </DefaultTemplateParameters>
-        <UseTemplate Name="ASOBO_FMC_B747">
+        <UseTemplate Name="CS_FMC_B777">
           <ID>3</ID>
           <TT_FMS_INDEX>(R:1:@TT_Package.GT_STATE_CDU) (R:1:@TT_Package.GT_STATE_PEDESTAL_FMS) @sprintf</TT_FMS_INDEX>
           <NODE_ID_SCREEN>SCREEN_FMC3</NODE_ID_SCREEN>
@@ -3195,7 +3195,7 @@
 				eicas_knob_master_fmc_master
 				-->
         <UseTemplate Name="RobSim_EICAS_PAGE_SELECTION_Template_Boeing">
-          <PANEL_NAME>B747_8_EICAS_2</PANEL_NAME>
+          <PANEL_NAME>B777_EICAS_2</PANEL_NAME>
         </UseTemplate>
       </Component>
     </Component>
