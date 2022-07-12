@@ -11,8 +11,8 @@ class FMC_COMM_Message {
                 timeValue = displayTime.toString();
             }
             message["opened"] = timeValue.substring(0, 5);
-            const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number");
-            SimVar.SetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number", cMsgCnt <= 1 ? 0 : cMsgCnt - 1);
+            const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number");
+            SimVar.SetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number", cMsgCnt <= 1 ? 0 : cMsgCnt - 1);
         }
 
         const currentMesssageIndex = fmc.getMessageIndex(message["id"]);

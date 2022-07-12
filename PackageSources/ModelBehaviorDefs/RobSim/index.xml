@@ -5,4 +5,5 @@
     <Include RelativeFile="EICASButton.xml"/>
     <Include RelativeFile="ADIRUButton.xml"/>
     <Include RelativeFile="B777_Engines.xml"/>
+    <Include RelativeFile="B777_FMC.xml"/>
 </ModelBehaviors>

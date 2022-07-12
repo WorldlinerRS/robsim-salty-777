@@ -51,7 +51,7 @@ class B777_EICAS extends Airliners.BaseEICAS {
     }
 
     createUpperScreenPage() {
-        this.upperTopScreen = new Airliners.EICASScreen("TopScreen", "TopScreen", "b747-8-upper-eicas");
+        this.upperTopScreen = new Airliners.EICASScreen("TopScreen", "TopScreen", "b777-upper-eicas");
         this.annunciations = new Cabin_Annunciations();
         this.upperTopScreen.addIndependentElement(this.annunciations);
         this.warnings = new Cabin_Warnings();
@@ -60,16 +60,16 @@ class B777_EICAS extends Airliners.BaseEICAS {
     }
 
     createLowerScreenPages() {
-        this.createLowerScreenPage("FUEL", "BottomScreen", "b747-8-lower-eicas-fuel");
-        this.createLowerScreenPage("ENG", "BottomScreen", "b747-8-lower-eicas-engine");
-        this.createLowerScreenPage("STAT", "BottomScreen", "b747-8-lower-eicas-stat");
-        this.createLowerScreenPage("FCTL", "BottomScreen", "b747-8-lower-eicas-fctl");
-        this.createLowerScreenPage("DRS", "BottomScreen", "b747-8-lower-eicas-drs");
-        this.createLowerScreenPage("ELEC", "BottomScreen", "b747-8-lower-eicas-elec");
-        this.createLowerScreenPage("GEAR", "BottomScreen", "b747-8-lower-eicas-gear");
-        this.createLowerScreenPage("CHKL", "BottomScreen", "b747-8-lower-eicas-ecl");
-        this.createLowerScreenPage("INFO", "BottomScreen", "b747-8-lower-eicas-info");
-        this.createLowerScreenPage("BLANK", "BottomScreen", "b747-8-lower-eicas-blank"); // To blank the bottom eicas when selecting same page again
+        this.createLowerScreenPage("FUEL", "BottomScreen", "b777-lower-eicas-fuel");
+        this.createLowerScreenPage("ENG", "BottomScreen", "b777-lower-eicas-engine");
+        this.createLowerScreenPage("STAT", "BottomScreen", "b777-lower-eicas-stat");
+        this.createLowerScreenPage("FCTL", "BottomScreen", "b777-lower-eicas-fctl");
+        this.createLowerScreenPage("DRS", "BottomScreen", "b777-lower-eicas-drs");
+        this.createLowerScreenPage("ELEC", "BottomScreen", "b777-lower-eicas-elec");
+        this.createLowerScreenPage("GEAR", "BottomScreen", "b777-lower-eicas-gear");
+        this.createLowerScreenPage("CHKL", "BottomScreen", "b777-lower-eicas-ecl");
+        this.createLowerScreenPage("INFO", "BottomScreen", "b777-lower-eicas-info");
+        this.createLowerScreenPage("BLANK", "BottomScreen", "b777-lower-eicas-blank"); // To blank the bottom eicas when selecting same page again
     }
 
     getLowerScreenChangeEventNamePrefix() {

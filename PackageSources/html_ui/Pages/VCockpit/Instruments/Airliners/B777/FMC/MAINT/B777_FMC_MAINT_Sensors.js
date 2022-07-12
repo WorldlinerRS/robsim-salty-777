@@ -39,13 +39,8 @@ class FMC_MAINT_Sensors {
     static ShowPage2(fmc) {
         fmc.clearDisplay();
         const centerQty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:1", "kg") * 1000).toFixed(0);
-        const main1Qty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:2", "kg") * 1000).toFixed(0);
-        const main2Qty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:3", "kg") * 1000).toFixed(0);
-        const main3Qty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:4", "kg") * 1000).toFixed(0);
-        const main4Qty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:5", "kg") * 1000).toFixed(0);
-        const res1Qty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:6", "kg") * 1000).toFixed(0);
-        const res2Qty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:7", "kg") * 1000).toFixed(0);
-        const stabQty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:8", "kg") * 1000).toFixed(0);
+        const mainLeftQty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:2", "kg") * 1000).toFixed(0);
+        const mainRightQty = (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:3", "kg") * 1000).toFixed(0);
 
         
         const updateView = () => {
@@ -53,12 +48,12 @@ class FMC_MAINT_Sensors {
                 ["SENSORS", "2", "3"],
                 ["", "", "FUEL"],
                 ["", ""],
-                ["\xa0MAIN 2", "MAIN 3", "CENTER"],
-                [`${main2Qty}`, `${main3Qty}`, `${centerQty}`],
-                ["\xa0MAIN 1", "MAIN 4"],
-                [`${main1Qty}`, `${main4Qty}`],
-                ["\xa0RES 1", "RES 2", "STAB"],
-                [`${res1Qty}`, `${res2Qty}`, `${stabQty}`],
+                ["\xa0MAIN L", "MAIN R", "CENTER"],
+                [`${mainLeftQty}`, `${mainRightQty}`, `${centerQty}`],
+                ["", ""],
+                ["", ""],
+                ["", "", ""],
+                ["", "", ""],
                 ["", ""],
                 ["", ""],
                 ["\xa0MAINT", "", "__FMCSEPARATOR"],

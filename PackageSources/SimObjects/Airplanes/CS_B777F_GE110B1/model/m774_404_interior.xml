@@ -1303,7 +1303,7 @@
           <SCREEN_ID>FMC</SCREEN_ID>
         </DefaultTemplateParameters>
         <Component ID="CDU_1">
-          <UseTemplate Name="ASOBO_FMC_B747">
+          <UseTemplate Name="CS_FMC_B777">
             <NODE_ID_SCREEN>SCREEN_FMC1</NODE_ID_SCREEN>
             <CIRCUIT_ID>27</CIRCUIT_ID>
             <ID>1</ID>
@@ -1463,7 +1463,7 @@
 				-->
         </Component>
         <Component ID="CDU_2">
-          <UseTemplate Name="ASOBO_FMC_B747">
+          <UseTemplate Name="CS_FMC_B777">
             <ID>2</ID>
             <NODE_ID_SCREEN>SCREEN_FMC2</NODE_ID_SCREEN>
             <CIRCUIT_ID>27</CIRCUIT_ID>
@@ -1661,7 +1661,7 @@
           <NO_BRT_DIM_EMISSIVE_SEQ2>True</NO_BRT_DIM_EMISSIVE_SEQ2>
           <SCREEN_ID>FMC</SCREEN_ID>
         </DefaultTemplateParameters>
-        <UseTemplate Name="ASOBO_FMC_B747">
+        <UseTemplate Name="CS_FMC_B777">
           <ID>3</ID>
           <TT_FMS_INDEX>(R:1:@TT_Package.GT_STATE_CDU) (R:1:@TT_Package.GT_STATE_PEDESTAL_FMS) @sprintf</TT_FMS_INDEX>
           <NODE_ID_SCREEN>SCREEN_FMC3</NODE_ID_SCREEN>
@@ -2447,7 +2447,7 @@
           <EMISSIVE_NODE_SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:1</EMISSIVE_NODE_SIMVAR_POWER_SETTING>
           <SWITCH_POSITION_TYPE>L</SWITCH_POSITION_TYPE>
           <SWITCH_POSITION_VAR>XMLVAR_APU_StarterKnob_Pos</SWITCH_POSITION_VAR>
-          <ACTIVE_FUEL_PUMP_ON_RPM>17</ACTIVE_FUEL_PUMP_ON_RPM>
+          <ACTIVE_FUEL_PUMP_ON_RPM>7</ACTIVE_FUEL_PUMP_ON_RPM>
         </UseTemplate>
         <UseTemplate Name="ASOBO_GT_Push_Button_Airliner_Dummy">
           <!--777 INOP-->

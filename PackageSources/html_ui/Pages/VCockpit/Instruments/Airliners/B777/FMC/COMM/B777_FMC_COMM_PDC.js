@@ -6,7 +6,7 @@ class FMC_COMM_PDC {
         let deptCell = "----";
         let atisCell = "□";
         let standCell = "----";
-        let acTypeCell = "B748";
+        let acTypeCell = "B777";
         let destCell = "----";
         let freeTextCell = "<";
         let atsCell = "□□□□";
