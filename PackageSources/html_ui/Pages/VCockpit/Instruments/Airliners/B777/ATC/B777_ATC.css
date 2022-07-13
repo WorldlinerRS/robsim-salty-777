@@ -66,25 +66,25 @@ html body {
   font-weight: normal;
   font-style: normal;
 }
-b747-8-atc {
+b777-atc {
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
   background-color: transparent;
 }
-b747-8-atc #Content {
+b777-atc #Content {
   width: 100%;
   height: 100%;
   left: 0%;
   top: 0%;
   position: absolute;
 }
-b747-8-atc #Content svg {
+b777-atc #Content svg {
   width: 100%;
   height: 100%;
 }
-b747-8-atc #Content text {
+b777-atc #Content text {
   font-family: "MCP-704";
   font-size: 70px;
   text-anchor: start;

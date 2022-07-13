@@ -6243,9 +6243,9 @@
 						(A:GEAR HANDLE POSITION, Bool) (A:GEAR POSITION, percent) 99.9 &gt; and (&gt;O:_ShouldBeConnectedToPowerGrid)
 						(O:_ShouldBeConnectedToPowerGrid) sp0
 						1 (&gt;A:BUS LOOKUP INDEX, Number)
-						(A:CIRCUIT CONNECTION ON:56, Bool) l0 != if{ 58 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
-						(A:CIRCUIT CONNECTION ON:57, Bool) l0 != if{ 59 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
-						(A:CIRCUIT CONNECTION ON:62, Bool) l0 != if{ 64 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
+						(A:CIRCUIT CONNECTION ON:56, Bool) l0 != if{ 56 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
+						(A:CIRCUIT CONNECTION ON:57, Bool) l0 != if{ 57 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
+						(A:CIRCUIT CONNECTION ON:62, Bool) l0 != if{ 62 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
           </UPDATE_CODE>
         </UseTemplate>
         <UseTemplate Name="ASOBO_AIRLINER_Update_Set_Potentiometer_On_Takeoff">
