@@ -1,35 +1,35 @@
 <PlaneHTMLConfig>
   
   <Instrument>
-    <Name>B747_8_PFD</Name>
+    <Name>B777_PFD</Name>
     <Electric>
 		<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
     </Electric>
   </Instrument>
 
   <Instrument>
-    <Name>B747_8_MFD</Name>
+    <Name>B777_MFD</Name>
     <Electric>
 		<Simvar name="CIRCUIT ON:23" unit="Boolean"/>
     </Electric>
   </Instrument>
   
   <Instrument>
-    <Name>B747_8_EICAS_1</Name>
+    <Name>B777_EICAS_1</Name>
     <Electric>
 		<Simvar name="CIRCUIT ON:25" unit="Boolean"/>
     </Electric>
   </Instrument>
   
   <Instrument>
-    <Name>B747_8_EICAS_2</Name>
+    <Name>B777_EICAS_2</Name>
     <Electric>
 		<Simvar name="CIRCUIT ON:26" unit="Boolean"/>
     </Electric>
   </Instrument>
   
   <Instrument>
-    <Name>B747_8_FMC</Name>
+    <Name>B777_FMC</Name>
     <Electric>
 		<Simvar name="CIRCUIT ON:27" unit="Boolean"/>
     </Electric>
@@ -37,28 +37,28 @@
   </Instrument>
 
   <Instrument>
-    <Name>B747_8_Com_1</Name>
+    <Name>B777_Com_1</Name>
     <Electric>
       <Simvar name="CIRCUIT ON:16" unit="Boolean"/>
     </Electric>
   </Instrument>
 
   <Instrument>
-    <Name>B747_8_Com_2</Name>
+    <Name>B777_Com_2</Name>
     <Electric>
       <Simvar name="CIRCUIT ON:18" unit="Boolean"/>
     </Electric>
   </Instrument>
 
   <Instrument>
-    <Name>B747_8_Com_3</Name>
+    <Name>B777_Com_3</Name>
     <Electric>
       <Simvar name="CIRCUIT ON:20" unit="Boolean"/>
     </Electric>
   </Instrument>
   
   <Instrument>
-    <Name>B747_8_IAS</Name>
+    <Name>B777_IAS</Name>
     <Electric>
 		<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
     </Electric>
@@ -66,42 +66,42 @@
   </Instrument>
   
   <Instrument>
-    <Name>B747_8_HDG</Name>
+    <Name>B777_HDG</Name>
     <Electric>
 		<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
     </Electric>
   </Instrument>
   
   <Instrument>
-    <Name>B747_8_VSpeed</Name>
+    <Name>B777_VSpeed</Name>
     <Electric>
 		<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
     </Electric>
   </Instrument>
   
   <Instrument>
-    <Name>B747_8_ALT</Name>
+    <Name>B777_ALT</Name>
     <Electric>
 		<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
     </Electric>
   </Instrument>
 
   <Instrument>
-    <Name>B747_8_SAI</Name>
+    <Name>B777_SAI</Name>
     <Electric>
       <Simvar name="CIRCUIT ON:21" unit="Boolean"/>
     </Electric>
   </Instrument>
 
   <Instrument>
-    <Name>B747_8_ATC</Name>
+    <Name>B777_ATC</Name>
     <Electric>
       <Simvar name="CIRCUIT ON:7" unit="Boolean"/>
     </Electric>
   </Instrument>
 
   <Instrument>
-    <Name>B747_8_RUDDER</Name>
+    <Name>B777_RUDDER</Name>
     <Electric>
       <Simvar name="CIRCUIT ON:21" unit="Boolean"/>
     </Electric>

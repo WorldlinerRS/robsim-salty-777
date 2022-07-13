@@ -51,7 +51,7 @@ class FMCSaltyOptions {
 
         /* RSK3 */
         fmc.onRightInput[2] = () => {
-            SimVar.SetSimVarValue("H:B747_8_EICAS_2_EICAS_CHANGE_PAGE_info", "bool", 1);
+            SimVar.SetSimVarValue("H:B777_EICAS_2_EICAS_CHANGE_PAGE_info", "bool", 1);
         };
         
         /* LSK4 */

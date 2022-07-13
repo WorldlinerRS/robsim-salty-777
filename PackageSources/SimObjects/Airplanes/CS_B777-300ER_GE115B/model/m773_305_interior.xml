@@ -1215,7 +1215,7 @@
         <NO_INDICATOR>True</NO_INDICATOR>
         <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
         <CLEARS_EICAS_WARNING>True</CLEARS_EICAS_WARNING>
-        <PLANE_PREFIX>B747_8</PLANE_PREFIX>
+        <PLANE_PREFIX>B777</PLANE_PREFIX>
       </UseTemplate>
       <UseTemplate Name="ASOBO_AUTOPILOT_Push_AutoThrottle_Disengage_Template">
         <NODE_ID>ENGINE_Switch_ATDisc_2</NODE_ID>
@@ -1223,18 +1223,18 @@
         <NO_INDICATOR>True</NO_INDICATOR>
         <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
         <CLEARS_EICAS_WARNING>True</CLEARS_EICAS_WARNING>
-        <PLANE_PREFIX>B747_8</PLANE_PREFIX>
+        <PLANE_PREFIX>B777</PLANE_PREFIX>
       </UseTemplate>
       <UseTemplate Name="ASOBO_ENGINE_Push_TOGA_Template">
         <NODE_ID>ENGINE_Switch_TOGA_1</NODE_ID>
         <ANIM_NAME>ENGINE_Switch_TOGA_1</ANIM_NAME>
-        <ON_PUSH_TO_GA>(&gt;H:B747_8_FMC_1_THROTTLE_TO_GA)</ON_PUSH_TO_GA>
+        <ON_PUSH_TO_GA>(&gt;H:B777_FMC_1_THROTTLE_TO_GA)</ON_PUSH_TO_GA>
         <ID>1</ID>
       </UseTemplate>
       <UseTemplate Name="ASOBO_ENGINE_Push_TOGA_Template">
         <NODE_ID>ENGINE_Switch_TOGA_2</NODE_ID>
         <ANIM_NAME>ENGINE_Switch_TOGA_2</ANIM_NAME>
-        <ON_PUSH_TO_GA>(&gt;H:B747_8_FMC_1_THROTTLE_TO_GA)</ON_PUSH_TO_GA>
+        <ON_PUSH_TO_GA>(&gt;H:B777_FMC_1_THROTTLE_TO_GA)</ON_PUSH_TO_GA>
         <ID>2</ID>
       </UseTemplate>
       <UseTemplate Name="ASOBO_FUEL_Switch_Valve_Template">
@@ -1251,7 +1251,7 @@
         <ID>4</ID>
 				<ANIMTIP_0>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_R_SET_RUN</ANIMTIP_0>
 				<ANIMTIP_1>TT:COCKPIT.TOOLTIPS.FUEL_SWITCH_VALVE_R_SET_CUTOFF</ANIMTIP_1>
-        <!-- <IE_VALVE_ID>Flow_Ctrl_2</IE_VALVE_ID> -->
+        <IE_VALVE_ID>Flow_Ctrl_2</IE_VALVE_ID>
       </UseTemplate>
       <Component ID="CDUs">
         <DefaultTemplateParameters>
@@ -1263,7 +1263,7 @@
           <SCREEN_ID>FMC</SCREEN_ID>
         </DefaultTemplateParameters>
         <Component ID="CDU_1">
-          <UseTemplate Name="ASOBO_FMC_B747">
+          <UseTemplate Name="CS_FMC_B777">
             <NODE_ID_SCREEN>SCREEN_FMC1</NODE_ID_SCREEN>
             <CIRCUIT_ID>27</CIRCUIT_ID>
             <ID>1</ID>
@@ -1423,7 +1423,7 @@
 				-->
         </Component>
         <Component ID="CDU_2">
-          <UseTemplate Name="ASOBO_FMC_B747">
+          <UseTemplate Name="CS_FMC_B777">
             <ID>2</ID>
             <NODE_ID_SCREEN>SCREEN_FMC2</NODE_ID_SCREEN>
             <CIRCUIT_ID>27</CIRCUIT_ID>
@@ -1621,7 +1621,7 @@
           <NO_BRT_DIM_EMISSIVE_SEQ2>True</NO_BRT_DIM_EMISSIVE_SEQ2>
           <SCREEN_ID>FMC</SCREEN_ID>
         </DefaultTemplateParameters>
-        <UseTemplate Name="ASOBO_FMC_B747">
+        <UseTemplate Name="CS_FMC_B777">
           <ID>3</ID>
           <TT_FMS_INDEX>(R:1:@TT_Package.GT_STATE_CDU) (R:1:@TT_Package.GT_STATE_PEDESTAL_FMS) @sprintf</TT_FMS_INDEX>
           <NODE_ID_SCREEN>SCREEN_FMC3</NODE_ID_SCREEN>
@@ -1792,7 +1792,7 @@
         <Component ID="Radio_1">
           <Component ID="Radio">
             <UseTemplate Name="ASOBO_COM_Template_Boeing">
-              <PANEL_NAME>B747_8_Com</PANEL_NAME>
+              <PANEL_NAME>B777_Com</PANEL_NAME>
               <COM_INDEX>1</COM_INDEX>
             </UseTemplate>
           </Component>
@@ -1839,7 +1839,7 @@
         </Component>
         <Component ID="Radio_2">
           <UseTemplate Name="ASOBO_COM_Template_Boeing">
-            <PANEL_NAME>B747_8_Com</PANEL_NAME>
+            <PANEL_NAME>B777_Com</PANEL_NAME>
             <COM_INDEX>2</COM_INDEX>
           </UseTemplate>
           <Component ID="Audio_Panel">
@@ -1885,7 +1885,7 @@
         </Component>
         <Component ID="Radio_3">
           <UseTemplate Name="ASOBO_COM_Template_Boeing">
-            <PANEL_NAME>B747_8_Com</PANEL_NAME>
+            <PANEL_NAME>B777_Com</PANEL_NAME>
             <COM_INDEX>3</COM_INDEX>
           </UseTemplate>
           <Component ID="Audio_Panel">
@@ -2207,7 +2207,7 @@
           <SEQ2_CODE_DRIVES_VISIBILITY>True</SEQ2_CODE_DRIVES_VISIBILITY>
           <SEQ1_NOT_DIMMABLE>True</SEQ1_NOT_DIMMABLE>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
-          <!-- <IE_VALVE_ID>XFeed_1</IE_VALVE_ID> -->
+          <IE_VALVE_ID>XFeed_1</IE_VALVE_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_fuel_xfeed_04</NODE_ID>
@@ -2222,7 +2222,7 @@
           <SEQ2_CODE_DRIVES_VISIBILITY>True</SEQ2_CODE_DRIVES_VISIBILITY>
           <SEQ1_NOT_DIMMABLE>True</SEQ1_NOT_DIMMABLE>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
-          <!-- <IE_VALVE_ID>XFeed_2</IE_VALVE_ID> -->
+          <IE_VALVE_ID>XFeed_2</IE_VALVE_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_ctr_tank_pump_l</NODE_ID>
@@ -2231,7 +2231,7 @@
           <TANK_ID>1</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_CTR_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_CTR_TURN_OFF</ON_TOOLTIP>
-          <!-- <IE_PUMP_ID>Ctr_Tank_L</IE_PUMP_ID> -->
+          <IE_PUMP_ID>Ctr_Tank_L</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_ctr_tank_pump_r</NODE_ID>
@@ -2240,7 +2240,7 @@
           <TANK_ID>1</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_CTR_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_CTR_TURN_OFF</ON_TOOLTIP>
-          <!-- <IE_PUMP_ID>Ctr_Tank_R</IE_PUMP_ID> -->
+          <IE_PUMP_ID>Ctr_Tank_R</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_01_fwd</NODE_ID>
@@ -2249,7 +2249,7 @@
           <TANK_ID>2</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_FWD_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_FWD_TURN_OFF</ON_TOOLTIP>
-          <!-- <IE_PUMP_ID>Left_Fwd</IE_PUMP_ID> -->
+          <IE_PUMP_ID>Left_Fwd</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_01_aft</NODE_ID>
@@ -2258,7 +2258,7 @@
           <TANK_ID>2</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_AFT_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_1_AFT_TURN_OFF</ON_TOOLTIP>
-          <!-- <IE_PUMP_ID>Left_Aft</IE_PUMP_ID> -->
+          <IE_PUMP_ID>Left_Aft</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_02_fwd</NODE_ID>
@@ -2267,7 +2267,7 @@
           <TANK_ID>3</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_FWD_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_FWD_TURN_OFF</ON_TOOLTIP>
-          <!-- <IE_PUMP_ID>Right_Fwd</IE_PUMP_ID> -->
+          <IE_PUMP_ID>Right_Fwd</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Pump_Template">
           <NODE_ID>push_ovhd_fuel_main_02_aft</NODE_ID>
@@ -2276,7 +2276,7 @@
           <TANK_ID>3</TANK_ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_AFT_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_MAIN_2_AFT_TURN_OFF</ON_TOOLTIP>
-          <!-- <IE_PUMP_ID>Right_Aft</IE_PUMP_ID> -->
+          <IE_PUMP_ID>Right_Aft</IE_PUMP_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_start_fuel_jettison_nozzle_l</NODE_ID>
@@ -2289,7 +2289,7 @@
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_OFF</ON_TOOLTIP>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
-          <!-- <IE_VALVE_ID>Jettison_Nozzle_L</IE_VALVE_ID> -->
+          <IE_VALVE_ID>Jettison_Nozzle_L</IE_VALVE_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_start_fuel_jettison_nozzle_r</NODE_ID>
@@ -2302,7 +2302,7 @@
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_OFF</ON_TOOLTIP>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
-          <!-- <IE_VALVE_ID>Jettison_Nozzle_R</IE_VALVE_ID> -->
+          <IE_VALVE_ID>Jettison_Nozzle_R</IE_VALVE_ID>
         </UseTemplate>
         <UseTemplate Name="ASOBO_AIRLINER_Jettison_Knob_Template">
           <NODE_ID>O11_003_KNB</NODE_ID>
@@ -2407,7 +2407,7 @@
           <EMISSIVE_NODE_SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:1</EMISSIVE_NODE_SIMVAR_POWER_SETTING>
           <SWITCH_POSITION_TYPE>L</SWITCH_POSITION_TYPE>
           <SWITCH_POSITION_VAR>XMLVAR_APU_StarterKnob_Pos</SWITCH_POSITION_VAR>
-          <ACTIVE_FUEL_PUMP_ON_RPM>17</ACTIVE_FUEL_PUMP_ON_RPM>
+          <ACTIVE_FUEL_PUMP_ON_RPM>7</ACTIVE_FUEL_PUMP_ON_RPM>
         </UseTemplate>
         <UseTemplate Name="ASOBO_GT_Push_Button_Airliner_Dummy">
           <!--777 INOP-->
@@ -2745,7 +2745,7 @@
         <DefaultTemplateParameters>
           <NO_SEQ1>True</NO_SEQ1>
           <NO_SEQ2>True</NO_SEQ2>
-          <PLANE_PREFIX>B747_8</PLANE_PREFIX>
+          <PLANE_PREFIX>B777</PLANE_PREFIX>
         </DefaultTemplateParameters>
 
         <Component ID="GlassCockpit_Panel_Pilot">
@@ -2939,7 +2939,7 @@
       </Component>
       <Component ID="Autopilot_Panel">
         <OverrideTemplateParameters>
-          <PLANE_PREFIX>B747_8</PLANE_PREFIX>
+          <PLANE_PREFIX>B777</PLANE_PREFIX>
         </OverrideTemplateParameters>
         <UseTemplate Name="ASOBO_AUTOPILOT_Push_Autopilot_Template">
           <AP_COUNT>3</AP_COUNT>
@@ -3205,7 +3205,7 @@
 				eicas_knob_master_fmc_master
 				-->
         <UseTemplate Name="RobSim_EICAS_PAGE_SELECTION_Template_Boeing">
-          <PANEL_NAME>B747_8_EICAS_2</PANEL_NAME>
+          <PANEL_NAME>B777_EICAS_2</PANEL_NAME>
         </UseTemplate>
       </Component>
     </Component>
@@ -3627,7 +3627,7 @@
         <Component ID="FCU">
           <OverrideTemplateParameters>
             <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
-            <SCREEN_PREFIX>B747_8_</SCREEN_PREFIX>
+            <SCREEN_PREFIX>B777_</SCREEN_PREFIX>
             <FAILURE>(A:CIRCUIT ON:13, Bool)</FAILURE>
           </OverrideTemplateParameters>
           <UseTemplate Name="ASOBO_GT_Screen_Template">
@@ -5867,7 +5867,7 @@
       </Component>
       <Component ID="Screens">
         <DefaultTemplateParameters>
-          <SCREEN_PREFIX>B747_8_</SCREEN_PREFIX>
+          <SCREEN_PREFIX>B777_</SCREEN_PREFIX>
         </DefaultTemplateParameters>
         <UseTemplate Name="ASOBO_GT_Screen_Template">
           <NODE_ID>SCREEN_EICAS1</NODE_ID>
@@ -6203,9 +6203,9 @@
 						(A:GEAR HANDLE POSITION, Bool) (A:GEAR POSITION, percent) 99.9 &gt; and (&gt;O:_ShouldBeConnectedToPowerGrid)
 						(O:_ShouldBeConnectedToPowerGrid) sp0
 						1 (&gt;A:BUS LOOKUP INDEX, Number)
-						(A:CIRCUIT CONNECTION ON:56, Bool) l0 != if{ 58 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
-						(A:CIRCUIT CONNECTION ON:57, Bool) l0 != if{ 59 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
-						(A:CIRCUIT CONNECTION ON:62, Bool) l0 != if{ 64 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
+						(A:CIRCUIT CONNECTION ON:56, Bool) l0 != if{ 56 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
+						(A:CIRCUIT CONNECTION ON:57, Bool) l0 != if{ 57 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
+						(A:CIRCUIT CONNECTION ON:62, Bool) l0 != if{ 62 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
           </UPDATE_CODE>
         </UseTemplate>
         <UseTemplate Name="ASOBO_AIRLINER_Update_Set_Potentiometer_On_Takeoff">

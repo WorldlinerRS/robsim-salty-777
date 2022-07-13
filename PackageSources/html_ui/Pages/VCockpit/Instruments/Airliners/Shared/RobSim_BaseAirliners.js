@@ -24,6 +24,7 @@ class BaseAirliners extends NavSystem {
             case Aircraft.A320_NEO:
                 return true;
             case Aircraft.B747_8:
+            case Aircraft.B777:
             case Aircraft.AS01B:
                 return false;
         }

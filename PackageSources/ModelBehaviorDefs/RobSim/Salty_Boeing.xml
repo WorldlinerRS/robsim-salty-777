@@ -534,7 +534,7 @@
 			<ID_BTN>WXR</ID_BTN>
 		</Parameters>
 		<Switch Param="PLANE_PREFIX">
-			<Case Value="B747_8">
+			<Case Value="B777">
 				<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 					<ONOFF_VARIABLE>BTN_WX_ACTIVE</ONOFF_VARIABLE>
 				</UseTemplate>
@@ -554,7 +554,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>STA</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 			<ONOFF_VARIABLE>BTN_NDB_FILTER_ACTIVE</ONOFF_VARIABLE>
 		</UseTemplate>
 	</Template>
@@ -566,7 +566,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>WPT</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 		</UseTemplate>
 	</Template>
 	<Template Name="ASOBO_BOEING_Push_ARPT_Template">
@@ -577,7 +577,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>ARPT</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 		</UseTemplate>
 	</Template>
 	<Template Name="ASOBO_BOEING_Push_DATA_Template">
@@ -589,7 +589,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>DATA</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 		</UseTemplate>
 	</Template>
 	<Template Name="ASOBO_BOEING_Push_POS_Template">
@@ -601,7 +601,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>POS</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 		</UseTemplate>
 	</Template>
 	<Template Name="ASOBO_BOEING_Push_TERR_Template">
@@ -614,7 +614,7 @@
 			<ID_BTN>TERR</ID_BTN>
 		</Parameters>
 		<Switch Param="PLANE_PREFIX">
-			<Case Value="B747_8">
+			<Case Value="B777">
 				<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 					<ONOFF_VARIABLE>BTN_TERRONND_ACTIVE</ONOFF_VARIABLE>
 				</UseTemplate>
@@ -952,7 +952,7 @@
 		<Parameters Type="Default">
 			<NODE_ID>BOEING_Push_FPV_#ID#</NODE_ID>
 			<ANIM_NAME>BOEING_Push_FPV_#ID#</ANIM_NAME>
-			<PLANE_PREFIX>B747_8_PFD</PLANE_PREFIX>
+			<PLANE_PREFIX>B777_PFD</PLANE_PREFIX>
 			<SYSTEM_NAME>PFD</SYSTEM_NAME>
 			<WWISE_PREFIX>fpv</WWISE_PREFIX>
 			<TT_DESCRIPTION_ID>@TT_Package.AIRLINER_AUTOPILOT_PUSH_FPV_ACTION</TT_DESCRIPTION_ID>
@@ -971,7 +971,7 @@
 		<Parameters Type="Default">
 			<NODE_ID>BOEING_Push_MTRS_#ID#</NODE_ID>
 			<ANIM_NAME>BOEING_Push_MTRS_#ID#</ANIM_NAME>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 			<SYSTEM_NAME>PFD</SYSTEM_NAME>
 			<WWISE_PREFIX>mtrs</WWISE_PREFIX>
 			<TT_DESCRIPTION_ID>@TT_Package.AIRLINER_AUTOPILOT_PUSH_MTRS_ACTION</TT_DESCRIPTION_ID>
@@ -1160,10 +1160,10 @@
 	<Component ID="#NODE_ID#" Node="#NODE_ID#">
 		<UseTemplate Name="ASOBO_GT_Knob_Infinite">
 			<CLOCKWISE_CODE>
-				(L:747_FUEL_TO_REMAIN) 0.5 + (&gt;L:747_FUEL_TO_REMAIN)
+				(L:777_FUEL_TO_REMAIN) 0.5 + (&gt;L:777_FUEL_TO_REMAIN)
 			</CLOCKWISE_CODE>
 			<ANTICLOCKWISE_CODE>
-				(L:747_FUEL_TO_REMAIN) 0.5 - (&gt;L:747_FUEL_TO_REMAIN)
+				(L:777_FUEL_TO_REMAIN) 0.5 - (&gt;L:777_FUEL_TO_REMAIN)
 			</ANTICLOCKWISE_CODE>
 		</UseTemplate>
 	</Component>
@@ -1270,10 +1270,10 @@
 				<Default>
 					<UseTemplate Name="ASOBO_GT_Knob_Infinite_Push">
 						<ANTICLOCKWISE_CODE>
-							#BARO_ID# (&gt;H:B747_8_PFD_BARO_DEC)
+							#BARO_ID# (&gt;H:B777_PFD_BARO_DEC)
 						</ANTICLOCKWISE_CODE>
 						<CLOCKWISE_CODE>
-							#BARO_ID# (&gt;H:B747_8_PFD_BARO_INC)
+							#BARO_ID# (&gt;H:B777_PFD_BARO_INC)
 						</CLOCKWISE_CODE>
 						<LEFT_SINGLE_CODE>
 							(L:XMLVAR_Baro#BARO_ID#_ForcedToSTD) ! (&gt;L:XMLVAR_Baro#BARO_ID#_ForcedToSTD)
@@ -1281,7 +1281,7 @@
 								(A:KOHLSMAN SETTING MB:1, mbars) 16 * (&gt;L:XMLVAR_Baro#BARO_ID#_SavedPressure)
 								#BARO_ID# (&gt;K:BAROMETRIC_STD_PRESSURE)
 							} els{
-								#BARO_ID# (L:XMLVAR_Baro#BARO_ID#_SavedPressure) (&gt;K:2:KOHLSMAN_SET) (&gt;H:B747_8_PFD_STD_PUSH)
+								#BARO_ID# (L:XMLVAR_Baro#BARO_ID#_SavedPressure) (&gt;K:2:KOHLSMAN_SET) (&gt;H:B777_PFD_STD_PUSH)
 							}
 						</LEFT_SINGLE_CODE>
 						<WWISE_EVENT>autopilot_selector_knob</WWISE_EVENT>
@@ -1317,7 +1317,7 @@
             <UseTemplate Name="ASOBO_GT_Push_Button">
                 <ANIM_NAME>#ANIM_NAME_BUTTON#</ANIM_NAME>
                 <LEFT_SINGLE_CODE>
-                1 (&gt;H:B747_8_EICAS_2_ECL_SEL_PUSH)
+                1 (&gt;H:B777_EICAS_2_ECL_SEL_PUSH)
                 </LEFT_SINGLE_CODE>
             </UseTemplate>
         </Component>
@@ -1338,10 +1338,10 @@
 		<Component ID="#NODE_ID#" Node="#NODE_ID#">
 			<UseTemplate Name="ASOBO_GT_Knob_Infinite">
 				<CLOCKWISE_CODE>
-                1 (&gt;H:B747_8_EICAS_2_ECL_KNOB_FWD)
+                1 (&gt;H:B777_EICAS_2_ECL_KNOB_FWD)
 				</CLOCKWISE_CODE>
 				<ANTICLOCKWISE_CODE>
-                1 (&gt;H:B747_8_EICAS_2_ECL_KNOB_BACK)
+                1 (&gt;H:B777_EICAS_2_ECL_KNOB_BACK)
 				</ANTICLOCKWISE_CODE>
 			</UseTemplate>
 		</Component>
@@ -1361,7 +1361,7 @@
 			</Condition>
 		</Parameters>
 		<UseTemplate Name="ASOBO_AUTOPILOT_Push_Template">
-			<LEFT_SINGLE_CODE> (&gt;B:AUTOPILOT_FD_1_Mode_Toggle) (&gt;H:B747_8_FMC_1_AP_FD_TOGGLE)</LEFT_SINGLE_CODE>
+			<LEFT_SINGLE_CODE> (&gt;B:AUTOPILOT_FD_1_Mode_Toggle) (&gt;H:B777_FMC_1_AP_FD_TOGGLE)</LEFT_SINGLE_CODE>
 			<EMISSIVE_SIMVAR_ACTIVE>AUTOPILOT FLIGHT DIRECTOR ACTIVE:#ID#</EMISSIVE_SIMVAR_ACTIVE>
 			<SIMVAR_TO_WATCH_0>AUTOPILOT FLIGHT DIRECTOR ACTIVE:#ID#</SIMVAR_TO_WATCH_0>
 			<Condition Valid="ON_WHEN_AP_MODE_TURNED_ON">
@@ -1390,7 +1390,7 @@
 			<SIM_STATE_IS_ON_EXTERNAL>l0</SIM_STATE_IS_ON_EXTERNAL>
 			<GET_STATE_EXTERNAL>(A:AUTOPILOT APPROACH HOLD, Bool) (A:AUTOPILOT GLIDESLOPE HOLD, Bool) ! and sp0</GET_STATE_EXTERNAL>
 			<!-- To APPROACH and LOCALIZER are the same as far as toggling, so has to toggle twice if already active from other mode -->
-			<SET_STATE_EXTERNAL>(A:AUTOPILOT APPROACH HOLD, Bool) (A:AUTOPILOT GLIDESLOPE HOLD, Bool) and if{ (&gt;H:B747_8_FMC_1_AP_LOC_ARMED) } (&gt;H:B747_8_FMC_1_AP_LOC_ARMED)</SET_STATE_EXTERNAL>
+			<SET_STATE_EXTERNAL>(A:AUTOPILOT APPROACH HOLD, Bool) (A:AUTOPILOT GLIDESLOPE HOLD, Bool) and if{ (&gt;H:B777_FMC_1_AP_LOC_ARMED) } (&gt;H:B777_FMC_1_AP_LOC_ARMED)</SET_STATE_EXTERNAL>
 			<BTN_ID>Localizer_Button</BTN_ID>
 			<TT_DESCRIPTION_ID>@TT_Package.AUTOPILOT_PUSH_LOC_ACTION_SET</TT_DESCRIPTION_ID>
 			<TOOLTIP_TITLE>@TT_Package.AUTOPILOT_PUSH_LOC_TITLE</TOOLTIP_TITLE>
@@ -1416,7 +1416,7 @@
 			<EMISSIVE_CODE_ACTIVE>(L:AP_APP_ARMED, Bool)</EMISSIVE_CODE_ACTIVE>
 			<SIM_STATE_IS_ON_EXTERNAL>l0</SIM_STATE_IS_ON_EXTERNAL>
 			<GET_STATE_EXTERNAL>(A:AUTOPILOT APPROACH HOLD, Bool) (A:AUTOPILOT GLIDESLOPE HOLD, Bool) and sp0</GET_STATE_EXTERNAL>
-			<SET_STATE_EXTERNAL>#GPS_DISABLE_CODE# (A:AUTOPILOT APPROACH HOLD, Bool) (A:AUTOPILOT GLIDESLOPE HOLD, Bool) ! and if{ (&gt;H:B747_8_FMC_1_AP_APP_ARMED) } (&gt;H:B747_8_FMC_1_AP_APP_ARMED)</SET_STATE_EXTERNAL>
+			<SET_STATE_EXTERNAL>#GPS_DISABLE_CODE# (A:AUTOPILOT APPROACH HOLD, Bool) (A:AUTOPILOT GLIDESLOPE HOLD, Bool) ! and if{ (&gt;H:B777_FMC_1_AP_APP_ARMED) } (&gt;H:B777_FMC_1_AP_APP_ARMED)</SET_STATE_EXTERNAL>
 			<BTN_ID>Approach_Button</BTN_ID>
 			<TT_DESCRIPTION_ID>@TT_Package.AUTOPILOT_PUSH_APPROACH_ACTION</TT_DESCRIPTION_ID>
 			<TOOLTIP_TITLE>@TT_Package.AUTOPILOT_PUSH_APPROACH_TITLE</TOOLTIP_TITLE>
@@ -1432,7 +1432,7 @@
 			<Switch Param="TYPE">
 				<Case Value="B747">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
-					<KEY_PREFIX>B747_8</KEY_PREFIX>
+					<KEY_PREFIX>B777</KEY_PREFIX>
 				</Case>
 				<Default>
 					<EMISSIVE_DEFAULT_NAME>AUTOPILOT_Push_VerticalNavigation_Text</EMISSIVE_DEFAULT_NAME>
@@ -1473,7 +1473,7 @@
 			<Switch Param="TYPE">
 				<Case Value="B747">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
-					<KEY_PREFIX>B747_8</KEY_PREFIX>
+					<KEY_PREFIX>B777</KEY_PREFIX>
 				</Case>
 				<Case Value="AS01B">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
@@ -1516,7 +1516,7 @@
 			<Switch Param="TYPE">
 				<Case Value="B747">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
-					<KEY_PREFIX>B747_8</KEY_PREFIX>
+					<KEY_PREFIX>B777</KEY_PREFIX>
 				</Case>
 				<Case Value="AS01B">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
@@ -1559,7 +1559,7 @@
 			<Switch Param="TYPE">
 				<Case Value="B747">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
-					<KEY_PREFIX>B747_8</KEY_PREFIX>
+					<KEY_PREFIX>B777</KEY_PREFIX>
 				</Case>
 				<Case Value="AS01B">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
@@ -1603,7 +1603,7 @@
 			<Switch Param="TYPE">
 				<Case Value="B747">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
-					<KEY_PREFIX>B747_8</KEY_PREFIX>
+					<KEY_PREFIX>B777</KEY_PREFIX>
 					<EMISSIVE_CODE_ACTIVE>(L:AP_SPD_ACTIVE) (L:WT_CJ4_VNAV_ON) ! and</EMISSIVE_CODE_ACTIVE>
 					<IS_SWITCH_ON>(L:AP_SPD_ACTIVE)</IS_SWITCH_ON>
 				</Case>
@@ -1655,7 +1655,7 @@
 			<Switch Param="TYPE">
 				<Case Value="B747">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
-					<KEY_PREFIX>B747_8</KEY_PREFIX>
+					<KEY_PREFIX>B777</KEY_PREFIX>
 				</Case>
 				<Case Value="AS01B">
 					<IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>

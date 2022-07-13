@@ -1,18 +1,18 @@
-class B747_8_SAI extends BaseAirliners {
-    get templateID() { return "B747_8_SAI"; }
+class B777_SAI extends BaseAirliners {
+    get templateID() { return "B777_SAI"; }
     connectedCallback() {
         super.connectedCallback();
-        this.addIndependentElementContainer(new NavSystemElementContainer("Altimeter", "Altimeter", new B747_8_SAI_Altimeter()));
-        this.addIndependentElementContainer(new NavSystemElementContainer("Airspeed", "Airspeed", new B747_8_SAI_Airspeed()));
-        this.addIndependentElementContainer(new NavSystemElementContainer("Horizon", "Horizon", new B747_8_SAI_Attitude()));
-        this.addIndependentElementContainer(new NavSystemElementContainer("Compass", "Compass", new B747_8_SAI_Compass()));
-        this.addIndependentElementContainer(new NavSystemElementContainer("Baro", "Baro", new B747_8_SAI_Baro()));
+        this.addIndependentElementContainer(new NavSystemElementContainer("Altimeter", "Altimeter", new B777_SAI_Altimeter()));
+        this.addIndependentElementContainer(new NavSystemElementContainer("Airspeed", "Airspeed", new B777_SAI_Airspeed()));
+        this.addIndependentElementContainer(new NavSystemElementContainer("Horizon", "Horizon", new B777_SAI_Attitude()));
+        this.addIndependentElementContainer(new NavSystemElementContainer("Compass", "Compass", new B777_SAI_Compass()));
+        this.addIndependentElementContainer(new NavSystemElementContainer("Baro", "Baro", new B777_SAI_Baro()));
     }
     onUpdate(_deltaTime) {
         super.onUpdate(_deltaTime);
     }
 }
-class B747_8_SAI_Baro extends NavSystemElement {
+class B777_SAI_Baro extends NavSystemElement {
     constructor() {
         super();
     }
@@ -49,7 +49,7 @@ class B747_8_SAI_Baro extends NavSystemElement {
         }
     }
 }
-class B747_8_SAI_BaroIndicator extends HTMLElement {
+class B777_SAI_BaroIndicator extends HTMLElement {
     constructor() {
         super(...arguments);
         this.viewboxWidth = 250;
@@ -102,8 +102,8 @@ class B747_8_SAI_BaroIndicator extends HTMLElement {
         }
     }
 }
-customElements.define('b747-8-sai-baro-indicator', B747_8_SAI_BaroIndicator);
-class B747_8_SAI_Compass extends NavSystemElement {
+customElements.define('b777-sai-baro-indicator', B777_SAI_BaroIndicator);
+class B777_SAI_Compass extends NavSystemElement {
     constructor() {
         super();
     }
@@ -124,7 +124,7 @@ class B747_8_SAI_Compass extends NavSystemElement {
     onEvent(_event) {
     }
 }
-class B747_8_SAI_CompassBackground extends HTMLElement {
+class B777_SAI_CompassBackground extends HTMLElement {
     constructor() {
         super(...arguments);
         this.viewboxWidth = 250;
@@ -175,8 +175,8 @@ class B747_8_SAI_CompassBackground extends HTMLElement {
         this.construct();
     }
 }
-customElements.define('b747-8-sai-compass-background', B747_8_SAI_CompassBackground);
-class B747_8_SAI_HSIndicator extends HTMLElement {
+customElements.define('b777-sai-compass-background', B777_SAI_CompassBackground);
+class B777_SAI_HSIndicator extends HTMLElement {
     constructor() {
         super(...arguments);
         this.compassCircleTexts = [];
@@ -323,8 +323,8 @@ class B747_8_SAI_HSIndicator extends HTMLElement {
         });
     }
 }
-customElements.define('b747-8-sai-hsindicator', B747_8_SAI_HSIndicator);
-class B747_8_SAI_Airspeed extends NavSystemElement {
+customElements.define('b777-sai-hsindicator', B777_SAI_HSIndicator);
+class B777_SAI_Airspeed extends NavSystemElement {
     constructor() {
         super();
     }
@@ -344,7 +344,7 @@ class B747_8_SAI_Airspeed extends NavSystemElement {
     onEvent(_event) {
     }
 }
-class B747_8_SAI_AirspeedIndicator extends HTMLElement {
+class B777_SAI_AirspeedIndicator extends HTMLElement {
     constructor() {
         super(...arguments);
         this.greenColor = "green";
@@ -613,8 +613,8 @@ class B747_8_SAI_AirspeedIndicator extends HTMLElement {
         }
     }
 }
-customElements.define('b747-8-sai-airspeed-indicator', B747_8_SAI_AirspeedIndicator);
-class B747_8_SAI_Altimeter extends NavSystemElement {
+customElements.define('b777-sai-airspeed-indicator', B777_SAI_AirspeedIndicator);
+class B777_SAI_Altimeter extends NavSystemElement {
     constructor() {
         super();
     }
@@ -643,7 +643,7 @@ class B747_8_SAI_Altimeter extends NavSystemElement {
         }
     }
 }
-class B747_8_SAI_AltimeterIndicator extends HTMLElement {
+class B777_SAI_AltimeterIndicator extends HTMLElement {
     constructor() {
         super(...arguments);
         this.fontSize = 24;
@@ -867,8 +867,8 @@ class B747_8_SAI_AltimeterIndicator extends HTMLElement {
         this.cursorSVGAltitudeLevelShape.classList.toggle('hide', _altitude >= 10000);
     }
 }
-customElements.define('b747-8-sai-altimeter-indicator', B747_8_SAI_AltimeterIndicator);
-class B747_8_SAI_Attitude extends NavSystemElement {
+customElements.define('b777-sai-altimeter-indicator', B777_SAI_AltimeterIndicator);
+class B777_SAI_Attitude extends NavSystemElement {
     init(root) {
         this.attitudeElement = this.gps.getChildById("Horizon");
         this.attitudeElement.setAttribute("is-backup", "true");
@@ -896,7 +896,7 @@ class B747_8_SAI_Attitude extends NavSystemElement {
             this.attitudeElement.setAttribute("slip_skid", Simplane.getInclinometer().toString());
         }
 
-        const isISFDOn = SimVar.GetSimVarValue("L:B747_8_SAI_State", "Bool");
+        const isISFDOn = SimVar.GetSimVarValue("L:B777_SAI_State", "Bool");
         const isInitDone = SimVar.GetSimVarValue("L:SALTY_ISFD_INIT_DONE", "Bool");
         const IRSState = SimVar.GetSimVarValue("L:SALTY_IRS_STATE", "Enum");
 
@@ -950,7 +950,7 @@ class B747_8_SAI_Attitude extends NavSystemElement {
     onEvent(_event) {
     }
 }
-class B747_8_SAI_AttitudeIndicator extends HTMLElement {
+class B777_SAI_AttitudeIndicator extends HTMLElement {
     constructor() {
         super();
         this.backgroundVisible = true;
@@ -1264,6 +1264,6 @@ class B747_8_SAI_AttitudeIndicator extends HTMLElement {
         }
     }
 }
-customElements.define('b747-8-sai-attitude-indicator', B747_8_SAI_AttitudeIndicator);
-registerInstrument("b747-8-sai", B747_8_SAI);
+customElements.define('b777-sai-attitude-indicator', B777_SAI_AttitudeIndicator);
+registerInstrument("b777-sai", B777_SAI);
 //# sourceMappingURL=B747_8_SAI.js.map

@@ -1,4 +1,4 @@
-class B747_8_FMC_MainDisplay extends Boeing_FMC {
+class B777_FMC_MainDisplay extends Boeing_FMC {
     constructor() {
         super(...arguments);
         this.activeSystem = "FMC";
@@ -149,7 +149,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             sendStatus: ""
         }
     }
-    get templateID() { return "B747_8_FMC"; }
+    get templateID() { return "B777_FMC"; }
     
     // Property for EXEC handling
     get fpHasChanged() {
@@ -189,7 +189,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.timer = 0;
         let oat = SimVar.GetSimVarValue("AMBIENT TEMPERATURE", "celsius");
         this._thrustTakeOffTemp = Math.ceil(oat / 10) * 10;
-        this.aircraftType = Aircraft.B747_8;
+        this.aircraftType = Aircraft.B777;
         this.maxCruiseFL = 430;
         this.saltyBase = new SaltyBase();
         this.saltyModules = new SaltyModules();
@@ -203,35 +203,35 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         }
         this.updateVREF30();
         this.onInit = () => {
-            B747_8_FMC_InitRefIndexPage.ShowPage1(this);
+            B777_FMC_InitRefIndexPage.ShowPage1(this);
         };
         this.onLegs = () => {
-            B747_8_FMC_LegsPage.ShowPage1(this);
+            B777_FMC_LegsPage.ShowPage1(this);
         };
         this.onRte = () => {
             FMCRoutePage.ShowPage1(this);
         };
         this.onDepArr = () => {
-            B747_8_FMC_DepArrIndexPage.ShowPage1(this);
+            B777_FMC_DepArrIndexPage.ShowPage1(this);
         };
         this.onRad = () => {
-            B747_8_FMC_NavRadioPage.ShowPage(this);
+            B777_FMC_NavRadioPage.ShowPage(this);
         };
         this.onVNAV = () => {
             if (Simplane.getCurrentFlightPhase() <= FlightPhase.FLIGHT_PHASE_CLIMB) {
-                B747_8_FMC_VNAVPage.ShowPage1(this);
+                B777_FMC_VNAVPage.ShowPage1(this);
             }
             else if (Simplane.getCurrentFlightPhase() === FlightPhase.FLIGHT_PHASE_CRUISE) {
-                B747_8_FMC_VNAVPage.ShowPage2(this);
+                B777_FMC_VNAVPage.ShowPage2(this);
                 this.flightPhaseHasChangedToCruise === false;
             }
             else {
-                B747_8_FMC_VNAVPage.ShowPage3(this);
+                B777_FMC_VNAVPage.ShowPage3(this);
                 this.flightPhaseHasChangedToDescent === false;
             }
         };
         this.onProg = () => {
-            B747_8_FMC_ProgPage.ShowPage1(this);
+            B777_FMC_ProgPage.ShowPage1(this);
         };
         this.onAtc = () => { 
             FMC_ATC_Index.ShowPage(this);
@@ -243,7 +243,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             FMC_Menu.ShowPage(this);
         };
         this.onHold = () => {
-            B747_8_FMC_HoldsPage.handleHoldPressed(this);
+            B777_FMC_HoldsPage.handleHoldPressed(this);
         };
         FMC_Menu.ShowPage(this);
         this._pilotWaypoints = new CJ4_FMC_PilotWaypoint_Manager(this);
@@ -251,7 +251,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
     }
     onInteractionEvent(args) {
         super.onInteractionEvent(args);
-        const apPrefix = "B747_8_AP_";
+        const apPrefix = "B777_AP_";
         if (args[0].startsWith(apPrefix)) {
             this._navModeSelector.onNavChangedEvent(args[0].substring(apPrefix.length));
         }
@@ -287,7 +287,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.timer ++;
     }
     onInputAircraftSpecific(input) {
-        console.log("B747_8_FMC_MainDisplay.onInputAircraftSpecific input = '" + input + "'");
+        console.log("B777_FMC_MainDisplay.onInputAircraftSpecific input = '" + input + "'");
         if (input === "LEGS") {
             if (this.onLegs) {
                 this.onLegs();
@@ -454,8 +454,8 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         let temp = SimVar.GetSimVarValue("AMBIENT TEMPERATURE", "celsius");
         let index = this._getIndexFromTemp(temp);
         console.log("Index From Temp = " + index);
-        let min = B747_8_FMC_MainDisplay._v1s[index][0];
-        let max = B747_8_FMC_MainDisplay._v1s[index][1];
+        let min = B777_FMC_MainDisplay._v1s[index][0];
+        let max = B777_FMC_MainDisplay._v1s[index][1];
         this.v1Speed = min * (1 - runwayCoef) + max * runwayCoef;
         this.v1Speed *= dWeightCoeff;
         this.v1Speed -= (flapsHandleIndex - 3) * 12;
@@ -483,8 +483,8 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         let temp = SimVar.GetSimVarValue("AMBIENT TEMPERATURE", "celsius");
         let index = this._getIndexFromTemp(temp);
         console.log("Index From Temp = " + index);
-        let min = B747_8_FMC_MainDisplay._vRs[index][0];
-        let max = B747_8_FMC_MainDisplay._vRs[index][1];
+        let min = B777_FMC_MainDisplay._vRs[index][0];
+        let max = B777_FMC_MainDisplay._vRs[index][1];
         this.vRSpeed = min * (1 - runwayCoef) + max * runwayCoef;
         this.vRSpeed *= dWeightCoeff;
         this.vRSpeed -= (flapsHandleIndex - 3) * 11;
@@ -512,8 +512,8 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         let temp = SimVar.GetSimVarValue("AMBIENT TEMPERATURE", "celsius");
         let index = this._getIndexFromTemp(temp);
         console.log("Index From Temp = " + index);
-        let min = B747_8_FMC_MainDisplay._v2s[index][0];
-        let max = B747_8_FMC_MainDisplay._v2s[index][1];
+        let min = B777_FMC_MainDisplay._v2s[index][0];
+        let max = B777_FMC_MainDisplay._v2s[index][1];
         this.v2Speed = min * (1 - runwayCoef) + max * runwayCoef;
         this.v2Speed *= dWeightCoeff;
         this.v2Speed -= (flapsHandleIndex - 3) * 12;
@@ -834,7 +834,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             if (isFinite(flap) && flap >= 0 && flap < 60) {
                 this.selectedApproachFlap = flap;
                 SimVar.SetSimVarValue("L:SALTY_SELECTED_APPROACH_FLAP", "number", this.selectedApproachFlap);
-                SimVar.SetSimVarValue("H:B747_8_EICAS_2_UPDATE_ECL", "bool", 1);
+                SimVar.SetSimVarValue("H:B777_EICAS_2_UPDATE_ECL", "bool", 1);
             }
             if (isFinite(speed) && speed >= 100 && speed < 300) {
                 this.selectedApproachSpeed = speed;
@@ -858,7 +858,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
             if (waypoints.length === 1) {
                 return callback(waypoints[0]);
             }
-            B747_8_FMC_SelectWptPage.ShowPage(this, waypoints, callback);
+            B777_FMC_SelectWptPage.ShowPage(this, waypoints, callback);
         });
     }
     getClimbThrustN1(temperature, altitude) {
@@ -1497,7 +1497,7 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         });
     }
 }
-B747_8_FMC_MainDisplay._v1s = [
+B777_FMC_MainDisplay._v1s = [
     [130, 156],
     [128, 154],
     [127, 151],
@@ -1519,7 +1519,7 @@ B747_8_FMC_MainDisplay._v1s = [
     [117, 140],
     [117, 140],
 ];
-B747_8_FMC_MainDisplay._vRs = [
+B777_FMC_MainDisplay._vRs = [
     [130, 158],
     [128, 156],
     [127, 154],
@@ -1541,7 +1541,7 @@ B747_8_FMC_MainDisplay._vRs = [
     [117, 141],
     [117, 140],
 ];
-B747_8_FMC_MainDisplay._v2s = [
+B777_FMC_MainDisplay._v2s = [
     [135, 163],
     [133, 160],
     [132, 158],
@@ -1563,5 +1563,5 @@ B747_8_FMC_MainDisplay._v2s = [
     [122, 144],
     [121, 144],
 ];
-registerInstrument("fmc-b747-8-main-display", B747_8_FMC_MainDisplay);
+registerInstrument("fmc-b777-main-display", B777_FMC_MainDisplay);
 //# sourceMappingURL=B747_8_FMC_MainDisplay.js.map

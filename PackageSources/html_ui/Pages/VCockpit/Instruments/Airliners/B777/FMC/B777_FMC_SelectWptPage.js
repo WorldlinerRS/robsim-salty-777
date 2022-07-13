@@ -1,4 +1,4 @@
-class B747_8_FMC_SelectWptPage {
+class B777_FMC_SelectWptPage {
     static ShowPage(fmc, waypoints, callback, page = 0) {
         fmc.clearDisplay();
         let rows = [
@@ -55,12 +55,12 @@ class B747_8_FMC_SelectWptPage {
         ]);
         fmc.onPrevPage = () => {
             if (page > 0) {
-                B747_8_FMC_SelectWptPage.ShowPage(fmc, waypoints, callback, page - 1);
+                B777_FMC_SelectWptPage.ShowPage(fmc, waypoints, callback, page - 1);
             }
         };
         fmc.onNextPage = () => {
             if (page < Math.floor(waypoints.length / 5)) {
-                B747_8_FMC_SelectWptPage.ShowPage(fmc, waypoints, callback, page + 1);
+                B777_FMC_SelectWptPage.ShowPage(fmc, waypoints, callback, page + 1);
             }
         };
     }

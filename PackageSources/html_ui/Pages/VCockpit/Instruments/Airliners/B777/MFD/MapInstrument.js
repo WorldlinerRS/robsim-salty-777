@@ -669,7 +669,7 @@ class MapInstrument extends ISvgMapRootElement {
                     this.bingMap.setParams({ lla: this.navMap.lastCenterCoordinates, radius: bingRadius });
                 }
             }
-            if (typeof B747_8_MFD === 'function' && planeLla && (this.drawCounter % 2 === 1)) {
+            if (typeof B777_MFD === 'function' && planeLla && (this.drawCounter % 2 === 1)) {
                 const centerCoordinates = planeLla;
                 if (this.showAirports) {
                     this.airportLoader.searchLat = centerCoordinates.lat;

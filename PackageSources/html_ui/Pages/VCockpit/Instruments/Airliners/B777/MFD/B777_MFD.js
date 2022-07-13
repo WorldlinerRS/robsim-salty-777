@@ -1,15 +1,15 @@
-class B747_8_MFD extends BaseAirliners {
+class B777_MFD extends BaseAirliners {
     constructor() {
         super();
         this.initDuration = 11000;
     }
-    get templateID() { return "B747_8_MFD"; }
+    get templateID() { return "B777_MFD"; }
     get IsGlassCockpit() { return true; }
     connectedCallback() {
         super.connectedCallback();
         this.pageGroups = [
             new NavSystemPageGroup("Main", this, [
-                new B747_8_MFD_MainPage()
+                new B777_MFD_MainPage()
             ]),
         ];
     }
@@ -31,7 +31,7 @@ class B747_8_MFD extends BaseAirliners {
         super.onUpdate(_deltaTime);
     }
 }
-class B747_8_MFD_MainElement extends NavSystemElement {
+class B777_MFD_MainElement extends NavSystemElement {
     init(root) {
     }
     onEnter() {
@@ -43,9 +43,9 @@ class B747_8_MFD_MainElement extends NavSystemElement {
     onEvent(_event) {
     }
 }
-class B747_8_MFD_MainPage extends NavSystemPage {
+class B777_MFD_MainPage extends NavSystemPage {
     constructor() {
-        super("Main", "Mainframe", new B747_8_MFD_MainElement());
+        super("Main", "Mainframe", new B777_MFD_MainElement());
         this.forceMapUpdate = false;
         this.mapIsCentered = false;
         this.wxRadarOn = false;
@@ -54,9 +54,9 @@ class B747_8_MFD_MainPage extends NavSystemPage {
         this.mapRange = -1;
         this.mapConfigId = 0;
         this.modeChangeTimer = -1;
-        this.map = new B747_8_MFD_Map();
-        this.compass = new B747_8_MFD_Compass();
-        this.info = new B747_8_MFD_NDInfo();
+        this.map = new B777_MFD_Map();
+        this.compass = new B777_MFD_Compass();
+        this.info = new B777_MFD_NDInfo();
         this.element = new NavSystemElementGroup([
             this.map,
             this.compass,
@@ -308,19 +308,19 @@ class B747_8_MFD_MainPage extends NavSystemPage {
         this.map.showWeather();
     }
     updateNDInfo(_deltaTime) {
-        this.info.showSymbol(B747_8_ND_Symbol.WXR, this.wxRadarOn);
-        this.info.showSymbol(B747_8_ND_Symbol.WXRINFO, this.wxRadarOn);
-        this.info.showSymbol(B747_8_ND_Symbol.TERR, this.terrainOn);
-        this.info.showSymbol(B747_8_ND_Symbol.STA, this.map.instrument.showNDBs);
-        this.info.showSymbol(B747_8_ND_Symbol.WPT, this.map.instrument.showIntersections);
-        this.info.showSymbol(B747_8_ND_Symbol.ARPT, this.map.instrument.showAirports);
-        this.info.showSymbol(B747_8_ND_Symbol.TFC, this.map.instrument.showTraffic);
-        this.info.showSymbol(B747_8_ND_Symbol.POS, this.map.instrument.showVORs);
-        this.info.showSymbol(B747_8_ND_Symbol.DATA, this.map.instrument.showConstraints);
+        this.info.showSymbol(B777_ND_Symbol.WXR, this.wxRadarOn);
+        this.info.showSymbol(B777_ND_Symbol.WXRINFO, this.wxRadarOn);
+        this.info.showSymbol(B777_ND_Symbol.TERR, this.terrainOn);
+        this.info.showSymbol(B777_ND_Symbol.STA, this.map.instrument.showNDBs);
+        this.info.showSymbol(B777_ND_Symbol.WPT, this.map.instrument.showIntersections);
+        this.info.showSymbol(B777_ND_Symbol.ARPT, this.map.instrument.showAirports);
+        this.info.showSymbol(B777_ND_Symbol.TFC, this.map.instrument.showTraffic);
+        this.info.showSymbol(B777_ND_Symbol.POS, this.map.instrument.showVORs);
+        this.info.showSymbol(B777_ND_Symbol.DATA, this.map.instrument.showConstraints);
     }
     updateDeviationScale() {
         if (SimVar.GetSimVarValue("L:AIRLINER_FLIGHT_PHASE", "number") === 5 || SimVar.GetSimVarValue("L:AIRLINER_FLIGHT_PHASE", "number") === 6) {
-            const mapMode = SimVar.GetSimVarValue("L:B747_8_MFD_NAV_MODE", "number");
+            const mapMode = SimVar.GetSimVarValue("L:B777_MFD_NAV_MODE", "number");
             if (mapMode === 3) {
                 this.deviationItems.style.visibility = "hidden";
                 return;
@@ -360,7 +360,7 @@ class B747_8_MFD_MainPage extends NavSystemPage {
         }
     }
 }
-class B747_8_MFD_Compass extends NavSystemElement {
+class B777_MFD_Compass extends NavSystemElement {
     init(root) {
         this.svg = this.gps.getChildById("Compass");
         this.svg.aircraft = Aircraft.B747_8;
@@ -376,7 +376,7 @@ class B747_8_MFD_Compass extends NavSystemElement {
     onEvent(_event) {
     }
 }
-class B747_8_MFD_Map extends MapInstrumentElement {
+class B777_MFD_Map extends MapInstrumentElement {
     constructor() {
         super(...arguments);
         this.zoomRanges = [10, 20, 40, 80, 160, 320, 640]; //B777 zoom ranges
@@ -478,19 +478,19 @@ class B747_8_MFD_Map extends MapInstrumentElement {
         }
     }
 }
-var B747_8_ND_Symbol;
-(function (B747_8_ND_Symbol) {
-    B747_8_ND_Symbol[B747_8_ND_Symbol["ARPT"] = 0] = "ARPT";
-    B747_8_ND_Symbol[B747_8_ND_Symbol["WPT"] = 1] = "WPT";
-    B747_8_ND_Symbol[B747_8_ND_Symbol["STA"] = 2] = "STA";
-    B747_8_ND_Symbol[B747_8_ND_Symbol["TERR"] = 3] = "TERR";
-    B747_8_ND_Symbol[B747_8_ND_Symbol["WXR"] = 4] = "WXR";
-    B747_8_ND_Symbol[B747_8_ND_Symbol["WXRINFO"] = 5] = "WXRINFO";
-    B747_8_ND_Symbol[B747_8_ND_Symbol["TFC"] = 6] = "TFC";
-    B747_8_ND_Symbol[B747_8_ND_Symbol["POS"] = 7] = "POS";
-    B747_8_ND_Symbol[B747_8_ND_Symbol["DATA"] = 8] = "DATA";
-})(B747_8_ND_Symbol || (B747_8_ND_Symbol = {}));
-class B747_8_MFD_NDInfo extends NavSystemElement {
+var B777_ND_Symbol;
+(function (B777_ND_Symbol) {
+    B777_ND_Symbol[B777_ND_Symbol["ARPT"] = 0] = "ARPT";
+    B777_ND_Symbol[B777_ND_Symbol["WPT"] = 1] = "WPT";
+    B777_ND_Symbol[B777_ND_Symbol["STA"] = 2] = "STA";
+    B777_ND_Symbol[B777_ND_Symbol["TERR"] = 3] = "TERR";
+    B777_ND_Symbol[B777_ND_Symbol["WXR"] = 4] = "WXR";
+    B777_ND_Symbol[B777_ND_Symbol["WXRINFO"] = 5] = "WXRINFO";
+    B777_ND_Symbol[B777_ND_Symbol["TFC"] = 6] = "TFC";
+    B777_ND_Symbol[B777_ND_Symbol["POS"] = 7] = "POS";
+    B777_ND_Symbol[B777_ND_Symbol["DATA"] = 8] = "DATA";
+})(B777_ND_Symbol || (B777_ND_Symbol = {}));
+class B777_MFD_NDInfo extends NavSystemElement {
     constructor() {
         super(...arguments);
         this.allSymbols = new Array();
@@ -594,5 +594,5 @@ class B747_8_MFD_NDInfo extends NavSystemElement {
             diffAndSetAttribute(this.allSymbols[_symbol], "visibility", (_show) ? "visible" : "hidden");
     }
 }
-registerInstrument("b747-8-mfd-element", B747_8_MFD);
+registerInstrument("b777-mfd-element", B777_MFD);
 //# sourceMappingURL=B747_8_MFD.js.map

@@ -1,4 +1,4 @@
-class B747_8_EICAS extends Airliners.BaseEICAS {
+class B777_EICAS extends Airliners.BaseEICAS {
     constructor() {
         super(...arguments);
         this.engines = new Array();
@@ -9,7 +9,7 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
         for (let i = 0; i < Simplane.getEngineCount(); i++) {
             this.engines.push(new B777_Engine());
         }
-        this.currentPage = "B747_8_EICAS_fuel";
+        this.currentPage = "B777_EICAS_fuel";
     }
 
     reboot() {
@@ -47,11 +47,11 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
     }
 
     get templateID() {
-        return "B747_8_EICAS";
+        return "B777_EICAS";
     }
 
     createUpperScreenPage() {
-        this.upperTopScreen = new Airliners.EICASScreen("TopScreen", "TopScreen", "b747-8-upper-eicas");
+        this.upperTopScreen = new Airliners.EICASScreen("TopScreen", "TopScreen", "b777-upper-eicas");
         this.annunciations = new Cabin_Annunciations();
         this.upperTopScreen.addIndependentElement(this.annunciations);
         this.warnings = new Cabin_Warnings();
@@ -60,16 +60,16 @@ class B747_8_EICAS extends Airliners.BaseEICAS {
     }
 
     createLowerScreenPages() {
-        this.createLowerScreenPage("FUEL", "BottomScreen", "b747-8-lower-eicas-fuel");
-        this.createLowerScreenPage("ENG", "BottomScreen", "b747-8-lower-eicas-engine");
-        this.createLowerScreenPage("STAT", "BottomScreen", "b747-8-lower-eicas-stat");
-        this.createLowerScreenPage("FCTL", "BottomScreen", "b747-8-lower-eicas-fctl");
-        this.createLowerScreenPage("DRS", "BottomScreen", "b747-8-lower-eicas-drs");
-        this.createLowerScreenPage("ELEC", "BottomScreen", "b747-8-lower-eicas-elec");
-        this.createLowerScreenPage("GEAR", "BottomScreen", "b747-8-lower-eicas-gear");
-        this.createLowerScreenPage("CHKL", "BottomScreen", "b747-8-lower-eicas-ecl");
-        this.createLowerScreenPage("INFO", "BottomScreen", "b747-8-lower-eicas-info");
-        this.createLowerScreenPage("BLANK", "BottomScreen", "b747-8-lower-eicas-blank"); // To blank the bottom eicas when selecting same page again
+        this.createLowerScreenPage("FUEL", "BottomScreen", "b777-lower-eicas-fuel");
+        this.createLowerScreenPage("ENG", "BottomScreen", "b777-lower-eicas-engine");
+        this.createLowerScreenPage("STAT", "BottomScreen", "b777-lower-eicas-stat");
+        this.createLowerScreenPage("FCTL", "BottomScreen", "b777-lower-eicas-fctl");
+        this.createLowerScreenPage("DRS", "BottomScreen", "b777-lower-eicas-drs");
+        this.createLowerScreenPage("ELEC", "BottomScreen", "b777-lower-eicas-elec");
+        this.createLowerScreenPage("GEAR", "BottomScreen", "b777-lower-eicas-gear");
+        this.createLowerScreenPage("CHKL", "BottomScreen", "b777-lower-eicas-ecl");
+        this.createLowerScreenPage("INFO", "BottomScreen", "b777-lower-eicas-info");
+        this.createLowerScreenPage("BLANK", "BottomScreen", "b777-lower-eicas-blank"); // To blank the bottom eicas when selecting same page again
     }
 
     getLowerScreenChangeEventNamePrefix() {
@@ -213,5 +213,5 @@ class B777_Engine {
         this.timeInState = 0;
     }
 }
-registerInstrument("b747-8-eicas-element", B747_8_EICAS);
+registerInstrument("b777-eicas-element", B777_EICAS);
 //# sourceMappingURL=B747_8_EICAS.js.map

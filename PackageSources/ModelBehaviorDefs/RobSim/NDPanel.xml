@@ -9,7 +9,7 @@
 			<ID_BTN>WXR</ID_BTN>
 		</Parameters>
 		<Switch Param="PLANE_PREFIX">
-			<Case Value="B747_8">
+			<Case Value="B777">
 				<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 					<ONOFF_VARIABLE>BTN_WX_ACTIVE</ONOFF_VARIABLE>
 				</UseTemplate>
@@ -29,7 +29,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>STA</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 			<ONOFF_VARIABLE>BTN_NDB_FILTER_ACTIVE</ONOFF_VARIABLE>
 		</UseTemplate>
 	</Template>
@@ -41,7 +41,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>WPT</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 		</UseTemplate>
 	</Template>
 	<Template Name="Robsim_BOEING_Push_ARPT_Template">
@@ -52,7 +52,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>ARPT</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 		</UseTemplate>
 	</Template>
 	<Template Name="Robsim_BOEING_Push_DATA_Template">
@@ -64,7 +64,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>DATA</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 		</UseTemplate>
 	</Template>
 	<Template Name="Robsim_BOEING_Push_POS_Template">
@@ -76,7 +76,7 @@
 		</Parameters>
 		<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 			<ID_BTN>POS</ID_BTN>
-			<PLANE_PREFIX>B747_8</PLANE_PREFIX>
+			<PLANE_PREFIX>B777</PLANE_PREFIX>
 		</UseTemplate>
 	</Template>
 	<Template Name="Robsim_BOEING_Push_TERR_Template">
@@ -89,7 +89,7 @@
 			<ID_BTN>TERR</ID_BTN>
 		</Parameters>
 		<Switch Param="PLANE_PREFIX">
-			<Case Value="B747_8">
+			<Case Value="B777">
 				<UseTemplate Name="ASOBO_AIRLINER_GlassCockpit_Push_Template">
 					<ONOFF_VARIABLE>BTN_TERRONND_ACTIVE</ONOFF_VARIABLE>
 				</UseTemplate>

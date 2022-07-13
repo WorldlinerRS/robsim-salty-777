@@ -104,7 +104,7 @@ class Boeing_FMC extends FMCMainDisplay {
     }
     onEvent(_event) {
         super.onEvent(_event);
-        console.log("B747_8_FMC_MainDisplay onEvent " + _event);
+        console.log("B777_FMC_MainDisplay onEvent " + _event);
         if (_event.indexOf("AP_LNAV") != -1) {
             this._navModeSelector.onNavChangedEvent('NAV_PRESSED');
         }

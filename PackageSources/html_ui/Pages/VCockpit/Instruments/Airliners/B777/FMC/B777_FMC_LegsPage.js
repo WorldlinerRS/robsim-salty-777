@@ -4,7 +4,7 @@ let LegsPageInstance = undefined;
 // TODO OVERALL
 // Because the page has a state now, we need to watch out to reset vars like activatingDirectTo etc after it is processed
 
-class B747_8_FMC_LegsPage {
+class B777_FMC_LegsPage {
 
     constructor(fmc, isAddingHold) {
         this._fmc = fmc;
@@ -307,17 +307,17 @@ class B747_8_FMC_LegsPage {
 
                 // Mode evaluation
                 if (value == "") {
-                    this._fmc.selectMode = B747_8_FMC_LegsPage.SELECT_MODE.NONE;
+                    this._fmc.selectMode = B777_FMC_LegsPage.SELECT_MODE.NONE;
                 } else if (value === FMCMainDisplay.clrValue) {
-                    this._fmc.selectMode = B747_8_FMC_LegsPage.SELECT_MODE.DELETE;
-                } else if (value.includes("/") && this._fmc.selectMode === B747_8_FMC_LegsPage.SELECT_MODE.EXISTING) { // looks like user waypoint, go to new
-                    this._fmc.selectMode = B747_8_FMC_LegsPage.SELECT_MODE.NEW;
-                } else if (value.length > 0 && this._fmc.selectMode !== B747_8_FMC_LegsPage.SELECT_MODE.EXISTING) { // scratchpad not empty, nothing selected, must be new wpt
-                    this._fmc.selectMode = B747_8_FMC_LegsPage.SELECT_MODE.NEW;
+                    this._fmc.selectMode = B777_FMC_LegsPage.SELECT_MODE.DELETE;
+                } else if (value.includes("/") && this._fmc.selectMode === B777_FMC_LegsPage.SELECT_MODE.EXISTING) { // looks like user waypoint, go to new
+                    this._fmc.selectMode = B777_FMC_LegsPage.SELECT_MODE.NEW;
+                } else if (value.length > 0 && this._fmc.selectMode !== B777_FMC_LegsPage.SELECT_MODE.EXISTING) { // scratchpad not empty, nothing selected, must be new wpt
+                    this._fmc.selectMode = B777_FMC_LegsPage.SELECT_MODE.NEW;
                 }
 
                 switch (this._fmc.selectMode) {
-                    case B747_8_FMC_LegsPage.SELECT_MODE.NONE: {
+                    case B777_FMC_LegsPage.SELECT_MODE.NONE: {
                         if (((i >= 0 && this._currentPage == 1) || (this._currentPage > 1))) {
                             // SELECT EXISTING WAYPOINT FROM FLIGHT PLAN
                             this._approachWaypoints = this._fmc.flightPlanManager.getApproachWaypoints();
@@ -330,11 +330,11 @@ class B747_8_FMC_LegsPage {
 
                             this._fmc.selectedWaypoint = waypoint;
                             this._fmc.inOut = waypoint.fix.ident;
-                            this._fmc.selectMode = B747_8_FMC_LegsPage.SELECT_MODE.EXISTING;
+                            this._fmc.selectMode = B777_FMC_LegsPage.SELECT_MODE.EXISTING;
                         }
                         break;
                     }
-                    case B747_8_FMC_LegsPage.SELECT_MODE.EXISTING: {
+                    case B777_FMC_LegsPage.SELECT_MODE.EXISTING: {
                         if ((i >= 0 && this._currentPage == 1) || this._currentPage > 1) {
                             let scratchPadWaypointIndex = this._fmc.selectedWaypoint.index;
 
@@ -401,7 +401,7 @@ class B747_8_FMC_LegsPage {
                         }
                         break;
                     }
-                    case B747_8_FMC_LegsPage.SELECT_MODE.NEW: {
+                    case B777_FMC_LegsPage.SELECT_MODE.NEW: {
                         if ((i >= 0 && this._currentPage == 1) || this._currentPage > 1) {
                             if (waypoint && waypoint.fix) {
                                 if (waypoint.fix.icao === "$EMPTY") {
@@ -489,7 +489,7 @@ class B747_8_FMC_LegsPage {
                                                 }
                                             } else {
                                                 this._fmc.fpHasChanged = false;
-                                                this._fmc.selectMode = B747_8_FMC_LegsPage.SELECT_MODE.NONE;
+                                                this._fmc.selectMode = B777_FMC_LegsPage.SELECT_MODE.NONE;
                                                 this._fmc.eraseTemporaryFlightPlan(() => {
                                                     this.resetAfterOp();
                                                 });
@@ -503,7 +503,7 @@ class B747_8_FMC_LegsPage {
                         }
                         break;
                     }
-                    case B747_8_FMC_LegsPage.SELECT_MODE.DELETE: {
+                    case B777_FMC_LegsPage.SELECT_MODE.DELETE: {
                         // DELETE WAYPOINT
                         if ((i > 0 && this._currentPage == 1) || this._currentPage > 1) {
                             this._fmc.ensureCurrentFlightPlanIsTemporary(() => {
@@ -542,7 +542,7 @@ class B747_8_FMC_LegsPage {
     resetAfterOp() {
         this._fmc.clearUserInput();
         this._fmc.selectedWaypoint = undefined;
-        this._fmc.selectMode = B747_8_FMC_LegsPage.SELECT_MODE.NONE;
+        this._fmc.selectMode = B777_FMC_LegsPage.SELECT_MODE.NONE;
         this.update(true);
     }
 
@@ -600,7 +600,7 @@ class B747_8_FMC_LegsPage {
             } else if (this._lsk6Field == "<ERASE") {
                 if (this._fmc.flightPlanManager.getCurrentFlightPlanIndex() === 1) {
                     this._fmc.fpHasChanged = false;
-                    this._fmc.selectMode = B747_8_FMC_LegsPage.SELECT_MODE.NONE;
+                    this._fmc.selectMode = B777_FMC_LegsPage.SELECT_MODE.NONE;
                     this._fmc.eraseTemporaryFlightPlan(() => {
                         this.resetAfterOp();
                     });
@@ -685,7 +685,7 @@ class B747_8_FMC_LegsPage {
                 this._fmc.fpHasChanged = true;
 
                 this._fmc.inOut = '';
-                B747_8_FMC_HoldsPage.showHoldPage(this._fmc, holdWaypoint.waypoint.ident);
+                B777_FMC_HoldsPage.showHoldPage(this._fmc, holdWaypoint.waypoint.ident);
             });
         } else {
             this._fmc.showErrorMessage('INVALID ENTRY');
@@ -813,17 +813,17 @@ class B747_8_FMC_LegsPage {
         fmc.clearDisplay();
 
         // create page instance and init
-        LegsPageInstance = new B747_8_FMC_LegsPage(fmc, isAddingHold);
+        LegsPageInstance = new B777_FMC_LegsPage(fmc, isAddingHold);
         LegsPageInstance.updateStep(true);
         LegsPageInstance.update();
     }
 
 }
 
-B747_8_FMC_LegsPage.SELECT_MODE = {
+B777_FMC_LegsPage.SELECT_MODE = {
     NONE: "NONE",
     EXISTING: "EXISTING",
     NEW: "NEW",
     DELETE: "DELETE"
 };
-B747_8_FMC_LegsPage.DEBUG_SHOW_WAYPOINT_PHASE = false;
+B777_FMC_LegsPage.DEBUG_SHOW_WAYPOINT_PHASE = false;

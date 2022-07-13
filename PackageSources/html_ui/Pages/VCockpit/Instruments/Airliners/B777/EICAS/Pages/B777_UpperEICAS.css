@@ -46,207 +46,207 @@
     stroke-width: 2px !important;
     fill: none; }
 
-b747-8-upper-eicas {
+b777-upper-eicas {
   position: absolute;
   left: 1%;
   width: 99%;
   top: 3%;
   height: 97%;
   display: block; }
-  b747-8-upper-eicas svg {
+  b777-upper-eicas svg {
     width: 100%;
     height: 100%; }
-  b747-8-upper-eicas text {
+  b777-upper-eicas text {
     fill: var(--eicasWhite);
     font-size: 45px;
     text-anchor: start;}
-  b747-8-upper-eicas text.Label {
+  b777-upper-eicas text.Label {
     fill: cyan;
     letter-spacing: 0px !important;
     font-size: 18px; }
-  b747-8-upper-eicas text.VLabel {
+  b777-upper-eicas text.VLabel {
     fill: cyan;
     font-size: 15px;
     glyph-orientation-vertical: 0;
     writing-mode: vertical-lr; }
-  b747-8-upper-eicas text.ValueGreen, b747-8-upper-eicas text.ValueGreenSmall {
+  b777-upper-eicas text.ValueGreen, b777-upper-eicas text.ValueGreenSmall {
     fill: lime;
     text-anchor: end; }
-  b747-8-upper-eicas text.ValueGreenSmall {
+  b777-upper-eicas text.ValueGreenSmall {
     font-size: 15px; }
-  b747-8-upper-eicas text.ValueGreenMed {
+  b777-upper-eicas text.ValueGreenMed {
     fill: lime;
     font-size: 22px; }
-  b747-8-upper-eicas text.Hidden {
+  b777-upper-eicas text.Hidden {
       font-size: 0px; }
-  b747-8-upper-eicas rect.ValueGreen {
+  b777-upper-eicas rect.ValueGreen {
     stroke: lime;
     stroke-width: 4px;
     fill: none; }
-  b747-8-upper-eicas text.ValueOrange {
+  b777-upper-eicas text.ValueOrange {
     fill: rgb(255, 196, 0);
     text-anchor: end; }
-  b747-8-upper-eicas text.ValueWhite {
+  b777-upper-eicas text.ValueWhite {
     font-size: 20px;
     fill: var(--eicasWhite);
     letter-spacing: 1px !important;
     text-anchor: end; }
-  b747-8-upper-eicas text.ValueWhiteSmall {
+  b777-upper-eicas text.ValueWhiteSmall {
     fill: var(--eicasWhite);
     font-size: 15px;
     letter-spacing: 1px !important;
     text-anchor: end;}
-  b747-8-upper-eicas text.ValueWhiteLarge {
+  b777-upper-eicas text.ValueWhiteLarge {
     fill: var(--eicasWhite);
     font-size: 26px;
     text-anchor: end;}
-  b747-8-upper-eicas #GearInfo text {
+  b777-upper-eicas #GearInfo text {
     text-anchor: middle; }
-  b747-8-upper-eicas #GearInfo rect {
+  b777-upper-eicas #GearInfo rect {
     stroke-width: 2px;
     fill: none; }
-  b747-8-upper-eicas #GearInfo line {
+  b777-upper-eicas #GearInfo line {
     stroke: var(--eicasWhite);
     stroke-width: 2px;
     fill: none; }
-  b747-8-upper-eicas #GearInfo.down {
+  b777-upper-eicas #GearInfo.down {
     display: block; }
-  b747-8-upper-eicas #GearInfo.down line {
+  b777-upper-eicas #GearInfo.down line {
     display: none; }
-  b747-8-upper-eicas #GearInfo.down rect {
+  b777-upper-eicas #GearInfo.down rect {
     stroke: lime; }
-  b747-8-upper-eicas #GearInfo.down text.down {
+  b777-upper-eicas #GearInfo.down text.down {
     font-size: 20px;
     fill: lime; }
-  b747-8-upper-eicas #GearInfo.down text.up {
+  b777-upper-eicas #GearInfo.down text.up {
     font-size: 20px;
     fill: none; }
-  b747-8-upper-eicas #GearInfo.transit {
+  b777-upper-eicas #GearInfo.transit {
     display: block; }
-    b747-8-upper-eicas #GearInfo.transit line {
+    b777-upper-eicas #GearInfo.transit line {
       display: block; }
-    b747-8-upper-eicas #GearInfo.transit rect {
+    b777-upper-eicas #GearInfo.transit rect {
       stroke: var(--eicasWhite); }
-    b747-8-upper-eicas #GearInfo.transit text.down {
+    b777-upper-eicas #GearInfo.transit text.down {
       font-size: 20px;
       fill: none; }
-    b747-8-upper-eicas #GearInfo.transit text.up {
+    b777-upper-eicas #GearInfo.transit text.up {
       font-size: 20px;
       fill: none; }
-  b747-8-upper-eicas #GearInfo.up {
+  b777-upper-eicas #GearInfo.up {
     display: block; }
-    b747-8-upper-eicas #GearInfo.up line {
+    b777-upper-eicas #GearInfo.up line {
       display: none; }
-    b747-8-upper-eicas #GearInfo.up rect {
+    b777-upper-eicas #GearInfo.up rect {
       stroke: var(--eicasWhite); }
-    b747-8-upper-eicas #GearInfo.up text.down {
+    b777-upper-eicas #GearInfo.up text.down {
       font-size: 20px;
       fill: none; }
-    b747-8-upper-eicas #GearInfo.up text.up {
+    b777-upper-eicas #GearInfo.up text.up {
       font-size: 20px;
       fill: var(--eicasWhite); }
-  b747-8-upper-eicas #GearInfo.inactive {
+  b777-upper-eicas #GearInfo.inactive {
     display: none; }
-  b747-8-upper-eicas #FlapsInfo rect.innerBar {
+  b777-upper-eicas #FlapsInfo rect.innerBar {
     fill: var(--eicasGrey); }
-  b747-8-upper-eicas #FlapsInfo rect.outerBar {
+  b777-upper-eicas #FlapsInfo rect.outerBar {
     stroke: var(--eicasWhite);
     stroke-width: 2px;
     fill: none; }
-  b747-8-upper-eicas #FlapsInfo line {
+  b777-upper-eicas #FlapsInfo line {
     stroke-width: 2px;
     fill: none; }
-  b747-8-upper-eicas #FlapsInfo text.value {
+  b777-upper-eicas #FlapsInfo text.value {
     font-size: 20px !important; }
-  b747-8-upper-eicas #FlapsInfo.static {
+  b777-upper-eicas #FlapsInfo.static {
     display: block; }
-    b747-8-upper-eicas #FlapsInfo.static line {
+    b777-upper-eicas #FlapsInfo.static line {
       stroke: lime; }
-    b747-8-upper-eicas #FlapsInfo.static text.value {
+    b777-upper-eicas #FlapsInfo.static text.value {
       fill: lime; }
-  b747-8-upper-eicas #FlapsInfo.transit {
+  b777-upper-eicas #FlapsInfo.transit {
     display: block; }
-    b747-8-upper-eicas #FlapsInfo.transit line {
+    b777-upper-eicas #FlapsInfo.transit line {
       stroke: var(--eicasMagenta); }
-    b747-8-upper-eicas #FlapsInfo.transit text.value {
+    b777-upper-eicas #FlapsInfo.transit text.value {
       fill: var(--eicasMagenta); }
-  b747-8-upper-eicas #FlapsInfo.inactive {
+  b777-upper-eicas #FlapsInfo.inactive {
     display: none; }
-  b747-8-upper-eicas #StabInfo line {
+  b777-upper-eicas #StabInfo line {
     stroke: var(--eicasWhite);
     stroke-width: 2px;
     fill: none; }
-  b747-8-upper-eicas #StabInfo .trimBand {
+  b777-upper-eicas #StabInfo .trimBand {
     fill: lime; }
-  b747-8-upper-eicas #StabInfo .arrow {
+  b777-upper-eicas #StabInfo .arrow {
     fill: var(--eicasWhite); }
-  b747-8-upper-eicas #StabInfo .value {
+  b777-upper-eicas #StabInfo .value {
     fill: lime;
     font-size: 20px;
     letter-spacing: 1px !important;
     text-anchor: end; }
-  b747-8-upper-eicas #StabInfo #valueStroke {
+  b777-upper-eicas #StabInfo #valueStroke {
     fill: none;
     stroke: lime;
     stroke-width: 2px; }
-  b747-8-upper-eicas #StabInfo.inactive {
+  b777-upper-eicas #StabInfo.inactive {
     display: none; }
-  b747-8-upper-eicas #PrimaryEngine {
+  b777-upper-eicas #PrimaryEngine {
     top: 20%;
     transform: scale(0.6); }
-  b747-8-upper-eicas #EGTGauges {
+  b777-upper-eicas #EGTGauges {
     top: 53%;
     stroke-width: 1px !important;
     letter-spacing: 0px !important}
-  b747-8-upper-eicas #InfoPanel {
+  b777-upper-eicas #InfoPanel {
     position: absolute;
     left: 62.5%;
     width: 32%;
     top: 4%;
     height: 40%; }
-  b747-8-upper-eicas #InfoPanel div {
+  b777-upper-eicas #InfoPanel div {
     width: 100%;
     height: 8.5% !important;
     font-size: 44px !important;
     text-align: left;
     color: red; }
-  b747-8-upper-eicas #InfoPanel .InfoMemo {
+  b777-upper-eicas #InfoPanel .InfoMemo {
       color: white; }
-  b747-8-upper-eicas #InfoPanel .InfoAdvisory {
+  b777-upper-eicas #InfoPanel .InfoAdvisory {
       color: rgb(255, 196, 0); }
-  b747-8-upper-eicas #InfoPanel .InfoCaution {
+  b777-upper-eicas #InfoPanel .InfoCaution {
       color: rgb(255, 196, 0); }
-  b747-8-upper-eicas #InfoPanel .InfoWarning {
+  b777-upper-eicas #InfoPanel .InfoWarning {
       color: red; }
-  b747-8-upper-eicas .gauge text {
+  b777-upper-eicas .gauge text {
         text-anchor: end;
         font-size: 42px;
         letter-spacing: -4px; }
-  b747-8-upper-eicas .gauge line, b747-8-upper-eicas .gauge rect, b747-8-upper-eicas .gauge path, b747-8-upper-eicas .gauge polyline {
+  b777-upper-eicas .gauge line, b777-upper-eicas .gauge rect, b777-upper-eicas .gauge path, b777-upper-eicas .gauge polyline {
         fill: none;
         stroke: var(--eicasWhite);
         stroke-width: 4px; }
-    b747-8-upper-eicas .gauge path.mainArc path.predArc {
+    b777-upper-eicas .gauge path.mainArc path.predArc {
         stroke-width: 2px; }
-    b747-8-upper-eicas .gauge .throttleMarker {
+    b777-upper-eicas .gauge .throttleMarker {
         stroke: var(--eicasWhite); }
-    b747-8-upper-eicas .gauge .dangerMarker {
+    b777-upper-eicas .gauge .dangerMarker {
         stroke: var(--eicasRed); }
-    b747-8-upper-eicas .gauge .warningMarker {
+    b777-upper-eicas .gauge .warningMarker {
         stroke: var(--eicasYellow); }
-    b747-8-upper-eicas .gauge .greenMarker {
+    b777-upper-eicas .gauge .greenMarker {
         stroke: var(--eicasGreen); }
-    b747-8-upper-eicas .gauge .fill {
+    b777-upper-eicas .gauge .fill {
         stroke: none;
         fill: var(--eicasFill); }
-    b747-8-upper-eicas .gauge text.danger, b747-8-upper-eicas .gauge path.danger {
+    b777-upper-eicas .gauge text.danger, b777-upper-eicas .gauge path.danger {
         fill: var(--eicasRed); }
-    b747-8-upper-eicas .gauge text.warning, b747-8-upper-eicas .gauge path.warning {
+    b777-upper-eicas .gauge text.warning, b777-upper-eicas .gauge path.warning {
         fill: var(--eicasOrange); }
-    b747-8-upper-eicas .gauge .cursor {
+    b777-upper-eicas .gauge .cursor {
         stroke: none;
         fill: var(--eicasWhite); }
-      b747-8-upper-eicas .gauge rect.invert {
+      b777-upper-eicas .gauge rect.invert {
         fill: var(--eicasWhite); }
-      b747-8-upper-eicas .gauge text.invert {
+      b777-upper-eicas .gauge text.invert {
         fill: var(--eicasBlack); }

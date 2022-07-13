@@ -1361,7 +1361,7 @@ class FMCMainDisplay extends BaseAirliners {
             if (value === 5  || value === 15 || value === 20) {
                 SimVar.SetSimVarValue("L:SALTY_TAKEOFF_FLAP_VALUE", "number", value);
                 this._takeOffFlap = value;
-                SimVar.SetSimVarValue("H:B747_8_EICAS_2_UPDATE_ECL", "bool", 1);
+                SimVar.SetSimVarValue("H:B777_EICAS_2_UPDATE_ECL", "bool", 1);
                 return true;
             }
         }

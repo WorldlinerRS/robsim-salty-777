@@ -1,5 +1,5 @@
-var B747_8_RadioManagement;
-(function (B747_8_RadioManagement) {
+var B777_RadioManagement;
+(function (B777_RadioManagement) {
     let FREQUENCY_TYPE;
     (function (FREQUENCY_TYPE) {
         FREQUENCY_TYPE[FREQUENCY_TYPE["NONE"] = -1] = "NONE";
@@ -9,7 +9,7 @@ var B747_8_RadioManagement;
         FREQUENCY_TYPE[FREQUENCY_TYPE["HF_L"] = 3] = "HF_L";
         FREQUENCY_TYPE[FREQUENCY_TYPE["HF_R"] = 4] = "HF_R";
         FREQUENCY_TYPE[FREQUENCY_TYPE["NB"] = 5] = "NB";
-    })(FREQUENCY_TYPE = B747_8_RadioManagement.FREQUENCY_TYPE || (B747_8_RadioManagement.FREQUENCY_TYPE = {}));
+    })(FREQUENCY_TYPE = B777_RadioManagement.FREQUENCY_TYPE || (B777_RadioManagement.FREQUENCY_TYPE = {}));
     class FrequencyHandler {
         constructor(_index, _frequencyDisplayName, _radioNav) {
             this.index = 0;
@@ -148,51 +148,51 @@ var B747_8_RadioManagement;
         }
         get displayDP() { return 3; }
     }
-    B747_8_RadioManagement.FrequencyHandler = FrequencyHandler;
+    B777_RadioManagement.FrequencyHandler = FrequencyHandler;
     class VHFFrequencyHandler extends FrequencyHandler {
         get min() { return 118; }
         get max() { return 136.975; }
         get defaultEditValueString() { return "___.___"; }
         get use833Hz() { return true; }
     }
-    B747_8_RadioManagement.VHFFrequencyHandler = VHFFrequencyHandler;
+    B777_RadioManagement.VHFFrequencyHandler = VHFFrequencyHandler;
     class HFFrequencyHandler extends FrequencyHandler {
         get min() { return 2.8; }
         get max() { return 28; }
         get defaultEditValueString() { return "__.___"; }
         get use833Hz() { return false; }
     }
-    B747_8_RadioManagement.HFFrequencyHandler = HFFrequencyHandler;
-})(B747_8_RadioManagement || (B747_8_RadioManagement = {}));
-class B747_8_Com extends BaseAirliners {
+    B777_RadioManagement.HFFrequencyHandler = HFFrequencyHandler;
+})(B777_RadioManagement || (B777_RadioManagement = {}));
+class B777_Com extends BaseAirliners {
     constructor() {
         super();
         this.frequencyText = null;
         this.statusText = null;
         this.activeText = null;
         this.standbyText = null;
-        this.frequencyHandlers = new Array(B747_8_RadioManagement.FREQUENCY_TYPE.NB);
+        this.frequencyHandlers = new Array(B777_RadioManagement.FREQUENCY_TYPE.NB);
         this.currentFrequencyVarName = "";
         this.currentFrequencyHandler = null;
     }
-    get templateID() { return "B747_8_Com"; }
+    get templateID() { return "B777_Com"; }
     connectedCallback() {
         super.connectedCallback();
         this.frequencyText = this.querySelector("#Frequency");
         this.statusText = this.querySelector("#Status");
         this.activeText = this.querySelector("#Active");
         this.standbyText = this.querySelector("#Standby");
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.VHF_L] = new B747_8_RadioManagement.VHFFrequencyHandler(this.instrumentIndex, "VHFL", this.radioNav);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.VHF_L].linkActiveToSimVars(this.radioNav.getVHF1ActiveFrequency, this.radioNav.setVHF1ActiveFrequency);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.VHF_L].linkStbyToSimVars(this.radioNav.getVHF1StandbyFrequency, this.radioNav.setVHF1StandbyFrequency);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.VHF_C] = new B747_8_RadioManagement.VHFFrequencyHandler(this.instrumentIndex, "VHFC", this.radioNav);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.VHF_C].linkActiveToSimVars(this.radioNav.getVHF2ActiveFrequency, this.radioNav.setVHF2ActiveFrequency);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.VHF_C].linkStbyToSimVars(this.radioNav.getVHF2StandbyFrequency, this.radioNav.setVHF2StandbyFrequency);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.VHF_R] = new B747_8_RadioManagement.VHFFrequencyHandler(this.instrumentIndex, "VHFR", this.radioNav);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.VHF_R].linkActiveToSimVars(this.radioNav.getVHF3ActiveFrequency, this.radioNav.setVHF3ActiveFrequency);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.VHF_R].linkStbyToSimVars(this.radioNav.getVHF3StandbyFrequency, this.radioNav.setVHF3StandbyFrequency);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.HF_L] = new B747_8_RadioManagement.HFFrequencyHandler(this.instrumentIndex, "HFL", this.radioNav);
-        this.frequencyHandlers[B747_8_RadioManagement.FREQUENCY_TYPE.HF_R] = new B747_8_RadioManagement.HFFrequencyHandler(this.instrumentIndex, "HFR", this.radioNav);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.VHF_L] = new B777_RadioManagement.VHFFrequencyHandler(this.instrumentIndex, "VHFL", this.radioNav);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.VHF_L].linkActiveToSimVars(this.radioNav.getVHF1ActiveFrequency, this.radioNav.setVHF1ActiveFrequency);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.VHF_L].linkStbyToSimVars(this.radioNav.getVHF1StandbyFrequency, this.radioNav.setVHF1StandbyFrequency);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.VHF_C] = new B777_RadioManagement.VHFFrequencyHandler(this.instrumentIndex, "VHFC", this.radioNav);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.VHF_C].linkActiveToSimVars(this.radioNav.getVHF2ActiveFrequency, this.radioNav.setVHF2ActiveFrequency);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.VHF_C].linkStbyToSimVars(this.radioNav.getVHF2StandbyFrequency, this.radioNav.setVHF2StandbyFrequency);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.VHF_R] = new B777_RadioManagement.VHFFrequencyHandler(this.instrumentIndex, "VHFR", this.radioNav);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.VHF_R].linkActiveToSimVars(this.radioNav.getVHF3ActiveFrequency, this.radioNav.setVHF3ActiveFrequency);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.VHF_R].linkStbyToSimVars(this.radioNav.getVHF3StandbyFrequency, this.radioNav.setVHF3StandbyFrequency);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.HF_L] = new B777_RadioManagement.HFFrequencyHandler(this.instrumentIndex, "HFL", this.radioNav);
+        this.frequencyHandlers[B777_RadioManagement.FREQUENCY_TYPE.HF_R] = new B777_RadioManagement.HFFrequencyHandler(this.instrumentIndex, "HFR", this.radioNav);
         this.currentFrequencyVarName = "L:XMLVAR_COM" + this.instrumentIndex + "_CURRENT_FREQ";
         this.currentFrequencyHandler = this.getCurrentFrequencyHandler();
         if (this.currentFrequencyHandler != null) {
@@ -201,7 +201,7 @@ class B747_8_Com extends BaseAirliners {
     }
     getCurrentFrequencyHandler() {
         var freq = SimVar.GetSimVarValue(this.currentFrequencyVarName, "number");
-        if ((freq > B747_8_RadioManagement.FREQUENCY_TYPE.NONE) && (freq < B747_8_RadioManagement.FREQUENCY_TYPE.NB)) {
+        if ((freq > B777_RadioManagement.FREQUENCY_TYPE.NONE) && (freq < B777_RadioManagement.FREQUENCY_TYPE.NB)) {
             return this.frequencyHandlers[freq];
         }
         return null;
@@ -251,5 +251,5 @@ class B747_8_Com extends BaseAirliners {
         }
     }
 }
-registerInstrument("b747-8-com-element", B747_8_Com);
+registerInstrument("b777-com-element", B777_Com);
 //# sourceMappingURL=B747_8_Com.js.map

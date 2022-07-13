@@ -1,11 +1,11 @@
-class B747_8_FMC_ProgPage {
+class B777_FMC_ProgPage {
     static ShowPage1(fmc) {
         fmc.clearDisplay();
-        B747_8_FMC_ProgPage._timer = 0;
+        B777_FMC_ProgPage._timer = 0;
         fmc.pageUpdate = () => {
-            B747_8_FMC_ProgPage._timer++;
-            if (B747_8_FMC_ProgPage._timer >= 15) {
-                B747_8_FMC_ProgPage.ShowPage1(fmc);
+            B777_FMC_ProgPage._timer++;
+            if (B777_FMC_ProgPage._timer >= 15) {
+                B777_FMC_ProgPage.ShowPage1(fmc);
             }
         };
         let progressTitle = SimVar.GetSimVarValue("ATC FLIGHT NUMBER", "string") + " PROGRESS";
@@ -186,5 +186,5 @@ class B747_8_FMC_ProgPage {
         ]);
     }
 }
-B747_8_FMC_ProgPage._timer = 0;
+B777_FMC_ProgPage._timer = 0;
 //# sourceMappingURL=B747_8_FMC_ProgPage.js.map

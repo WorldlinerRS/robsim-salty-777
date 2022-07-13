@@ -1,15 +1,15 @@
-class B747_8_PFD extends BaseAirliners {
+class B777_PFD extends BaseAirliners {
     constructor() {
         super();
         this.initDuration = 7000;
     }
-    get templateID() { return "B747_8_PFD"; }
+    get templateID() { return "B777_PFD"; }
     get IsGlassCockpit() { return true; }
     connectedCallback() {
         super.connectedCallback();
         this.pageGroups = [
             new NavSystemPageGroup("Main", this, [
-                new B747_8_PFD_MainPage()
+                new B777_PFD_MainPage()
             ]),
         ];
         this.maxUpdateBudget = 12;
@@ -21,7 +21,7 @@ class B747_8_PFD extends BaseAirliners {
         super.onUpdate(_deltaTime);
     }
 }
-class B747_8_PFD_MainElement extends NavSystemElement {
+class B777_PFD_MainElement extends NavSystemElement {
     init(root) {
     }
     onEnter() {
@@ -33,17 +33,17 @@ class B747_8_PFD_MainElement extends NavSystemElement {
     onEvent(_event) {
     }
 }
-class B747_8_PFD_MainPage extends NavSystemPage {
+class B777_PFD_MainPage extends NavSystemPage {
     constructor() {
-        super("Main", "Mainframe", new B747_8_PFD_MainElement());
+        super("Main", "Mainframe", new B777_PFD_MainElement());
         this.element = new NavSystemElementGroup([
-            new B747_8_PFD_Attitude(),
-            new B747_8_PFD_VSpeed(),
-            new B747_8_PFD_Airspeed(),
-            new B747_8_PFD_Altimeter(),
-            new B747_8_PFD_Compass(),
-            new B747_8_PFD_ILS(),
-            new B747_8_PFD_FMA()
+            new B777_PFD_Attitude(),
+            new B777_PFD_VSpeed(),
+            new B777_PFD_Airspeed(),
+            new B777_PFD_Altimeter(),
+            new B777_PFD_Compass(),
+            new B777_PFD_ILS(),
+            new B777_PFD_FMA()
         ]);
     }
     init() {
@@ -97,7 +97,7 @@ class B747_8_PFD_MainPage extends NavSystemPage {
         super.onEvent(_event);
     }
 }
-class B747_8_PFD_VSpeed extends NavSystemElement {
+class B777_PFD_VSpeed extends NavSystemElement {
     init(root) {
         this.vsi = this.gps.getChildById("VSpeed");
         this.vsi.aircraft = Aircraft.B747_8;
@@ -122,7 +122,7 @@ class B747_8_PFD_VSpeed extends NavSystemElement {
     onEvent(_event) {
     }
 }
-class B747_8_PFD_Airspeed extends NavSystemElement {
+class B777_PFD_Airspeed extends NavSystemElement {
     constructor() {
         super();
     }
@@ -141,7 +141,7 @@ class B747_8_PFD_Airspeed extends NavSystemElement {
     onEvent(_event) {
     }
 }
-class B747_8_PFD_Altimeter extends NavSystemElement {
+class B777_PFD_Altimeter extends NavSystemElement {
     constructor() {
         super();
         this.isMTRSActive = false;
@@ -214,7 +214,7 @@ class B747_8_PFD_Altimeter extends NavSystemElement {
         }
     }
 }
-class B747_8_PFD_Attitude extends NavSystemElement {
+class B777_PFD_Attitude extends NavSystemElement {
     constructor() {
         super(...arguments);
         this.isFPVActive = false;
@@ -250,7 +250,7 @@ class B747_8_PFD_Attitude extends NavSystemElement {
         }
     }
 }
-class B747_8_PFD_Compass extends NavSystemElement {
+class B777_PFD_Compass extends NavSystemElement {
     init(root) {
         this.svg = this.gps.getChildById("Compass");
         this.svg.aircraft = Aircraft.B747_8;
@@ -286,7 +286,7 @@ class B747_8_PFD_Compass extends NavSystemElement {
         }
     }
 }
-class B747_8_PFD_FMA extends NavSystemElement {
+class B777_PFD_FMA extends NavSystemElement {
     init(root) {
         this.fma = this.gps.querySelector("boeing-fma");
         this.fma.aircraft = Aircraft.B747_8;
@@ -305,7 +305,7 @@ class B747_8_PFD_FMA extends NavSystemElement {
     onEvent(_event) {
     }
 }
-class B747_8_PFD_ILS extends NavSystemElement {
+class B777_PFD_ILS extends NavSystemElement {
     constructor() {
         super(...arguments);
         this.altWentAbove500 = false;
@@ -340,5 +340,5 @@ class B747_8_PFD_ILS extends NavSystemElement {
     onEvent(_event) {
     }
 }
-registerInstrument("b747-8-pfd-element", B747_8_PFD);
+registerInstrument("b777-pfd-element", B777_PFD);
 //# sourceMappingURL=B747_8_PFD.js.map

@@ -56,7 +56,7 @@ class FMCThrustLimPage {
             ["__FMCSEPARATOR"],
             ["\<INDEX", "TAKEOFF>"]
         ]);
-        fmc.onLeftInput[5] = () => { B747_8_FMC_InitRefIndexPage.ShowPage1(fmc); };
+        fmc.onLeftInput[5] = () => { B777_FMC_InitRefIndexPage.ShowPage1(fmc); };
         fmc.onRightInput[5] = () => { FMCTakeOffPage.ShowPage1(fmc); };
     }
 }

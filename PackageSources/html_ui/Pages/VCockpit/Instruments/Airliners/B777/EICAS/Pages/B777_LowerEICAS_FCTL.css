@@ -19,7 +19,7 @@
     font-style: normal; 
 }
 
-b747-8-lower-eicas-fctl {
+b777-lower-eicas-fctl {
     position: relative;
     left: 3.5%;
     width: 95.5%;
@@ -27,49 +27,49 @@ b747-8-lower-eicas-fctl {
     height: 88%;
     display: block;
 }
-b747-8-lower-eicas-fctl svg {
+b777-lower-eicas-fctl svg {
     width: 100%;
     height: 100%;
 }
-b747-8-lower-eicas-fctl text {
+b777-lower-eicas-fctl text {
     fill: var(--eicasBlue);
     font-size: 15px;
     stroke-width: 0;
 }
-b747-8-lower-eicas-fctl #aircraft {
+b777-lower-eicas-fctl #aircraft {
     fill: gray;
     stroke: var(--eicasBlue);
     stroke-width: 2px;
 }
-b747-8-lower-eicas-fctl #measurement {
+b777-lower-eicas-fctl #measurement {
     fill: var(--eicasWhite);
 }
-b747-8-lower-eicas-fctl #cursor {
+b777-lower-eicas-fctl #cursor {
     fill: var(--eicasWhite);
 }
-b747-8-lower-eicas-fctl #trim {
+b777-lower-eicas-fctl #trim {
     stroke-width: 2px;
     text-anchor: end !important;
     letter-spacing: 2px;
     stroke: var(--eicasWhite);
 }
 
-b747-8-lower-eicas-fctl #rudder {
+b777-lower-eicas-fctl #rudder {
     stroke-width: 2px;
     text-anchor: end !important;
     letter-spacing: 2px;
     stroke: var(--eicasWhite);
 }
 
-b747-8-lower-eicas-fctl #mode {
+b777-lower-eicas-fctl #mode {
     stroke-width: 2px;
     letter-spacing: 2px;
     stroke: var(--eicasGreen);
 }
-b747-8-lower-eicas-fctl .Gauge {
+b777-lower-eicas-fctl .Gauge {
     fill: var(--eicasWhite);
 }
-b747-8-lower-eicas-fctl .Spoilers {
+b777-lower-eicas-fctl .Spoilers {
     fill: gray;
     stroke: var(--eicasWhite);
     stroke-width: 1px;
