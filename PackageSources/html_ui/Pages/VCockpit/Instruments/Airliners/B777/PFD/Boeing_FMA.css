@@ -119,6 +119,20 @@ boeing-fma.B747_8_PFD {
   boeing-fma.B747_8_PFD #Column2 #COL2_BOTTOM_ARROWS {
     top: 210%; }
 
+boeing-fma.B777_PFD {
+  font-size: 45px; }
+  boeing-fma.B777_PFD .middle {
+    font-size: 30px;
+    color: white; }
+  boeing-fma.B777_PFD #Background {
+    background-color: #343B51; }
+  boeing-fma.B777_PFD #Column2 .bottom {
+    left: -2% !important;
+    top: 240%;
+    font-size: 60px; }
+  boeing-fma.B777_PFD #Column2 #COL2_BOTTOM_ARROWS {
+    top: 210%; }
+
 boeing-fma.AS01B_PFD {
   font-size: 20px; }
   boeing-fma.AS01B_PFD .middle {
