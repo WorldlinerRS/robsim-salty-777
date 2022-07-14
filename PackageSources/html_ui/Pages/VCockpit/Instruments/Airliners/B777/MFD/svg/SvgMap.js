@@ -636,8 +636,8 @@ class SvgMap {
         /*Update Track Line*/
         let isInCTRmode = SimVar.GetSimVarValue("L:BTN_CTR_ACTIVE", "bool");
         let isInWXRmode = SimVar.GetSimVarValue("L:BTN_WX_ACTIVE", "bool");
-        let mapMode = SimVar.GetSimVarValue("L:B747_MAP_MODE", "Enum");
-        let mapRange = SimVar.GetSimVarValue("L:B747_8_MFD_Range", "number");
+        let mapMode = SimVar.GetSimVarValue("L:B777_MAP_MODE", "Enum");
+        let mapRange = SimVar.GetSimVarValue("L:B777_MFD_Range", "number");
         let speed = Simplane.getGroundSpeed();
         let track = SimVar.GetSimVarValue("GPS GROUND MAGNETIC TRACK", "degrees");
         let heading = SimVar.GetSimVarValue("HEADING INDICATOR", "degrees");

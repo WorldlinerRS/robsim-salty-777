@@ -185,7 +185,7 @@ class SvgFlightPlanElement extends SvgMapElement {
         context.stroke();
     }
     drawRunways(waypoints, startIndex, endIndex, map, style = 'white') {
-        const mapRange = SimVar.GetSimVarValue("L:B747_8_MFD_RANGE", "Enum");
+        const mapRange = SimVar.GetSimVarValue("L:B777_MFD_RANGE", "Enum");
         if (this.source && mapRange < 8) {
             const fpm = this.source;
             const context = this._flightPathCanvas.getContext('2d');
@@ -218,18 +218,13 @@ class SvgFlightPlanElement extends SvgMapElement {
                         rightPerpHeading =+ 360;
                     }
                     const mapRangeEnumToNM = {
-                        0: 0.25,
-                        1: 0.5,
-                        2: 1,
-                        3: 2,
-                        4: 5,
-                        5: 10,
-                        6: 20,
-                        7: 40,
-                        8: 80,
-                        9: 160,
-                        10: 320,
-                        11: 640
+                        1: 10,
+                        2: 20,
+                        3: 40,
+                        4: 80,
+                        5: 160,
+                        6: 320,
+                        7: 640
                     };
                     const pos = map.coordinatesToXY(waypoint.infos.coordinates);
                     const width = 0.015 * mapRangeEnumToNM[mapRange];

@@ -1,9 +1,10 @@
 <ModelBehaviors>
     <Include RelativeFile="Salty_Boeing.xml"/>
-    <Include RelativeFile="FCUPanel.xml"/>
-    <Include RelativeFile="NDPanel.xml"/>
+    <Include RelativeFile="B777_Autopilot.xml"/>
+    <Include RelativeFile="B777_FCUPanel.xml"/>
+    <Include RelativeFile="B777_NDPanel.xml"/>
     <Include RelativeFile="B777_EICASButton.xml"/>
-    <Include RelativeFile="ADIRUButton.xml"/>
     <Include RelativeFile="B777_Engines.xml"/>
     <Include RelativeFile="B777_FMC.xml"/>
+    <Include RelativeFile="ADIRUButton.xml"/>
 </ModelBehaviors>

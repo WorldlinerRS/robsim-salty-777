@@ -1449,7 +1449,8 @@ class MapInstrument extends ISvgMapRootElement {
         return this._ranges[this.rangeIndex + this._declutterLevel];
     }
     getWeatherRange() {
-        return this.getDisplayRange();
+        // may need to change back
+        //return this.getDisplayRange();
         if (this.rangeIndex < this.weatherRanges.length) {
             return this.weatherRanges[this.rangeIndex];
         }
