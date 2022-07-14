@@ -1263,7 +1263,7 @@
           <SCREEN_ID>FMC</SCREEN_ID>
         </DefaultTemplateParameters>
         <Component ID="CDU_1">
-          <UseTemplate Name="CS_FMC_B777">
+          <UseTemplate Name="FMC_B777">
             <NODE_ID_SCREEN>SCREEN_FMC1</NODE_ID_SCREEN>
             <CIRCUIT_ID>27</CIRCUIT_ID>
             <ID>1</ID>
@@ -1423,7 +1423,7 @@
 				-->
         </Component>
         <Component ID="CDU_2">
-          <UseTemplate Name="CS_FMC_B777">
+          <UseTemplate Name="FMC_B777">
             <ID>2</ID>
             <NODE_ID_SCREEN>SCREEN_FMC2</NODE_ID_SCREEN>
             <CIRCUIT_ID>27</CIRCUIT_ID>
@@ -1621,7 +1621,7 @@
           <NO_BRT_DIM_EMISSIVE_SEQ2>True</NO_BRT_DIM_EMISSIVE_SEQ2>
           <SCREEN_ID>FMC</SCREEN_ID>
         </DefaultTemplateParameters>
-        <UseTemplate Name="CS_FMC_B777">
+        <UseTemplate Name="FMC_B777">
           <ID>3</ID>
           <TT_FMS_INDEX>(R:1:@TT_Package.GT_STATE_CDU) (R:1:@TT_Package.GT_STATE_PEDESTAL_FMS) @sprintf</TT_FMS_INDEX>
           <NODE_ID_SCREEN>SCREEN_FMC3</NODE_ID_SCREEN>
@@ -2749,8 +2749,8 @@
         </DefaultTemplateParameters>
 
         <Component ID="GlassCockpit_Panel_Pilot">
-          <UseTemplate Name="ASOBO_AIRLINER_Knob_ND_Template">
-            <TYPE>BOEING_747</TYPE>
+          <UseTemplate Name="RobSim_AIRLINER_Knob_ND_Template">
+            <TYPE>BOEING_777</TYPE>
             <NODE_ID>knob_afds_ctr_l1</NODE_ID>
             <ANIM_NAME>afds_knob_ctr_l</ANIM_NAME>
             <BUTTON_NODE_ID>btn_afds_ctr_l</BUTTON_NODE_ID>
@@ -2769,7 +2769,7 @@
             <BUTTON_NODE_ID>btn_afds_std_l1</BUTTON_NODE_ID>
             <BUTTON_ANIM_NAME>afds_push_std_l1</BUTTON_ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="SALTY_AUTOPILOT_Knob_Baro_Template">
+          <UseTemplate Name="RobSim_AUTOPILOT_Knob_Baro_Template">
             <NODE_ID>knob_afds_std_l2</NODE_ID>
             <ANIM_NAME_KNOB>afds_knob_std_l2</ANIM_NAME_KNOB>
             <ANIM_NAME_PUSH>afds_push_std_l</ANIM_NAME_PUSH>
@@ -2842,8 +2842,8 @@
         </Component>
 
         <Component ID="GlassCockpit_Panel_CoPilot">
-          <UseTemplate Name="ASOBO_AIRLINER_Knob_ND_Template">
-            <TYPE>BOEING_747</TYPE>
+          <UseTemplate Name="RobSim_AIRLINER_Knob_ND_Template">
+            <TYPE>BOEING_777</TYPE>
             <ID>2</ID>
             <NODE_ID>knob_afds_ctr_r</NODE_ID>
             <ANIM_NAME>afds_knob_ctr_r</ANIM_NAME>
@@ -2864,7 +2864,7 @@
             <BUTTON_NODE_ID>btn_afds_tfc_r</BUTTON_NODE_ID>
             <BUTTON_ANIM_NAME>afds_push_tfc_r</BUTTON_ANIM_NAME>
           </UseTemplate>
-          <UseTemplate Name="SALTY_AUTOPILOT_Knob_Baro_Template">
+          <UseTemplate Name="RobSim_AUTOPILOT_Knob_Baro_Template">
             <NODE_ID>knob_afds_std_r2</NODE_ID>
             <ANIM_NAME_KNOB>afds_knob_std_r2</ANIM_NAME_KNOB>
             <ANIM_NAME_PUSH>afds_push_std_r</ANIM_NAME_PUSH>
@@ -2942,7 +2942,7 @@
           <PLANE_PREFIX>B777</PLANE_PREFIX>
         </OverrideTemplateParameters>
         <UseTemplate Name="ASOBO_AUTOPILOT_Push_Autopilot_Template">
-          <AP_COUNT>3</AP_COUNT>
+          <AP_COUNT>2</AP_COUNT>
           <ID>1</ID>
           <NODE_ID>btn_autopilot_ap_engage_l</NODE_ID>
           <ANIM_NAME>autopilot_push_ap_engage_l</ANIM_NAME>
@@ -2954,20 +2954,8 @@
           <ALL_AP_ON_APPR>True</ALL_AP_ON_APPR>
         </UseTemplate>
         <UseTemplate Name="ASOBO_AUTOPILOT_Push_Autopilot_Template">
-          <AP_COUNT>3</AP_COUNT>
+          <AP_COUNT>2</AP_COUNT>
           <ID>2</ID>
-          <NODE_ID>btn_autopilot_ap_engage_c</NODE_ID>
-          <ANIM_NAME>autopilot_push_ap_engage_c</ANIM_NAME>
-          <EMISSIVE_NODE_ID>btn_autopilot_ap_engage_c</EMISSIVE_NODE_ID>
-          <ACTIVE_NODE_ID>btn_autopilot_ap_engage_c_seq2</ACTIVE_NODE_ID>
-          <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
-          <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
-          <TYPE>ONLY_IF_DISCONNECTED</TYPE>
-          <ALL_AP_ON_APPR>True</ALL_AP_ON_APPR>
-        </UseTemplate>
-        <UseTemplate Name="ASOBO_AUTOPILOT_Push_Autopilot_Template">
-          <AP_COUNT>3</AP_COUNT>
-          <ID>3</ID>
           <NODE_ID>btn_autopilot_ap_engage_r</NODE_ID>
           <ANIM_NAME>autopilot_push_ap_engage_r</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_ap_engage_r</EMISSIVE_NODE_ID>
@@ -2977,7 +2965,7 @@
           <TYPE>ONLY_IF_DISCONNECTED</TYPE>
           <ALL_AP_ON_APPR>True</ALL_AP_ON_APPR>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_Approach_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_Approach_Template">
           <NODE_ID>btn_autopilot_app</NODE_ID>
           <ANIM_NAME>autopilot_push_app</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_app</EMISSIVE_NODE_ID>
@@ -2993,37 +2981,37 @@
           <NO_INDICATOR>True</NO_INDICATOR>
           <TOGGLEABLE>True</TOGGLEABLE>
           <RESET_XMLVARS>True</RESET_XMLVARS>
-          <AP_COUNT>3</AP_COUNT>
+          <AP_COUNT>2</AP_COUNT>
           <INVERT_SWITCH_ON_CONDITION>True</INVERT_SWITCH_ON_CONDITION>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_FlightLevelChange_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_FlightLevelChange_Template">
           <NODE_ID>btn_autopilot_flch</NODE_ID>
           <ANIM_NAME>autopilot_push_flch</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_flch</EMISSIVE_NODE_ID>
           <ACTIVE_NODE_ID>btn_autopilot_flch_seq2</ACTIVE_NODE_ID>
           <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
           <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_Altitude_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_Altitude_Template">
           <NODE_ID>btn_autopilot_hold</NODE_ID>
           <ANIM_NAME>autopilot_push_hold</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_hold</EMISSIVE_NODE_ID>
           <ACTIVE_NODE_ID>btn_autopilot_hold_seq2</ACTIVE_NODE_ID>
           <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
           <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_Heading_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_Heading_Template">
           <NODE_ID>btn_autopilot_hdg</NODE_ID>
           <ANIM_NAME>autopilot_push_hdg</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_hdg</EMISSIVE_NODE_ID>
           <ACTIVE_NODE_ID>btn_autopilot_hdg_seq2</ACTIVE_NODE_ID>
           <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
           <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_AUTOPILOT_Push_Navigation_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_Navigation_Template">
           <NODE_ID>btn_autopilot_lnav</NODE_ID>
           <ANIM_NAME>autopilot_push_lnav</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_lnav</EMISSIVE_NODE_ID>
@@ -3031,18 +3019,18 @@
           <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
           <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
           <TOOLTIPID>%((A:AUTOPILOT NAV1 LOCK, bool))%{if}TT:COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_LNAV_ON%{else}TT:COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_LNAV_OFF%{end}</TOOLTIPID>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_Vertical_Navigation_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_Vertical_Navigation_Template">
           <NODE_ID>btn_autopilot_vnav</NODE_ID>
           <ANIM_NAME>autopilot_push_vnav</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_vnav</EMISSIVE_NODE_ID>
           <ACTIVE_NODE_ID>btn_autopilot_vnav_seq2</ACTIVE_NODE_ID>
           <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
           <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_Localizer_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_Localizer_Template">
           <NODE_ID>btn_autopilot_loc</NODE_ID>
           <ANIM_NAME>autopilot_push_loc</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_loc</EMISSIVE_NODE_ID>
@@ -3050,7 +3038,7 @@
           <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
           <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_Speed_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_Speed_Template">
           <NODE_ID>btn_autopilot_spd</NODE_ID>
           <ANIM_NAME>autopilot_push_spd</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_spd</EMISSIVE_NODE_ID>
@@ -3058,7 +3046,7 @@
           <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
           <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
           <TOOLTIPID>%((L:AP_SPD_ACTIVE))%{if}TT:COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_SPD_ON%{else}TT:COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_SPD_OFF%{end}</TOOLTIPID>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
         <UseTemplate Name="ASOBO_AUTOPILOT_Push_Thrust_Template">
           <NODE_ID>btn_autopilot_thr</NODE_ID>
@@ -3068,26 +3056,26 @@
           <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
           <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_VerticalSpeed_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_VerticalSpeed_Template">
           <NODE_ID>btn_autopilot_vs</NODE_ID>
           <ANIM_NAME>autopilot_push_vs</ANIM_NAME>
           <EMISSIVE_NODE_ID>btn_autopilot_vs</EMISSIVE_NODE_ID>
           <ACTIVE_NODE_ID>btn_autopilot_vs_seq2</ACTIVE_NODE_ID>
           <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
           <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_AUTOPILOT_Knob_Altitude_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Knob_Altitude_Template">
           <NODE_ID>knob_autopilot_alt</NODE_ID>
           <ANIM_NAME_KNOB>autopilot_knob_alt</ANIM_NAME_KNOB>
           <ANIM_NAME_PUSH>knob_autopilot_alt_push</ANIM_NAME_PUSH>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_AUTOPILOT_Knob_Heading_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Knob_Heading_Template">
           <NODE_ID>knob_autopilot_heading</NODE_ID>
           <ANIM_NAME_KNOB>autopilot_knob_heading</ANIM_NAME_KNOB>
           <ANIM_NAME_PUSH>autopilot_push_hdg_sel</ANIM_NAME_PUSH>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
         <UseTemplate Name="ASOBO_AUTOPILOT_Knob_Bank_Limit_Template">
           <NODE_ID>knob_autopilot_hdg_bank_limit</NODE_ID>
@@ -3095,25 +3083,25 @@
           <SETTINGS_COUNT>5</SETTINGS_COUNT>
           <COUNT>5</COUNT>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_AUTOPILOT_Push_SpeedToggle_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_SpeedToggle_Template">
           <NODE_ID>btn_autopilot_sel</NODE_ID>
           <ANIM_NAME>autopilot_push_sel</ANIM_NAME>
           <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
           <NO_INDICATOR>True</NO_INDICATOR>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_AUTOPILOT_Knob_SpeedMach_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Knob_SpeedMach_Template">
           <NODE_ID>knob_autopilot_speed</NODE_ID>
           <ANIM_NAME>autopilot_knob_speed</ANIM_NAME>
           <ANIM_NAME_PUSH>knob_autopilot_speed_push</ANIM_NAME_PUSH>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="ASOBO_AUTOPILOT_Push_AutoThrottle_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_AutoThrottle_Template">
           <NODE_ID>switch_autopilot_at_arm</NODE_ID>
           <ANIM_NAME>autopilot_switch_at_arm</ANIM_NAME>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_FlightDirector_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_FlightDirector_Template">
           <NODE_ID>switch_autopilot_fd_l</NODE_ID>
           <ANIM_NAME>autopilot_switch_fd_l</ANIM_NAME>
           <TOGGLEABLE/>
@@ -3121,7 +3109,7 @@
           <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
           <ID>1</ID>
         </UseTemplate>
-        <UseTemplate Name="SALTY_AUTOPILOT_Push_FlightDirector_Template">
+        <UseTemplate Name="RobSim_AUTOPILOT_Push_FlightDirector_Template">
           <NODE_ID>switch_autopilot_fd_r</NODE_ID>
           <ANIM_NAME>autopilot_switch_fd_r</ANIM_NAME>
           <TOGGLEABLE/>
@@ -3142,14 +3130,14 @@
           <ANIM_NAME>G04_006_SW2</ANIM_NAME>
           <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
           <NO_INDICATOR>True</NO_INDICATOR>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
         <UseTemplate Name="Robsim_BOEING_Push_VS_FPA_Template">
           <NODE_ID>G04_007_SW2</NODE_ID>
           <ANIM_NAME>G04_007_SW2</ANIM_NAME>
           <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
           <NO_INDICATOR>True</NO_INDICATOR>
-          <TYPE>B747</TYPE>
+          <TYPE>B777</TYPE>
         </UseTemplate>
 
         <!--777 INOP (whole Dummies)-->

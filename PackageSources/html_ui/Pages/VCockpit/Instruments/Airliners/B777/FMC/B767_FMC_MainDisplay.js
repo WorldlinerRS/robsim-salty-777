@@ -143,7 +143,7 @@ class B767_FMC_MainDisplay extends Boeing_FMC {
             sendStatus: ""
         }
     }
-    get templateID() { return "B747_8_FMC"; }
+    get templateID() { return "B777_FMC"; }
     
     // Property for EXEC handling
     get fpHasChanged() {
@@ -197,26 +197,26 @@ class B767_FMC_MainDisplay extends Boeing_FMC {
         }
         this.updateVREF30();
         this.onInit = () => {
-            B747_8_FMC_InitRefIndexPage.ShowPage1(this);
+            B777_FMC_InitRefIndexPage.ShowPage1(this);
         };
         this.onLegs = () => {
-            B747_8_FMC_LegsPage.ShowPage1(this);
+            B777_FMC_LegsPage.ShowPage1(this);
         };
         this.onRte = () => {
             FMCRoutePage.ShowPage1(this);
         };
         this.onDepArr = () => {
-            B747_8_FMC_DepArrIndexPage.ShowPage1(this);
+            B777_FMC_DepArrIndexPage.ShowPage1(this);
         };
         this.onRad = () => {
-            B747_8_FMC_NavRadioPage.ShowPage(this);
+            B777_FMC_NavRadioPage.ShowPage(this);
         };
         this.onVNAV = () => {
             if (Simplane.getCurrentFlightPhase() <= FlightPhase.FLIGHT_PHASE_CLIMB) {
-                B747_8_FMC_VNAVPage.ShowPage1(this);
+                B777_FMC_VNAVPage.ShowPage1(this);
             }
             else if (Simplane.getCurrentFlightPhase() === FlightPhase.FLIGHT_PHASE_CRUISE) {
-                B747_8_FMC_VNAVPage.ShowPage2(this);
+                B777_FMC_VNAVPage.ShowPage2(this);
                 this.flightPhaseHasChangedToCruise === false;
             }
             else {
@@ -631,7 +631,7 @@ class B767_FMC_MainDisplay extends Boeing_FMC {
         let altitude = Simplane.getAltitude();
         let desMode = SimVar.GetSimVarValue("L:SALTY_VNAV_DES_MODE" , "Enum");
         let machMode = Simplane.getAutoPilotMachModeActive();
-        let speed = Math.min(290, machlimit);
+        let speed = Math.min(280, machlimit);
         let isSpeedIntervention = SimVar.GetSimVarValue("L:AP_SPEED_INTERVENTION_ACTIVE", "number");
         if (_cduPageEconRequest) {
             return speed;
@@ -1197,13 +1197,13 @@ class B767_FMC_MainDisplay extends Boeing_FMC {
     }
     addMessage(message) {
         this.messages.unshift(message);
-        const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number");
-        SimVar.SetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number", cMsgCnt + 1);
+        const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number");
+        SimVar.SetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number", cMsgCnt + 1);
     }
     deleteMessage(id) {
         if (!this.messages[id]["opened"]) {
-            const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number");
-            SimVar.SetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number", cMsgCnt <= 1 ? 0 : cMsgCnt - 1);
+            const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number");
+            SimVar.SetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number", cMsgCnt <= 1 ? 0 : cMsgCnt - 1);
         }
         this.messages.splice(id, 1);
     }

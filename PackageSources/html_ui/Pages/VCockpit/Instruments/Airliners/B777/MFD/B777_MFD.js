@@ -80,7 +80,7 @@ class B777_MFD_MainPage extends NavSystemPage {
         this.map.instrument.smallAirportMaxRange = 0;
         this.map.instrument.medAirportMaxRange = 0;
         this.map.instrument.largeAirportMaxRange = Infinity;
-        Simplane.set747MFDNavMode(2);
+        SimVar.SetSimVarValue("L:B777_MFD_NAV_MODE", "number", 2);
 
         this.trkBox = document.querySelector("#trk-box");
         this.mapBox = document.querySelector("#map-box");
@@ -193,8 +193,8 @@ class B777_MFD_MainPage extends NavSystemPage {
         }
         var wxRadarOn = Simplane.getBTNWXActive();
         var terrainOn = SimVar.GetSimVarValue("L:BTN_TERRONND_ACTIVE", "number");
-        var mapMode = Simplane.get747MFDNavMode();
-        var mapRange = Simplane.get747MFDRange();
+        var mapMode = SimVar.GetSimVarValue("L:B777_MAP_MODE", "number");
+        var mapRange = SimVar.GetSimVarValue("L:B777_MFD_RANGE", "number");
         if (this.wxRadarOn != wxRadarOn || this.terrainOn != terrainOn || this.mapMode != mapMode || this.forceMapUpdate) {
             this.wxRadarOn = wxRadarOn;
             this.terrainOn = terrainOn;
@@ -251,7 +251,7 @@ class B777_MFD_MainPage extends NavSystemPage {
     }
     
     setMapMode(_centered, _mode) {
-        SimVar.SetSimVarValue("L:B747_MAP_MODE", "number", _mode);
+        SimVar.SetSimVarValue("L:B777_MAP_MODE", "number", _mode);
         switch (_mode) {
             case 0:
                 if (_centered) {
@@ -386,8 +386,8 @@ class B777_MFD_Map extends MapInstrumentElement {
     }
     onTemplateLoaded() {
         super.onTemplateLoaded();
-        this.compassModeMask = new SvgBottomMaskElement("b747-compass-mask", 0, 30);
-        this.planModeMask = new SvgPlanMaskElement("b747-plan-mask", 0, -45);
+        this.compassModeMask = new SvgBottomMaskElement("b777-compass-mask", 0, 30);
+        this.planModeMask = new SvgPlanMaskElement("b777-plan-mask", 0, -45);
     }
     getAdaptiveRanges(_factor) {
         let ranges = Array.from(this.zoomRanges);

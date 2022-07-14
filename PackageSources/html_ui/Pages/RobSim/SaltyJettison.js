@@ -48,13 +48,13 @@ class SaltyJettison {
                 if (knobMoved) {
                     this.jettFuelTarget = SimVar.GetSimVarValue("FUEL TOTAL QUANTITY", "gallons") * this.gallonToMegagrams;
                 } else {
-                    this.jettFuelTarget = SimVar.GetSimVarValue("L:747_FUEL_TO_REMAIN", "TYPE_FLOAT64");
+                    this.jettFuelTarget = SimVar.GetSimVarValue("L:777_FUEL_TO_REMAIN", "TYPE_FLOAT64");
                 }
 
                 if (this.jettFuelTarget < this.minFuel) this.jettFuelTarget = this.minFuel;
                 else if (this.jettFuelTarget > this.currentFuelLevel) this.jettFuelTarget = this.currentFuelLevel;
 
-                SimVar.SetSimVarValue("L:747_FUEL_TO_REMAIN", "TYPE_FLOAT64", this.jettFuelTarget);
+                SimVar.SetSimVarValue("L:777_FUEL_TO_REMAIN", "TYPE_FLOAT64", this.jettFuelTarget);
 
                 if (this.currentFuelLevel <= this.jettFuelTarget) {
                     return false;
@@ -110,7 +110,7 @@ class SaltyJettison {
         this.deltaTime = (timeNow - this.lastTime) / 1000;
         this.lastTime = timeNow;
 
-        var newKnobPos = parseInt(SimVar.GetSimVarValue("L:747_JETTISON_KNOB_POS", "Enum"));
+        var newKnobPos = parseInt(SimVar.GetSimVarValue("L:777_JETTISON_KNOB_POS", "Enum"));
 
         let publishL = 0;
         let publishR = 0;
