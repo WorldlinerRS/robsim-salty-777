@@ -193,7 +193,7 @@ class B777_MFD_MainPage extends NavSystemPage {
         }
         var wxRadarOn = Simplane.getBTNWXActive();
         var terrainOn = SimVar.GetSimVarValue("L:BTN_TERRONND_ACTIVE", "number");
-        var mapMode = SimVar.GetSimVarValue("L:B777_MAP_MODE", "number");
+        var mapMode = SimVar.GetSimVarValue("L:B777_MFD_NAV_MODE", "number");
         var mapRange = SimVar.GetSimVarValue("L:B777_MFD_RANGE", "number");
         if (this.wxRadarOn != wxRadarOn || this.terrainOn != terrainOn || this.mapMode != mapMode || this.forceMapUpdate) {
             this.wxRadarOn = wxRadarOn;
