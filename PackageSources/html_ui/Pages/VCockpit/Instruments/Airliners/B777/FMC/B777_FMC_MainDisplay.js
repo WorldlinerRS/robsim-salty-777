@@ -189,7 +189,7 @@ class B777_FMC_MainDisplay extends Boeing_FMC {
         this.timer = 0;
         let oat = SimVar.GetSimVarValue("AMBIENT TEMPERATURE", "celsius");
         this._thrustTakeOffTemp = Math.ceil(oat / 10) * 10;
-        this.aircraftType = Aircraft.B777;
+        this.aircraftType = Aircraft.B747_8;
         this.maxCruiseFL = 430;
         this.saltyBase = new SaltyBase();
         this.saltyModules = new SaltyModules();
@@ -1205,13 +1205,13 @@ class B777_FMC_MainDisplay extends Boeing_FMC {
     }
     addMessage(message) {
         this.messages.unshift(message);
-        const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number");
-        SimVar.SetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number", cMsgCnt + 1);
+        const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number");
+        SimVar.SetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number", cMsgCnt + 1);
     }
     deleteMessage(id) {
         if (!this.messages[id]["opened"]) {
-            const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number");
-            SimVar.SetSimVarValue("L:SALTY_747_COMPANY_MSG_COUNT", "Number", cMsgCnt <= 1 ? 0 : cMsgCnt - 1);
+            const cMsgCnt = SimVar.GetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number");
+            SimVar.SetSimVarValue("L:SALTY_777_COMPANY_MSG_COUNT", "Number", cMsgCnt <= 1 ? 0 : cMsgCnt - 1);
         }
         this.messages.splice(id, 1);
     }
