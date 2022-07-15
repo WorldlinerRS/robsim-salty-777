@@ -52,7 +52,7 @@ class B777_FMC_LegsPage {
             this.invalidate();
         }
         //Check if plan mode has been selected and refresh if needed
-        this.isMapModePlan = SimVar.GetSimVarValue("L:B747_MAP_MODE", "number") === 3;
+        this.isMapModePlan = SimVar.GetSimVarValue("L:B777_MAP_MODE", "number") === 3;
         if (this.isMapModePlan && this._rsk6Field == "RTE DATA>") {
             this.invalidate();
         }
