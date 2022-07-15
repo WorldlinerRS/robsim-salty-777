@@ -20,7 +20,6 @@ OBS1=360
 Nav2Active=110.50
 Nav2Standby=113.90
 OBS2=360
-
 TransponderState=0
 ADFActive=890
 ADF2Active=890
@@ -73,6 +72,22 @@ EngineMasterSwitch=True
 GlowPlugTemperaturePct=1
 IgnitionSwitch=0
 Afterburner=0
+[FuelSystem.0]
+Valve.1=False
+Valve.2=False
+Valve.3=False
+Valve.4=False
+Valve.5=False
+Valve.6=False
+Valve.7=False
+Valve.8=False
+Pump.1=False
+Pump.2=False
+Pump.3=False
+Pump.4=False
+Pump.5=False
+Pump.6=False
+Pump.7=False
 
 [Systems.0]
 BatterySwitch=False
@@ -94,36 +109,16 @@ AuxPowerUnitSwitch=False
 
 [Electrical.0]
 alternator.3=False
-circuit.74 = True,0.5
-circuit.75 = True,0.5
 circuit.76 = True,0.5
 circuit.77 = True,0.5
 circuit.78 = True,0.5
-circuit.81 = False,1.0
-
-[FuelSystem.0]
-Valve.1=False
-Valve.2=False
-Valve.3=False
-Valve.4=False
-Valve.5=False
-Valve.6=False
-Valve.7=False
-Valve.8=False
-Valve.9=False
-Pump.1=False
-Pump.2=False
-Pump.3=False
-Pump.4=False
-Pump.5=False
-Pump.6=False
-Pump.7=True
-Pump.8=False
-Pump.9=False
+circuit.79 = True,0.5
+circuit.80 = True,0.5
+circuit.83 = False,1.0
 
 [LocalVars.0]
 XMLVAR_SeatBelts=1
-B747_8_MFD_NAV_MODE=2
+B777_MFD_NAV_MODE=2
 SALTY_IRS_STATE=2
 747_IRS_KNOB_1=2
 747_IRS_KNOB_2=2
@@ -201,7 +196,6 @@ Rudder=050.00
 LeftBrake=100.00
 RightBrake=100.00
 ParkingBrake=100.00
-
 RudderTrimPct=0
 AileronTrimPct=0
 AileronTrimDisabled=False

@@ -1,3 +1,12 @@
+[SimVars.0]
+PVelBodyAxis=0
+BVelBodyAxis=0
+HVelBodyAxis=0
+XVelBodyAxis=0
+YVelBodyAxis=0
+ZVelBodyAxis=0
+SimOnGround=True
+
 [Avionics.0]
 Comm1Active=118.300
 Comm1Standby=124.850
@@ -11,7 +20,6 @@ OBS1=360
 Nav2Active=110.50
 Nav2Standby=113.90
 OBS2=360
-
 TransponderState=0
 ADFActive=890
 ADF2Active=890
@@ -64,9 +72,25 @@ EngineMasterSwitch=True
 GlowPlugTemperaturePct=1
 IgnitionSwitch=0
 Afterburner=0
+[FuelSystem.0]
+Valve.1=False
+Valve.2=False
+Valve.3=False
+Valve.4=False
+Valve.5=False
+Valve.6=False
+Valve.7=False
+Valve.8=False
+Pump.1=False
+Pump.2=False
+Pump.3=False
+Pump.4=False
+Pump.5=False
+Pump.6=False
+Pump.7=False
 
 [Systems.0]
-BatterySwitch=True
+BatterySwitch=False
 StructuralDeiceSwitch=False
 PropDeiceSwitch=False
 Autobrakes=0
@@ -94,7 +118,7 @@ circuit.83 = False,1.0
 
 [LocalVars.0]
 XMLVAR_SeatBelts=1
-B747_8_MFD_NAV_MODE=2
+B777_MFD_NAV_MODE=2
 SALTY_IRS_STATE=2
 747_IRS_KNOB_1=2
 747_IRS_KNOB_2=2
@@ -113,7 +137,7 @@ BeaconLights=True
 LandingLights=True
 LogoLights=True
 NavLights=True
-PanelLights=True
+PanelLights=False
 RecognitionLights=True
 StrobeLights=True
 TaxiLights=True
@@ -172,7 +196,6 @@ Rudder=050.00
 LeftBrake=100.00
 RightBrake=100.00
 ParkingBrake=100.00
-
 RudderTrimPct=0
 AileronTrimPct=0
 AileronTrimDisabled=False
