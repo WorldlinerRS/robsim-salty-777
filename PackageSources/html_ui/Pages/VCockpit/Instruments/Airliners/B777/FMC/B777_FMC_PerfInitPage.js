@@ -16,12 +16,12 @@ class FMCPerfInitPage {
             }
             fmc.onLeftInput[0] = () => {
                 let value = fmc.inOut;
-                fmc.clearUserInput();
-                fmc.setWeight(value, result => {
-                    if (result) {
-                        FMCPerfInitPage.ShowPage1(fmc);
-                    }
-                }, units);
+                // fmc.clearUserInput();
+                // fmc.setWeight(value, result => {
+                //     if (result) {
+                //         FMCPerfInitPage.ShowPage1(fmc);
+                //     }
+                // }, units);
             };
             let crzAltCell = "□□□□□";
             if (isFinite(fmc.cruiseFlightLevel)) {
@@ -43,11 +43,11 @@ class FMCPerfInitPage {
                 zeroFuelWeightCell = fmc.getZeroFuelWeight(units).toFixed(1);
             }
             fmc.onLeftInput[2] = () => {
-                let value = fmc.inOut;
-                fmc.clearUserInput();
-                if (fmc.trySetZeroFuelWeightZFWCG(value, units)) {
-                    FMCPerfInitPage.ShowPage1(fmc);
-                }
+                // let value = fmc.inOut;
+                // fmc.clearUserInput();
+                // if (fmc.trySetZeroFuelWeightZFWCG(value, units)) {
+                //     FMCPerfInitPage.ShowPage1(fmc);
+                // }
             };
             let costIndex = "□□□□";
             if (isFinite(fmc.costIndex)) {
@@ -85,8 +85,9 @@ class FMCPerfInitPage {
                 stepSizeCell = "ACCEPT>";
                 crzAltCell = fmc.simbrief.cruiseAltitude;
                 costIndex = fmc.simbrief.costIndex;
-                zeroFuelWeightCell = (parseFloat(fmc.simbrief.estZfw) / 1000).toFixed(1);
-                grossWeightCell = ((parseFloat(zeroFuelWeightCell) + (parseFloat(blockFuelCell)))).toFixed(1); 
+                // until a better solution is found (they ovveride values from payload manager)
+                //zeroFuelWeightCell = (parseFloat(fmc.simbrief.estZfw) / 1000).toFixed(1);
+                //grossWeightCell = ((parseFloat(zeroFuelWeightCell) + (parseFloat(blockFuelCell)))).toFixed(1); 
                 reservesCell = ((parseFloat(fmc.simbrief.finResFuel) + (parseFloat(fmc.simbrief.altnFuel))) / 1000).toFixed(1);                
             } else {
                 store.dataLink = "REQUEST";

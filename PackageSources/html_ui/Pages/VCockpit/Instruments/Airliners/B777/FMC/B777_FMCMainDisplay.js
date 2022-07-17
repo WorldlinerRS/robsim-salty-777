@@ -1344,13 +1344,73 @@ class FMCMainDisplay extends BaseAirliners {
         return false;
     }
     updateTakeOffTrim() {
-        let d = (this.zeroFuelWeightMassCenter - 13) / (33 - 13);
-        d = Math.min(Math.max(d, -0.5), 1);
-        let dW = (this.getWeight(true) - 400) / (800 - 400);
-        dW = Math.min(Math.max(dW, 0), 1);
-        let minTrim = 3.5 * dW + 1.5 * (1 - dW);
-        let maxTrim = 8.6 * dW + 4.3 * (1 - dW);
-        this.takeOffTrim = minTrim * d + maxTrim * (1 - d);
+        let grossWeightTrim = [340, 400, 450, 500, 550, 600, 650, 700, 750, 780];
+        let cgTrim = [14.0, 19.0, 24.0, 29.0, 34.0, 39.0, 44.0];
+        let flaps5TrimTable = [
+            [2.75, 2.35, 1.96, 1.57, 1.18, 0.79, 0.41],
+            [4.22, 3.51, 2.73, 2.07, 1.71, 1.29, 0.88],
+            [5.45, 4.38, 3.38, 2.59, 2.15, 1.71, 1.27],
+            [6.74, 5.46, 4.20, 3.02, 2.49, 1.97, 1.45],
+            [7.42, 5.99, 4.72, 3.45, 2.68, 2.13, 1.58],
+            [8.11, 6.55, 5.20, 3.75, 2.91, 2.30, 1.68],
+            [8.55, 7.01, 5.59, 4.11, 3.11, 2.41, 1.83],
+            [8.76, 7.28, 5.86, 4.40, 3.30, 2.53, 1.88],
+            [8.98, 7.63, 6.24, 4.80, 3.44, 2.60, 1.93],
+            [9.09, 7.88, 6.53, 5.05, 3.63, 2.68, 2.00]
+        ];
+        let flaps15TrimTable = [
+            [2.64, 2.24, 1.84, 1.60, 1.35, 1.10, 0.84],
+            [3.88, 3.28, 2.57, 2.08, 1.75, 1.36, 1.03],
+            [4.90, 3.88, 3.18, 2.53, 2.08, 1.63, 1.19],
+            [6.13, 4.75, 3.73, 2.88, 2.37, 1.91, 1.34],
+            [7.38, 5.64, 4.38, 3.45, 2.65, 2.13, 1.50],
+            [8.53, 6.72, 5.36, 4.01, 3.02, 2.39, 1.82],
+            [8.86, 7.11, 5.76, 4.32, 3.25, 2.50, 1.93],
+            [9.23, 7.53, 6.15, 4.72, 3.31, 2.57, 2.00],
+            [9.80, 8.07, 6.41, 4.93, 3.38, 2.63, 2.12],
+            [10.35, 8.58, 6.76, 5.15, 3.54, 2.71, 2.25]
+        ];
+        let flaps20TrimTable = [
+            [2.70, 2.48, 2.25, 1.93, 1.60, 1.40, 1.20],
+            [3.97, 3.52, 2.92, 2.38, 2.07, 1.69, 1.30],
+            [5.48, 4.38, 3.40, 2.76, 2.30, 1.89, 1.38],
+            [6.85, 5.46, 4.12, 3.32, 2.62, 2.03, 1.45],
+            [8.21, 6.65, 5.15, 4.01, 2.88, 2.23, 1.58],
+            [9.41, 7.84, 6.17, 4.68, 3.30, 2.48, 1.78],
+            [10.10, 8.44, 6.78, 5.16, 3.61, 2.63, 1.93],
+            [10.78, 8.98, 7.28, 5.57, 4.03, 2.79, 2.13],
+            [11.13, 9.18, 7.42, 5.78, 4.18, 2.84, 2.18],
+            [11.33, 9.35, 7.55, 5.94, 4.34, 2.91, 2.20]
+        ];
+
+        const interpolate = (xarr, yarr, xpoint) => {
+            const	xa = [...xarr].reverse().find(x => x<=xpoint),
+                    xb = xarr.find(x => x>= xpoint),      
+                    ya = yarr[xarr.indexOf(xa)],      
+                    yb =yarr[xarr.indexOf(xb)]  
+            return yarr[xarr.indexOf(xpoint)] || ya+(xpoint-xa)*(yb-ya)/(xb-xa)
+        }
+
+        var cellSelector = 0;
+        for (let i = 0; i < grossWeightTrim.length; i++) {
+            if (grossWeightTrim[i] >= (this.getWeight(true)/1000)){
+                cellSelector = i + 1;
+                break;
+            }  
+        }
+        
+        switch(this.getTakeOffFlap()) {
+            case 5:
+                this.takeOffTrim = interpolate(cgTrim, flaps5TrimTable[cellSelector], this.zeroFuelWeightMassCenter);
+                break;
+            case 15:
+                this.takeOffTrim = interpolate(cgTrim, flaps15TrimTable[cellSelector], this.zeroFuelWeightMassCenter);
+                break;
+            case 20:
+                this.takeOffTrim = interpolate(cgTrim, flaps20TrimTable[cellSelector], this.zeroFuelWeightMassCenter);
+                break;
+        }
+ 
     }
     getTakeOffFlap() {
         return this._takeOffFlap;

@@ -213,8 +213,8 @@ var B777_LowerEICAS_Fuel;
             return (SimVar.GetSimVarValue("FUELSYSTEM TANK QUANTITY:" + _index, "gallons") * factor);
         }
         fuelPreselected(){
-            let isRefueling = SimVar.GetSimVarValue("L:747_FUELING_STARTED_BY_USR", "Bool");
-            let preselectedFuelQty = SimVar.GetSimVarValue("L:747_FUEL_DESIRED", "Number");
+            let isRefueling = SimVar.GetSimVarValue("L:777_FUELING_STARTED_BY_USR", "Bool");
+            let preselectedFuelQty = SimVar.GetSimVarValue("L:777_FUEL_DESIRED", "Number");
             this.querySelector("#FuelPreselectValue").textContent = (preselectedFuelQty / 1000).toFixed(1);
             if (isRefueling == 1) {
                 this.querySelector("#FuelPreselect").setAttribute("style", "opacity: 100;");
