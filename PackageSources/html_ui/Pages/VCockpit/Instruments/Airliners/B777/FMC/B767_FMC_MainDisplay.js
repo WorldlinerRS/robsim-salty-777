@@ -1,4 +1,4 @@
-class B767_FMC_MainDisplay extends Boeing_FMC {
+class B777_FMC_MainDisplay extends Boeing_FMC {
     constructor() {
         super(...arguments);
         this.activeSystem = "FMC";
