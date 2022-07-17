@@ -1019,7 +1019,7 @@
 
     <Component ID="Wipers_Ext">
       <UseTemplate Name="ASOBO_HANDLING_Wipers_Template">
-        <CIRCUIT_ID_WIPERS>81</CIRCUIT_ID_WIPERS>
+        <CIRCUIT_ID_WIPERS>83</CIRCUIT_ID_WIPERS>
       </UseTemplate>
     </Component>
 
@@ -1963,7 +1963,7 @@
       <UseTemplate Name="ASOBO_HANDLING_Knob_Wipers_Template">
         <NODE_ID>SAFETY_Knob_Wipers</NODE_ID>
         <ANIM_NAME>SAFETY_Knob_Wipers</ANIM_NAME>
-        <CIRCUIT_ID_WIPERS>81</CIRCUIT_ID_WIPERS>
+        <CIRCUIT_ID_WIPERS>83</CIRCUIT_ID_WIPERS>
         <OFF_INT_LOW_HIGH>True</OFF_INT_LOW_HIGH>
       </UseTemplate>
 
@@ -2033,8 +2033,8 @@
           <DefaultTemplateParameters>
             <IS_AIRLINER>True</IS_AIRLINER>
             <PRESS_WARNING_THRESHOLD_PSI>2600</PRESS_WARNING_THRESHOLD_PSI>
-            <SEQ1_FAILURE>(A:CIRCUIT ON:80, Bool)</SEQ1_FAILURE>
-            <SEQ2_FAILURE>(A:CIRCUIT ON:80, Bool)</SEQ2_FAILURE>
+            <SEQ1_FAILURE>(A:CIRCUIT ON:86, Bool)</SEQ1_FAILURE>
+            <SEQ2_FAILURE>(A:CIRCUIT ON:87, Bool)</SEQ2_FAILURE>
           </DefaultTemplateParameters>
           <UseTemplate Name="ASOBO_ENGINE_Switch_Hydraulic_Template">
             <NODE_ID>push_ovhd_hyd_pump_switch_01</NODE_ID>
@@ -2053,7 +2053,7 @@
           <DefaultTemplateParameters>
             <EMISSIVE_DRIVES_VISIBILITY>True</EMISSIVE_DRIVES_VISIBILITY>
             <PRESSURE_THRESHOLD_PSI>2600</PRESSURE_THRESHOLD_PSI>
-            <FAILURE>(A:CIRCUIT ON:84, Bool)</FAILURE>
+            <FAILURE>(A:CIRCUIT ON:86, Bool)</FAILURE>
           </DefaultTemplateParameters>
           <UseTemplate Name="ASOBO_SAFETY_Indicator_HydraulicsPressure_Template">
             <!--777 INOP-->
@@ -2180,7 +2180,7 @@
         </DefaultTemplateParameters>
         <OverrideTemplateParameters>
           <SEQ1_CODE_DRIVES_DOWN_STATE>True</SEQ1_CODE_DRIVES_DOWN_STATE>
-          <SEQ2_FAILURE>(A:CIRCUIT ON:84, Bool)</SEQ2_FAILURE>
+          <SEQ2_FAILURE>(A:CIRCUIT ON:86, Bool)</SEQ2_FAILURE>
         </OverrideTemplateParameters>
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
           <NODE_ID>push_ovhd_fuel_xfeed_01</NODE_ID>
@@ -2273,7 +2273,7 @@
           <COVER_ANIM_NAME>push_ovhd_start_fuel_jettison_nozzle_l_cover</COVER_ANIM_NAME>
           <REVERSE_SEQ/>
           <PUSH_TYPE>BOEING</PUSH_TYPE>
-          <ID>8</ID>
+          <ID>7</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_L_JETTISON_TURN_OFF</ON_TOOLTIP>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
@@ -2286,7 +2286,7 @@
           <COVER_ANIM_NAME>push_ovhd_start_fuel_jettison_nozzle_r_cover</COVER_ANIM_NAME>
           <REVERSE_SEQ/>
           <PUSH_TYPE>BOEING</PUSH_TYPE>
-          <ID>9</ID>
+          <ID>8</ID>
           <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_ON</OFF_TOOLTIP>
           <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_PUMP_R_JETTISON_TURN_OFF</ON_TOOLTIP>
           <SEQ1_CODE_DRIVES_DOWN_STATE>False</SEQ1_CODE_DRIVES_DOWN_STATE>
@@ -2301,8 +2301,8 @@
         <UseTemplate Name="ASOBO_FUEL_Push_Valve_Template">
 				  <NODE_ID>O11_004_BUT</NODE_ID>
           <ANIM_NAME>O11_004_BUT</ANIM_NAME>
-				  <ID>6</ID>
-				  <ID2>7</ID2>
+				  <ID>5</ID>
+				  <ID2>6</ID2>
 				  <PUSH_TYPE>BOEING</PUSH_TYPE>
 				  <OFF_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_JETTISON_ARM</OFF_TOOLTIP>
 				  <ON_TOOLTIP>COCKPIT.TOOLTIPS.FUEL_JETTISON_DISARM</ON_TOOLTIP>
@@ -2705,7 +2705,7 @@
         <SIMVAR_POWER_SETTING>LIGHT PANEL POWER SETTING:2</SIMVAR_POWER_SETTING>
         <NO_POTENTIOMETER_FACTOR>True</NO_POTENTIOMETER_FACTOR>
         <NO_SIMVAR_LIGHT>True</NO_SIMVAR_LIGHT>
-        <CIRCUIT_ID>75</CIRCUIT_ID>
+        <CIRCUIT_ID>77</CIRCUIT_ID>
         <EMISSIVE_CODE_ACTIVE_DRIVES_VISIBILITY>True</EMISSIVE_CODE_ACTIVE_DRIVES_VISIBILITY>
         <SEQ1_EMISSIVE_DRIVES_VISIBILITY>False</SEQ1_EMISSIVE_DRIVES_VISIBILITY>
       </DefaultTemplateParameters>
@@ -6179,9 +6179,9 @@
 						(A:GEAR HANDLE POSITION, Bool) (A:GEAR POSITION, percent) 99.9 &gt; and (&gt;O:_ShouldBeConnectedToPowerGrid)
 						(O:_ShouldBeConnectedToPowerGrid) sp0
 						1 (&gt;A:BUS LOOKUP INDEX, Number)
-						(A:CIRCUIT CONNECTION ON:56, Bool) l0 != if{ 56 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
-						(A:CIRCUIT CONNECTION ON:57, Bool) l0 != if{ 57 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
-						(A:CIRCUIT CONNECTION ON:62, Bool) l0 != if{ 62 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
+						(A:CIRCUIT CONNECTION ON:58, Bool) l0 != if{ 58 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
+						(A:CIRCUIT CONNECTION ON:59, Bool) l0 != if{ 59 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
+						(A:CIRCUIT CONNECTION ON:64, Bool) l0 != if{ 64 1 (&gt;K:2:ELECTRICAL_BUS_TO_CIRCUIT_CONNECTION_TOGGLE) }
           </UPDATE_CODE>
         </UseTemplate>
         <UseTemplate Name="ASOBO_AIRLINER_Update_Set_Potentiometer_On_Takeoff">
