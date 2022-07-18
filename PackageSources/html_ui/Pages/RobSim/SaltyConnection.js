@@ -423,15 +423,15 @@ const insertPerfUplink = (fmc, updateView) => {
     } else if (fmc.units == "lbs") {
         units = true;
     }
-    const zfw = (fmc.simbrief.estZfw / 1000).toString();
+    //const zfw = (fmc.simbrief.estZfw / 1000).toString();
     const crz = fmc.simbrief.cruiseAltitude;
     const costIndex = fmc.simbrief.costIndex.toString();
     const resFuel = (parseFloat(fmc.simbrief.finResFuel) + parseFloat(fmc.simbrief.altnFuel)).toFixed(1) / 1000;
-    fmc.trySetZeroFuelWeightZFWCG(zfw, units, (result) => {
-        if (!result) {
-            fmc.showErrorMessage("INVALID PERF INIT UPLINK");
-        }
-    });
+    // fmc.trySetZeroFuelWeightZFWCG(zfw, units, (result) => {
+    //     if (!result) {
+    //         fmc.showErrorMessage("INVALID PERF INIT UPLINK");
+    //     }
+    // });
     fmc.tryUpdateCostIndex(costIndex, 9999, (result) => {
         if (!result) {
             fmc.showErrorMessage("INVALID PERF INIT UPLINK");

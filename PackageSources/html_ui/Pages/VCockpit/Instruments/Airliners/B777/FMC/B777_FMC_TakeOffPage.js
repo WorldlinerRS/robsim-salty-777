@@ -83,6 +83,7 @@ class FMCTakeOffPage {
             let value = fmc.inOut;
             fmc.clearUserInput();
             if (fmc.setTakeOffFlap(value)) {
+                fmc.updateTakeOffTrim();
                 FMCTakeOffPage.ShowPage1(fmc);
             }
         };
@@ -116,8 +117,9 @@ class FMCTakeOffPage {
             });
         };
         let trimCell = "";
+
         if (isFinite(fmc.takeOffTrim)) {
-            trimCell = fmc.takeOffTrim.toFixed(1);
+            trimCell = fmc.takeOffTrim.toFixed(2)+"\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
         }
         let taxiBurn = 2;
         let grossWeight;
@@ -137,8 +139,8 @@ class FMCTakeOffPage {
             [flapsCell, v1],
             ["\xa0THRUST", "VR"],
             [thrustCell, vR],
-            ["\xa0CG", "V2"],
-            [cgCell, v2],
+            ["\xa0CG", "V2", "TRIM\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"],
+            [cgCell, v2, trimCell],
             ["\xa0RWY/POS[color]inop", "TOGW", "\xa0\xa0GR\xa0WT"],
             [runwayCell, takeoffGrossWeightCell, grossWeightCell],
             ["\xa0REQUEST[color]inop", "REF SPDS[color]inop"],

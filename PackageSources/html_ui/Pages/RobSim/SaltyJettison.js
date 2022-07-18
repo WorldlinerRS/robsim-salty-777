@@ -34,7 +34,7 @@ class SaltyJettison {
                     this.mlwFuel = this.currentFuelLevel - (totalWgt - this.MAX_LANDING_WGT_PLUS_3_MG);
                 }
 
-                SimVar.SetSimVarValue("L:747_FUEL_TO_REMAIN", "TYPE_FLOAT64", this.mlwFuel);
+                SimVar.SetSimVarValue("L:777_FUEL_TO_REMAIN", "TYPE_FLOAT64", this.mlwFuel);
 
                 if (this.currentFuelLevel <= this.mlwFuel) {
                     return false;
@@ -97,8 +97,8 @@ class SaltyJettison {
     update() {
         this.gallonToMegagrams = SimVar.GetSimVarValue("FUEL WEIGHT PER GALLON", "kilogram") * 0.001;
 
-        this.nozzleValveOpenL = SimVar.GetSimVarValue("A:FUELSYSTEM VALVE SWITCH:8", "Enum") > 0;
-        this.nozzleValveOpenR = SimVar.GetSimVarValue("A:FUELSYSTEM VALVE SWITCH:9", "Enum") > 0;
+        this.nozzleValveOpenL = SimVar.GetSimVarValue("A:FUELSYSTEM VALVE SWITCH:7", "Enum") > 0;
+        this.nozzleValveOpenR = SimVar.GetSimVarValue("A:FUELSYSTEM VALVE SWITCH:8", "Enum") > 0;
 
         this.currentFuelLevel = SimVar.GetSimVarValue("FUEL TOTAL QUANTITY", "gallons") * this.gallonToMegagrams;
 
