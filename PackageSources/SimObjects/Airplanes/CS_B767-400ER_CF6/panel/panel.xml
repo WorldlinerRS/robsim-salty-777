@@ -427,11 +427,11 @@
 		  <Condition>
 		  <And>
 			<Equal>
-			  <Simvar name="FUELSYSTEM VALVE SWITCH:8" unit="Bool"/>
+			  <Simvar name="FUELSYSTEM VALVE SWITCH:7" unit="Bool"/>
 			  <Constant>1</Constant>
 			</Equal>
 			<Equal>
-			  <Simvar name="FUELSYSTEM VALVE SWITCH:9" unit="Bool"/>
+			  <Simvar name="FUELSYSTEM VALVE SWITCH:8" unit="Bool"/>
 			  <Constant>1</Constant>
 			</Equal>
 		  </And>
