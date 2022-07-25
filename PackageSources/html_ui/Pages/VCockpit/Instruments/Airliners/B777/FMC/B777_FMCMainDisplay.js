@@ -1399,15 +1399,16 @@ class FMCMainDisplay extends BaseAirliners {
             }  
         }
         
+        // current workaround fro flight model by adding 6 to trim
         switch(this.getTakeOffFlap()) {
             case 5:
-                this.takeOffTrim = interpolate(cgTrim, flaps5TrimTable[cellSelector], this.zeroFuelWeightMassCenter);
+                this.takeOffTrim = interpolate(cgTrim, flaps5TrimTable[cellSelector], this.zeroFuelWeightMassCenter) + 6;
                 break;
             case 15:
-                this.takeOffTrim = interpolate(cgTrim, flaps15TrimTable[cellSelector], this.zeroFuelWeightMassCenter);
+                this.takeOffTrim = interpolate(cgTrim, flaps15TrimTable[cellSelector], this.zeroFuelWeightMassCenter) + 6;
                 break;
             case 20:
-                this.takeOffTrim = interpolate(cgTrim, flaps20TrimTable[cellSelector], this.zeroFuelWeightMassCenter);
+                this.takeOffTrim = interpolate(cgTrim, flaps20TrimTable[cellSelector], this.zeroFuelWeightMassCenter) + 6;
                 break;
         }
  
