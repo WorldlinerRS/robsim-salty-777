@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+      "target": "ESNext",
+      "baseUrl": ".",
+      "typeRoots": ["../typings", "../node_modules/@types"],
+      "moduleResolution": "node",
+      "paths": {
+          "@instruments/common/*": ["./instruments/src/Common/*"]
+      }
+  }
+}
