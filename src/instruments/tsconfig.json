@@ -1,0 +1,15 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "module": "esnext",
+        "esModuleInterop": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "strict": true
+    },
+    "include": [
+        "src/**/*",
+        "../../typings/**/*.d.ts"
+  ]
+}

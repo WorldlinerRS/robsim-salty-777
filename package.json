@@ -9,8 +9,13 @@
     "lint-fix": "npm run lint -- --fix",
     "test": "jest",
     "prettier": "prettier --write **/*.json **/*.yml src/instruments/**/*.css",
-    "build": "node scripts/build.js",
-    "build:rollup": "npx rollup -c"
+    "build:layout": "node scripts/build.js",
+    "build:instruments": "rollup -c src/instruments/rollup.config.js",
+    "build:pfd": "rollup -c src/instruments/src/PFD/rollup.config.js",
+    "build:msfs-sdk": "cd msfs-avionics-mirror/src/sdk && npm i && npm run build",
+    "build": "npm run build:msfs-sdk && npm run build:pfd && npm run build:instruments && npm run build:layout",
+    "dev": "rollup -wc src/instruments/rollup.config.js",
+    "dev-pfd": "rollup -wc src/instruments/src/PFD/rollup.config.js"
   },
   "lint-staged": {
     "*.{js,mjs,jsx}": "eslint --cache --fix",
@@ -20,7 +25,7 @@
     "type": "git",
     "url": "git+https://github.com/RobSimulation/robsim-salty-777.git"
   },
-  "author": "Robin Breitfeld",
+  "author": "RobSimulation",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/RobSimulation/robsim-salty-777/issues"
