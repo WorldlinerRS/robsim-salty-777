@@ -40,14 +40,14 @@ function getInstrumentsToCompile() {
 function getTemplatePlugin({ name, config, imports = [], isInstrument }) {
     return template({
         name,
-        elementName: `robsim-salty-77rs-${name.toLowerCase()}`,
+        elementName: `robsim-salty-b77rs-${name.toLowerCase()}`,
         config,
         imports,
         elementName: `robsim-${name}`.toLowerCase(),
         getCssBundle() {
             return fs.readFileSync(`${TMPDIR}/${name}/bundle.css`).toString();
         },
-        outputDir: path.join(__dirname, "/../../PackageSources/html_ui/Pages/VCockpit/Instruments/ 77rs"),
+        outputDir: path.join(__dirname, "/../../PackageSources/html_ui/Pages/VCockpit/Instruments/B77rs"),
     });
     // eslint-disable-next-line no-else-return
 }

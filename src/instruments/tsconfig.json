@@ -1,12 +1,12 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
-        "module": "esnext",
-        "esModuleInterop": true,
-        "jsx": "react",
-        "moduleResolution": "node",
+        "target": "es2017", /* Specifies the ES2017 target, compatible with Coherent GT */
+        "module": "es2015", /* Ensures that modules are at least es2015 */
+        "strict": true, /* Enables strict type checking, highly recommended but optional */
+        "moduleResolution": "node", /* Enables compatibility with MSFS SDK bare global imports */
         "skipLibCheck": true,
-        "strict": true
+        "jsx": "react" /* Required for FSComponent framework JSX */
     },
     "include": [
         "src/**/*",

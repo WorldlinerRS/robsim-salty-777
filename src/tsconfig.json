@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-      "target": "ESNext",
-      "baseUrl": ".",
-      "typeRoots": ["../typings", "../node_modules/@types"],
-      "moduleResolution": "node",
-      "paths": {
-          "@instruments/common/*": ["./instruments/src/Common/*"]
-      }
+    "incremental": true, /* Enables incremental builds */
+    "target": "es2017", /* Specifies the ES2017 target, compatible with Coherent GT */
+    "module": "es2015", /* Ensures that modules are at least es2015 */
+    "moduleResolution": "node", /* Enables compatibility with MSFS SDK bare global imports */
+    "baseUrl": ".",
+    "typeRoots": ["../typings", "../node_modules/@types"],
+    "paths": {
+        "@instruments/common/*": ["./instruments/src/Common/*"]
+    }
   }
 }

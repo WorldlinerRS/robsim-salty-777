@@ -58,6 +58,7 @@
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "eslint": "^8.20.0",
     "msfssdk": "file:msfs-avionics-mirror/src/sdk/build",
+    "react-msfs": "^0.2.0",
     "rollup": "^2.77.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-copy": "^3.4.0",
