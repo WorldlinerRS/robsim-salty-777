@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
-name: dev-release
+name: release
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     tags:
-    - 'dev'
+    - 'v*'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -16,9 +16,10 @@ jobs:
     if: github.repository_owner == 'RobSimulation'
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       ROBSIM_PRODUCTION_BUILD: 1
-      MASTER_PRE_RELEASE_TAG: dev
       MASTER_ZIP_NAME: masterrob94-salty-777.zip
       BUILD_DIR_NAME: dev
 
@@ -26,12 +27,14 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Set BUILT_DATE_TIME
         run: echo "BUILT_DATE_TIME=$(date -u -Iseconds)" >> $GITHUB_ENV
       - name: Build RobSim-Salty-777
         uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 16
       - run: |
           npm i
           npm run build
@@ -41,20 +44,14 @@ jobs:
           mkdir ./${{ env.BUILD_DIR_NAME }}
           cd ./Packages
           zip -r ../${{ env.BUILD_DIR_NAME }}/${{ env.MASTER_ZIP_NAME }} ./masterrob94-salty-777
-      - uses: dev-drprasad/delete-tag-and-release@v0.2.0
-        with:
-          delete_release: true # default: false
-          tag_name: ${{ env.MASTER_PRE_RELEASE_TAG }} # tag name to delete
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.MASTER_PRE_RELEASE_TAG }}
-          release_name: ${{ env.MASTER_PRE_RELEASE_TAG }}
+          tag_name: ${{ env.RELEASE_VERSION }}
+          release_name: ${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
