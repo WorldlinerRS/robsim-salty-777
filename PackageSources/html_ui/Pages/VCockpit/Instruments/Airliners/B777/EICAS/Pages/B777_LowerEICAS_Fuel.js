@@ -3,6 +3,7 @@ var B777_LowerEICAS_Fuel;
     class Display extends Airliners.EICASTemplateElement {
         constructor() {
             super();
+            this.allFuelComponents = null;
             this.allTextValueComponents = new Array();
             this.allFuelComponents = new Array();
             this.gallonToMegagrams = 0;

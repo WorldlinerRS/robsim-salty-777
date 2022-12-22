@@ -5,7 +5,9 @@ var B777_LowerEICAS_Engine;
             super();
             this.isInitialised = false;
             this.allEngineInfos = new Array();
-            this.allGaugeDuals = new Array();
+            this.primaryGauges = new Array();
+            this.secondaryGauges = new Array();
+            this.engineButtomVisible = true;
         }
         get templateID() { return "B777LowerEICASEngineTemplate"; }
         connectedCallback() {
@@ -16,60 +18,35 @@ var B777_LowerEICAS_Engine;
             var stateParent = this.querySelector("#EngineStates");
             var n2Parent = this.querySelector("#N2Gauges");
             var ffParent = this.querySelector("#FFGauges");
-            this.allEngineInfos.push(new EngineInfo(this.eicas, 1, stateParent, n2Parent, ffParent));
-            this.allEngineInfos.push(new EngineInfo(this.eicas, 2, stateParent, n2Parent, ffParent));
-            this.createOilPGauges();
-            this.createOilTGauges();
-            this.createOilQGauges();
-            this.createVIBGauges();
+            var oilPParent = this.querySelector("#OilPGauges");
+            var oilTParent = this.querySelector("#OilTGauges");
+            var oilQParent = this.querySelector("#OilQGauges");
+            var vibParent = this.querySelector("#VIBGauges");
+            this.allEngineInfos.push(new EngineInfo(this.eicas, 1, stateParent, n2Parent, ffParent, oilPParent, oilTParent, oilQParent, vibParent));
+            this.allEngineInfos.push(new EngineInfo(this.eicas, 2, stateParent, n2Parent, ffParent, oilPParent, oilTParent, oilQParent, vibParent));
+
+            var gaugeTemplate = this.querySelector("#GaugeTemplate");
+            if (gaugeTemplate != null) {
+                if (this.primaryGauges != null) {
+                    this.primaryGauges.push(new B777_EICAS_Gauge_N2(1, this.querySelector("#N2_1_GAUGE"), gaugeTemplate, false));
+                    this.primaryGauges.push(new B777_EICAS_Gauge_N2(2, this.querySelector("#N2_2_GAUGE"), gaugeTemplate, false));
+                }
+                if (this.secondaryGauges != null) {
+                    this.secondaryGauges.push(new B777_EICAS_Gauge_OIL_P(oilPParent, 1 , true));
+                    this.secondaryGauges.push(new B777_EICAS_Gauge_OIL_P(oilPParent, 2 , true));
+                    this.secondaryGauges.push(new B777_EICAS_Gauge_OIL_T(oilTParent, 1 , true));
+                    this.secondaryGauges.push(new B777_EICAS_Gauge_OIL_T(oilTParent, 2 , true));
+                    this.secondaryGauges.push(new B777_EICAS_Gauge_VIB(vibParent, 1 , true));
+                    this.secondaryGauges.push(new B777_EICAS_Gauge_VIB(vibParent, 2 , true));
+                }
+                gaugeTemplate.remove();
+            }
+
+            this.engineBottomParent = this.querySelector("#EngineBottom");
+            diffAndSetAttribute(this.engineBottomParent, 'visibility', (this.engineButtomVisible) ? 'visible' : 'hidden');
             this.isInitialised = true;
         }
-        createOilPGauges() {
-            var definition = new B777_EICAS_Common.GaugeDualDefinition();
-            definition.maxValue = 500;
-            definition.barTop = 6;
-            definition.barHeight = 88;
-            var parent = this.querySelector("#OilPGauges");
-            definition.getValueLeft = this.allEngineInfos[0].getOilPValue.bind(this.allEngineInfos[0]);
-            definition.getValueRight = this.allEngineInfos[1].getOilPValue.bind(this.allEngineInfos[1]);
-            this.createGaugeDual(parent, definition);
-        }
-        createOilTGauges() {
-            var definition = new B777_EICAS_Common.GaugeDualDefinition();
-            definition.maxValue = 200;
-            definition.barTop = 6;
-            definition.barHeight = 88;
-            var parent = this.querySelector("#OilTGauges");
-            definition.getValueLeft = this.allEngineInfos[0].getOilTValue.bind(this.allEngineInfos[0]);
-            definition.getValueRight = this.allEngineInfos[1].getOilTValue.bind(this.allEngineInfos[1]);
-            this.createGaugeDual(parent, definition);
-        }
-        createOilQGauges() {
-            var definition = new B777_EICAS_Common.GaugeDualDefinition();
-            definition.barHeight = 0;
-            var parent = this.querySelector("#OilQGauges");
-            definition.getValueLeft = this.allEngineInfos[0].getOilQValue.bind(this.allEngineInfos[0]);
-            definition.getValueRight = this.allEngineInfos[1].getOilQValue.bind(this.allEngineInfos[1]);
-            this.createGaugeDual(parent, definition);
-        }
-        createVIBGauges() {
-            var definition = new B777_EICAS_Common.GaugeDualDefinition();
-            definition.useDoubleDisplay = true;
-            definition.valueTextPrecision = 1;
-            definition.maxValue = 4;
-            definition.barTop = 6;
-            definition.barHeight = 88;
-            var parent = this.querySelector("#VIBGauges");
-            definition.getValueLeft = this.allEngineInfos[0].getVIBValue.bind(this.allEngineInfos[0]);
-            definition.getValueRight = this.allEngineInfos[1].getVIBValue.bind(this.allEngineInfos[1]);
-            this.createGaugeDual(parent, definition);
-        }
-        createGaugeDual(_parent, _definition) {
-            var gauge = window.document.createElement("b777-eicas-gauge-dual");
-            gauge.init(_definition);
-            _parent.appendChild(gauge);
-            this.allGaugeDuals.push(gauge);
-        }
+        
         update(_deltaTime) {
             if (!this.isInitialised) {
                 return;
@@ -79,16 +56,32 @@ var B777_LowerEICAS_Engine;
                     this.allEngineInfos[i].refresh(_deltaTime);
                 }
             }
-            if (this.allGaugeDuals != null) {
-                for (var i = 0; i < this.allGaugeDuals.length; ++i) {
-                    this.allGaugeDuals[i].refresh();
+            if (this.primaryGauges != null) {
+                for (var i = 0; i < this.primaryGauges.length; ++i) {
+                    this.primaryGauges[i].refresh();
                 }
+            }
+            if (this.secondaryGauges != null) {
+                for (var i = 0; i < this.secondaryGauges.length; ++i) {
+                    this.secondaryGauges[i].refresh();
+                }
+            }
+        }
+
+        onEvent(_event) {
+            switch (_event) {
+                case 'ENG':
+                    this.engineButtomVisible = !this.engineButtomVisible;
+                    for (let i = 0; i < this.engineButtomVisible.length; i++) {
+                        diffAndSetAttribute(this.engineButtomVisible[i], 'visibility', (this.engineButtomVisible) ? 'visible' : 'hidden');
+                    }
+                    break;
             }
         }
     }
     B777_LowerEICAS_Engine.Display = Display;
     class EngineInfo {
-        constructor(_eicas, _engineId, _engineStateParent, _n2Parent, _ffParent) {
+        constructor(_eicas, _engineId, _engineStateParent, _n2Parent, _ffParent, _oilPParent, _oilTParent, _oilQParent, _vibParent) {
             this.eicas = _eicas;
             this.engineId = _engineId;
             if (_engineStateParent != null) {
@@ -98,11 +91,31 @@ var B777_LowerEICAS_Engine;
             this.n2Gauge.init(this.createN2GaugeDefinition());
             this.ffGauge = window.document.createElement("b777-eicas-gauge");
             this.ffGauge.init(this.createFFGaugeDefinition());
+            this.oilPGauge = window.document.createElement("b777-eicas-gauge");
+            this.oilPGauge.init(this.createOilPGaugeDefinition());
+            this.oilTGauge = window.document.createElement("b777-eicas-gauge");
+            this.oilTGauge.init(this.createOilTGaugeDefinition());
+            this.oilQGauge = window.document.createElement("b777-eicas-gauge");
+            this.oilQGauge.init(this.createOilQGaugeDefinition());
+            this.vibGauge = window.document.createElement("b777-eicas-gauge");
+            this.vibGauge.init(this.createVIBGaugeDefinition());
             if (_n2Parent != null) {
                 _n2Parent.appendChild(this.n2Gauge);
             }
             if (_ffParent != null) {
                 _ffParent.appendChild(this.ffGauge);
+            }
+            if (_oilPParent != null) {
+                _oilPParent.appendChild(this.oilPGauge);
+            }
+            if (_oilTParent != null) {
+                _oilTParent.appendChild(this.oilTGauge);
+            }
+            if (_oilQParent != null) {
+                _oilQParent.appendChild(this.oilQGauge);
+            }
+            if (_vibParent != null) {
+                _vibParent.appendChild(this.vibGauge);
             }
         }
         createN2GaugeDefinition() {
@@ -120,6 +133,42 @@ var B777_LowerEICAS_Engine;
         createFFGaugeDefinition() {
             var definition = new B777_EICAS_Common.GaugeDefinition();
             definition.getValue = this.getFFValue.bind(this);
+            definition.maxValue = 1000;
+            definition.valueBoxWidth = 55;
+            definition.valueTextPrecision = 0;
+            definition.type = 3;
+            return definition;
+        }
+        createOilPGaugeDefinition() {
+            var definition = new B777_EICAS_Common.GaugeDefinition();
+            definition.getValue = this.getOilPValue.bind(this);
+            definition.maxValue = 1000;
+            definition.valueBoxWidth = 55;
+            definition.valueTextPrecision = 0;
+            definition.type = 3;
+            return definition;
+        }
+        createOilTGaugeDefinition() {
+            var definition = new B777_EICAS_Common.GaugeDefinition();
+            definition.getValue = this.getOilTValue.bind(this);
+            definition.maxValue = 1000;
+            definition.valueBoxWidth = 55;
+            definition.valueTextPrecision = 0;
+            definition.type = 3;
+            return definition;
+        }
+        createOilQGaugeDefinition() {
+            var definition = new B777_EICAS_Common.GaugeDefinition();
+            definition.getValue = this.getOilQValue.bind(this);
+            definition.maxValue = 1000;
+            definition.valueBoxWidth = 55;
+            definition.valueTextPrecision = 0;
+            definition.type = 3;
+            return definition;
+        }
+        createVIBGaugeDefinition() {
+            var definition = new B777_EICAS_Common.GaugeDefinition();
+            definition.getValue = this.getVIBValue.bind(this);
             definition.maxValue = 1000;
             definition.valueBoxWidth = 55;
             definition.valueTextPrecision = 0;
@@ -174,23 +223,132 @@ var B777_LowerEICAS_Engine;
             if (this.ffGauge != null) {
                 this.ffGauge.refresh(false);
             }
+            if (this.oilPGauge != null) {
+                this.oilPGauge.refresh(false);
+            }
+            if (this.oilTGauge != null) {
+                this.oilTGauge.refresh(false);
+            }
+            if (this.oilQGauge != null) {
+                this.oilQGauge.refresh(false);
+            }
+            if (this.vibGauge != null) {
+                this.vibGauge.refresh(false);
+            }
         }
     }
-/* 
-    class B777_EICAS_Gauge_EGT extends B777_EICAS_CircleGauge {
+
+    class B777_EICAS_Gauge {
+    }
+    
+    class B777_EICAS_CircleGauge extends B777_EICAS_Gauge {
         constructor(_engineIndex, _root, _template, _hideIfN1IsZero) {
-            super(_engineIndex, _root, _template, _hideIfN1IsZero);
-            this._fraction = 0;
+            super();
+            this.engineIndex = 0;
+            this.currentValue = 0;
+            this.valueText = null;
+            this.fill = null;
+            this.predArc = null;
+            this.predArcRadius = 0;
+            this.fillPathD = "";
+            this.fillCenter = new Vec2();
+            this.fillRadius = 0;
+            this.defaultMarkerTransform = "";
+            this.whiteMarker = null;
+            this.redMarker = null;
+            this.throttleMarker = null;
+            this.orangeMarker = null;
+            this.greenMarker = null;
+            this.hideIfN1IsZero = false;
+            this.engineIndex = _engineIndex;
+            this.root = _root;
+            this.hideIfN1IsZero = _hideIfN1IsZero;
+            if ((this.root != null) && (_template != null)) {
+                this.root.appendChild(_template.cloneNode(true));
+                this.valueText = this.root.querySelector(".valueText");
+                this.fill = this.root.querySelector(".fill");
+                this.predArc = this.root.querySelector(".predArc");
+                this.whiteMarker = this.root.querySelector(".normalMarker");
+                this.throttleMarker = this.root.querySelector(".throttleMarker");
+                this.redMarker = this.root.querySelector(".dangerMarker");
+                this.orangeMarker = this.root.querySelector(".warningMarker");
+                this.greenMarker = this.root.querySelector(".greenMarker");
+                if (this.fill != null) {
+                    var fillPathDSplit = this.fill.getAttribute("d").split(" ");
+                    for (var i = 0; i < fillPathDSplit.length; i++) {
+                        if (this.fillRadius > 0) {
+                            if (fillPathDSplit[i].charAt(0) == 'L') {
+                                this.fillCenter.x = parseInt(fillPathDSplit[i].replace("L", ""));
+                                this.fillCenter.y = parseInt(fillPathDSplit[i + 1]);
+                            }
+                            this.fillPathD += " " + fillPathDSplit[i];
+                        }
+                        else if (fillPathDSplit[i].charAt(0) == 'A') {
+                            this.fillRadius = parseInt(fillPathDSplit[i].replace("A", ""));
+                            this.fillPathD = fillPathDSplit[i];
+                        }
+                    }
+                }
+                if (this.predArc != null) {
+                    var predArcPathDSplit = this.predArc.getAttribute("d").split(" ");
+                    for (var i = 0; i < predArcPathDSplit.length; i++) {
+                        if (predArcPathDSplit[i].charAt(0) == 'A') {
+                            this.predArcRadius = parseInt(predArcPathDSplit[i].replace("A", ""));
+                        }
+                    }
+                }
+                if (this.whiteMarker != null) {
+                    this.defaultMarkerTransform = this.whiteMarker.getAttribute("transform");
+                }
+                if (this.redMarker != null) {
+                    this.redMarker.setAttribute("transform", this.defaultMarkerTransform + " rotate(" + B777_EICAS_CircleGauge.MAX_ANGLE + ")");
+                }
+                if (this.orangeMarker != null) {
+                    diffAndSetStyle(this.orangeMarker, StyleProperty.display, 'none');
+                }
+                if (this.greenMarker != null) {
+                    diffAndSetStyle(this.greenMarker, StyleProperty.display, 'none');
+                }
+            }
+            this.refresh(0, true);
         }
-    
-        getCurrentValue() {
-            return SimVar.GetSimVarValue('ENG EXHAUST GAS TEMPERATURE:' + this.engineIndex, 'celsius');
+        update(_deltaTime) {
+            this.refresh(this.getCurrentValue());
         }
-    
-        valueToPercentage(_value) {
-            return (Utils.Clamp(_value, 0, 1000) * 0.1);
+        refresh(_value, _force = false) {
+            if ((_value != this.currentValue) || _force) {
+                this.currentValue = _value;
+                let hide = false;
+                if (this.hideIfN1IsZero && SimVar.GetSimVarValue("ENG N1 RPM:" + this.engineIndex, "percent") < 0.1) {
+                    this.currentValue = -1;
+                    hide = true;
+                }
+                if (this.valueText != null) {
+                    if (hide) {
+                        this.valueText.textContent = "";
+                    }
+                    else {
+                        this.valueText.textContent = this.currentValue.toFixed(1);
+                    }
+                }
+                var angle = Math.max((this.valueToPercentage(this.currentValue) * 0.01) * B777_EICAS_CircleGauge.MAX_ANGLE, 0.001);
+                
+                if (this.whiteMarker != null) {
+                    diffAndSetAttribute(this.whiteMarker, 'transform', this.defaultMarkerTransform + ' rotate(' + angle + ')');
+                }
+                if (this.fill != null) {
+                    var rad = angle * B777_EICAS_CircleGauge.DEG_TO_RAD;
+                    var x = (Math.cos(rad) * this.fillRadius) + this.fillCenter.x;
+                    var y = (Math.sin(rad) * this.fillRadius) + this.fillCenter.y;
+                    diffAndSetAttribute(this.fill, 'd', 'M' + x + ' ' + y + ' ' + this.fillPathD.replace('0 0 0', (angle <= 180) ? '0 0 0' : '0 1 0'));
+                }
+            }
         }
     }
+    
+    B777_EICAS_CircleGauge.MAX_ANGLE = 210;
+    B777_EICAS_CircleGauge.WARNING_ANGLE = 202;
+    B777_EICAS_CircleGauge.DEG_TO_RAD = (Math.PI / 180); 
     
     class B777_EICAS_Gauge_N2 extends B777_EICAS_CircleGauge {
         getCurrentValue() {
@@ -436,7 +594,7 @@ var B777_LowerEICAS_Engine;
     }
     
     B777_EICAS_Gauge_VIB.TOO_HIGH_VALUE = 4;
-    B777_EICAS_Gauge_VIB.MARKER_TOO_HIGH_LENGTH = 10; */
+    B777_EICAS_Gauge_VIB.MARKER_TOO_HIGH_LENGTH = 10;
 
 })(B777_LowerEICAS_Engine || (B777_LowerEICAS_Engine = {}));
 customElements.define("b777-lower-eicas-engine", B777_LowerEICAS_Engine.Display);

@@ -348,14 +348,6 @@ var B777_UpperEICAS;
             return 0;
         }
     }
-    class B777_EICAS_Gauge_N2 extends B777_EICAS_CircleGauge {
-        getCurrentValue() {
-            return SimVar.GetSimVarValue("ENG N2 RPM:" + this.engineIndex, "percent");
-        }
-        valueToPercentage(_value) {
-            return Utils.Clamp(_value, 0, 100);
-        }
-    }
     
     class AntiIceStatus {
         constructor(_element, _index) {

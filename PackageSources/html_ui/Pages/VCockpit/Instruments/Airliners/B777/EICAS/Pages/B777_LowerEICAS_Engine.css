@@ -1,16 +1,18 @@
 ﻿:root {
+  --eicasFill: #413d5d;
   --eicasWhite: white;
   --eicasBlack: black;
   --eicasGrey: #c8c8c8;
   --eicasBlue: cyan;
   --eicasGreen: lime;
-  --eicasOrange: #db7200;
+  --eicasOrange: rgb(255, 217, 0);
+  --eicasYellow: yellow;
   --eicasRed: red;
   --eicasMagenta: #D570FF; }
   :root div {
-    font-family: BoeingEFIS !important; }
+    font-family: "BoeingEFIS" !important; }
   :root text {
-    font-family: BoeingEFIS !important; }
+    font-family: "BoeingEFIS" !important; }
   :root div.gauges {
     position: absolute;
     left: 6%;
@@ -18,23 +20,23 @@
     height: 100%; }
   :root line.gaugeMarkerCurrent {
     stroke: var(--eicasWhite);
-    stroke-width: 3px;
+    stroke-width: 2px !important;
     fill: none; }
   :root line.gaugeMarkerManaged {
     stroke: var(--eicasMagenta);
-    stroke-width: 3px;
+    stroke-width: 2px !important;
     fill: none; }
   :root line.gaugeMarkerNormal {
-    stroke: var(--eicasGreen);
-    stroke-width: 3px;
+    stroke: lime !important;
+    stroke-width: 2px !important;
     fill: none; }
   :root line.gaugeMarkerWarning {
-    stroke: var(--eicasOrange);
-    stroke-width: 3px;
+    stroke: rgb(255, 196, 0);
+    stroke-width: 2px !important;
     fill: none; }
   :root line.gaugeMarkerDanger {
     stroke: var(--eicasRed);
-    stroke-width: 3px;
+    stroke-width: 2px !important;
     fill: none; }
 
 @font-face {
@@ -65,8 +67,7 @@ b777-eicas-gauge {
     fill: var(--eicasWhite);
     font-size: 26px;
     letter-spacing: -2px;
-    text-anchor: end;
-    alignment-baseline: central; }
+    text-anchor: end; }
   b777-eicas-gauge line {
     stroke-width: 3px; }
 
@@ -80,8 +81,7 @@ b777-eicas-gauge-dual {
     height: 100%; }
   b777-eicas-gauge-dual text.normal {
     fill: var(--eicasWhite);
-    font-size: 30px;
-    alignment-baseline: central; }
+    font-size: 30px; }
   b777-eicas-gauge-dual line.bar {
     stroke: var(--eicasGrey);
     stroke-width: 3px;
@@ -92,38 +92,97 @@ b777-eicas-gauge-dual {
     fill: none; }
 
 b777-lower-eicas-engine {
-  position: relative;
-  left: 3.5%;
-  width: 95.5%;
-  top: 4.25%;
-  height: 88%;
+  position: absolute;
+  left: 1%;
+  width: 99%;
+  top: 3%;
+  height: 97%;
   display: block; }
   b777-lower-eicas-engine svg {
     width: 100%;
     height: 100%; }
   b777-lower-eicas-engine text {
     fill: var(--eicasWhite);
-    font-size: 20px;
-    text-anchor: middle;
-    alignment-baseline: baseline; }
+    font-size: 45px;
+    text-anchor: start;}
   b777-lower-eicas-engine text.Label {
     fill: cyan;
+    letter-spacing: 0px !important;
+    font-size: 18px; }
+  b777-lower-eicas-engine text.VLabel {
+    fill: cyan;
+    font-size: 15px;
+    glyph-orientation-vertical: 0;
+    writing-mode: vertical-lr; }
+  b777-lower-eicas-engine text.ValueGreen, b777-lower-eicas-engine text.ValueGreenSmall {
+    fill: lime;
+    text-anchor: end; }
+  b777-lower-eicas-engine text.ValueGreenSmall {
     font-size: 15px; }
+  b777-lower-eicas-engine text.ValueGreenMed {
+    fill: lime;
+    font-size: 22px; }
+  b777-lower-eicas-engine text.Hidden {
+      font-size: 0px; }
+  b777-lower-eicas-engine rect.ValueGreen {
+    stroke: lime;
+    stroke-width: 4px;
+    fill: none; }
+  b777-lower-eicas-engine text.ValueOrange {
+      fill: rgb(255, 196, 0);
+      text-anchor: end; }
+  b777-lower-eicas-engine text.ValueWhite {
+    font-size: 20px;
+    fill: var(--eicasWhite);
+    letter-spacing: 1px !important;
+    text-anchor: end; }
+  b777-lower-eicas-engine text.ValueWhiteSmall {
+    fill: var(--eicasWhite);
+    font-size: 15px;
+    letter-spacing: 1px !important;
+    text-anchor: end;}
+  b777-lower-eicas-engine text.ValueWhiteLarge {
+    fill: var(--eicasWhite);
+    font-size: 26px;
+    text-anchor: end;}
   b777-lower-eicas-engine #EngineStates text {
     fill: lime;
     font-size: 16px; }
   b777-lower-eicas-engine #EngineStates .white {
     fill: var(--eicasWhite); }
-  b777-lower-eicas-engine #N2Gauges {
-    top: 7%; }
-  b777-lower-eicas-engine #FFGauges {
-    top: 28%; }
-  b777-lower-eicas-engine #OilPGauges {
-    top: 45%; }
-  b777-lower-eicas-engine #OilTGauges {
-    top: 60%; }
-  b777-lower-eicas-engine #OilQGauges {
-    top: 69%; }
-  b777-lower-eicas-engine #VIBGauges {
-    top: 81%; }
+  b777-lower-eicas-engine #PrimaryEngine {
+    top: 20%;
+    transform: scale(0.6); }
+  b777-lower-eicas-engine .gauge text {
+      text-anchor: end;
+      font-size: 42px;
+      letter-spacing: -4px; }
+  b777-lower-eicas-engine .gauge line, b777-lower-eicas-engine .gauge rect, b777-lower-eicas-engine .gauge path, b777-lower-eicas-engine .gauge polyline {
+      fill: none;
+      stroke: var(--eicasWhite);
+      stroke-width: 4px; }
+  b777-lower-eicas-engine .gauge path.mainArc path.predArc {
+      stroke-width: 2px; }
+  b777-lower-eicas-engine .gauge .throttleMarker {
+      stroke: var(--eicasWhite); }
+  b777-lower-eicas-engine .gauge .dangerMarker {
+      stroke: var(--eicasRed); }
+  b777-lower-eicas-engine .gauge .warningMarker {
+      stroke: var(--eicasYellow); }
+  b777-lower-eicas-engine .gauge .greenMarker {
+      stroke: var(--eicasGreen); }
+  b777-lower-eicas-engine .gauge .fill {
+      stroke: none;
+      fill: var(--eicasFill); }
+  b777-lower-eicas-engine .gauge text.danger, b777-lower-eicas-engine .gauge path.danger {
+      fill: var(--eicasRed); }
+  b777-lower-eicas-engine .gauge text.warning, b777-lower-eicas-engine .gauge path.warning {
+      fill: var(--eicasOrange); }
+  b777-lower-eicas-engine .gauge .cursor {
+      stroke: none;
+      fill: var(--eicasWhite); }
+  b777-lower-eicas-engine .gauge rect.invert {
+      fill: var(--eicasWhite); }
+  b777-lower-eicas-engine .gauge text.invert {
+      fill: var(--eicasBlack); }
 

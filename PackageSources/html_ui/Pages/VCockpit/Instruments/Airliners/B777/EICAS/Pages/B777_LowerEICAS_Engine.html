@@ -3,44 +3,109 @@
 <script type="text/html" id="B777LowerEICASEngineTemplate">
     <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
         <g id="EngineStates">
-            <text id="Engine1_State" x="10%" y="5%"></text>
-            <text id="Engine2_State" x="25%" y="5%"></text>
+            <text id="Engine1_State" x="100" y="15"></text>
+            <text id="Engine2_State" x="270" y="15"></text>
         </g>
 
-        <g id="Labels">
-            <text class="Label" x="17%" y="19%">N</text>
-            <text class="Label" x="18.5%" y="20%">2</text>
-            <text class="Label" x="17.5%" y="31%">FF</text>
-            <text class="Label" x="17.25%" y="43%">OIL P</text>
-            <text class="Label" x="17.25%" y="58%">OIL T</text>
-            <text class="Label" x="17.25%" y="74%">OIL Q</text>
-            <text class="Label" x="17.25%" y="79%">VIB</text>
+        <g id="GaugeTemplate" class="gauge" transform="translate(-10, 0)">
+            <path class="mainArc" d="M41 12 A96 96 0 1 0 220 60" />
+            <path class="fill" d="M41 12 A96 96 0 0 0 220 60 L124 60" />
+            <rect x="125px" y="3px" width="120px" height="50px" />
+            <text class="valueText" x="240px" y="44px">0.0</text>
+            <line class="normalMarker" x1="0px" x2="111px" transform="translate(124, 60)" />
+            <line class="dangerMarker" x1="96px" x2="112px" transform="translate(124, 60)" />
+        </g>
+
+        <g id="PrimaryEngine">
+            <!--<rect x="0px" width="550px" y="85px" height="585px" style="fill:lightblue" />-->
+            <g id="N2_1_GAUGE" transform="translate(50, 30)"></g>
+            <g id="N2_2_GAUGE" transform="translate(330, 30)"></g>
+            <text class="Label" x="30%" y="17.5%">N</text>
+            <text class="Label" x="31.5%" y="18.5%">2</text>
+        </g>
+        <g id="EngineBottom">
+            <!--<rect x="0px" width="500px" y="865px" height="635px" style="fill:white" />-->
+
+            <g id="FF_INFO" transform="translate(0, 120)">
+                <text class="Label" x="170px" y="44px">FF</text>
+
+                <g id="FF_INFO_1" class="gauge">
+                    <rect x="70px" y="0px" width="105px" height="50px"/>
+                    <text class="ValueWhiteLarge" id="FF_1_Value" x="170px" y="41px">0.0</text>
+                </g>
+
+                <g id="FF_INFO_2" class="gauge">
+                    <rect x="375px" y="0px" width="105px" height="50px"/>
+                    <text class="ValueWhiteLarge" id="FF_2_Value" x="475px" y="41px">0.0</text>
+                </g>
+            </g>
+
+            <g id="OIL_P_INFO" transform="translate(0, 150)">
+                <text class="Label" x="170px" y="63px">OIL</text>
+                <text class="Label" x="170px" y="95px">PRESS</text>
+
+                <g id="OIL_P_INFO_1" class="gauge">
+                    <rect x="85px" y="43px" width="90px" height="50px"/>
+                    <text class="ValueWhite" x="170px" y="84px">0</text>
+                    <line x1="190px" x2="190px" y2="136px"/>
+                </g>
+
+                <g id="OIL_P_INFO_2" class="gauge">
+                    <rect x="375px" y="43px" width="90px" height="50px"/>
+                    <text class="ValueWhite" x="460px" y="84px">0</text>
+                    <line x1="360px" x2="360px" y2="136px"/>
+                </g>
+            </g>
+
+            <g id="OIL_T_INFO" transform="translate(0, 250)">
+                <text class="Label" x="170px" y="63px">OIL</text>
+                <text class="Label" x="170px" y="95px">TEMP</text>
+
+                <g id="OIL_T_INFO_1" class="gauge">
+                    <rect x="85px" y="43px" width="90px" height="50px"/>
+                    <text class="ValueWhite" x="170px" y="84px">0</text>
+                    <line x1="190px" x2="190px" y2="136px"/>
+                </g>
+
+                <g id="OIL_T_INFO_2" class="gauge">
+                    <rect x="375px" y="43px" width="90px" height="50px"/>
+                    <text class="ValueWhite" x="460px" y="84px">0</text>
+                    <line x1="360px" x2="360px" y2="136px"/>
+                </g>
+            </g>
+
+            <g id="OIL_Q_INFO" transform="translate(0, 350)">
+                <text class="Label" x="170px" y="36px">OIL QTY</text>
+
+                <g id="OIL_Q_INFO_1" class="gauge">
+                    <rect x="100px" y="0px" width="75px" height="50px"/>
+                    <text class="ValueWhite" id="OIL_Q_1_Value" x="170px" y="41px">0</text>
+                </g>
+
+                <g id="OIL_Q_INFO_2" class="gauge">
+                    <rect x="375px" y="0px" width="75px" height="50px"/>
+                    <text class="ValueWhite" id="OIL_Q_2_Value" x="445px" y="41px">0</text>
+                </g>
+            </g>
+
+            <g id="VIB_INFO" transform="translate(0, 400)">
+                <text class="Label" x="170px" y="71px">VIB</text>
+
+                <g id="VIB_INFO_1" class="gauge">
+                    <rect x="100px" y="35px" width="75px" height="50px"/>
+                    <text class="ValueWhite" x="170px" y="76px">0.0</text>
+                    <line x1="190px" x2="190px" y2="120px"/>
+                </g>
+
+                <g id="VIB_INFO_2" class="gauge">
+                    <rect x="375px" y="35px" width="75px" height="50px"/>
+                    <text class="ValueWhite" x="445px" y="76px">0.0</text>
+                    <line x1="360px" x2="360px" y2="120px"/>
+                </g>
+            </g>
         </g>
     </svg>
 
-    <div id="N2Gauges" class="gauges">
-
-    </div>
-
-    <div id="FFGauges" class="gauges">
-
-    </div>
-
-    <div id="OilPGauges" class="gauges">
-
-    </div>
-
-    <div id="OilTGauges" class="gauges">
-
-    </div>
-
-    <div id="OilQGauges" class="gauges">
-
-    </div>
-
-    <div id="VIBGauges" class="gauges">
-
-    </div>
 </script>
 
 <script type="text/html" import-script="/Pages/VCockpit/Instruments/Airliners/B777/EICAS/Pages/B777_LowerEICAS_Engine.js"></script>
